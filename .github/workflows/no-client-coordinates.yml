@@ -1,0 +1,20 @@
+name: no-client-coordinates
+
+# 이 repo 는 담당 클라가 서로 다른 여러 PM 이 함께 clone 한다. 인프라 좌표
+# (EC2 인스턴스 id·RDS 엔드포인트·AWS 계정번호)가 들어오면 담당하지 않는 클라의
+# 접근 경로가 모두에게 노출된다. 좌표는 배포 정문이 플랫폼에서 런타임에 받는다.
+#
+# 규약을 문서에만 두면 샌다 — 그래서 기계로 막는다.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 클라이언트 인프라 좌표 스캔
+        run: python3 scripts/scan-client-coordinates.py .

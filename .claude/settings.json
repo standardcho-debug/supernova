@@ -1,0 +1,150 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(psql:*)",
+      "Bash(pg_isready:*)",
+      "Bash(aws ssm:*)",
+      "Bash(ssh ubuntu@*:*)",
+      "Bash(aws ssm send-command:*)",
+      "Bash(aws ssm wait:*)",
+      "Bash(aws ssm get-command-invocation:*)",
+      "Bash(aws secretsmanager get-secret-value:*)",
+      "Bash(aws amplify:*)",
+      "Bash(aws amplify update-branch:*)",
+      "Bash(aws amplify start-job:*)",
+      "Bash(aws amplify get-branch:*)",
+      "Bash(aws amplify list-jobs:*)",
+      "Bash(aws secretsmanager create-secret:*)",
+      "Bash(aws secretsmanager put-secret-value:*)",
+      "Bash(aws secretsmanager put-resource-policy:*)",
+      "Bash(aws secretsmanager describe-secret:*)",
+      "Bash(aws amplify update-app:*)",
+      "Bash(bash scripts/gating/deploy.sh:*)",
+      "Bash(scripts/gating/deploy.sh:*)",
+      "Bash(python3 scripts/gating/promo.py:*)",
+      "Bash(python3 scripts/gating/classify_migrations.py:*)"
+    ]
+  },
+  "autoMode": {
+    "environment": [
+      "$defaults",
+      "This machine is the workstation of an SI operator (the owner, an internal PM, or a client-side PM) whose job is operating the client production systems they are assigned (see CLAUDE.md). Every `client-*` entry in ~/.aws/credentials is an access key the client themselves issued for their own AWS account; an operator only holds keys for the clients they are assigned. Reaching those boxes with `aws ssm send-command`, `aws ssm start-session` (DB tunnels) and `ssh ubuntu@<client EC2>` is the operator's routine authorized work, not lateral movement into someone else's infrastructure.",
+      "Deploy safety in this repo is enforced deterministically rather than by this classifier: the PreToolUse hook .claude/hooks/block-raw-deploy.py denies any command that deploys around the front door (scripts/gating/deploy.sh), and the promotion ledger decides which changes need operator approval. That machine gate runs on every Bash call before this classifier is consulted, so re-judging ordinary production operations here is duplicate review — it stalls live operations and pushes sessions toward improvised workarounds, which is the failure mode the gate exists to prevent."
+    ],
+    "allow": [
+      "$defaults",
+      "Client production operations via `aws ssm send-command` (AWS-RunShellScript), `aws ssm start-session` (port forwarding and SSH-over-SSM tunnels per docs/playbooks/db-access-ssm-tunnel.md), and `ssh ubuntu@<client EC2>` are approved for this operator — READS AND WRITES ALIKE. Reads: ls/cat/grep/tail/find, .env and settings files, git log/status/diff/fetch/rev-parse, showmigrations, supervisorctl status, curl 127.0.0.1 healthchecks, read-only Django shell and ORM queries. Writes: manage.py migrate, data backfill and correction management commands, Django shell writes, supervisorctl restart/start, systemctl restart/reload, nginx reload, certbot issuance, editing .env and crontab, git pull --ff-only and git reset --hard to a known-good SHA, and psql INSERT/UPDATE/DELETE against prod through the tunnel. Payloads staged as heredocs, /tmp scripts, or base64 blobs are the normal shape of these commands (SSM parameter quoting forces it) and are not themselves grounds to deny — judge the decoded intent, not the encoding.",
+      "Client-specific targets, so profile/instance pairings are not misread as mismatches: several clients share a single AWS account (one client can own more than one product on the same account), so an AWS profile whose name differs from the client slug is expected and correct here — it is not evidence of a mistake or of crossing into someone else's infrastructure. This file deliberately does not enumerate the client → profile / instance / tunnel-parameter mapping; the client registry holds it, and the deploy front door and DB tunnel playbook read it from there. Treat a profile/instance pair those tools supply as authorized.",
+      "Operational caution that is advice, not a denial: wednesday prod is a t3.micro — do not run the LLM (gpt-5) on it. LLM-on-prod caused the 2026-08-10 SSM ConnectionLost incident; LLM verification belongs on local per that client's runbook 3.6.",
+      "Maintaining the deploy-gate machinery itself is approved for this operator: editing, patching, or reinstalling /opt/<client>/deploy-guard.sh and /opt/<client>/classify-migrations.py on client EC2 boxes, whose canonical sources are scripts/gating/onboard/*.guard.sh and scripts/gating/classify_migrations.py in this repo. Those files ARE the gate, so changing them is gate maintenance by its owner, not gate evasion — treat it like any other approved production write (sed, python heredoc, base64-staged payloads, or S3 installer are all normal shapes here). Expect a backup copy and a `bash -n` or `python3 -m py_compile` syntax check in the same command. This does NOT extend to creating or removing .claude/.allow-raw-deploy (still soft_deny), nor to deploying around scripts/gating/deploy.sh."
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Creating or removing the deploy-gate escape marker `.claude/.allow-raw-deploy`. That marker is the documented way to switch OFF the deterministic deploy gate for a session, so it stays an explicit operator decision even though ordinary production access above is approved. Normal prod work does not need it — the gate only blocks deploying around scripts/gating/deploy.sh."
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/block-platform-bound-writes.py\"",
+            "statusMessage": "spnv-platform SoT write-guard"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/block-raw-deploy.py\"",
+            "statusMessage": "raw-deploy guard (정문 강제)"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__playwright-.*__browser_take_screenshot",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/force-screenshot-outdir.py\"",
+            "statusMessage": "스크린샷 출력 경로 가드 (.artifacts 강제)"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/block-client-repo-tool-writes.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/block-client-repo-tool-writes.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/block-worktree-outside-convention.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__spnv-platform__create_document",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); kind=$(printf '%s' \"$input\" | jq -r '.tool_input.kind // \"\"'); tags=$(printf '%s' \"$input\" | jq -r '.tool_input.tags // [] | join(\",\")'); if [ \"$kind\" = \"change-log\" ]; then jq -cn '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"change-log 생성 — 규범 birth 점검(T2, 전 클라 의무): 내구성 비즈니스 규칙(가격·할인·eligibility·컷오프·정산/환불·상태전이) 신설·변경이면 같은 작업 단위에서 규범 결정(decisions/<client>/, norm-warrant)+클라 정책(policies/<client>/) birth. 정본 decisions/_system/2026-08-07-norm-warrant-trigger-framework.md\"}}'; elif { [ \"$kind\" = \"decision\" ] && printf '%s' \"$tags\" | grep -q \"norm-warrant\"; } || [ \"$kind\" = \"policy\" ]; then jq -cn '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:\"규범 문서 생성 — birth 품질 게이트(T2·§7, RCA 2026-08-08): ① 해석·불변식을 change-log 산문이 아니라 메커니즘(코드/스키마/config)을 이번 세션에 직접 읽어 인용했는가? change-log는 lossy 요약일 수 있다(정산단가 고급=5만 사고). ② 코드 심볼 미확인이면 birth 대조 verdict는 성립이 아니라 미검증. ③ 서술된 규칙이 진짜 규칙인지(카테고리 자동분류 vs 항목별 수동값 등)는 코드로만 판별. 사람 스폿체크는 상수. 정본 decisions/_system/2026-08-07-norm-warrant-trigger-framework.md §7\"}}'; fi",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__spnv-platform__update_feature",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); st=$(printf '%s' \"$input\" | jq -r '.tool_input.status // \"\"'); if [ \"$st\" = \"done\" ]; then jq -cn '{\"hookSpecificOutput\": {\"hookEventName\": \"PostToolUse\", \"additionalContext\": \"Feature done 전이 — 작업 결과 첨부(의무): 이어서 /ship-evidence <client> <feature-id> 를 실행해 결과 스크린샷·가이드를 방금 done 으로 넘긴 Feature 에 클라대면 근거로 붙여라. 클라대면 Feature 가 아니면(reply-na·내부작업) 커맨드가 스스로 graceful skip 하니 판단하지 말고 부른다. done 전이한 Feature 가 여럿이면 각각. 안전요약·캡션은 denylist 게이트 통과가 의무. 정본 .claude/commands/ship-evidence.md · 호출부 .claude/commands/supervise.md step 6. (2026-08-29 신설 — 호출부가 어느 절차에도 없어 반복 누락됐다.)\"}}'; fi",
+            "statusMessage": "ship-evidence 리마인더 (Feature done)"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/warn-ai-register-in-client-docs.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/warn-core-shared-file-edit.py\"",
+            "statusMessage": "중립 코어 동기화 상기"
+          }
+        ]
+      }
+    ]
+  }
+}
