@@ -1,1 +1,60 @@
-PLACEHOLDER
+{
+  "mcpServers": {
+    "spnv-platform": {
+      "type": "http",
+      "url": "https://cofounder-api.jengablock.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${SPNV_PLATFORM_TOKEN}"
+      }
+    },
+    "playwright-headless": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--headless",
+        "--isolated",
+        "--output-dir",
+        "./.artifacts/screenshots",
+        "--output-max-size",
+        "268435456"
+      ]
+    },
+    "playwright-head": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome",
+        "--user-data-dir",
+        "./scripts/browser/.session/head-profile",
+        "--viewport-size",
+        "1280,900",
+        "--output-dir",
+        "./.artifacts/screenshots",
+        "--output-max-size",
+        "268435456"
+      ]
+    },
+    "playwright-biztalk": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--user-data-dir",
+        "./scripts/bizmsg/.session/biztalk-profile",
+        "--viewport-size",
+        "1280,900",
+        "--output-dir",
+        "./.artifacts/screenshots",
+        "--output-max-size",
+        "268435456"
+      ]
+    },
+    "portone-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@portone/mcp-server@latest"
+      ]
+    }
+  }
+}
