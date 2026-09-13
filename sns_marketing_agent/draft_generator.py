@@ -1,15 +1,19 @@
 """Stage 3: turn a ContentBrief into a channel-specific draft.
 
-Output still isn't publishable on its own — it stops at stage 4 (approval).
-Actually posting to Naver Blog / Instagram / Youtube is a separate,
-not-yet-built integration; see README.md.
+Text only. Output still isn't publishable on its own — it stops at stage 4
+(approval). Actually posting to Naver Blog / Instagram / Youtube is a
+separate, not-yet-built integration; see README.md.
+
+For Youtube specifically, this stage stops at a storyboard (scene-by-scene
+on-screen text + narration + duration), not a rendered video — see
+image_generator.py's module docstring for why.
 """
 from __future__ import annotations
 
 import json
 
 from .llm_client import LLMClient
-from .models import Channel, ClientProfile, ContentBrief, ContentDraft
+from .models import Channel, ClientProfile, ContentBrief, ContentDraft, StoryboardScene
 
 _CHANNEL_INSTRUCTIONS = {
     Channel.NAVER_BLOG: (
@@ -21,9 +25,11 @@ _CHANNEL_INSTRUCTIONS = {
         "body(캡션 본문, 3-5문장), hashtags(8-15개) 필드를 가진 JSON으로 출력하라."
     ),
     Channel.YOUTUBE: (
-        "유튜브 숏폼 스크립트를 작성하라. title(영상 제목), "
-        "body(3-5분 분량 스크립트), hashtags(3-5개), "
-        "thumbnail_text(썸네일에 넣을 한 줄) 필드를 가진 JSON으로 출력하라."
+        "유튜브 숏폼 스토리보드를 작성하라. title(영상 제목), "
+        "thumbnail_text(썸네일에 넣을 한 줄), hashtags(3-5개), "
+        "storyboard(장면 3-6개 배열, 각 장면은 on_screen_text/narration/"
+        "duration_seconds 필드를 가짐, 전체 30-60초) 필드를 가진 JSON으로 출력하라. "
+        "실제 촬영·편집은 이 단계 밖이므로 body 필드는 넣지 않는다."
     ),
 }
 
@@ -53,10 +59,22 @@ class DraftGenerator:
                 f"{brief.channel.value}: {raw[:200]!r}"
             ) from exc
 
+        storyboard = [
+            StoryboardScene(
+                order=i,
+                on_screen_text=scene["on_screen_text"],
+                narration=scene["narration"],
+                duration_seconds=scene["duration_seconds"],
+            )
+            for i, scene in enumerate(data.get("storyboard", []))
+        ]
+        body = data.get("body") or "\n".join(scene.narration for scene in storyboard)
+
         return ContentDraft(
             brief=brief,
             title=data["title"],
-            body=data["body"],
+            body=body,
             hashtags=data.get("hashtags", []),
             thumbnail_text=data.get("thumbnail_text"),
+            storyboard=storyboard,
         )

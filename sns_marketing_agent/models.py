@@ -43,12 +43,41 @@ class ContentBrief:
 
 
 @dataclass
+class ImageAsset:
+    """A rendered visual for the draft (card, cover, thumbnail).
+
+    `file_path` is "" when the asset was only planned, not actually
+    rendered (e.g. by NullImageGenerator in tests/offline demos).
+    """
+
+    channel: Channel
+    file_path: str
+    alt_text: str
+
+
+@dataclass
+class StoryboardScene:
+    """One shot of a short-form video script — the unit stage 3 stops at.
+
+    Turning this into an actual video file is out of scope: see
+    image_generator.py's module docstring and README.md.
+    """
+
+    order: int
+    on_screen_text: str
+    narration: str
+    duration_seconds: int
+
+
+@dataclass
 class ContentDraft:
     brief: ContentBrief
     title: str
     body: str
     hashtags: list[str] = field(default_factory=list)
     thumbnail_text: str | None = None
+    images: list[ImageAsset] = field(default_factory=list)
+    storyboard: list[StoryboardScene] = field(default_factory=list)
 
 
 @dataclass

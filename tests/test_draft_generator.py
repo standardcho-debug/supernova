@@ -45,13 +45,24 @@ def test_generate_parses_valid_json_into_draft():
     assert draft.thumbnail_text is None
 
 
-def test_youtube_draft_includes_thumbnail_text():
+def test_youtube_draft_parses_storyboard_and_derives_body():
     response = json.dumps(
         {
             "title": "월요일 한정 메뉴",
-            "body": "스크립트",
-            "hashtags": ["동네빵집"],
             "thumbnail_text": "월요일에만 파는 이유",
+            "hashtags": ["동네빵집"],
+            "storyboard": [
+                {
+                    "on_screen_text": "월요일에만?",
+                    "narration": "저희는 월요일에만 이 메뉴를 굽습니다.",
+                    "duration_seconds": 5,
+                },
+                {
+                    "on_screen_text": "이유는 발효 시간",
+                    "narration": "주말 동안 천천히 발효시키기 때문이에요.",
+                    "duration_seconds": 8,
+                },
+            ],
         },
         ensure_ascii=False,
     )
@@ -59,6 +70,20 @@ def test_youtube_draft_includes_thumbnail_text():
     draft = generator.generate(make_profile(), make_brief(Channel.YOUTUBE))
 
     assert draft.thumbnail_text == "월요일에만 파는 이유"
+    assert len(draft.storyboard) == 2
+    assert draft.storyboard[0].order == 0
+    assert draft.storyboard[1].duration_seconds == 8
+    assert "천천히 발효" in draft.body
+
+
+def test_non_youtube_draft_has_empty_storyboard():
+    response = json.dumps(
+        {"title": "t", "body": "b", "hashtags": []}, ensure_ascii=False
+    )
+    generator = DraftGenerator(FakeLLMClient(response))
+    draft = generator.generate(make_profile(), make_brief(Channel.NAVER_BLOG))
+
+    assert draft.storyboard == []
 
 
 def test_non_json_output_raises_value_error():
