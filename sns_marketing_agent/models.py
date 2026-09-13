@@ -4,6 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
+from uuid import uuid4
 
 
 class Channel(str, Enum):
@@ -87,3 +88,4 @@ class ApprovalRecord:
     reviewer: str | None = None
     reviewed_at: datetime | None = None
     notes: str = ""
+    id: str = field(default_factory=lambda: str(uuid4()))

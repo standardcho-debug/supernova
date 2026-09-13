@@ -23,11 +23,15 @@ def run_pipeline(
     llm: LLMClient,
     image_generator: ImageAssetGenerator | None = None,
     briefs_per_channel: int = 1,
+    gate: ApprovalGate | None = None,
 ) -> list[ApprovalRecord]:
+    """Runs stages 1-4. Pass an existing `gate` to accumulate records across
+    multiple calls (e.g. a long-lived web server); omit it for a one-off run.
+    """
     profile = history_source.get_client_profile(client_id)
     brief_gen = BriefGenerator(llm)
     draft_gen = DraftGenerator(llm)
-    gate = ApprovalGate()
+    gate = gate if gate is not None else ApprovalGate()
 
     records = []
     for channel in channels:

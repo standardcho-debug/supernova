@@ -5,6 +5,9 @@ stays with the client's founder — the automation removes the back-and-forth
 before this point, not the approval itself. There is deliberately no
 `publish()` here: turning an ApprovalRecord into an actual post on Naver
 Blog / Instagram / Youtube is out of scope for this pipeline.
+
+Records are keyed by id (not object identity) because the web frontend only
+has an id string from a form post, never the Python object.
 """
 from __future__ import annotations
 
@@ -15,32 +18,56 @@ from .models import ApprovalRecord, ApprovalStatus, ContentDraft
 
 class ApprovalGate:
     def __init__(self):
-        self._records: list[ApprovalRecord] = []
+        self._records: dict[str, ApprovalRecord] = {}
 
     def submit(self, draft: ContentDraft) -> ApprovalRecord:
         record = ApprovalRecord(draft=draft)
-        self._records.append(record)
+        self._records[record.id] = record
         return record
 
-    def approve(self, record: ApprovalRecord, reviewer: str) -> None:
-        self._set_status(record, ApprovalStatus.APPROVED, reviewer, "")
+    def get(self, record_id: str) -> ApprovalRecord:
+        return self._records[record_id]
 
-    def reject(self, record: ApprovalRecord, reviewer: str, notes: str) -> None:
-        self._set_status(record, ApprovalStatus.REJECTED, reviewer, notes)
+    def approve(self, record_id: str, reviewer: str) -> ApprovalRecord:
+        return self._set_status(record_id, ApprovalStatus.APPROVED, reviewer, "")
 
-    def pending(self) -> list[ApprovalRecord]:
-        return [r for r in self._records if r.status == ApprovalStatus.PENDING]
+    def reject(self, record_id: str, reviewer: str, notes: str) -> ApprovalRecord:
+        return self._set_status(record_id, ApprovalStatus.REJECTED, reviewer, notes)
+
+    def pending(self, client_id: str | None = None) -> list[ApprovalRecord]:
+        return self._filter(ApprovalStatus.PENDING, client_id)
+
+    def reviewed(self, client_id: str | None = None) -> list[ApprovalRecord]:
+        return [
+            r
+            for r in self._records.values()
+            if r.status != ApprovalStatus.PENDING
+            and (client_id is None or r.draft.brief.client_id == client_id)
+        ]
+
+    def all(self, client_id: str | None = None) -> list[ApprovalRecord]:
+        records = list(self._records.values())
+        if client_id is not None:
+            records = [r for r in records if r.draft.brief.client_id == client_id]
+        return records
+
+    def _filter(self, status: ApprovalStatus, client_id: str | None) -> list[ApprovalRecord]:
+        return [
+            r
+            for r in self._records.values()
+            if r.status == status and (client_id is None or r.draft.brief.client_id == client_id)
+        ]
 
     def _set_status(
         self,
-        record: ApprovalRecord,
+        record_id: str,
         status: ApprovalStatus,
         reviewer: str,
         notes: str,
-    ) -> None:
-        if record not in self._records:
-            raise ValueError("record was not submitted through this gate")
+    ) -> ApprovalRecord:
+        record = self._records[record_id]
         record.status = status
         record.reviewer = reviewer
         record.notes = notes
         record.reviewed_at = datetime.now(timezone.utc)
+        return record

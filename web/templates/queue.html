@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ client_id }} · SNS 콘텐츠 승인함</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>SNS 콘텐츠 승인함</h1>
+    <p class="subtitle">{{ client_id }} · 코파운더가 준비한 콘텐츠를 확인하고 승인/반려해주세요</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>승인 대기 ({{ pending|length }})</h2>
+      {% if not pending %}
+        <p class="empty">지금은 대기 중인 콘텐츠가 없습니다.</p>
+      {% endif %}
+      {% for record in pending %}
+        {% set draft = record.draft %}
+        <article class="card">
+          <div class="card-header">
+            <span class="channel-badge channel-{{ draft.brief.channel.value }}">
+              {{ {"naver_blog": "네이버 블로그", "instagram": "인스타그램", "youtube": "유튜브"}[draft.brief.channel.value] }}
+            </span>
+            <h3>{{ draft.title }}</h3>
+          </div>
+
+          <p class="reason">
+            <strong>왜 이 소재인가:</strong> {{ draft.brief.angle }}
+            {% if draft.brief.source_evidence %}
+              <br><span class="evidence">근거: {{ draft.brief.source_evidence|join(" / ") }}</span>
+            {% endif %}
+          </p>
+
+          {% if draft.images %}
+            <div class="image-row">
+              {% for image in draft.images %}
+                {% set url = image_url(image.file_path) %}
+                {% if url %}
+                  <img src="{{ url }}" alt="{{ image.alt_text }}">
+                {% else %}
+                  <div class="image-placeholder">(이미지 미리보기 없음 — 렌더러 미설정)<br>{{ image.alt_text }}</div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <p class="body-text">{{ draft.body }}</p>
+
+          {% if draft.storyboard %}
+            <div class="storyboard">
+              <strong>스토리보드 (실제 영상 아님 — 촬영/편집 전 대본)</strong>
+              <ol>
+                {% for scene in draft.storyboard %}
+                  <li><em>{{ scene.on_screen_text }}</em> — {{ scene.narration }} ({{ scene.duration_seconds }}초)</li>
+                {% endfor %}
+              </ol>
+            </div>
+          {% endif %}
+
+          {% if draft.hashtags %}
+            <p class="hashtags">{% for tag in draft.hashtags %}#{{ tag }} {% endfor %}</p>
+          {% endif %}
+
+          <div class="actions">
+            <form method="post" action="/records/{{ record.id }}/approve" class="action-block action-approve">
+              <input type="text" name="reviewer" placeholder="승인자" value="대표">
+              <button type="submit" class="approve">승인</button>
+            </form>
+            <form method="post" action="/records/{{ record.id }}/reject" class="action-block action-reject">
+              <input type="text" name="reviewer" placeholder="반려자" value="대표">
+              <input type="text" name="notes" placeholder="반려 사유(선택)">
+              <button type="submit" class="reject">반려</button>
+            </form>
+          </div>
+        </article>
+      {% endfor %}
+    </section>
+
+    {% if reviewed %}
+      <section>
+        <h2>지난 처리 내역</h2>
+        {% for record in reviewed %}
+          <article class="card reviewed status-{{ record.status.value }}">
+            <div class="card-header">
+              <span class="channel-badge channel-{{ record.draft.brief.channel.value }}">
+                {{ {"naver_blog": "네이버 블로그", "instagram": "인스타그램", "youtube": "유튜브"}[record.draft.brief.channel.value] }}
+              </span>
+              <h3>{{ record.draft.title }}</h3>
+              <span class="status-label">{{ "승인됨" if record.status.value == "approved" else "반려됨" }}</span>
+            </div>
+            <p class="meta">{{ record.reviewer }} · {{ record.reviewed_at.strftime("%Y-%m-%d %H:%M") if record.reviewed_at else "" }}</p>
+            {% if record.notes %}<p class="notes">사유: {{ record.notes }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </section>
+    {% endif %}
+  </main>
+</body>
+</html>
