@@ -7,7 +7,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from .approval_gate import ApprovalGate
+from .approval_gate import ApprovalGate, ApprovalStore
 from .brief_generator import BriefGenerator
 from .draft_generator import DraftGenerator
 from .history_collector import HistorySource
@@ -23,7 +23,7 @@ def run_pipeline(
     llm: LLMClient,
     image_generator: ImageAssetGenerator | None = None,
     briefs_per_channel: int = 1,
-    gate: ApprovalGate | None = None,
+    gate: ApprovalStore | None = None,
 ) -> list[ApprovalRecord]:
     """Runs stages 1-4. Pass an existing `gate` to accumulate records across
     multiple calls (e.g. a long-lived web server); omit it for a one-off run.

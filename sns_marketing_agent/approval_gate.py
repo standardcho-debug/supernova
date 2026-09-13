@@ -12,8 +12,26 @@ has an id string from a form post, never the Python object.
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from typing import Protocol
 
 from .models import ApprovalRecord, ApprovalStatus, ContentDraft
+
+
+class ApprovalStore(Protocol):
+    """What pipeline.py and the web frontend need from a records store.
+
+    `ApprovalGate` below (in-memory) and `SqliteApprovalGate`
+    (web/sqlite_store.py, persists across restarts) both satisfy this
+    structurally — neither inherits from it.
+    """
+
+    def submit(self, draft: ContentDraft) -> ApprovalRecord: ...
+    def get(self, record_id: str) -> ApprovalRecord: ...
+    def approve(self, record_id: str, reviewer: str) -> ApprovalRecord: ...
+    def reject(self, record_id: str, reviewer: str, notes: str) -> ApprovalRecord: ...
+    def pending(self, client_id: str | None = None) -> list[ApprovalRecord]: ...
+    def reviewed(self, client_id: str | None = None) -> list[ApprovalRecord]: ...
+    def all(self, client_id: str | None = None) -> list[ApprovalRecord]: ...
 
 
 class ApprovalGate:

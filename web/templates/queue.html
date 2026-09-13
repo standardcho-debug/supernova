@@ -67,10 +67,12 @@
 
           <div class="actions">
             <form method="post" action="/records/{{ record.id }}/approve" class="action-block action-approve">
+              <input type="hidden" name="token" value="{{ token }}">
               <input type="text" name="reviewer" placeholder="승인자" value="대표">
               <button type="submit" class="approve">승인</button>
             </form>
             <form method="post" action="/records/{{ record.id }}/reject" class="action-block action-reject">
+              <input type="hidden" name="token" value="{{ token }}">
               <input type="text" name="reviewer" placeholder="반려자" value="대표">
               <input type="text" name="notes" placeholder="반려 사유(선택)">
               <button type="submit" class="reject">반려</button>

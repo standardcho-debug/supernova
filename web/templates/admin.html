@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>운영자 화면 · 고객사 링크</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>고객사별 승인함 링크</h1>
+    <p class="subtitle">이 화면은 Stan(운영자)용입니다 — 고객사에게 아래 링크를 전달하거나,
+      직접 눌러 고객사 입장을 시뮬레이션해보세요.</p>
+  </header>
+
+  <main>
+    <section>
+      {% if not links %}
+        <p class="empty">아직 등록된 고객사가 없습니다.</p>
+      {% endif %}
+      {% for link in links %}
+        <article class="card">
+          <div class="card-header">
+            <h3>{{ link.client_id }}</h3>
+          </div>
+          <p class="reason">
+            <a href="/clients/{{ link.client_id }}?token={{ link.token }}">
+              /clients/{{ link.client_id }}?token={{ link.token }}
+            </a>
+          </p>
+        </article>
+      {% endfor %}
+    </section>
+  </main>
+</body>
+</html>
