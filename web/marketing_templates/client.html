@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ client_slug }} · 코파운더 마케팅 에이전트</title>
+  <link rel="stylesheet" href="/static/marketing.css">
+</head>
+<body>
+  <div class="topbar">
+    <h1>코파운더 마케팅 에이전트</h1>
+    <p class="subtitle">{{ client_slug }} · {{ month }} · 맥락 → 전략 → 브리프/크리에이티브 → 승인 (발행은 이 화면 밖 — 수동)</p>
+  </div>
+
+  <div class="split">
+    <aside class="panel-left">
+      <ul class="steps">
+        <li class="done"><span class="step-dot"></span>1. 맥락 확인 (co-mcp 읽기 전용)</li>
+        <li class="{{ 'done' if strategy_confirmed else 'active' }}"><span class="step-dot"></span>2. 전략 확인/수정</li>
+        <li class="{{ 'done' if has_creatives else ('active' if strategy_confirmed else '') }}"><span class="step-dot"></span>3. 브리프·크리에이티브 생성</li>
+        <li class="{{ 'done' if all_reviewed else ('active' if has_creatives else '') }}"><span class="step-dot"></span>4. 승인/반려</li>
+      </ul>
+
+      <h2 class="section-title">1. 맥락 스냅샷</h2>
+      <div class="box">
+        <dl>
+          <dt>레인별 활동</dt>
+          <dd>
+            {% for lane in snapshot.lanes %}
+              {{ lane.lane }}: {{ lane.cell_count }}개{% if lane.monthly_frequency is not none %} (월 {{ "%.1f"|format(lane.monthly_frequency) }}회){% endif %}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </dd>
+          <dt>차별화 약속 (근거로 쓸 수 있는 것) — {{ snapshot.promises|length }}건</dt>
+          <dd>
+            <ul>
+              {% for p in snapshot.promises[:3] %}<li>{{ p.rule_title }}</li>{% endfor %}
+            </ul>
+          </dd>
+          <dt>말하면 안 되는 것 (측정 미확정) — {{ snapshot.gaps|length }}건</dt>
+          <dd>
+            <ul>
+              {% for g in snapshot.gaps[:3] %}<li class="gap-item">{{ g.label }} ({{ g.reason }})</li>{% endfor %}
+            </ul>
+          </dd>
+        </dl>
+      </div>
+      <form method="post" action="/clients/{{ client_slug }}/refresh">
+        <input type="hidden" name="month" value="{{ month }}">
+        <button type="submit" class="btn secondary full">co-mcp에서 다시 읽기</button>
+      </form>
+
+      <h2 class="section-title" style="margin-top:20px;">2. 이번 달 전략</h2>
+      <div class="box">
+        <span class="status-pill {{ 'confirmed' if strategy.status == 'confirmed' else '' }}">
+          {{ '확인됨' if strategy.status == 'confirmed' else '초안 — 확인 전' }}
+        </span>
+        {% if strategy.edited_by %}<span style="color:var(--muted);"> · {{ strategy.edited_by }} 수정</span>{% endif %}
+
+        <form method="post" action="/clients/{{ client_slug }}/strategy" style="margin-top:8px;">
+          <input type="hidden" name="month" value="{{ month }}">
+          <textarea class="goal-input" name="goal">{{ strategy.goal }}</textarea>
+          <div class="pillar-bar">
+            {% for p in strategy.pillars %}<div class="pillar-seg" style="flex:{{ p.ratio }};"></div>{% endfor %}
+          </div>
+          <p class="pillar-legend">{% for p in strategy.pillars %}{{ p.name }} {{ (p.ratio * 100)|round|int }}%{% if not loop.last %} · {% endif %}{% endfor %}</p>
+          <input type="text" name="reviewer" placeholder="확인자" value="STan" style="width:100%; padding:6px; border:1px solid var(--border); border-radius:6px; font-size:12px; margin-top:6px;">
+          <button type="submit" class="btn full">전략 확인(수정 내용 저장)</button>
+        </form>
+      </div>
+
+      <h2 class="section-title" style="margin-top:20px;">3. 브리프 생성</h2>
+      <form method="post" action="/clients/{{ client_slug }}/generate">
+        <input type="hidden" name="month" value="{{ month }}">
+        <button type="submit" class="btn full" {{ 'disabled' if not strategy_confirmed else '' }}>
+          {{ '브리프 3건 + 안 3종 생성' if not has_creatives else '반려 사유 반영해 다시 생성' }}
+        </button>
+      </form>
+      {% if not strategy_confirmed %}<p class="empty" style="margin-top:6px;">전략을 먼저 확인해야 생성할 수 있습니다.</p>{% endif %}
+    </aside>
+
+    <main class="panel-right">
+      <h2 class="section-title">브리프 · 크리에이티브 · 승인</h2>
+
+      {% if not creative_rows %}
+        <p class="empty">아직 생성된 브리프가 없습니다. 왼쪽에서 전략을 확인한 뒤 생성해주세요.</p>
+      {% endif %}
+
+      {% set ns = namespace(current_brief_id=none) %}
+      {% for row in creative_rows %}
+        {% if row.brief.id != ns.current_brief_id %}
+          {% if ns.current_brief_id is not none %}</div></div>{% endif %}
+          {% set ns.current_brief_id = row.brief.id %}
+          <div class="brief-group">
+            <h3 class="brief-header">{{ row.brief.topic }}</h3>
+            <p class="brief-meta">
+              {{ row.brief.pillar }} · 타겟: {{ row.brief.target_persona }}
+              <span class="evidence">근거: {{ row.brief.evidence[0].excerpt if row.brief.evidence else "" }}</span>
+            </p>
+            <div class="creative-row">
+        {% endif %}
+
+        {% set creative = row.creative %}
+        {% set record = review_by_id.get(row.record_id) %}
+        <div class="creative-card {{ 'flagged' if creative.mask_status == 'flagged' else '' }} {{ 'status-' + record.status.value if record and record.status.value != 'pending_review' else '' }}">
+          <span class="variant-badge">안 {{ creative.variant }}</span>
+          {% if record %}
+            <div class="rubric">
+              <span class="total">{{ record.rubric.total }}점</span>
+              <span class="breakdown"> · 근거{{ record.rubric.evidence_fit }} 사실{{ record.rubric.factual_accuracy }} 타겟{{ record.rubric.persona_resonance }} 훅{{ record.rubric.hook_strength }} 형식{{ record.rubric.format_compliance }} 마스킹{{ record.rubric.masking }}</span>
+            </div>
+          {% endif %}
+          {% if creative.mask_status == "flagged" %}
+            <p class="mask-flag">⚠ 마스킹 감지: {{ creative.mask_hits|join(", ") }}</p>
+          {% endif %}
+
+          <p class="hook">{{ creative.caption.split("\n")[0] if creative.caption else "" }}</p>
+          <p class="caption">{{ creative.caption }}</p>
+          <p class="hashtags">{% for tag in creative.hashtags %}#{{ tag }} {% endfor %}</p>
+          <p class="utm">{{ creative.utm_url }}</p>
+
+          {% set first_images = creative.slides|selectattr("image_path")|list %}
+          {% if first_images %}
+            <div class="slide-row">
+              {% for slide in creative.slides %}
+                {% set url = carousel_url(slide.image_path) %}
+                {% if url %}<img src="{{ url }}" alt="slide {{ slide.order + 1 }}">{% endif %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <ol class="slide-list">
+              {% for slide in creative.slides %}<li>{{ slide.text }}</li>{% endfor %}
+            </ol>
+          {% endif %}
+
+          {% if record and record.status.value == "pending_review" %}
+            <div class="review-actions">
+              <form method="post" action="/records/{{ record.id }}/approve">
+                <input type="hidden" name="client_slug" value="{{ client_slug }}">
+                <input type="hidden" name="month" value="{{ month }}">
+                <input type="text" name="reviewer" value="STan" style="width:70px; font-size:11px; padding:4px;">
+                <button type="submit" class="btn approve">승인</button>
+              </form>
+              <form method="post" action="/records/{{ record.id }}/reject">
+                <input type="hidden" name="client_slug" value="{{ client_slug }}">
+                <input type="hidden" name="month" value="{{ month }}">
+                <div class="reason-codes">
+                  {% for value, label in reason_choices %}
+                    <label><input type="checkbox" name="reason_codes" value="{{ value }}"> {{ label }}</label>
+                  {% endfor %}
+                </div>
+                <input type="text" name="note" class="action-note" placeholder="비고(선택, R9 기타일 때 권장)">
+                <input type="text" name="reviewer" value="STan" style="width:70px; font-size:11px; padding:4px;">
+                <button type="submit" class="btn reject">반려</button>
+              </form>
+            </div>
+          {% elif record %}
+            <p class="mask-flag" style="color:var(--muted);">
+              {{ "승인됨" if record.status.value == "approved" else "반려됨 — " + record.reason_codes|map(attribute="value")|join(", ") }}
+              {% if record.note %} · {{ record.note }}{% endif %}
+            </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      {% if creative_rows %}</div></div>{% endif %}
+
+      {% if reviewed %}
+        <h2 class="section-title" style="margin-top:28px;">지난 처리 내역</h2>
+        <div class="reviewed-list">
+          {% for record in reviewed %}
+            <div class="card status-{{ record.status.value }}">
+              {{ record.rubric.total }}점 · {{ "승인" if record.status.value == "approved" else "반려" }} ·
+              {{ record.reviewer }} · {{ record.reviewed_at.strftime("%Y-%m-%d %H:%M") if record.reviewed_at else "" }}
+              {% if record.reason_codes %} · {{ record.reason_codes|map(attribute="value")|join(", ") }}{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </main>
+  </div>
+</body>
+</html>
