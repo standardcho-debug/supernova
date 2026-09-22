@@ -3,6 +3,34 @@
 코파운더 고객사의 히스토리(사업계획·요구사항·불만사항·매출현황)를 근거로 네이버 블로그·인스타그램·유튜브
 콘텐츠를 텍스트+이미지까지 완성도 있게 만드는 파이프라인의 프로토타입입니다.
 
+## 지금 실사용 대상: PRD v1.0 마케팅 에이전트 (`web/marketing_app.py`)
+
+아래 섹션들은 이 저장소의 **첫 번째 프로토타입**(가상 픽스처 고객사 `demo-bakery` 기반)을 설명합니다.
+현재 STan이 직접 쓰는 것은 PRD v1.0("코파운더 마케팅 에이전트")으로, 실제 co-mcp 데이터(현재는
+`supernova-platform` 실측 녹화 픽스처)를 근거로 인스타그램 콘텐츠를 만드는 별도 트랙입니다 —
+데이터 모델·화면이 전혀 다릅니다. 실행:
+
+```bash
+pip install -r requirements.txt
+uvicorn web.marketing_app:app --reload --port 8001
+# http://127.0.0.1:8001 → 맥락(F1) → 전략 확인(F2) → 브리프·크리에이티브 생성(F3/F4) → 승인(F5)
+# 한 화면(Split-View)에서 순서대로 진행. 발행 버튼은 없음 — 승인까지가 이 화면의 경계.
+```
+
+- `ANTHROPIC_API_KEY`를 설정하면 실제 Claude로 전략/브리프/카피/루브릭을 생성하고, 없으면
+  `TemplateLLMClientV1`(오프라인 고정 출력)로 흐름만 데모합니다.
+- `PLAYWRIGHT_CHROMIUM_PATH`를 설정하면 캐러셀 슬라이드를 실제 PNG로 렌더링합니다(없으면 텍스트만).
+- co-mcp 실 네트워크 인증(`COFOUNDER_MCP_TOKEN`)은 아직 확정되지 않았습니다(PRD §9 Q1) — 기본은
+  `sns_marketing_agent/fixtures/cofounder_recorded/supernova-platform/`에 저장된 실제 녹화
+  데이터로 동작합니다.
+- 절대 제약(C1-C6: 시스템맵 읽기전용, 원가/수익식 미입력, co-mcp 쓰기 없음, 타 고객사명·금액 마스킹,
+  `open_to_client:false` 규칙 비노출, 발행/광고 집행 없음)은 `sns_marketing_agent/cofounder_client.py`,
+  `masking_filter.py`, `review_queue.py`에 코드로 강제돼 있고 각 모듈 테스트로 검증됩니다.
+- 상태는 `web/data/reviews_v1.db`(승인/반려 결정)에는 영속되지만, 생성된 브리프·카피 본문 자체는
+  현재 프로세스 메모리에만 있습니다(재시작하면 사라짐) — 로컬 파일럿 단계의 알려진 한계입니다.
+
+---
+
 ## 이 저장소가 전체 로드맵에서 차지하는 위치
 
 목표는 SNS 운영 자체가 아니라 그 다음 단계인 **채널 연결·업로드 자동화 → 광고 퍼포먼스 마케팅 자동화**
