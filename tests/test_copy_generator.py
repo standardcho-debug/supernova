@@ -70,3 +70,16 @@ def test_non_json_output_raises_value_error():
     gen = CopyGenerator(FakeLLMClient("이건 JSON이 아닙니다"))
     with pytest.raises(ValueError):
         gen.generate_variants(make_brief())
+
+
+def test_avoid_patterns_are_injected_into_the_prompt():
+    llm = FakeLLMClient(three_variants_response())
+    CopyGenerator(llm).generate_variants(make_brief(), avoid_patterns=["훅약함", "마스킹"])
+    assert "훅약함" in llm.last_prompt
+    assert "마스킹" in llm.last_prompt
+
+
+def test_no_avoid_patterns_by_default():
+    llm = FakeLLMClient(three_variants_response())
+    CopyGenerator(llm).generate_variants(make_brief())
+    assert "피할 것" not in llm.last_prompt

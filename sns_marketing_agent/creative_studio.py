@@ -35,9 +35,13 @@ class CreativeStudio:
         self._base_url = instagram_base_url
 
     def build_creatives(
-        self, brief: Brief, campaign_month: str, medium: str = "organic"
+        self,
+        brief: Brief,
+        campaign_month: str,
+        medium: str = "organic",
+        avoid_patterns: list[str] | None = None,
     ) -> list[Creative]:
-        variants = self._copy_gen.generate_variants(brief)
+        variants = self._copy_gen.generate_variants(brief, avoid_patterns=avoid_patterns)
         creatives = []
         for copy_variant in variants:
             creatives.append(self._build_one(brief, copy_variant, campaign_month, medium))

@@ -71,15 +71,20 @@ def top_candidates(scored: list[ScoredCandidate], n: int = 3) -> list[ScoredCand
     return sorted(eligible, key=lambda c: c.total_score, reverse=True)[:n]
 
 
-def _build_prompt(candidate: ScoredCandidate, strategy: MonthlyStrategy) -> str:
+def _build_prompt(candidate: ScoredCandidate, strategy: MonthlyStrategy, avoid_patterns: list[str]) -> str:
     pillar_names = ", ".join(p.name for p in strategy.pillars)
     excluded = ", ".join(strategy.excluded_claims) or "(없음)"
+    avoid = (
+        f"\n\n최근 반려에서 반복된 문제(피할 것): {', '.join(avoid_patterns)}"
+        if avoid_patterns
+        else ""
+    )
     return (
         f"소재: {candidate.label}\n"
         f"근거(citable): {candidate.evidence_excerpt}\n"
         f"이번 달 전략 목표: {strategy.goal}\n"
         f"콘텐츠 필러: {pillar_names}\n"
-        f"말하면 안 되는 것(측정 미확정): {excluded}\n\n"
+        f"말하면 안 되는 것(측정 미확정): {excluded}{avoid}\n\n"
         "위 소재로 인스타그램 브리프를 작성하라. 위 '근거' 문장을 실제로 인용해서 "
         "topic, angle, pillar(필러 중 하나), target_persona, hook_125(125자 이내 훅), "
         "key_messages(핵심 메시지, 최대 3개 배열), cta 필드를 가진 JSON으로 출력하라. "
@@ -91,13 +96,18 @@ class BriefSelector:
     def __init__(self, llm: LLMClient):
         self._llm = llm
 
-    def expand_to_brief(self, candidate: ScoredCandidate, strategy: MonthlyStrategy) -> Brief:
+    def expand_to_brief(
+        self,
+        candidate: ScoredCandidate,
+        strategy: MonthlyStrategy,
+        avoid_patterns: list[str] | None = None,
+    ) -> Brief:
         if candidate.disqualified:
             raise ValueError(
                 f"candidate {candidate.node_key!r} has no evidence excerpt — cannot brief it (PRD §5.2)"
             )
 
-        prompt = _build_prompt(candidate, strategy)
+        prompt = _build_prompt(candidate, strategy, avoid_patterns or [])
         raw = self._llm.complete(prompt)
         try:
             data = json.loads(raw)
@@ -133,7 +143,8 @@ class BriefSelector:
         strategy: MonthlyStrategy,
         n: int = 3,
         recent_topics: frozenset[str] = frozenset(),
+        avoid_patterns: list[str] | None = None,
     ) -> list[Brief]:
         scored = score_candidates(snapshot, recent_topics=recent_topics)
         chosen = top_candidates(scored, n=n)
-        return [self.expand_to_brief(c, strategy) for c in chosen]
+        return [self.expand_to_brief(c, strategy, avoid_patterns=avoid_patterns) for c in chosen]

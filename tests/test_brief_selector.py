@@ -134,6 +134,26 @@ def test_select_and_brief_end_to_end():
         assert len(brief.key_messages) <= 3
 
 
+def test_avoid_patterns_are_injected_into_expand_prompt():
+    snapshot = real_snapshot()
+    strategy = make_strategy(snapshot)
+    scored = score_candidates(snapshot)
+    qualified = next(c for c in scored if not c.disqualified)
+
+    class RecordingLLM:
+        def __init__(self, response):
+            self._response = response
+            self.last_prompt = None
+
+        def complete(self, prompt):
+            self.last_prompt = prompt
+            return self._response
+
+    llm = RecordingLLM(valid_brief_response())
+    BriefSelector(llm).expand_to_brief(qualified, strategy, avoid_patterns=["훅약함"])
+    assert "훅약함" in llm.last_prompt
+
+
 def test_non_json_brief_response_raises_value_error():
     snapshot = real_snapshot()
     strategy = make_strategy(snapshot)
