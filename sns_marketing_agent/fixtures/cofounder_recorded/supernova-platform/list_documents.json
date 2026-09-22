@@ -1,0 +1,30 @@
+{
+  "_recorded_at": "2026-09-22T00:00:00Z",
+  "_note": "Real entries from mcp__Cofounder__list_documents(client='supernova-platform', limit=30), trimmed to a representative subset spanning kinds and created_by null/non-null.",
+  "results": [
+    {"id": "23d32adf-469d-4b01-b353-eee13b1a6f97", "client": "supernova-platform", "kind": "feature-request",
+     "path": "requests/supernova-platform/2026-09-19-ship-notice-batch.md", "status": "shipped",
+     "created_by": null, "updated_at": "2026-09-19T07:46:13.553481+00:00",
+     "snippet": "# 완료 알림이 건별로 나가 스페이스가 시끄럽다\n\n> 운영자 2026-09-19. 「작업을 모아서 진행할 경우 너무 짧은 주기로 계속 작업완료 알림이 가서\n> 스페이스가 노이즈가 심합니다.」"},
+    {"id": "e4d42362-d1fe-480c-bb57-f3f0f70fa56d", "client": "supernova-platform", "kind": "feature-request",
+     "path": "requests/supernova-platform/2026-09-19-client-scope-manager-never-tested-through-real-auth.md", "status": "requested",
+     "created_by": null, "updated_at": "2026-09-19T06:05:00.931300+00:00",
+     "snippet": "# 클라 스코프 매니저가 실제 인증 경로를 타는 것을 검증하는 테스트가 0건이다\n\n> 발견 경위: 2026-09-19 탐색 포털 API 작업 중 구현자가 관측하고 검토가 코드로 확정했다."},
+    {"id": "98435723-6dcb-4164-86c4-4ba40e7f8a64", "client": "supernova-platform", "kind": "decision",
+     "path": "decisions/supernova-platform/2026-09-18-marketing-card-design-choice.md", "status": "active",
+     "created_by": null, "updated_at": "2026-09-18T08:19:27.735975+00:00",
+     "snippet": "# 마케팅 소재 카드 — B안 채택과 되돌림 조건\n\n- 날짜: 2026-09-18\n- 상태: **결정됨**. 구현·배포 완료(fleet `842f9a2`·`d2cde3a`)"},
+    {"id": "b9aecbb5-74ad-4d1d-acbe-69204b4c98f4", "client": "supernova-platform", "kind": "decision",
+     "path": "decisions/supernova-platform/2026-07-24-service-strategic-direction.md", "status": "current",
+     "created_by": null, "updated_at": "2026-07-24T08:39:11.520019+00:00",
+     "snippet": "# 슈퍼노바 서비스 전략 방향 — 외부 사업계획서 평가 반영 (2026-07-23 대화 정본)\n\n외부 GPT 의 슈퍼노바 사업계획서 평가(종합 68점)를 제품 로드맵에 반영."},
+    {"id": "7006d6a5-fed9-441e-b7bd-fc60307bdadc", "client": "supernova-platform", "kind": "business-plan",
+     "path": "plans/supernova-platform/2026-07-07-e2e-cheap-1-c2e1a6.md", "status": "drafted",
+     "created_by": null, "updated_at": "2026-07-07T09:05:22.798368+00:00",
+     "snippet": "# 1인가구 스마트 식생활 관리 앱 사업계획서\n\n한국의 1인가구는 현재 770만 가구(전체 가구의 35%)로 빠르게 증가."},
+    {"id": "3bcaf801-47ee-419a-b8ac-4a4758d5fffd", "client": "supernova-platform", "kind": "change-log",
+     "path": "changelog/supernova-platform/2026-07-09-cofounder-landing.md", "status": "shipped",
+     "created_by": null, "updated_at": "2026-07-09T14:22:25.322274+00:00",
+     "snippet": "## 코파운더 소개/랜딩 페이지 — shipped (멀티서비스 #5 · S3)\n\n코파운더를 운영자매개 클라 UX \"이런 결과물을 받습니다\" 톤으로 완성."}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "_recorded_at": "2026-09-22T00:00:00Z",
+  "_note": "Real response from mcp__Cofounder__system_map_weight(client='supernova-platform', measure=false). Unmeasured list trimmed from 40 to 8 representative rows.",
+  "client": "supernova-platform",
+  "map": "main",
+  "ranked": [
+    {"key": "clog", "label": "변경기록 작성", "lane": "AI", "guarantee": "instr", "per_month": 353.67, "value": 1061, "window_days": 90},
+    {"key": "done", "label": "Feature done 전이", "lane": "AI", "guarantee": "instr", "per_month": 353.67, "value": 1061, "window_days": 90},
+    {"key": "evid", "label": "결과 근거 첨부", "lane": "AI", "guarantee": "instr", "per_month": 353.67, "value": 1061, "window_days": 90},
+    {"key": "impl", "label": "구현", "lane": "AI", "guarantee": "instr", "per_month": 353.67, "value": 1061, "window_days": 90},
+    {"key": "dom", "label": "도메인 태그", "lane": "AI", "guarantee": "instr", "per_month": 329, "value": 987, "window_days": 90},
+    {"key": "reply?", "label": "회신 필요 여부", "lane": "AI", "guarantee": "instr", "per_month": 329, "value": 987, "window_days": 90},
+    {"key": "init", "label": "과제 귀속", "lane": "AI", "guarantee": "instr", "per_month": 122, "value": 366, "window_days": 90},
+    {"key": "draft", "label": "회신 작성", "lane": "AI", "guarantee": "instr", "per_month": 16.33, "value": 49, "window_days": 90},
+    {"key": "rec", "label": "회신 완료 기록", "lane": "AI", "guarantee": "instr", "per_month": 16.33, "value": 49, "window_days": 90},
+    {"key": "due", "label": "목표일", "lane": "실무", "guarantee": "instr", "per_month": 5.33, "value": 16, "window_days": 90},
+    {"key": "lines", "label": "라인별 크레딧 산정", "lane": "AI", "guarantee": "instr", "per_month": 5.33, "value": 16, "window_days": 90},
+    {"key": "send", "label": "견적 발송", "lane": "실무", "guarantee": "manual", "per_month": 5.33, "value": 16, "window_days": 90}
+  ],
+  "unmeasured": [
+    {"key": "dx_target", "label": "진단 대상 선정", "lane": "실무", "guarantee": "instr", "per_month": null, "value": null},
+    {"key": "intake", "label": "요청 접수", "lane": "AI", "guarantee": "instr", "per_month": null, "value": null},
+    {"key": "selfreq", "label": "고객 직접 등록", "lane": "고객·외부", "guarantee": "instr", "per_month": null, "value": null},
+    {"key": "est?", "label": "견적을 낼 것인가", "lane": "실무", "guarantee": "instr", "per_month": null, "value": null},
+    {"key": "mail", "label": "회신 발송", "lane": "실무", "guarantee": "manual", "per_month": null, "value": null},
+    {"key": "ship", "label": "완료 기록", "lane": "AI", "guarantee": "instr", "per_month": null, "value": null},
+    {"key": "notice", "label": "완료 안내", "lane": "실무", "guarantee": "none", "per_month": null, "value": null},
+    {"key": "keep", "label": "남길 것 고르기", "lane": "AI", "guarantee": "instr", "per_month": null, "value": null}
+  ],
+  "moved": 24
+}

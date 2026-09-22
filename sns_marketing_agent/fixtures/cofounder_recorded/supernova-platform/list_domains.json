@@ -1,0 +1,30 @@
+{
+  "_recorded_at": "2026-09-22T00:00:00Z",
+  "_note": "Full real response from mcp__Cofounder__list_domains(client='supernova-platform').",
+  "results": [
+    {"slug": "estimates", "scope": "supernova-platform", "label": "견적·제안", "service": "si-build", "status": "active", "doc_count": 145, "is_client_facing": false},
+    {"slug": "auth", "scope": "_shared", "label": "인증·세션", "service": "", "status": "active", "doc_count": 87, "is_client_facing": false},
+    {"slug": "billing-settlement", "scope": "supernova-platform", "label": "정산·청구", "service": "", "status": "active", "doc_count": 54, "is_client_facing": false},
+    {"slug": "deploy-ops", "scope": "_shared", "label": "배포·운영·인시던트 대응", "service": "", "status": "active", "doc_count": 67, "is_client_facing": false},
+    {"slug": "messaging", "scope": "supernova-platform", "label": "채팅·메시징", "service": "", "status": "active", "doc_count": 94, "is_client_facing": false},
+    {"slug": "system-map", "scope": "_shared", "label": "시스템 지도(결정 지도·진단)", "service": "", "status": "active", "doc_count": 113, "is_client_facing": false},
+    {"slug": "design-system", "scope": "_shared", "label": "디자인 시스템·토큰", "service": "", "status": "active", "doc_count": 74, "is_client_facing": false},
+    {"slug": "bizmsg-kakao", "scope": "_shared", "label": "카카오 알림톡·비즈메시지", "service": "", "status": "active", "doc_count": 0, "is_client_facing": true, "chip_label": "알림톡"},
+    {"slug": "cofounder-onboarding", "scope": "supernova-platform", "label": "온보딩·가입·인증·랜딩", "service": "cofounder", "status": "active", "doc_count": 95, "is_client_facing": false},
+    {"slug": "uncategorized", "scope": "_shared", "label": "미분류(자동)", "service": "", "status": "active", "doc_count": 56, "is_client_facing": false},
+    {"slug": "native-app", "scope": "supernova-platform", "label": "네이티브 앱·스토어 출시", "service": "", "status": "active", "doc_count": 40, "is_client_facing": false},
+    {"slug": "cofounder-facilitator", "scope": "supernova-platform", "label": "코파운더 대화 퍼실리테이터", "service": "cofounder", "status": "active", "doc_count": 59, "is_client_facing": false},
+    {"slug": "requirements-elicitation", "scope": "supernova-platform", "label": "요구사항 정의(채팅 기반)", "service": "", "status": "active", "doc_count": 28, "is_client_facing": false},
+    {"slug": "infra-aws", "scope": "_shared", "label": "AWS 인프라(OpenTofu)", "service": "", "status": "active", "doc_count": 13, "is_client_facing": false},
+    {"slug": "testing-ci", "scope": "_shared", "label": "테스트·CI 위생", "service": "", "status": "active", "doc_count": 32, "is_client_facing": false},
+    {"slug": "backend-django", "scope": "_shared", "label": "Django·DRF 백엔드 구축", "service": "", "status": "active", "doc_count": 123, "is_client_facing": false},
+    {"slug": "form-conversion", "scope": "supernova-platform", "label": "양식 변환(정부 hwpx fill)", "service": "cofounder", "status": "active", "doc_count": 5, "is_client_facing": false},
+    {"slug": "cofounder-workspace-ia", "scope": "supernova-platform", "label": "워크스페이스 IA(일관공간·셸·네비)", "service": "cofounder", "status": "active", "doc_count": 21, "is_client_facing": false},
+    {"slug": "frontend-nextjs", "scope": "_shared", "label": "Next.js·BFF 프론트 구축", "service": "", "status": "active", "doc_count": 209, "is_client_facing": false},
+    {"slug": "payments-portone", "scope": "_shared", "label": "결제(PortOne)", "service": "", "status": "active", "doc_count": 7, "is_client_facing": false},
+    {"slug": "cofounder-engine", "scope": "supernova-platform", "label": "코파운더 생성 엔진(딥리서치·PSST)", "service": "cofounder", "status": "active", "doc_count": 63, "is_client_facing": false},
+    {"slug": "knowledge-substrate", "scope": "supernova-platform", "label": "지식시스템 substrate(메타)", "service": "", "status": "active", "doc_count": 173, "is_client_facing": false},
+    {"slug": "multi-service-kernel", "scope": "supernova-platform", "label": "멀티서비스 커널(Venture·레지스트리·문서위계)", "service": "", "status": "active", "doc_count": 141, "is_client_facing": false},
+    {"slug": "venture-dashboard", "scope": "supernova-platform", "label": "Venture 대시보드·포털 IA", "service": "", "status": "active", "doc_count": 269, "is_client_facing": false}
+  ]
+}
