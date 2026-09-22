@@ -1,0 +1,17 @@
+{
+  "_recorded_at": "2026-09-22T00:00:00Z",
+  "_note": "Real entries from mcp__Cofounder__list_clients(), trimmed from 36 to a representative subset (mix of Korean company names, English slugs, and the calling client itself).",
+  "results": [
+    {"slug": "dodam", "name": "dodam", "phase": "live", "domain": "dodamfood.kr"},
+    {"slug": "celest", "name": "Celeste", "phase": "live", "domain": "mapket.ai"},
+    {"slug": "happybugo", "name": "happybugo", "phase": "live", "domain": "happybugo.ye-flower.com"},
+    {"slug": "flower", "name": "flower", "phase": "live", "domain": "yeflower.ye-flower.com"},
+    {"slug": "ketovibe", "name": "ketovibe", "phase": "live", "domain": "ketovibe.co.kr"},
+    {"slug": "wednesday", "name": "wednesday", "phase": "live", "domain": null},
+    {"slug": "yjcompany", "name": "와이제이컴퍼니", "phase": "live", "domain": null},
+    {"slug": "ace-company", "name": "에이스컴퍼니", "phase": "lead", "domain": null},
+    {"slug": "hikick-wellness", "name": "하이킥웰니스", "phase": "lead", "domain": null},
+    {"slug": "standard-cho", "name": "스탠", "phase": "lead", "domain": null},
+    {"slug": "supernova-platform", "name": "supernova-platform", "phase": "live", "domain": "spnv.jengablock.com"}
+  ]
+}
