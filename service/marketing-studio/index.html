@@ -1,0 +1,1565 @@
+<title>코파운더 마케팅 스튜디오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --surface-2:#eef2f6; --ink:#121826; --muted:#5b6474; --faint:#8b93a3;
+  --line:#e1e6ed; --accent:#0c8a67; --accent-strong:#08704f; --accent-soft:#dff3eb; --on-accent:#ffffff;
+  --navy:#0f1b33; --warn:#9a5d06; --warn-soft:#fcefd6; --danger:#c23f37; --danger-soft:#fbe5e3;
+  --info:#3456c4; --info-soft:#e5ebfb; --shadow:0 1px 2px rgba(16,24,40,.05),0 2px 6px rgba(16,24,40,.04);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1020; --surface:#111a2c; --surface-2:#0d1526; --ink:#e7ecf4; --muted:#9aa4b6; --faint:#6f7a8e;
+    --line:rgba(255,255,255,.09); --accent:#3cc99c; --accent-strong:#5ad8b0; --accent-soft:rgba(60,201,156,.13); --on-accent:#05251b;
+    --navy:#0f1b33; --warn:#e9ad52; --warn-soft:rgba(233,173,82,.12); --danger:#ff7b72; --danger-soft:rgba(255,123,114,.12);
+    --info:#8aa6ff; --info-soft:rgba(138,166,255,.13); --shadow:0 1px 2px rgba(0,0,0,.45);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1020; --surface:#111a2c; --surface-2:#0d1526; --ink:#e7ecf4; --muted:#9aa4b6; --faint:#6f7a8e;
+  --line:rgba(255,255,255,.09); --accent:#3cc99c; --accent-strong:#5ad8b0; --accent-soft:rgba(60,201,156,.13); --on-accent:#05251b;
+  --navy:#0f1b33; --warn:#e9ad52; --warn-soft:rgba(233,173,82,.12); --danger:#ff7b72; --danger-soft:rgba(255,123,114,.12);
+  --info:#8aa6ff; --info-soft:rgba(138,166,255,.13); --shadow:0 1px 2px rgba(0,0,0,.45);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14.5px;line-height:1.6}
+h1,h2,h3{text-wrap:balance;margin:0;letter-spacing:-.01em}
+button{font:inherit;cursor:pointer}
+input,textarea,select{font:inherit;color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 20px}
+.mark{display:flex;align-items:center;gap:9px;margin-right:auto}
+.mark .dot{width:22px;height:22px;border-radius:7px;background:var(--navy);position:relative;flex:0 0 auto}
+.mark .dot::after{content:"";position:absolute;right:4px;bottom:4px;width:7px;height:7px;border-radius:50%;background:#3cc99c}
+.mark b{font-size:15px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.pill.accent{background:var(--accent-soft);color:var(--accent)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.info{background:var(--info-soft);color:var(--info)}
+.pill.danger{background:var(--danger-soft);color:var(--danger)}
+.ws-switch{display:flex;gap:6px;align-items:center}
+select.inp{padding:6px 10px}
+
+.layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:24px;max-width:1240px;margin:0 auto;padding:20px 16px 80px}
+.nav{position:sticky;top:calc(64px + env(safe-area-inset-top,0px));align-self:start;display:flex;flex-direction:column;gap:2px}
+.nav button{display:grid;grid-template-columns:26px 1fr;gap:2px 8px;align-items:center;text-align:left;border:0;background:transparent;border-radius:10px;padding:8px 10px;color:var(--ink)}
+.nav button .n{grid-row:span 2;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--surface-2);color:var(--muted)}
+.nav button .l{font-weight:600;font-size:14px}
+.nav button .s{font-size:11.5px;color:var(--faint)}
+.nav button:hover{background:var(--surface-2)}
+.nav button.on{background:var(--surface);box-shadow:var(--shadow)}
+.nav button.on .n{background:var(--accent);color:var(--on-accent)}
+.nav button.done .n{background:var(--accent-soft);color:var(--accent)}
+.nav button:disabled{opacity:.45;cursor:not-allowed}
+.nav .hint{margin-top:14px;padding:12px;border-radius:10px;background:var(--surface-2);font-size:12px;color:var(--muted)}
+
+.main{min-width:0;display:flex;flex-direction:column;gap:16px}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.page-head h1{font-size:22px}
+.page-head p{margin:4px 0 0;color:var(--muted);max-width:62ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.card h2{font-size:16px;margin-bottom:6px}
+.card > p.lead{margin:0 0 12px;color:var(--muted)}
+.muted{color:var(--muted)} .faint{color:var(--faint)} .small{font-size:12.5px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.stack{display:flex;flex-direction:column;gap:10px}
+
+.inp{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);min-width:0}
+.inp:focus{background:var(--surface);border-color:var(--accent)}
+textarea.inp{resize:vertical;line-height:1.55}
+label.lbl{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 5px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid transparent;border-radius:9px;padding:9px 15px;font-weight:600;font-size:13.5px;background:var(--accent);color:var(--on-accent);white-space:nowrap}
+.btn:hover{background:var(--accent-strong)}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.soft{background:var(--accent-soft);color:var(--accent)}
+.btn.soft:hover{filter:brightness(.97)}
+.btn.danger{background:var(--danger-soft);color:var(--danger)}
+.btn.sm{padding:5px 10px;font-size:12.5px;border-radius:8px}
+.btn.lg{padding:12px 20px;font-size:15px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.icon-btn{border:0;background:transparent;color:var(--faint);font-size:18px;line-height:1;padding:2px 6px;border-radius:6px}
+.icon-btn:hover{background:var(--surface-2);color:var(--danger)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--ink);position:relative}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip.rec:not(.on){border-color:var(--info);border-style:dashed}
+.chip .rec-tag{font-size:10px;font-weight:700;color:var(--info);margin-left:4px}
+.chip.on .rec-tag{color:inherit;opacity:.8}
+
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.choice{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;color:var(--ink)}
+.choice:hover{border-color:var(--accent)}
+.choice.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft) inset;background:var(--accent-soft)}
+.choice b{display:block;font-size:14px}
+.choice span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.choice .meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+
+.progress{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:4px}
+
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:0}
+.tabs button{border:0;background:transparent;padding:9px 12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs button .cnt{font-size:11px;color:var(--faint);margin-left:4px;font-weight:500}
+
+.field{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.field.filled{border-left:3px solid var(--accent)}
+.field header{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.field h3{font-size:15px}
+.field .why{font-size:12px;color:var(--info);margin:2px 0 0}
+.field .q{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.src{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.src.input{background:var(--surface-2);color:var(--muted)}
+.src.ai{background:var(--info-soft);color:var(--info)}
+.src.cofounder{background:var(--accent-soft);color:var(--accent)}
+.src-ref{font-size:11px;color:var(--faint);margin-left:6px}
+.list-edit{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:6px}
+.list-edit li{display:flex;gap:6px;align-items:center}
+.list-edit li .inp{flex:1}
+.add-row{display:flex;gap:6px}
+.sugs{margin-top:10px;padding:10px;border-radius:10px;background:var(--surface-2);display:flex;flex-direction:column;gap:6px}
+.sugs .sugs-label{font-size:11.5px;font-weight:700;color:var(--muted)}
+.sug{text-align:left;border:1px dashed var(--line);background:var(--surface);border-radius:9px;padding:7px 10px;font-size:13px;color:var(--ink);display:flex;gap:8px;align-items:flex-start}
+.sug:hover{border-color:var(--accent);border-style:solid}
+.sug::before{content:"+";font-weight:700;color:var(--accent)}
+.sug .src{margin-left:auto}
+.field-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.pal{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--surface)}
+.pal:hover{border-color:var(--accent)}
+.pal .sw{display:flex;border-radius:6px;overflow:hidden;height:26px;width:120px}
+.pal .sw i{flex:1}
+.pal span{font-size:11.5px;color:var(--muted)}
+.color-row{display:flex;gap:14px;flex-wrap:wrap}
+.color-row label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.color-row input[type=color]{width:42px;height:32px;border:1px solid var(--line);border-radius:8px;background:none;padding:2px}
+
+.callout{border-radius:12px;padding:12px 14px;font-size:13px;background:var(--info-soft);color:var(--ink);display:flex;gap:10px;align-items:flex-start}
+.callout.warn{background:var(--warn-soft)}
+.callout.ok{background:var(--accent-soft)}
+.callout b{white-space:nowrap}
+
+.drop{border:1.5px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--muted);background:var(--surface-2)}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.asset{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
+.asset .thumb{aspect-ratio:1/1;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+.asset .thumb img,.asset .thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.asset .body{padding:8px;display:flex;flex-direction:column;gap:6px}
+.asset .body .inp{padding:6px 8px;font-size:12.5px}
+.need-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.need-list li{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:9px;background:var(--surface-2);font-size:13px}
+.need-list li .st{flex:0 0 auto}
+
+.brief-list{display:flex;flex-direction:column;gap:8px}
+.brief-item{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;color:var(--ink)}
+.brief-item.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.brief-item b{display:block}
+.brief-item .meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.step-label{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.02em}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px 14px;font-size:13.5px}
+.kv dt{color:var(--muted);font-weight:600}
+.kv dd{margin:0}
+
+.two-col{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
+.slide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.slide-grid canvas{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;background:var(--surface-2)}
+.slide-edit{display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.slide-edit .no{font-weight:700;color:var(--faint);padding-top:8px}
+.slide-edit .inp{margin-bottom:6px}
+.counter{font-size:11.5px;color:var(--faint)}
+.counter.over{color:var(--danger);font-weight:700}
+.copy-box{position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;white-space:pre-wrap;word-break:break-word}
+.copy-box.mono{font-size:12px}
+.copy-box .btn{position:absolute;top:8px;right:8px}
+.copy-box.pad-r{padding-right:74px}
+.scene-table{width:100%;border-collapse:collapse;font-size:13px}
+.scene-table th,.scene-table td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
+.scene-table th{font-size:12px;color:var(--muted);font-weight:600}
+.table-wrap{overflow-x:auto}
+.ad-preview{width:100%;max-width:360px;border-radius:10px;border:1px solid var(--line);display:block}
+
+.yn{display:flex;gap:8px}
+.yn button{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px;font-weight:700;color:var(--ink)}
+.yn button.on.yes{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.yn button.on.no{background:var(--danger);border-color:var(--danger);color:#fff}
+.stat-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.metric-grid label{font-size:11.5px;color:var(--muted)}
+.metric-grid .inp{padding:6px 8px;font-variant-numeric:tabular-nums}
+
+.overlay{position:fixed;inset:0;background:rgba(8,14,28,.45);z-index:50;display:grid;place-items:center;padding:16px}
+.overlay .box{background:var(--surface);border-radius:14px;padding:22px;max-width:380px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25);text-align:center}
+.spinner{width:30px;height:30px;border:3px solid var(--surface-2);border-top-color:var(--accent);border-radius:50%;margin:0 auto 12px;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spinner{animation-duration:3s}}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;background:var(--navy);color:#fff;padding:10px 16px;border-radius:10px;font-size:13.5px;max-width:min(560px,calc(100vw - 32px));box-shadow:0 6px 24px rgba(0,0,0,.2)}
+.toast.err{background:var(--danger)}
+.preview-banner{background:var(--warn-soft);color:var(--warn);font-size:12.5px;padding:8px 20px;text-align:center}
+.empty{padding:26px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.cf-doc{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;padding:9px 10px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-size:13px;cursor:pointer}
+.cf-doc:hover{border-color:var(--accent)}
+.cf-doc .snip{color:var(--muted);font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.scroll-box{max-height:360px;overflow:auto;display:flex;flex-direction:column;gap:6px;padding-right:4px}
+.insight{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
+.insight:last-child{border-bottom:0}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);padding-top:12px}
+  .nav{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}
+  .nav button{flex:0 0 auto;grid-template-columns:22px auto}
+  .nav button .s{display:none}
+  .nav .hint{display:none}
+  .two-col,.grid2,.grid3{grid-template-columns:minmax(0,1fr)}
+  .stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kv{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+
+<div id="app"></div>
+
+<script>
+/* ============================ constants ============================ */
+const INDUSTRIES = ['식품·음료','뷰티·헬스','패션·잡화','교육','IT·SaaS','B2B 서비스','지역 매장','기타'];
+const TONES = ['친근한','전문적인','담백한','유쾌한','따뜻한','단호한','감성적인','트렌디한'];
+const MOODS = ['미니멀','따뜻한 실사','선명한 그래픽','고급스러운','내추럴','테크·데이터','손글씨·친근'];
+const POST_GOALS = ['주 1회','주 2~3회','매일'];
+const ASSET_TYPES = ['로고','제품','서비스 화면','인물·대표','현장·공간','고객 후기','레퍼런스','기타'];
+const PURPOSES = [
+  {v:'organic', l:'오가닉 게시물', d:'팔로워에게 도달, 저장·공유를 노린다'},
+  {v:'ad', l:'광고 소재', d:'처음 보는 사람에게 노출, 클릭·전환을 노린다'},
+  {v:'both', l:'둘 다', d:'먼저 올려보고 반응 좋으면 광고로 돌린다'},
+];
+const GOALS = [
+  {v:'awareness', l:'알리기', d:'우리를 처음 알게 만들기'},
+  {v:'engage', l:'반응', d:'저장·공유·댓글'},
+  {v:'lead', l:'문의·상담', d:'DM·상담 신청'},
+  {v:'purchase', l:'구매·가입', d:'구매·가입 전환'},
+];
+const FORMATS = [
+  {v:'carousel', l:'캐러셀', d:'5~7장 카드. 정보·설득에 강함'},
+  {v:'image', l:'단일 이미지', d:'한 장으로 강하게. 광고에 적합'},
+  {v:'reels', l:'릴스', d:'15~30초 세로 영상'},
+];
+const AWARE = ['모름','문제 인지','비교 중','구매 직전'];
+const CTA_BUTTONS = ['더 알아보기','지금 구매하기','문의하기','가입하기','예약하기'];
+const REASONS = [
+  {c:'tone', l:'톤·말투가 우리답지 않음', fix:'브랜드킷 → 말투와 금기', sec:'voice'},
+  {c:'hook', l:'첫 문장이 약함', fix:'브리프 → 훅 방향', sec:null},
+  {c:'proof', l:'근거가 약하거나 틀림', fix:'브랜드킷 → 증명할 수 있는 사실', sec:'biz'},
+  {c:'too_ad', l:'너무 광고 같음', fix:'브랜드킷 → 고객이 쓰는 말', sec:'target'},
+  {c:'visual', l:'비주얼 품질·무드', fix:'브랜드킷 → 비주얼 / 원천 자산', sec:'visual'},
+  {c:'target', l:'타겟이 안 맞음', fix:'브랜드킷 → 타겟 고객', sec:'target'},
+  {c:'banned', l:'쓰면 안 되는 표현', fix:'브랜드킷 → 쓰면 안 되는 표현', sec:'voice'},
+  {c:'asset', l:'원천 자산 부족', fix:'브랜드킷 → 원천 자산', sec:'assets'},
+  {c:'other', l:'기타', fix:'메모에 적어주세요', sec:null},
+];
+const METRICS = [['reach','도달'],['likes','좋아요'],['saves','저장'],['comments','댓글'],['shares','공유'],['profile','프로필 방문'],['clicks','링크 클릭']];
+
+const SECTIONS = [
+  {id:'biz', title:'비즈니스 핵심', desc:'모든 콘텐츠의 재료가 되는 부분입니다.', fields:[
+    {key:'offer', kind:'text', label:'무엇을 파나요?', q:'고객이 한 번에 알아듣는 말로 한 문장.', why:'캡션 첫 줄, 광고 헤드라인의 재료', ph:'예: 매일 아침 집 앞으로 오는 수제 반찬 정기배송'},
+    {key:'reasons', kind:'list', label:'고객이 우리를 고르는 진짜 이유', q:'경쟁사 대신 우리를 고르는 이유. 최대 3개가 적당합니다.', why:'이유 하나가 광고 소재 방향 하나가 됩니다 (A/B 테스트 축)', ph:'이유를 직접 추가'},
+    {key:'proof', kind:'list', label:'증명할 수 있는 사실·숫자', q:'숫자, 사례, 인증처럼 확인 가능한 것만. 출처를 같이 적어두면 좋습니다.', why:'"근거 없는 주장"으로 다시 쓰는 일을 막습니다', ph:'예: 재구독률 70% (자사몰 9월 데이터)'},
+  ]},
+  {id:'target', title:'타겟 고객', desc:'누구에게, 어떤 말로 말할지 정합니다.', fields:[
+    {key:'persona', kind:'text', label:'핵심 고객은 누구인가요?', q:'나이·직업보다 "어떤 상황에 있는 사람인지"가 중요합니다.', why:'광고 타겟과 카피의 말투를 정합니다', ph:'예: 맞벌이로 저녁 준비가 부담인 30대 부모'},
+    {key:'pains', kind:'list', label:'그 고객이 지금 겪는 불편·고민', q:'고객 입장에서, 고객의 말로.', why:'훅(첫 문장)의 재료', ph:'고민을 직접 추가'},
+    {key:'objections', kind:'list', label:'사기 전에 망설이는 이유', q:'가격, 신뢰, 번거로움 등.', why:'광고가 먼저 풀어줘야 할 것', ph:'망설임을 직접 추가'},
+    {key:'customer_words', kind:'list', label:'고객이 실제로 쓰는 말', q:'후기, 문의, DM에서 자주 보이는 표현.', why:'카피가 "광고 말투"가 되는 걸 막습니다', ph:'고객 표현을 직접 추가'},
+  ]},
+  {id:'voice', title:'말투와 금기', desc:'수정 요청이 가장 많이 나오는 곳입니다. 여기를 채울수록 한 번에 통과합니다.', fields:[
+    {key:'tone', kind:'chips', options:TONES, label:'브랜드 톤', q:'2~3개를 고르세요.', why:'모든 문장의 말투 기준'},
+    {key:'voice_examples', kind:'list', label:'우리다운 문장 예시', q:'"이런 느낌으로 써줘"에 해당하는 문장.', why:'AI가 말투를 따라 하는 기준 문장', ph:'문장을 직접 추가'},
+    {key:'banned', kind:'list', label:'쓰면 안 되는 표현·주장', q:'업종 규정(예: 식품 효능 표현), 경쟁사 비방, 과장 표현 등.', why:'검수에서 걸리는 표현을 미리 막습니다', ph:'금지 표현을 직접 추가'},
+  ]},
+  {id:'visual', title:'비주얼', desc:'이미지와 카드 디자인의 기준입니다.', fields:[
+    {key:'colors', kind:'colors', label:'브랜드 컬러', q:'메인·보조·강조 3색.', why:'캐러셀과 광고 이미지에 그대로 쓰입니다'},
+    {key:'mood', kind:'chips', options:MOODS, label:'비주얼 무드', q:'1~2개를 고르세요.', why:'이미지 생성 프롬프트의 스타일 기준'},
+    {key:'visual_dont', kind:'list', label:'피하고 싶은 비주얼', q:'예: 스톡 사진 느낌, 과한 그라데이션.', why:'어색한 AI 이미지를 걸러냅니다', ph:'직접 추가'},
+  ]},
+  {id:'assets', title:'원천 자산', desc:'콘텐츠 품질은 원천 자산에서 결정됩니다. 로고, 제품 사진, 화면 녹화, 대표님 영상을 올려주세요.', fields:[]},
+  {id:'channel', title:'채널', desc:'게시할 곳과 유입시킬 곳입니다.', fields:[
+    {key:'ig_handle', kind:'text', label:'인스타그램 계정', q:'@계정명', why:'캡션·광고에서 계정 언급', ph:'@yourbrand', rows:1},
+    {key:'landing', kind:'text', label:'유입시킬 링크', q:'홈페이지, 스토어, 상담 신청 페이지 등.', why:'광고 랜딩 URL과 CTA', ph:'https://', rows:1},
+    {key:'post_goal', kind:'chips', options:POST_GOALS, single:true, label:'게시 빈도 목표', q:'현실적으로 유지할 수 있는 빈도.', why:'콘텐츠 캘린더 기준'},
+    {key:'references', kind:'list', label:'참고하고 싶은 계정·콘텐츠', q:'좋다고 느낀 계정이나 게시물의 특징.', why:'톤과 포맷의 레퍼런스', ph:'직접 추가'},
+  ]},
+];
+const ALL_FIELDS = SECTIONS.flatMap(s => s.fields);
+const FIELD = Object.fromEntries(ALL_FIELDS.map(f => [f.key, f]));
+
+const RULES = `[절대 규칙]
+- 제공된 자료에 없는 사실·숫자·수상·고객 수·후기·할인 혜택을 지어내지 않는다. 필요하면 "확인 필요:"로 시작해 무엇을 확인해야 하는지 적는다.
+- 사람 실명·연락처·이메일·주소 등 개인정보를 쓰지 않는다.
+- 다른 회사·다른 고객사의 이름을 쓰지 않는다.
+- 근거 없는 최상급·단정 표현(최고, 1위, 100%, 완벽, 효과 보장 등)을 쓰지 않는다.
+- 내부 개발 용어(칸, 준칙, Feature 번호, 파일 경로, 배포 등)는 고객이 이해하는 말로 바꾸거나 뺀다.
+- 한국 인스타그램 사용자에게 자연스러운 한국어로 쓴다.`;
+
+/* ============================ state ============================ */
+const S = {
+  caps:{db:null, sample:null, assets:null, downloads:null, mcp:null},
+  booted:false, workspaces:[], wsId:null, ws:null,
+  brand:emptyBrand(), assets:[], briefs:[], packs:{}, ctx:null,
+  view:'start', sec:'biz', briefId:null, draft:null, packTab:'text', reviewId:null, reviewDraft:null,
+  creating:false, newWs:{name:'', industry:'', oneliner:'', website:'', instagram:'', intro:''},
+  cf:{step:'idle', clients:[], slug:'', docs:[], sel:{}, error:null},
+  busy:null, toast:null, dirty:{},
+};
+function emptyBrand(){ return {v:{}, sug:{}, needed:[], rules:[], notes:'', logo:null, updated_at:null}; }
+
+/* ============================ utils ============================ */
+const $app = document.getElementById('app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : 'i' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+const now = () => new Date().toISOString();
+const clone = o => JSON.parse(JSON.stringify(o ?? null));
+const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const fmtDate = iso => { if (!iso) return ''; const d = new Date(iso); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+const labelOf = (list, v) => (list.find(x => x.v === v) || {}).l || v || '';
+const P = {
+  ws: id => `workspaces/${id}`,
+  brand: id => `workspaces/${id}/brandkit/main`,
+  ctx: id => `workspaces/${id}/context/cofounder`,
+  asset: (id, a) => `workspaces/${id}/assets/${a}`,
+  brief: (id, b) => `workspaces/${id}/briefs/${b}`,
+  pack: (id, b) => `workspaces/${id}/packs/${b}`,
+};
+
+function toast(msg, kind){ S.toast = {msg, kind}; renderToast(); clearTimeout(toast._t); toast._t = setTimeout(() => { S.toast = null; renderToast(); }, 3600); }
+function renderToast(){
+  let el = document.getElementById('toast');
+  if (!S.toast) { if (el) el.remove(); return; }
+  if (!el) { el = document.createElement('div'); el.id = 'toast'; el.setAttribute('role','status'); document.body.appendChild(el); }
+  el.className = 'toast' + (S.toast.kind === 'err' ? ' err' : '');
+  el.textContent = S.toast.msg;
+}
+
+/* ============================ persistence ============================ */
+const saveTimers = {}; const saveChains = {};
+function saveDoc(path, data){
+  if (!S.caps.db) { delete S.dirty[path]; return Promise.resolve(); }
+  const payload = clone(data);
+  S.dirty[path] = true;
+  saveChains[path] = (saveChains[path] || Promise.resolve())
+    .then(() => S.caps.db.doc(path).set(payload))
+    .catch(e => toast(dbErr(e), 'err'))
+    .finally(() => { if (!saveTimers[path]) delete S.dirty[path]; });
+  return saveChains[path];
+}
+function saveLater(path, getter, ms = 700){
+  S.dirty[path] = true;
+  clearTimeout(saveTimers[path]);
+  saveTimers[path] = setTimeout(() => { saveTimers[path] = null; saveDoc(path, getter()); }, ms);
+}
+function delDoc(path){ if (S.caps.db) S.caps.db.doc(path).delete().catch(e => toast(dbErr(e), 'err')); }
+function isDirty(prefix){ return Object.keys(S.dirty).some(k => k.startsWith(prefix)); }
+function dbErr(e){
+  const c = e && e.code;
+  if (c === 'invalid_argument') return '저장 권한이 없거나 데이터 형식이 맞지 않습니다.';
+  if (c === 'quota_exceeded') return '저장 공간이 가득 찼습니다. 오래된 브리프를 정리해주세요.';
+  if (c === 'resource_exhausted') return '저장 요청이 많습니다. 잠시 후 다시 시도해주세요.';
+  return '저장하지 못했습니다. 잠시 후 다시 시도해주세요.';
+}
+const saveBrand = () => { if (!S.wsId) return; S.brand.updated_at = now(); saveLater(P.brand(S.wsId), () => S.brand); };
+const saveWs = () => { if (!S.wsId || !S.ws) return; S.ws.updated_at = now(); saveLater(P.ws(S.wsId), () => stripId(S.ws)); };
+const saveBrief = b => saveLater(P.brief(S.wsId, b.id), () => stripId(b));
+const savePack = p => saveLater(P.pack(S.wsId, p.id), () => stripId(p));
+const stripId = o => { const c = clone(o); delete c.id; return c; };
+
+let subs = [];
+function subscribeWs(id){
+  subs.forEach(u => { try { u(); } catch (e) {} }); subs = [];
+  S.brand = emptyBrand(); S.assets = []; S.briefs = []; S.packs = {}; S.ctx = null;
+  const db = S.caps.db; if (!db) return;
+  subs.push(db.doc(P.brand(id)).onSnapshot(s => { if (s.exists && !isDirty(P.brand(id))) applyRemote('brand', normalizeBrand(clone(s.data()))); }, () => {}));
+  subs.push(db.doc(P.ctx(id)).onSnapshot(s => { applyRemote('ctx', s.exists ? clone(s.data()) : null); }, () => {}));
+  subs.push(db.collection(`workspaces/${id}/assets`).onSnapshot(q => { if (!isDirty(`workspaces/${id}/assets`)) applyRemote('assets', q.docs.map(d => ({id:d.id, ...clone(d.data())})).sort((a,b) => (a.created_at||'').localeCompare(b.created_at||''))); }, () => {}));
+  subs.push(db.collection(`workspaces/${id}/briefs`).onSnapshot(q => { if (!isDirty(`workspaces/${id}/briefs`)) applyRemote('briefs', q.docs.map(d => ({id:d.id, ...clone(d.data())})).sort((a,b) => (b.created_at||'').localeCompare(a.created_at||''))); }, () => {}));
+  subs.push(db.collection(`workspaces/${id}/packs`).onSnapshot(q => { if (isDirty(`workspaces/${id}/packs`)) return; const m = {}; q.docs.forEach(d => { m[d.id] = {id:d.id, ...clone(d.data())}; }); applyRemote('packs', m); }, () => {}));
+}
+function applyRemote(key, val){ if (JSON.stringify(S[key]) === JSON.stringify(val)) return; S[key] = val; render(); }
+function normalizeBrand(b){ const e = emptyBrand(); return Object.assign(e, b || {}, {v:(b && b.v) || {}, sug:(b && b.sug) || {}}); }
+function selectWs(id){
+  S.wsId = id; S.ws = S.workspaces.find(w => w.id === id) || null; lsSet('mk_ws', id);
+  S.briefId = null; S.draft = null; S.reviewId = null; S.reviewDraft = null; S.cf = {step:'idle', clients:[], slug:'', docs:[], sel:{}, error:null};
+  subscribeWs(id); render();
+}
+
+/* ============================ AI (sample) ============================ */
+function sampleErr(e){
+  const c = e && e.code;
+  const m = {
+    not_granted:'Claude 사용이 허용되지 않았습니다. 권한 요청에서 허용해주세요.',
+    sampling_disabled:'이 계정에서는 Claude를 호출할 수 없습니다.',
+    rate_limited:'요청이 많거나 사용 한도에 도달했습니다. 잠시 후 다시 시도해주세요.',
+    session_expired:'다시 로그인해주세요.',
+    invalid_json:'AI 응답 형식이 어긋났습니다. 한 번 더 눌러주세요.',
+    refused:'AI가 이 요청을 처리하지 않았습니다. 입력을 조금 바꿔주세요.',
+    prompt_too_large:'넣은 자료가 너무 깁니다. 붙여넣은 소개 자료를 줄여주세요.',
+    empty_completion:'AI가 빈 답을 보냈습니다. 한 번 더 눌러주세요.',
+    upstream_error:'일시적인 오류입니다. 한 번 더 눌러주세요.',
+  }[c];
+  return m || `AI 호출에 실패했습니다 (${c || '알 수 없음'})`;
+}
+async function ask(prompt, {label = 'AI가 작업 중입니다', tier = 'default', fresh = false} = {}){
+  if (!S.caps.sample) { toast('이 화면에서는 AI를 호출할 수 없습니다. claude.ai에서 열어주세요.', 'err'); return null; }
+  const ctl = new AbortController();
+  S.busy = {label, ctl}; render();
+  try {
+    return await S.caps.sample.json(prompt, {modelTier: tier, signal: ctl.signal, cache: fresh ? false : true});
+  } catch (e) {
+    if (e && e.code !== 'cancelled') toast(sampleErr(e), 'err');
+    return null;
+  } finally { S.busy = null; render(); }
+}
+
+function T(k){ const v = S.brand.v[k]; return (v && v.t) || ''; }
+function L(k){ return (S.brand.v[k] || []).map(x => x.t + (x.src ? ` (출처: ${x.src})` : '')).join(' / '); }
+function C(k){ const v = S.brand.v[k]; return (v && v.v || []).join(', '); }
+function brandText(){
+  const w = S.ws || {}; const col = S.brand.v.colors;
+  return `회사: ${w.name || ''} (${w.industry || '업종 미정'})
+한 줄 소개: ${w.oneliner || ''}
+웹사이트: ${w.website || ''}
+판매하는 것: ${T('offer')}
+선택받는 이유: ${L('reasons')}
+증명 가능한 사실: ${L('proof')}
+핵심 고객: ${T('persona')}
+고객의 고민: ${L('pains')}
+망설이는 이유: ${L('objections')}
+고객이 쓰는 말: ${L('customer_words')}
+톤: ${C('tone')}
+우리다운 문장: ${L('voice_examples')}
+쓰면 안 되는 표현: ${L('banned')}
+비주얼 무드: ${C('mood')} / 피할 비주얼: ${L('visual_dont')}
+브랜드 컬러: ${col ? [col.main, col.sub, col.accent].join(', ') : ''}
+인스타그램: ${T('ig_handle')} / 유입 링크: ${T('landing')}
+검수에서 배운 규칙: ${(S.brand.rules || []).map(r => r.t).join(' / ')}`;
+}
+function ctxText(){
+  const c = S.ctx; if (!c) return '(없음)';
+  const it = arr => (arr || []).map(x => typeof x === 'string' ? x : `${x.t}${x.src ? ` [${x.src}]` : ''}`).join(' / ');
+  return `요약: ${c.summary || ''}
+제품·서비스: ${it(c.products)}
+고객: ${it(c.customers)}
+고객의 목소리: ${it(c.voc)}
+최근 변화(고객이 체감): ${it(c.changes)}
+확인된 사실: ${it(c.proof)}
+주의할 점: ${it(c.cautions)}`;
+}
+function assetText(){
+  return S.assets.length ? S.assets.map(a => `[${a.type}] ${a.name}${a.note ? ' - ' + a.note : ''}`).join('; ') : '(아직 없음)';
+}
+
+/* ============================ Cofounder (mcp) ============================ */
+const CF_SERVER = 'Cofounder';
+const CF_KIND_LABEL = {'feature-request':'요청','comms-thread':'소통','change-log':'변경 기록','decision':'결정','business-plan':'사업계획','brand-brief':'브랜드','policy':'정책','runbook':'절차','iteration':'이터레이션','asset':'자산'};
+const CF_PRIORITY = ['brand-brief','business-plan','comms-thread','feature-request','decision','policy','change-log'];
+function mcpErr(e){
+  const c = e && e.code;
+  return ({
+    server_not_connected:'Cofounder 커넥터가 연결되어 있지 않습니다. claude.ai 설정 → 커넥터에서 Cofounder를 추가해주세요.',
+    needs_reauth:'Cofounder 커넥터를 다시 연결해주세요 (claude.ai 설정 → 커넥터).',
+    selection_required:'Cofounder 커넥터가 여러 개 있습니다. 화면에 뜬 선택 창에서 하나를 골라주세요.',
+    not_in_manifest:'이 페이지에서 Cofounder 사용이 허용되지 않았습니다.',
+    blocked_by_policy:'조직 정책으로 이 도구를 쓸 수 없습니다.',
+    server_unavailable:'Cofounder 서버가 응답하지 않습니다. 잠시 후 다시 시도해주세요.',
+    tool_error:'Cofounder가 오류를 보냈습니다: ' + ((e && e.message) || ''),
+    not_granted:'이 화면에서는 커넥터를 쓸 수 없습니다.',
+    capability_disabled:'이 화면에서는 커넥터를 쓸 수 없습니다.',
+  })[c] || `Cofounder 호출에 실패했습니다 (${c || '알 수 없음'})`;
+}
+async function cfCall(tool, input){
+  const r = await S.caps.mcp.callTool(CF_SERVER, tool, input, {cache:false});
+  return r && r.payload;
+}
+function scrubPII(s){
+  return String(s || '')
+    .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '[이메일]')
+    .replace(/01[016789][-\s.]?\d{3,4}[-\s.]?\d{4}/g, '[전화번호]')
+    .replace(/\d{2,3}-\d{3,4}-\d{4}/g, '[전화번호]');
+}
+function maskTerms(){
+  const stop = new Set(['admin','admin 님']);
+  const out = [];
+  (S.cf.clients || []).forEach(c => {
+    if (c.slug === S.cf.slug) return;
+    [c.name, c.slug].forEach(t => { if (t && t.length >= 2 && !stop.has(t)) out.push(t); });
+  });
+  return out.sort((a, b) => b.length - a.length);
+}
+function maskOthers(s, terms){ let t = String(s || ''); terms.forEach(x => { t = t.split(x).join('타사'); }); return t; }
+function maskDeep(o, terms){
+  if (typeof o === 'string') return scrubPII(maskOthers(o, terms));
+  if (Array.isArray(o)) return o.map(x => maskDeep(x, terms));
+  if (o && typeof o === 'object') { const r = {}; for (const k in o) r[k] = maskDeep(o[k], terms); return r; }
+  return o;
+}
+
+/* ============================ canvas rendering ============================ */
+const imgCache = {};
+function loadImg(src){
+  if (!src) return Promise.resolve(null);
+  if (!imgCache[src]) imgCache[src] = new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+  return imgCache[src];
+}
+let fontsP = null;
+function fontsReady(){
+  if (!fontsP) fontsP = Promise.all([
+    document.fonts.load('700 72px "IBM Plex Sans KR"'), document.fonts.load('600 36px "IBM Plex Sans KR"'), document.fonts.load('400 38px "IBM Plex Sans KR"'),
+  ]).catch(() => {});
+  return fontsP;
+}
+function hexRgb(h){ const m = /^#?([0-9a-f]{6})$/i.exec(h || ''); if (!m) return [15,27,51]; const n = parseInt(m[1], 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+function lum(h){ const f = c => { c /= 255; return c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); }; const [r,g,b] = hexRgb(h); return .2126*f(r) + .7152*f(g) + .0722*f(b); }
+function contrast(a, b){ const x = lum(a), y = lum(b); return (Math.max(x,y) + .05) / (Math.min(x,y) + .05); }
+function wrapLines(ctx, text, maxW){
+  const out = [];
+  String(text || '').split('\n').forEach(par => {
+    let line = '';
+    par.split(/(\s+)/).forEach(w => {
+      if (!w) return;
+      const test = line + w;
+      if (ctx.measureText(test).width <= maxW) { line = test; return; }
+      if (line.trim()) out.push(line.trim());
+      if (ctx.measureText(w).width > maxW) {
+        let part = '';
+        for (const ch of w) { if (ctx.measureText(part + ch).width > maxW) { out.push(part); part = ch; } else part += ch; }
+        line = part;
+      } else line = w.trimStart();
+    });
+    if (line.trim()) out.push(line.trim());
+  });
+  return out;
+}
+function drawCoverImg(c, img, W, H){ const r = Math.max(W / img.width, H / img.height); const w = img.width * r, h = img.height * r; c.drawImage(img, (W - w) / 2, (H - h) / 2, w, h); }
+function brandColors(){ const v = S.brand.v.colors || {}; return {main: v.main || '#0f1b33', sub: v.sub || '#f4f6f9', accent: v.accent || '#3cc99c'}; }
+function logoSrc(){ const a = S.assets.find(x => x.type === '로고'); return a ? '/_blob/' + a.asset_id : null; }
+
+async function drawSlide(cv, {slide, idx, total, template, bgSrc}){
+  await fontsReady();
+  const W = 1080, H = 1350; cv.width = W; cv.height = H;
+  const c = cv.getContext('2d');
+  const col = brandColors();
+  const bg = template === 'photo' ? await loadImg(bgSrc) : null;
+  const logo = await loadImg(logoSrc());
+  let ground, ink, kick;
+  if (bg) {
+    drawCoverImg(c, bg, W, H);
+    const g = c.createLinearGradient(0, H * .2, 0, H); g.addColorStop(0, 'rgba(0,0,0,0.05)'); g.addColorStop(1, 'rgba(0,0,0,0.82)');
+    c.fillStyle = g; c.fillRect(0, 0, W, H); ground = '#111111'; ink = '#ffffff';
+  } else {
+    ground = (idx === 0 || idx === total - 1) ? col.main : col.sub;
+    c.fillStyle = ground; c.fillRect(0, 0, W, H);
+    ink = lum(ground) > .4 ? '#121826' : '#ffffff';
+  }
+  kick = contrast(col.accent, ground) >= 2.6 ? col.accent : ink;
+  const pad = 96;
+  c.textBaseline = 'top';
+  c.fillStyle = kick; c.fillRect(pad, pad, 76, 10);
+  c.font = '600 36px "IBM Plex Sans KR", sans-serif';
+  if (slide.kicker) c.fillText(String(slide.kicker).slice(0, 40), pad, pad + 38);
+  const tSize = idx === 0 ? 86 : 70;
+  c.font = `700 ${tSize}px "IBM Plex Sans KR", sans-serif`;
+  const tLines = wrapLines(c, slide.title, W - pad * 2).slice(0, 5);
+  const bSize = 46;
+  c.font = `400 ${bSize}px "IBM Plex Sans KR", sans-serif`;
+  const bLines = wrapLines(c, slide.body, W - pad * 2).slice(0, 7);
+  const tH = tLines.length * tSize * 1.28, bH = bLines.length ? bLines.length * bSize * 1.6 + 44 : 0;
+  let y = bg ? H - pad - 110 - tH - bH : Math.max(250, (H - tH - bH) / 2 - 30);
+  c.fillStyle = ink; c.font = `700 ${tSize}px "IBM Plex Sans KR", sans-serif`;
+  tLines.forEach(l => { c.fillText(l, pad, y); y += tSize * 1.28; });
+  y += 44;
+  c.globalAlpha = .86; c.font = `400 ${bSize}px "IBM Plex Sans KR", sans-serif`;
+  bLines.forEach(l => { c.fillText(l, pad, y); y += bSize * 1.6; });
+  c.globalAlpha = 1;
+  c.font = '600 30px "IBM Plex Sans KR", sans-serif'; c.fillStyle = ink; c.globalAlpha = .7;
+  const pg = `${idx + 1} / ${total}`; c.fillText(pg, W - pad - c.measureText(pg).width, H - pad - 30);
+  c.globalAlpha = 1;
+  if (logo) { const lh = 56, lw = logo.width * (lh / logo.height); c.drawImage(logo, pad, H - pad - lh + 10, Math.min(lw, 320), lh); }
+  else { c.font = '700 30px "IBM Plex Sans KR", sans-serif'; c.globalAlpha = .8; c.fillText((S.ws && S.ws.name) || '', pad, H - pad - 30); c.globalAlpha = 1; }
+}
+async function drawAd(cv, {bgSrc, title, sub}){
+  await fontsReady();
+  const W = 1080, H = 1350; cv.width = W; cv.height = H;
+  const c = cv.getContext('2d'); const col = brandColors();
+  const bg = await loadImg(bgSrc); const logo = await loadImg(logoSrc());
+  if (bg) { drawCoverImg(c, bg, W, H); const g = c.createLinearGradient(0, 0, 0, H * .55); g.addColorStop(0, 'rgba(0,0,0,0.62)'); g.addColorStop(1, 'rgba(0,0,0,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H); }
+  else { c.fillStyle = col.main; c.fillRect(0, 0, W, H); }
+  const pad = 90; c.textBaseline = 'top';
+  c.fillStyle = col.accent; c.fillRect(pad, pad + 70, 76, 10);
+  c.fillStyle = '#ffffff'; c.font = '700 84px "IBM Plex Sans KR", sans-serif';
+  let y = pad + 110;
+  wrapLines(c, title, W - pad * 2).slice(0, 3).forEach(l => { c.fillText(l, pad, y); y += 84 * 1.25; });
+  c.font = '500 42px "IBM Plex Sans KR", sans-serif'; c.globalAlpha = .92; y += 18;
+  wrapLines(c, sub, W - pad * 2).slice(0, 3).forEach(l => { c.fillText(l, pad, y); y += 42 * 1.5; });
+  c.globalAlpha = 1;
+  if (logo) { const lh = 52, lw = logo.width * (lh / logo.height); c.drawImage(logo, pad, pad - 8, Math.min(lw, 300), lh); }
+}
+const canvasBlob = cv => new Promise(r => cv.toBlob(b => r(b), 'image/png'));
+async function saveFile(filename, data){
+  const d = S.caps.downloads;
+  if (!d) { toast('이 화면에서는 파일 저장을 쓸 수 없습니다. claude.ai에서 열어주세요.', 'err'); return; }
+  try { await d.save({filename, data}); toast('저장했습니다'); }
+  catch (e) { if (e && e.code === 'declined') return; toast('저장하지 못했습니다 (' + ((e && e.code) || '') + ')', 'err'); }
+}
+async function copyText(text, btn){
+  try { await navigator.clipboard.writeText(text); if (btn) { const o = btn.textContent; btn.textContent = '복사됨'; setTimeout(() => { btn.textContent = o; }, 1400); } }
+  catch (e) { toast('복사가 막혀 있습니다. 텍스트를 직접 선택해 복사해주세요.', 'err'); }
+}
+
+/* ============================ derived ============================ */
+function isFilled(f){
+  const v = S.brand.v[f.key]; if (!v) return false;
+  if (f.kind === 'list') return v.length > 0;
+  if (f.kind === 'chips') return (v.v || []).length > 0;
+  if (f.kind === 'colors') return !!v.main;
+  return !!(v.t || '').trim();
+}
+function brandProgress(){ const n = ALL_FIELDS.filter(isFilled).length + (S.assets.length ? 1 : 0); return {n, total: ALL_FIELDS.length + 1}; }
+function secCount(sec){ if (sec.id === 'assets') return `${S.assets.length}개`; return `${sec.fields.filter(isFilled).length}/${sec.fields.length}`; }
+function packList(){ return Object.values(S.packs).sort((a, b) => (b.updated_at || '').localeCompare(a.updated_at || '')); }
+function lastReview(p){ const rs = p.reviews || []; return rs[rs.length - 1] || null; }
+function packStatus(p){ const r = lastReview(p); if (!r || r.gen !== p.gen) return 'todo'; return r.q1 === 'yes' ? 'pass' : 'fail'; }
+function stats(){
+  const ps = packList();
+  const reviewed = ps.filter(p => (p.reviews || []).length);
+  const firstPass = ps.filter(p => { const f = (p.reviews || [])[0]; return f && f.gen === 1 && f.q1 === 'yes'; }).length;
+  const firstTried = ps.filter(p => (p.reviews || []).some(r => r.gen === 1)).length;
+  const posted = ps.filter(p => p.publish && p.publish.posted).length;
+  return {total: ps.length, reviewed: reviewed.length, pending: ps.filter(p => packStatus(p) === 'todo').length, firstRate: firstTried ? Math.round(firstPass / firstTried * 100) : null, posted};
+}
+function briefById(id){ return S.briefs.find(b => b.id === id) || null; }
+
+/* ============================ render ============================ */
+function render(){
+  const a = document.activeElement;
+  const fid = a && a.id; let s0 = null, s1 = null;
+  try { if (fid && 'selectionStart' in a) { s0 = a.selectionStart; s1 = a.selectionEnd; } } catch (e) {}
+  $app.innerHTML = viewShell();
+  if (fid) { const el = document.getElementById(fid); if (el) { el.focus({preventScroll:true}); try { if (s0 != null) el.setSelectionRange(s0, s1); } catch (e) {} } }
+  afterRender();
+}
+function viewShell(){
+  const noWs = !S.ws;
+  const p = brandProgress(); const st = stats();
+  const steps = [
+    {v:'start', n:0, l:'시작하기', s: S.ws ? S.ws.name : '회사 정보', done: !!S.ws},
+    {v:'brand', n:1, l:'브랜드킷', s:`${p.n}/${p.total} 항목`, done: p.n >= p.total * .6},
+    {v:'brief', n:2, l:'콘텐츠 브리프', s:`${S.briefs.length}건`, done: S.briefs.length > 0},
+    {v:'studio', n:3, l:'소재 스튜디오', s:`${st.total}세트`, done: st.total > 0},
+    {v:'review', n:4, l:'검수', s:`대기 ${st.pending}`, done: st.reviewed > 0 && st.pending === 0},
+    {v:'publish', n:5, l:'게시·반응', s:`게시 ${st.posted}`, done: st.posted > 0},
+  ];
+  const opts = S.workspaces.map(w => `<option value="${esc(w.id)}" ${w.id === S.wsId ? 'selected' : ''}>${esc(w.name || '이름 없음')}</option>`).join('');
+  return `
+  ${S.caps.db ? '' : '<div class="preview-banner">미리보기 모드입니다. claude.ai에서 열면 저장·AI·업로드가 동작합니다.</div>'}
+  <header class="topbar">
+    <div class="mark"><span class="dot"></span><b>코파운더 마케팅 스튜디오</b><span class="pill accent">파일럿</span></div>
+    <div class="ws-switch">
+      ${S.workspaces.length ? `<label class="sr" for="ws-select">회사 선택</label><select class="inp" id="ws-select" data-change="selectWs">${opts}</select>` : ''}
+      <button class="btn sm ghost" data-act="newWs">+ 새 회사</button>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="nav" aria-label="단계">
+      ${steps.map(s => `<button class="${S.view === s.v ? 'on' : ''} ${s.done ? 'done' : ''}" data-act="go" data-v="${s.v}" ${noWs && s.v !== 'start' ? 'disabled' : ''}>
+        <span class="n">${s.done && S.view !== s.v ? '✓' : s.n}</span><span class="l">${s.l}</span><span class="s">${esc(s.s)}</span></button>`).join('')}
+      <div class="hint">대표님이 직접 쓰는 건 질문에 답하고 고르는 것뿐입니다. 나머지는 AI가 채우고, 모든 값에는 <span class="src input">입력</span> <span class="src ai">AI 추천</span> <span class="src cofounder">코파운더</span> 출처가 표시됩니다.</div>
+    </nav>
+    <main class="main">${noWs || S.creating ? viewCreate() : ({start:viewStart, brand:viewBrand, brief:viewBrief, studio:viewStudio, review:viewReview, publish:viewPublish}[S.view] || viewStart)()}</main>
+  </div>
+  ${S.busy ? `<div class="overlay" role="alertdialog" aria-live="polite"><div class="box"><div class="spinner"></div><b>${esc(S.busy.label)}</b><p class="small muted">보통 10~60초 걸립니다. 첫 요청에서는 Claude 사용 허용을 묻습니다.</p>${S.busy.ctl ? '<button class="btn ghost sm" data-act="stopBusy">중지</button>' : ''}</div></div>` : ''}`;
+}
+const srcBadge = s => !s ? '' : `<span class="src ${s === 'cofounder' ? 'cofounder' : s === 'ai' ? 'ai' : 'input'}">${s === 'cofounder' ? '코파운더' : s === 'ai' ? 'AI 추천' : '입력'}</span>`;
+
+/* ---------- 0. create / start ---------- */
+function viewCreate(){
+  const n = S.newWs;
+  return `
+  <div class="page-head"><div><h1>${S.workspaces.length ? '새 회사 등록' : '마케팅을 맡길 회사를 등록하세요'}</h1>
+  <p>여기 적은 내용으로 AI가 브랜드킷 항목마다 고를 수 있는 예시를 만듭니다. 소개서나 홈페이지 문구를 붙여넣으면 훨씬 정확해집니다.</p></div></div>
+  <section class="card stack">
+    <div class="grid2">
+      <div><label class="lbl" for="nw-name">회사·브랜드 이름 *</label><input class="inp" id="nw-name" data-nw="name" value="${esc(n.name)}" placeholder="예: 코파운더"></div>
+      <div><label class="lbl" for="nw-oneliner">한 줄 소개</label><input class="inp" id="nw-oneliner" data-nw="oneliner" value="${esc(n.oneliner)}" placeholder="예: 비개발 창업자를 위한 AI 개발운영 서비스"></div>
+    </div>
+    <div><span class="lbl">업종</span><div class="chips">${INDUSTRIES.map(i => `<button class="chip ${n.industry === i ? 'on' : ''}" data-act="nwIndustry" data-v="${esc(i)}">${esc(i)}</button>`).join('')}</div></div>
+    <div class="grid2">
+      <div><label class="lbl" for="nw-website">웹사이트</label><input class="inp" id="nw-website" data-nw="website" value="${esc(n.website)}" placeholder="https://"></div>
+      <div><label class="lbl" for="nw-instagram">인스타그램 계정</label><input class="inp" id="nw-instagram" data-nw="instagram" value="${esc(n.instagram)}" placeholder="@"></div>
+    </div>
+    <div><label class="lbl" for="nw-intro">소개 자료 붙여넣기 (선택)</label>
+      <textarea class="inp" id="nw-intro" rows="5" data-nw="intro" placeholder="회사소개서, 상세페이지, 홈페이지 문구를 그대로 붙여넣으세요. AI가 브랜드킷 추천을 만들 때만 씁니다.">${esc(n.intro)}</textarea></div>
+    <div class="row"><button class="btn lg" data-act="createWs">등록하고 시작하기</button>${S.workspaces.length ? '<button class="btn ghost" data-act="cancelCreate">취소</button>' : ''}</div>
+  </section>`;
+}
+function viewStart(){
+  const w = S.ws; const p = brandProgress(); const hasSug = Object.keys(S.brand.sug || {}).length > 0;
+  return `
+  <div class="page-head"><div><h1>${esc(w.name)}</h1><p>브랜드킷을 어떻게 시작할지 고르세요. 셋 다 결국 같은 질문지로 모이고, 대표님은 추천 중에서 고르거나 고쳐 쓰면 됩니다.</p></div>
+    <span class="pill ${p.n ? 'accent' : ''}">브랜드킷 ${p.n}/${p.total}</span></div>
+  <section class="choice-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+    <button class="choice" data-act="brandDraft"><b>AI 추천으로 시작</b><span>등록한 회사 정보${w.intro ? '와 붙여넣은 소개 자료' : ''}로 항목마다 고를 수 있는 예시를 만듭니다.</span><div class="meta"><span class="pill info">1분 내외</span>${hasSug ? '<span class="pill">추천 있음 · 다시 만들기</span>' : ''}</div></button>
+    <button class="choice ${S.cf.step !== 'idle' ? 'on' : ''}" data-act="cfOpen"><b>코파운더 데이터 가져오기</b><span>코파운더에 쌓인 요청·소통·변경 기록에서 고객의 목소리와 강점을 찾아 추천에 반영합니다.</span><div class="meta"><span class="pill accent">코파운더 고객사</span>${S.ctx ? `<span class="pill">가져옴 · ${fmtDate(S.ctx.extracted_at)}</span>` : ''}</div></button>
+    <button class="choice" data-act="go" data-v="brand"><b>질문 보면서 직접 쓰기</b><span>추천 없이 질문지부터 봅니다. 쓰다가 언제든 항목별로 추천을 받을 수 있습니다.</span></button>
+  </section>
+  ${viewCofounder()}
+  ${S.ctx ? viewCtxCard() : ''}
+  <section class="card stack">
+    <h2>회사 정보</h2>
+    <div class="grid2">
+      <div><label class="lbl" for="ws-name">이름</label><input class="inp" id="ws-name" data-ws="name" value="${esc(w.name)}"></div>
+      <div><label class="lbl" for="ws-oneliner">한 줄 소개</label><input class="inp" id="ws-oneliner" data-ws="oneliner" value="${esc(w.oneliner || '')}"></div>
+      <div><label class="lbl" for="ws-website">웹사이트</label><input class="inp" id="ws-website" data-ws="website" value="${esc(w.website || '')}"></div>
+      <div><label class="lbl" for="ws-instagram">인스타그램</label><input class="inp" id="ws-instagram" data-ws="instagram" value="${esc(w.instagram || '')}"></div>
+    </div>
+    <div><span class="lbl">업종</span><div class="chips">${INDUSTRIES.map(i => `<button class="chip ${w.industry === i ? 'on' : ''}" data-act="wsIndustry" data-v="${esc(i)}">${esc(i)}</button>`).join('')}</div></div>
+    <div><label class="lbl" for="ws-intro">소개 자료</label><textarea class="inp" id="ws-intro" rows="4" data-ws="intro" placeholder="회사소개서, 상세페이지 문구 등">${esc(w.intro || '')}</textarea></div>
+  </section>`;
+}
+function viewCofounder(){
+  const cf = S.cf; if (cf.step === 'idle') return '';
+  if (!S.caps.mcp) return `<section class="card"><h2>코파운더 데이터 가져오기</h2><div class="callout warn"><b>연결 불가</b><span>이 화면에서는 커넥터를 쓸 수 없습니다. claude.ai에서 페이지를 열고, 설정 → 커넥터에 Cofounder가 연결되어 있는지 확인해주세요. 그 전까지는 "소개 자료 붙여넣기"로 같은 효과를 낼 수 있습니다.</span></div></section>`;
+  let body = '';
+  if (cf.error) body += `<div class="callout warn"><b>안내</b><span>${esc(cf.error)}</span></div>`;
+  if (cf.step === 'connect') body += `<p class="lead">코파운더에서 이 회사의 기록을 <b>읽기만</b> 합니다. 원문은 저장하지 않고, 개인정보와 다른 고객사 이름을 지운 마케팅 인사이트만 남깁니다.</p><div class="row"><button class="btn" data-act="cfClients">코파운더 연결하기</button><button class="btn ghost" data-act="cfClose">닫기</button></div>`;
+  if (cf.step === 'clients' || cf.step === 'docs') {
+    const sorted = [...cf.clients].sort((a, b) => (a.phase === 'live' ? 0 : 1) - (b.phase === 'live' ? 0 : 1) || String(a.name).localeCompare(String(b.name)));
+    body += `<div class="row"><label class="lbl" for="cf-client" style="margin:0">가져올 고객사</label>
+      <select class="inp" id="cf-client" data-change="cfPick" style="max-width:320px"><option value="">선택하세요</option>${sorted.map(c => `<option value="${esc(c.slug)}" ${c.slug === cf.slug ? 'selected' : ''}>${esc(c.name)} · ${esc(c.slug)}${c.phase === 'live' ? ' (운영 중)' : ''}</option>`).join('')}</select>
+      <button class="btn ghost sm" data-act="cfClose">닫기</button></div>`;
+  }
+  if (cf.step === 'docs') {
+    const n = Object.values(cf.sel).filter(Boolean).length;
+    body += cf.docs.length ? `<p class="small muted">마케팅에 쓸 만한 문서를 골라주세요 (최대 10개). 요청·소통 기록에 고객의 목소리가 가장 많습니다.</p>
+      <div class="scroll-box">${cf.docs.map(d => `<label class="cf-doc" for="cfd-${esc(d.id)}"><input type="checkbox" id="cfd-${esc(d.id)}" data-cfsel="${esc(d.id)}" ${cf.sel[d.id] ? 'checked' : ''}>
+        <span><span class="pill">${esc(CF_KIND_LABEL[d.kind] || d.kind)}</span> <b>${esc(docTitle(d))}</b> <span class="faint small">${esc((d.created_at || '').slice(0, 10))}</span><span class="snip">${esc(scrubPII(maskOthers((d.snippet || '').replace(/[#*`>|]/g, ' '), maskTerms())).slice(0, 160))}</span></span></label>`).join('')}</div>
+      <div class="row"><button class="btn" data-act="cfExtract" ${n ? '' : 'disabled'}>선택한 ${n}개에서 인사이트 찾기</button></div>`
+      : '<div class="empty">이 고객사에는 아직 문서가 없습니다.</div>';
+  }
+  return `<section class="card stack"><h2>코파운더 데이터 가져오기</h2>${body}</section>`;
+}
+function docTitle(d){ const m = /# (.+)/.exec(d.snippet || ''); return (m ? m[1] : (d.path || '').split('/').pop()).slice(0, 60); }
+function viewCtxCard(){
+  const c = S.ctx; const it = (arr) => (arr || []).slice(0, 5).map(x => `<div class="insight"><span class="src cofounder">코파운더</span><span>${esc(typeof x === 'string' ? x : x.t)}</span></div>`).join('');
+  return `<section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>코파운더에서 찾은 인사이트</h2><span class="small faint">${esc(c.client_name || '')} · 문서 ${(c.doc_refs || []).length}개 · ${fmtDate(c.extracted_at)}</span></div>
+    ${c.summary ? `<p>${esc(c.summary)}</p>` : ''}
+    <div class="grid2">
+      <div><span class="lbl">고객의 목소리</span>${it(c.voc) || '<p class="small faint">없음</p>'}</div>
+      <div><span class="lbl">고객이 체감할 최근 변화</span>${it(c.changes) || '<p class="small faint">없음</p>'}</div>
+    </div>
+    ${(c.cautions || []).length ? `<div class="callout warn"><b>주의</b><span>${esc((c.cautions || []).join(' / '))}</span></div>` : ''}
+    <div class="row"><button class="btn" data-act="brandDraft">이 인사이트로 브랜드킷 추천 받기</button><button class="btn ghost sm" data-act="cfOpen">다시 가져오기</button></div>
+  </section>`;
+}
+
+/* ---------- 1. brand kit ---------- */
+function viewBrand(){
+  const p = brandProgress(); const sec = SECTIONS.find(s => s.id === S.sec) || SECTIONS[0];
+  const hasSug = Object.keys(S.brand.sug || {}).length > 0;
+  return `
+  <div class="page-head"><div><h1>브랜드킷</h1><p>한 번 채워두면 모든 브리프와 소재가 이 기준을 따릅니다. 추천(<span class="src ai">AI 추천</span> <span class="src cofounder">코파운더</span>)을 누르면 바로 들어갑니다.</p></div>
+    <div class="row"><button class="btn ${hasSug ? 'ghost' : ''}" data-act="brandDraft">${hasSug ? '전체 추천 다시 받기' : '전체 항목 AI 추천 받기'}</button><button class="btn soft" data-act="go" data-v="brief">브리프 만들기 →</button></div></div>
+  <div class="card stack" style="padding:14px 18px">
+    <div class="row" style="justify-content:space-between"><span class="small muted">채운 항목 ${p.n} / ${p.total}</span><span class="small faint">${p.n < p.total * .5 ? '절반 이상 채우면 결과물이 확실히 달라집니다' : '좋습니다. 이제 브리프를 만들어도 됩니다'}</span></div>
+    <div class="progress"><i style="width:${Math.round(p.n / p.total * 100)}%"></i></div>
+  </div>
+  ${S.brand.notes ? `<div class="callout"><b>AI 메모</b><span>${esc(S.brand.notes)}</span></div>` : ''}
+  <div class="tabs" role="tablist">${SECTIONS.map(s => `<button role="tab" class="${s.id === sec.id ? 'on' : ''}" data-act="sec" data-v="${s.id}">${esc(s.title)}<span class="cnt">${secCount(s)}</span></button>`).join('')}</div>
+  <p class="muted" style="margin:0">${esc(sec.desc)}</p>
+  ${sec.id === 'assets' ? viewAssets() : sec.fields.map(viewField).join('')}
+  ${sec.id === 'voice' ? viewRules() : ''}`;
+}
+function viewField(f){
+  const v = S.brand.v[f.key]; const sug = S.brand.sug[f.key] || [];
+  let editor = '';
+  if (f.kind === 'text') {
+    editor = `<textarea class="inp" id="bf-${f.key}" rows="${f.rows || 2}" data-bf="${f.key}" placeholder="${esc(f.ph || '')}">${esc(v && v.t || '')}</textarea>`;
+  } else if (f.kind === 'list') {
+    editor = `<ul class="list-edit">${(v || []).map((it, i) => `<li><input class="inp" id="bl-${f.key}-${i}" data-bl="${f.key}" data-i="${i}" value="${esc(it.t)}" aria-label="${esc(f.label)} ${i + 1}">${it.src ? `<span class="src-ref">${esc(it.src)}</span>` : ''}${srcBadge(it.s)}<button class="icon-btn" data-act="listDel" data-key="${f.key}" data-i="${i}" aria-label="삭제">×</button></li>`).join('')}</ul>
+      <div class="add-row"><input class="inp" id="add-${f.key}" data-addkey="${f.key}" placeholder="${esc(f.ph || '직접 추가')}"><button class="btn sm ghost" data-act="listAdd" data-key="${f.key}">추가</button></div>`;
+  } else if (f.kind === 'chips') {
+    const sel = (v && v.v) || [];
+    editor = `<div class="chips">${f.options.map(o => `<button class="chip ${sel.includes(o) ? 'on' : ''} ${sug.includes(o) ? 'rec' : ''}" data-act="chip" data-key="${f.key}" data-v="${esc(o)}">${esc(o)}${sug.includes(o) ? '<span class="rec-tag">추천</span>' : ''}</button>`).join('')}</div>`;
+  } else if (f.kind === 'colors') {
+    const c = v || {};
+    editor = `<div class="color-row">${[['main','메인'],['sub','보조'],['accent','강조']].map(([k, l]) => `<label for="col-${k}">${l}<input type="color" id="col-${k}" data-color="${k}" value="${esc(c[k] || ({main:'#0f1b33', sub:'#f4f6f9', accent:'#3cc99c'})[k])}"><span class="mono small">${esc(c[k] || '미정')}</span></label>`).join('')}</div>
+      ${sug.length ? `<div class="sugs"><span class="sugs-label">추천 팔레트 — 눌러서 적용</span><div class="swatches">${sug.map((pl, i) => `<button class="pal" data-act="palette" data-i="${i}"><span class="sw"><i style="background:${esc(pl.main)}"></i><i style="background:${esc(pl.sub)}"></i><i style="background:${esc(pl.accent)}"></i></span><span>${esc(pl.name || '')}</span></button>`).join('')}</div></div>` : ''}`;
+  }
+  const textSugs = (f.kind === 'text' || f.kind === 'list') && sug.length ? `<div class="sugs"><span class="sugs-label">추천 — 눌러서 ${f.kind === 'list' ? '추가' : '적용'}</span>${sug.map((s, i) => `<button class="sug" data-act="applySug" data-key="${f.key}" data-i="${i}"><span>${esc(s.t)}${s.src ? `<span class="src-ref">${esc(s.src)}</span>` : ''}</span>${srcBadge(s.s)}</button>`).join('')}</div>` : '';
+  const badge = f.kind === 'text' && v && v.t ? srcBadge(v.s) : (f.kind === 'chips' || f.kind === 'colors') && v ? srcBadge(v.s) : '';
+  return `<section class="field ${isFilled(f) ? 'filled' : ''}">
+    <header><div><h3>${esc(f.label)} ${badge}</h3><p class="why">→ ${esc(f.why)}</p></div></header>
+    <p class="q">${esc(f.q)}</p>
+    ${editor}${textSugs}
+    <div class="field-actions">
+      <button class="btn sm soft" data-act="moreSug" data-key="${f.key}">${sug.length ? '다른 추천 보기' : 'AI 추천 받기'}</button>
+      ${S.ctx ? `<button class="btn sm soft" data-act="cfSug" data-key="${f.key}">코파운더 자료에서 찾기</button>` : ''}
+    </div></section>`;
+}
+function viewRules(){
+  const r = S.brand.rules || [];
+  return `<section class="field"><header><div><h3>검수에서 배운 규칙</h3><p class="why">→ 불통과 사유가 여기 쌓이고, 다음 생성부터 자동으로 지켜집니다</p></div></header>
+    ${r.length ? `<ul class="list-edit">${r.map((x, i) => `<li><span style="flex:1">${esc(x.t)}</span><span class="faint small">${fmtDate(x.at)}</span><button class="icon-btn" data-act="ruleDel" data-i="${i}" aria-label="삭제">×</button></li>`).join('')}</ul>` : '<p class="small faint">아직 없습니다. 검수에서 불통과 사유를 "규칙으로 저장"하면 여기에 쌓입니다.</p>'}</section>`;
+}
+function viewAssets(){
+  const need = S.brand.needed || [];
+  const has = t => S.assets.some(a => a.type === t);
+  const canUp = !!S.caps.assets;
+  return `
+  <section class="field stack">
+    <header><div><h3>자산 라이브러리 <span class="pill">${S.assets.length}개</span></h3><p class="why">→ AI가 브리프와 릴스 컷 리스트를 짤 때 이름으로 골라 씁니다</p></div></header>
+    ${canUp ? `<div class="drop" id="dropzone"><p style="margin:0 0 8px"><b>파일을 끌어다 놓거나</b> 선택하세요 · 이미지, MP4/WebM 영상 · 파일당 20MB</p>
+      <label class="btn sm" for="asset-file">파일 선택</label><input type="file" id="asset-file" class="sr" multiple accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm" data-upload="1"></div>
+      <p class="small faint" style="margin:0">이름을 "제품 단독컷_그래놀라", "대표 인터뷰_30초"처럼 적어두면 AI가 정확히 골라 씁니다. 20MB가 넘는 영상은 CapCut에서 짧게 잘라 올려주세요.</p>`
+    : '<div class="callout warn"><b>업로드 불가</b><span>편집 권한이 있는 화면(claude.ai)에서만 올릴 수 있습니다.</span></div>'}
+    ${S.assets.length ? `<div class="asset-grid">${S.assets.map(a => `<div class="asset">
+      <div class="thumb">${(a.content_type || '').startsWith('video') ? `<video src="/_blob/${esc(a.asset_id)}" muted playsinline controls preload="metadata"></video>` : `<img src="/_blob/${esc(a.asset_id)}" alt="${esc(a.name)}" loading="lazy">`}</div>
+      <div class="body"><input class="inp" id="an-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="name" value="${esc(a.name)}" aria-label="자산 이름">
+        <select class="inp" id="at-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="type" aria-label="자산 유형">${ASSET_TYPES.map(t => `<option ${a.type === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
+        <input class="inp" id="ano-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="note" value="${esc(a.note || '')}" placeholder="메모 (예: 흰 배경, 가로)" aria-label="메모">
+        <button class="btn sm danger" data-act="assetDel" data-id="${esc(a.id)}">${S.confirmDel === a.id ? '한 번 더 누르면 삭제' : '삭제'}</button></div></div>`).join('')}</div>` : '<div class="empty">아직 자산이 없습니다. 로고부터 올려주세요 — 캐러셀과 광고 이미지에 자동으로 들어갑니다.</div>'}
+  </section>
+  <section class="field stack">
+    <header><div><h3>준비하면 좋은 자산</h3><p class="why">→ 대행사가 "이거 찍어주세요" 하는 목록입니다</p></div>${need.length ? `<button class="btn sm ghost" data-act="copyNeeds">촬영 요청 리스트 복사</button>` : ''}</header>
+    ${need.length ? `<ul class="need-list">${need.map(n => `<li><span class="st">${has(n.type) ? '<span class="pill accent">있음</span>' : '<span class="pill warn">필요</span>'}</span><span><b>[${esc(n.type)}] ${esc(n.what)}</b><br><span class="small muted">${esc(n.why || '')}</span></span></li>`).join('')}</ul>`
+      : '<p class="small faint">"전체 항목 AI 추천 받기"를 누르면 업종에 맞는 준비 자산 목록이 생깁니다.</p>'}
+  </section>`;
+}
+
+/* ---------- 2. brief ---------- */
+function viewBrief(){
+  const list = S.briefs;
+  const cur = S.briefId ? briefById(S.briefId) : null;
+  const p = brandProgress();
+  return `
+  <div class="page-head"><div><h1>콘텐츠 브리프</h1><p>대표님이 정하는 건 용도·목표·주제·오퍼·포맷 다섯 가지뿐입니다. 나머지(타겟, 핵심 메시지, 근거, 훅, 필요한 자산)는 AI가 브랜드킷을 보고 채웁니다.</p></div>
+    <button class="btn" data-act="newBrief">+ 새 브리프</button></div>
+  ${p.n < p.total * .4 ? `<div class="callout warn"><b>참고</b><span>브랜드킷이 ${p.n}/${p.total}만 채워져 있어 결과물이 일반적으로 나올 수 있습니다. <button class="btn sm ghost" data-act="go" data-v="brand">브랜드킷 채우기</button></span></div>` : ''}
+  <div class="two-col">
+    <div class="brief-list">${list.length ? list.map(b => `<button class="brief-item ${b.id === S.briefId ? 'on' : ''}" data-act="openBrief" data-id="${esc(b.id)}"><b>${esc(b.topic)}</b>
+      <span class="meta"><span class="pill">${esc(labelOf(PURPOSES, b.purpose))}</span><span class="pill">${esc(labelOf(FORMATS, b.format))}</span>${S.packs[b.id] ? '<span class="pill accent">소재 있음</span>' : ''}</span></button>`).join('') : '<div class="empty small">아직 브리프가 없습니다</div>'}</div>
+    <div class="stack">${S.draft ? viewDraft() : cur ? viewBriefDetail(cur) : '<div class="empty">왼쪽에서 브리프를 고르거나 새로 만드세요.</div>'}</div>
+  </div>`;
+}
+function viewDraft(){
+  const d = S.draft;
+  const choice = (arr, key, act) => `<div class="choice-grid">${arr.map(x => `<button class="choice ${d[key] === x.v ? 'on' : ''}" data-act="${act}" data-k="${key}" data-v="${x.v}"><b>${esc(x.l)}</b><span>${esc(x.d)}</span>${d.recFormat === x.v && key === 'format' ? '<span class="meta"><span class="pill info">추천</span></span>' : ''}</button>`).join('')}</div>`;
+  const ready = d.purpose && d.goal && d.topic && d.format;
+  return `
+  <section class="card stack">
+    <div><span class="step-label">질문 1</span><h2>이번 콘텐츠는 어디에 쓰나요?</h2></div>${choice(PURPOSES, 'purpose', 'draftSet')}
+  </section>
+  <section class="card stack">
+    <div><span class="step-label">질문 2</span><h2>무엇을 얻고 싶나요?</h2></div>${choice(GOALS, 'goal', 'draftSet')}
+  </section>
+  <section class="card stack">
+    <div class="row" style="justify-content:space-between"><div><span class="step-label">질문 3</span><h2>무엇에 대해 말할까요?</h2></div>
+      <button class="btn sm soft" data-act="topicSug" ${d.purpose && d.goal ? '' : 'disabled'}>${(d.topics || []).length ? '다른 주제 추천' : 'AI 주제 추천 받기'}</button></div>
+    ${!(d.purpose && d.goal) ? '<p class="small faint">용도와 목표를 고르면 주제를 추천받을 수 있습니다.</p>' : ''}
+    ${(d.topics || []).length ? `<div class="choice-grid">${d.topics.map((t, i) => `<button class="choice ${d.topicIdx === i ? 'on' : ''}" data-act="pickTopic" data-i="${i}"><b>${esc(t.topic)}</b><span>${esc(t.angle)}</span><span class="faint">${esc(t.why || '')}</span><span class="meta"><span class="pill">${esc(t.awareness || '')}</span><span class="pill">${esc(labelOf(FORMATS, t.format))}</span>${t.src === 'cofounder' ? '<span class="src cofounder">코파운더</span>' : '<span class="src ai">AI 추천</span>'}</span></button>`).join('')}</div>` : ''}
+    <div><label class="lbl" for="d-topic">주제 (직접 쓰거나 위에서 고르기)</label><input class="inp" id="d-topic" data-draft="topic" value="${esc(d.topic || '')}" placeholder="예: 반찬 정기배송, 처음 3주가 편해지는 이유"></div>
+    <div><label class="lbl" for="d-angle">어떤 관점으로 풀까요 (선택)</label><input class="inp" id="d-angle" data-draft="angle" value="${esc(d.angle || '')}" placeholder="예: 워킹맘의 평일 저녁 30분을 돌려준다"></div>
+  </section>
+  <section class="card stack">
+    <div><span class="step-label">질문 4</span><h2>보고 나서 무엇을 하게 할까요?</h2><p class="small muted" style="margin:2px 0 0">자료에 없는 할인·혜택은 AI가 만들지 않습니다. 실제 혜택이 있으면 직접 적어주세요.</p></div>
+    ${(d.offers || []).length ? `<div class="chips">${d.offers.map(o => `<button class="chip ${d.offer === o ? 'on' : ''}" data-act="pickOffer" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div>` : ''}
+    <input class="inp" id="d-offer" data-draft="offer" value="${esc(d.offer || '')}" placeholder="예: 프로필 링크에서 무료 상담 신청">
+  </section>
+  <section class="card stack">
+    <div><span class="step-label">질문 5</span><h2>어떤 형태로 만들까요?</h2></div>${choice(FORMATS, 'format', 'draftSet')}
+  </section>
+  <div class="row"><button class="btn lg" data-act="completeBrief" ${ready ? '' : 'disabled'}>브리프 완성하기</button><button class="btn ghost" data-act="cancelDraft">취소</button>
+    ${ready ? '' : '<span class="small faint">용도·목표·주제·포맷을 정하면 완성할 수 있습니다</span>'}</div>`;
+}
+function viewBriefDetail(b){
+  const a = b.ai || {}; const pack = S.packs[b.id];
+  const assetName = n => S.assets.some(x => x.name === n);
+  return `
+  <section class="card stack">
+    <div class="row" style="justify-content:space-between"><div><span class="step-label">브리프</span><h2>${esc(b.topic)}</h2></div>
+      <div class="row"><button class="btn" data-act="toStudio" data-id="${esc(b.id)}">${pack ? '소재 보기 →' : '소재 만들기 →'}</button><button class="btn sm danger" data-act="briefDel" data-id="${esc(b.id)}">${S.confirmDel === b.id ? '한 번 더 누르면 삭제' : '삭제'}</button></div></div>
+    <dl class="kv">
+      <dt>용도·목표</dt><dd>${esc(labelOf(PURPOSES, b.purpose))} · ${esc(labelOf(GOALS, b.goal))} ${srcBadge('input')}</dd>
+      <dt>포맷</dt><dd>${esc(labelOf(FORMATS, b.format))} ${srcBadge('input')}</dd>
+      <dt>관점</dt><dd>${esc(b.angle || '-')} ${srcBadge(b.angle_src || 'input')}</dd>
+      <dt>오퍼·CTA</dt><dd>${esc(b.offer || '-')} ${srcBadge('input')}</dd>
+      <dt>타겟</dt><dd><input class="inp" id="b-persona" data-brief="persona" value="${esc(a.persona || '')}"> ${srcBadge('ai')}</dd>
+      <dt>인식 단계</dt><dd>${esc(a.awareness || '-')} ${srcBadge('ai')}</dd>
+      <dt>핵심 메시지</dt><dd><input class="inp" id="b-key" data-brief="key_message" value="${esc(a.key_message || '')}"> ${srcBadge('ai')}</dd>
+      <dt>근거</dt><dd>${(a.proof || []).map(p => `<div>${esc(p.t)} <span class="src-ref">${esc(p.src || '')}</span></div>`).join('') || '-'}</dd>
+      <dt>훅 방향</dt><dd>${(a.hooks || []).map(h => `<div>· ${esc(h)}</div>`).join('') || '-'}</dd>
+      <dt>이번에 피할 것</dt><dd>${esc((a.must_avoid || []).join(' / ') || '-')}</dd>
+      <dt>성공 지표</dt><dd>${esc(a.success || '-')}</dd>
+    </dl>
+    ${a.why ? `<div class="callout"><b>왜 이 브리프인가</b><span>${esc(a.why)}</span></div>` : ''}
+  </section>
+  <section class="card stack">
+    <h2>필요한 원천 자산</h2>
+    ${(a.asset_plan || []).length ? `<ul class="need-list">${a.asset_plan.map(x => `<li><span class="st">${x.match && assetName(x.match) ? '<span class="pill accent">있음</span>' : '<span class="pill warn">준비 필요</span>'}</span><span><b>${esc(x.need)}</b>${x.match && assetName(x.match) ? `<br><span class="small muted">사용: ${esc(x.match)}</span>` : `<br><span class="small muted">${esc(x.how || '')}</span>`}</span></li>`).join('')}</ul>` : '<p class="small faint">-</p>'}
+  </section>`;
+}
+
+/* ---------- 3. studio ---------- */
+function viewStudio(){
+  const briefs = S.briefs;
+  if (!briefs.length) return `<div class="page-head"><div><h1>소재 스튜디오</h1><p>브리프가 있어야 소재를 만들 수 있습니다.</p></div></div><div class="empty"><button class="btn" data-act="go" data-v="brief">첫 브리프 만들기</button></div>`;
+  if (!S.briefId || !briefById(S.briefId)) S.briefId = briefs[0].id;
+  const b = briefById(S.briefId); const p = S.packs[b.id];
+  return `
+  <div class="page-head"><div><h1>소재 스튜디오</h1><p>텍스트는 여기서 바로 완성됩니다. 이미지·영상은 Gemini, ChatGPT, CapCut에 붙여넣을 전용 프롬프트와 가이드를 드리고, 만든 결과물을 다시 올리면 브랜드 문구를 합성합니다.</p></div>
+    <div class="row"><label class="sr" for="st-brief">브리프 선택</label><select class="inp" id="st-brief" data-change="studioBrief" style="max-width:320px">${briefs.map(x => `<option value="${esc(x.id)}" ${x.id === b.id ? 'selected' : ''}>${esc(x.topic)}</option>`).join('')}</select></div></div>
+  <section class="card"><div class="row" style="justify-content:space-between"><div><span class="step-label">${esc(labelOf(FORMATS, b.format))} · ${esc(labelOf(PURPOSES, b.purpose))}</span><h2>${esc(b.topic)}</h2><p class="small muted" style="margin:2px 0 0">핵심 메시지: ${esc((b.ai || {}).key_message || '-')}</p></div>
+    ${p ? `<span class="pill">${p.gen}번째 생성 · ${fmtDate(p.updated_at)}</span>` : ''}</div></section>
+  ${!p ? `<section class="card stack" style="text-align:center"><p class="muted">아직 소재가 없습니다. 브랜드킷, 브리프, 자산 라이브러리, 검수에서 배운 규칙을 모두 반영해 만듭니다.</p><div><button class="btn lg" data-act="genPack">소재 만들기</button></div></section>` : viewPack(b, p)}`;
+}
+function viewPack(b, p){
+  const tabs = [['text','텍스트'],['visual', b.format === 'reels' ? '릴스 제작' : b.format === 'carousel' ? '캐러셀' : '이미지'],['prompts','생성 도구용 프롬프트']];
+  return `
+  <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" class="${S.packTab === k ? 'on' : ''}" data-act="packTab" data-v="${k}">${l}</button>`).join('')}</div>
+  ${S.packTab === 'text' ? viewPackText(p) : S.packTab === 'visual' ? viewPackVisual(b, p) : viewPackPrompts(b, p)}
+  <section class="card stack">
+    <h2>다시 만들기</h2>
+    <textarea class="inp" id="regen-note" rows="2" data-packnote="1" placeholder="바꾸고 싶은 점 (예: 첫 문장을 질문형으로, 더 담백하게)">${esc(p.regen_note || '')}</textarea>
+    <div class="row"><button class="btn ghost" data-act="genPack">이 요청 반영해 다시 만들기</button><button class="btn" data-act="toReview" data-id="${esc(p.id)}">검수하러 가기 →</button></div>
+  </section>`;
+}
+function counter(text, max){ const n = [...String(text || '')].length; return `<span class="counter ${n > max ? 'over' : ''}">${n}/${max}</span>`; }
+function viewPackText(p){
+  const d = p.data || {}; const ad = d.ad || {};
+  const hooks = d.hooks || [];
+  return `
+  <section class="card stack">
+    <h2>첫 문장(훅) 고르기</h2>
+    <div class="choice-grid">${hooks.map((h, i) => `<button class="choice ${p.hook === i ? 'on' : ''}" data-act="pickHook" data-i="${i}"><b>${esc(h)}</b></button>`).join('')}</div>
+  </section>
+  <section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>인스타그램 캡션</h2><button class="btn sm ghost" data-act="copyCaption">캡션+해시태그 복사</button></div>
+    <textarea class="inp" id="p-caption" rows="9" data-pack="caption">${esc(d.caption || '')}</textarea>
+    <div><label class="lbl" for="p-tags">해시태그</label><input class="inp" id="p-tags" data-pack="hashtags" value="${esc((d.hashtags || []).join(' '))}"></div>
+    ${d.first_comment ? `<div><label class="lbl" for="p-fc">첫 댓글</label><input class="inp" id="p-fc" data-pack="first_comment" value="${esc(d.first_comment)}"></div>` : ''}
+    ${d.alt_text ? `<p class="small muted" style="margin:0">대체 텍스트: ${esc(d.alt_text)}</p>` : ''}
+  </section>
+  <section class="card stack">
+    <h2>광고 문구 <span class="small faint">메타 광고 입력칸 기준</span></h2>
+    <div><div class="row" style="justify-content:space-between"><label class="lbl" for="ad-primary">기본 문구</label>${counter(ad.primary_text, 125)}</div><textarea class="inp" id="ad-primary" rows="3" data-ad="primary_text">${esc(ad.primary_text || '')}</textarea></div>
+    <div class="grid2">
+      <div><div class="row" style="justify-content:space-between"><label class="lbl" for="ad-headline">헤드라인</label>${counter(ad.headline, 40)}</div><input class="inp" id="ad-headline" data-ad="headline" value="${esc(ad.headline || '')}"></div>
+      <div><div class="row" style="justify-content:space-between"><label class="lbl" for="ad-desc">설명</label>${counter(ad.description, 30)}</div><input class="inp" id="ad-desc" data-ad="description" value="${esc(ad.description || '')}"></div>
+    </div>
+    <div><span class="lbl">버튼</span><div class="chips">${CTA_BUTTONS.map(c => `<button class="chip ${ad.cta_button === c ? 'on' : ''}" data-act="ctaBtn" data-v="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>
+  </section>`;
+}
+function viewPackVisual(b, p){
+  const d = p.data || {};
+  if (b.format === 'carousel') {
+    const slides = d.slides || [];
+    const photos = S.assets.filter(a => !(a.content_type || '').startsWith('video'));
+    return `
+    <section class="card stack">
+      <div class="row" style="justify-content:space-between"><h2>캐러셀 ${slides.length}장</h2>
+        <div class="row"><div class="chips"><button class="chip ${p.template !== 'photo' ? 'on' : ''}" data-act="tpl" data-v="solid">브랜드 컬러</button><button class="chip ${p.template === 'photo' ? 'on' : ''}" data-act="tpl" data-v="photo">사진 배경</button></div>
+        <button class="btn sm" data-act="saveSlides">PNG 전체 저장 (ZIP)</button></div></div>
+      ${p.template === 'photo' ? `<div><label class="lbl" for="bg-asset">배경 사진 (자산 라이브러리 또는 AI로 만든 이미지)</label><select class="inp" id="bg-asset" data-change="bgAsset" style="max-width:360px"><option value="">선택하세요</option>${photos.map(a => `<option value="${esc(a.asset_id)}" ${p.bg === a.asset_id ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}</select></div>` : ''}
+      <div class="slide-grid">${slides.map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>
+      <p class="small faint" style="margin:0">첫 장은 훅, 마지막 장은 저장을 부르는 요약입니다. 행동 유도(CTA)는 캡션에 둡니다.</p>
+    </section>
+    <section class="card stack"><h2>슬라이드 문구 수정</h2>
+      ${slides.map((s, i) => `<div class="slide-edit"><span class="no">${i + 1}</span><div>
+        <input class="inp" id="sk-${i}" data-slidef="kicker" data-i="${i}" value="${esc(s.kicker || '')}" placeholder="작은 라벨">
+        <input class="inp" id="st-${i}" data-slidef="title" data-i="${i}" value="${esc(s.title || '')}" placeholder="제목" style="font-weight:600">
+        <textarea class="inp" id="sb-${i}" rows="2" data-slidef="body" data-i="${i}" placeholder="본문">${esc(s.body || '')}</textarea></div></div>`).join('')}
+    </section>`;
+  }
+  if (b.format === 'image') {
+    const im = d.image || {};
+    return `
+    <section class="card stack">
+      <h2>광고 이미지 만들기</h2>
+      <ol class="small" style="margin:0;padding-left:18px"><li>"생성 도구용 프롬프트" 탭의 프롬프트를 Gemini(또는 ChatGPT)에 붙여넣어 <b>글자 없는</b> 이미지를 만듭니다.</li><li>만든 이미지를 아래에서 올립니다.</li><li>한글 문구와 로고는 여기서 브랜드 폰트·컬러로 합성됩니다 (AI가 한글을 깨뜨리는 문제 방지).</li></ol>
+      <div class="row">${S.caps.assets ? `<label class="btn sm" for="ai-img">생성한 이미지 올리기</label><input type="file" id="ai-img" class="sr" accept="image/png,image/jpeg,image/webp" data-aiimg="1">` : ''}
+        ${S.assets.length ? `<label class="sr" for="img-bg">라이브러리에서 고르기</label><select class="inp" id="img-bg" data-change="imgBg" style="max-width:280px"><option value="">또는 라이브러리에서 고르기</option>${S.assets.filter(a => !(a.content_type || '').startsWith('video')).map(a => `<option value="${esc(a.asset_id)}" ${p.bg === a.asset_id ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}</select>` : ''}
+        <button class="btn sm" data-act="saveAd">PNG 저장</button></div>
+      <div class="grid2">
+        <canvas class="ad-preview" data-ad-canvas="1" aria-label="광고 이미지 미리보기"></canvas>
+        <div class="stack">
+          <div><label class="lbl" for="ov-title">이미지 위 헤드라인</label><input class="inp" id="ov-title" data-ov="title" value="${esc(p.overlay ? p.overlay.title : im.overlay_title || '')}"></div>
+          <div><label class="lbl" for="ov-sub">보조 문구</label><input class="inp" id="ov-sub" data-ov="sub" value="${esc(p.overlay ? p.overlay.sub : im.overlay_sub || '')}"></div>
+          <div class="callout"><b>비주얼 컨셉</b><span>${esc(im.concept || '')}</span></div>
+          ${im.reference_asset ? `<p class="small muted" style="margin:0">참고로 첨부할 자산: ${esc(im.reference_asset)}</p>` : ''}
+        </div>
+      </div>
+    </section>`;
+  }
+  const r = d.reels || {}; const scenes = r.scenes || [];
+  const subtitle = scenes.map(s => s.on_screen).filter(Boolean).join('\n');
+  return `
+  <section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>릴스 ${esc(r.duration_sec || '')}초 · 컷 리스트</h2><button class="btn sm ghost" data-act="saveScript">대본·자막 저장 (.txt)</button></div>
+    <div class="row"><span class="pill">커버: ${esc(r.cover_text || '-')}</span><span class="pill">음악: ${esc(r.music_mood || '-')}</span></div>
+    <div class="table-wrap"><table class="scene-table"><thead><tr><th>구간</th><th>화면</th><th>사용할 자산</th><th>자막</th><th>내레이션</th></tr></thead><tbody>
+      ${scenes.map(s => { const ok = S.assets.some(a => a.name === s.asset); return `<tr><td class="mono">${esc(s.sec)}</td><td>${esc(s.visual)}</td><td>${ok ? `<span class="pill accent">${esc(s.asset)}</span>` : `<span class="pill warn">${esc(s.asset || '촬영 필요')}</span>`}</td><td>${esc(s.on_screen)}</td><td>${esc(s.voiceover || '')}</td></tr>`; }).join('')}
+    </tbody></table></div>
+  </section>
+  <section class="card stack"><h2>CapCut 편집 순서</h2><ol style="margin:0;padding-left:18px">${(r.capcut_steps || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+    <div class="copy-box pad-r">${esc(subtitle)}<button class="btn sm ghost" data-copy="subtitle">자막 복사</button></div></section>`;
+}
+function viewPackPrompts(b, p){
+  const d = p.data || {};
+  const box = (label, text, key) => text ? `<div><span class="lbl">${esc(label)}</span><div class="copy-box mono pad-r">${esc(text)}<button class="btn sm ghost" data-copy="${key}">복사</button></div></div>` : '';
+  let body = '';
+  if (b.format === 'image') { const im = d.image || {}; body = box('Gemini용', im.gemini_prompt, 'gemini') + box('ChatGPT용', im.chatgpt_prompt, 'chatgpt') + (im.how_to ? `<div class="callout"><b>사용법</b><span>${esc(im.how_to)}</span></div>` : ''); }
+  else if (b.format === 'carousel') { const cv = d.cover_visual || {}; body = `<p class="small muted" style="margin:0">"사진 배경" 템플릿에 쓸 배경 이미지가 필요할 때만 쓰세요. 만든 이미지는 자산 라이브러리에 올리면 배경으로 고를 수 있습니다.</p>` + box('Gemini용 (배경 이미지)', cv.gemini_prompt, 'cgemini') + box('ChatGPT용 (배경 이미지)', cv.chatgpt_prompt, 'cchatgpt'); }
+  else { const r = d.reels || {}; body = box('Gemini용 (영상 생성 — 플랜에서 지원될 때)', r.gemini_video_prompt, 'gvideo') + `<div class="callout warn"><b>권장</b><span>AI 생성 영상보다 실제 화면 녹화·대표님 촬영 영상이 신뢰를 줍니다. 생성 영상은 전환 컷이나 배경으로만 쓰는 걸 권합니다.</span></div>`; }
+  return `<section class="card stack"><h2>생성 도구용 프롬프트</h2><p class="small muted" style="margin:0">이미지 속 글자는 AI가 자주 깨뜨려서, 프롬프트는 모두 "글자 없는 이미지"를 요청합니다. 문구는 이 페이지에서 합성합니다.</p>${body || '<p class="small faint">이 포맷에는 별도 프롬프트가 없습니다.</p>'}</section>`;
+}
+
+/* ---------- 4. review ---------- */
+function viewReview(){
+  const ps = packList();
+  if (!ps.length) return `<div class="page-head"><div><h1>검수</h1><p>소재를 만들면 여기서 검수합니다.</p></div></div><div class="empty"><button class="btn" data-act="go" data-v="studio">소재 스튜디오로</button></div>`;
+  if (!S.reviewId || !S.packs[S.reviewId]) S.reviewId = (ps.find(x => packStatus(x) === 'todo') || ps[0]).id;
+  const p = S.packs[S.reviewId]; const b = briefById(p.brief_id) || {};
+  const rd = S.reviewDraft && S.reviewDraft.id === p.id ? S.reviewDraft : (S.reviewDraft = {id:p.id, q1:null, q2:null, reasons:[], note:''});
+  const last = lastReview(p); const st = packStatus(p);
+  const failReasons = last && last.q1 === 'no' ? (last.reasons || []).map(c => REASONS.find(r => r.c === c)).filter(Boolean) : [];
+  return `
+  <div class="page-head"><div><h1>검수</h1><p>질문은 두 개입니다. 불통과면 이유를 고르세요 — 그 이유가 브랜드킷에 쌓여 다음 생성부터 반영됩니다.</p></div></div>
+  <div class="two-col">
+    <div class="brief-list">${ps.map(x => { const s = packStatus(x); const bb = briefById(x.brief_id) || {}; return `<button class="brief-item ${x.id === p.id ? 'on' : ''}" data-act="pickReview" data-id="${esc(x.id)}"><b>${esc(bb.topic || '(삭제된 브리프)')}</b><span class="meta"><span class="pill ${s === 'pass' ? 'accent' : s === 'fail' ? 'danger' : 'warn'}">${s === 'pass' ? '통과' : s === 'fail' ? '불통과' : '검수 대기'}</span><span class="pill">${x.gen}번째 생성</span></span></button>`; }).join('')}</div>
+    <div class="stack">
+      <section class="card stack">
+        <span class="step-label">${esc(labelOf(FORMATS, b.format))} · ${p.gen}번째 생성</span><h2>${esc(b.topic || '')}</h2>
+        ${b.format === 'carousel' ? `<div class="slide-grid">${((p.data || {}).slides || []).map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>` : b.format === 'image' ? '<canvas class="ad-preview" data-ad-canvas="1" aria-label="광고 이미지"></canvas>' : `<div class="copy-box">${esc(((p.data || {}).reels || {}).scenes ? p.data.reels.scenes.map(s => `[${s.sec}] ${s.on_screen}`).join('\n') : '')}</div>`}
+        <div class="copy-box">${esc((p.data || {}).caption || '')}</div>
+        <button class="btn sm ghost" data-act="go" data-v="studio" style="align-self:flex-start">스튜디오에서 고치기</button>
+      </section>
+      ${st !== 'todo' ? `<div class="callout ${st === 'pass' ? 'ok' : 'warn'}"><b>${st === 'pass' ? '통과' : '불통과'}</b><span>${fmtDate(last.at)} · 광고 적합: ${last.q2 === 'yes' ? '예' : last.q2 === 'no' ? '아니오' : '-'}${last.note ? ' · ' + esc(last.note) : ''}</span></div>` : ''}
+      ${st === 'fail' ? `<section class="card stack"><h2>어디를 보강하면 되나</h2>
+        ${failReasons.map(r => `<div class="insight"><span class="pill danger">${esc(r.l)}</span><span>${esc(r.fix)}</span>${r.sec ? `<button class="btn sm ghost" data-act="goSec" data-v="${r.sec}">열기</button>` : ''}</div>`).join('')}
+        <div class="row"><button class="btn soft" data-act="saveRule">이번 사유를 브랜드킷 규칙으로 저장</button><button class="btn" data-act="regenFromReview">피드백 반영해 다시 만들기</button></div></section>` : ''}
+      ${st === 'pass' ? `<div class="row"><button class="btn" data-act="go" data-v="publish">게시 기록하러 가기 →</button></div>` : ''}
+      <section class="card stack">
+        <h2>${st === 'todo' ? '검수하기' : '다시 검수하기'}</h2>
+        <div><span class="lbl">1. 내 계정에 그대로 올리고 싶은가요?</span><div class="yn"><button class="yes ${rd.q1 === 'yes' ? 'on' : ''}" data-act="yn" data-q="q1" data-v="yes">예</button><button class="no ${rd.q1 === 'no' ? 'on' : ''}" data-act="yn" data-q="q1" data-v="no">아니오</button></div></div>
+        <div><span class="lbl">2. 돈을 내고 광고로 돌려도 괜찮은가요?</span><div class="yn"><button class="yes ${rd.q2 === 'yes' ? 'on' : ''}" data-act="yn" data-q="q2" data-v="yes">예</button><button class="no ${rd.q2 === 'no' ? 'on' : ''}" data-act="yn" data-q="q2" data-v="no">아니오</button></div></div>
+        ${rd.q1 === 'no' || rd.q2 === 'no' ? `<div><span class="lbl">아쉬운 점 (여러 개 가능)</span><div class="chips">${REASONS.map(r => `<button class="chip ${rd.reasons.includes(r.c) ? 'on' : ''}" data-act="reason" data-v="${r.c}">${esc(r.l)}</button>`).join('')}</div></div>` : ''}
+        <div><label class="lbl" for="rv-note">메모 (다음 생성에 그대로 전달됩니다)</label><textarea class="inp" id="rv-note" rows="2" data-rv="note" placeholder="예: '혁신적인' 같은 단어는 빼주세요">${esc(rd.note)}</textarea></div>
+        <div class="row"><button class="btn" data-act="saveReview" ${rd.q1 && rd.q2 ? '' : 'disabled'}>검수 저장</button></div>
+      </section>
+    </div>
+  </div>`;
+}
+
+/* ---------- 5. publish ---------- */
+function viewPublish(){
+  const st = stats(); const ps = packList().filter(p => packStatus(p) === 'pass' || (p.publish && p.publish.posted));
+  return `
+  <div class="page-head"><div><h1>게시·반응</h1><p>통과한 소재를 직접 올린 뒤 게시 링크와 반응 수치를 적어주세요. 계정 연동 전까지는 인스타그램 인사이트 숫자를 옮겨 적으면 됩니다.</p></div></div>
+  <div class="stat-row">
+    <div class="stat"><b>${st.total}</b><span>만든 소재</span></div>
+    <div class="stat"><b>${st.reviewed}</b><span>검수 완료</span></div>
+    <div class="stat"><b>${st.firstRate == null ? '-' : st.firstRate + '%'}</b><span>첫 생성에서 바로 통과</span></div>
+    <div class="stat"><b>${st.posted}</b><span>게시 완료</span></div>
+  </div>
+  <p class="small faint" style="margin:0">"첫 생성에서 바로 통과" 비율이 오르면, 대표님이 수정 요청을 덜 하고 있다는 뜻입니다. 이 서비스의 핵심 지표입니다.</p>
+  ${ps.length ? ps.map(p => { const b = briefById(p.brief_id) || {}; const pub = p.publish || {}; const m = pub.metrics || {}; return `
+  <section class="card stack">
+    <div class="row" style="justify-content:space-between"><div><span class="step-label">${esc(labelOf(FORMATS, b.format))}</span><h2>${esc(b.topic || '')}</h2></div>
+      <label class="row small" for="pub-${esc(p.id)}"><input type="checkbox" id="pub-${esc(p.id)}" data-pub="${esc(p.id)}" data-pf="posted" ${pub.posted ? 'checked' : ''}> 게시 완료</label></div>
+    <div class="grid2">
+      <div><label class="lbl" for="pubu-${esc(p.id)}">게시물 링크</label><input class="inp" id="pubu-${esc(p.id)}" data-pub="${esc(p.id)}" data-pf="url" value="${esc(pub.url || '')}" placeholder="https://www.instagram.com/p/..."></div>
+      <div><label class="lbl" for="pubd-${esc(p.id)}">게시일</label><input class="inp" type="date" id="pubd-${esc(p.id)}" data-pub="${esc(p.id)}" data-pf="date" value="${esc(pub.date || '')}"></div>
+    </div>
+    <div class="metric-grid">${METRICS.map(([k, l]) => `<div><label for="m-${esc(p.id)}-${k}">${l}</label><input class="inp" type="number" min="0" inputmode="numeric" id="m-${esc(p.id)}-${k}" data-pub="${esc(p.id)}" data-metric="${k}" value="${esc(m[k] ?? '')}"></div>`).join('')}</div>
+    ${m.reach ? `<p class="small muted" style="margin:0">저장률 ${((+m.saves || 0) / +m.reach * 100).toFixed(1)}% · 참여율 ${(((+m.likes || 0) + (+m.comments || 0) + (+m.saves || 0) + (+m.shares || 0)) / +m.reach * 100).toFixed(1)}%</p>` : ''}
+  </section>`; }).join('') : '<div class="empty">아직 통과한 소재가 없습니다.</div>'}`;
+}
+
+/* ============================ after render (canvas) ============================ */
+let drawSeq = 0;
+function afterRender(){
+  const seq = ++drawSeq;
+  const dz = document.getElementById('dropzone');
+  if (dz) {
+    dz.ondragover = e => { e.preventDefault(); dz.classList.add('over'); };
+    dz.ondragleave = () => dz.classList.remove('over');
+    dz.ondrop = e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer && e.dataTransfer.files.length) uploadFiles([...e.dataTransfer.files]); };
+  }
+  const pack = S.view === 'review' ? S.packs[S.reviewId] : (S.view === 'studio' && S.briefId ? S.packs[S.briefId] : null);
+  if (!pack) return;
+  const slides = (pack.data || {}).slides || [];
+  document.querySelectorAll('canvas[data-slide]').forEach(cv => {
+    const i = +cv.dataset.slide;
+    if (seq !== drawSeq) return;
+    drawSlide(cv, {slide: slides[i] || {}, idx: i, total: slides.length, template: pack.template || 'solid', bgSrc: pack.bg ? '/_blob/' + pack.bg : null});
+  });
+  const ad = document.querySelector('canvas[data-ad-canvas]');
+  if (ad) { const im = (pack.data || {}).image || {}; const ov = pack.overlay || {title: im.overlay_title, sub: im.overlay_sub}; drawAd(ad, {bgSrc: pack.bg ? '/_blob/' + pack.bg : null, title: ov.title, sub: ov.sub}); }
+}
+let redrawT = null;
+function redrawLater(){ clearTimeout(redrawT); redrawT = setTimeout(afterRender, 250); }
+
+/* ============================ actions ============================ */
+const ACT = {
+  go(el){ if (!S.ws && el.dataset.v !== 'start') return; S.view = el.dataset.v; S.creating = false; render(); window.scrollTo({top:0}); },
+  goSec(el){ S.view = 'brand'; S.sec = el.dataset.v; render(); window.scrollTo({top:0}); },
+  sec(el){ S.sec = el.dataset.v; render(); },
+  stopBusy(){ if (S.busy && S.busy.ctl) S.busy.ctl.abort(); },
+  newWs(){ S.creating = true; S.newWs = {name:'', industry:'', oneliner:'', website:'', instagram:'', intro:''}; render(); },
+  cancelCreate(){ S.creating = false; render(); },
+  nwIndustry(el){ S.newWs.industry = el.dataset.v; render(); },
+  wsIndustry(el){ S.ws.industry = el.dataset.v; saveWs(); render(); },
+  async createWs(){
+    const n = S.newWs; if (!n.name.trim()) { toast('회사·브랜드 이름을 적어주세요', 'err'); document.getElementById('nw-name')?.focus(); return; }
+    const id = uid(); const doc = {name: n.name.trim(), industry: n.industry, oneliner: n.oneliner.trim(), website: n.website.trim(), instagram: n.instagram.trim(), intro: n.intro.slice(0, 8000), created_at: now(), updated_at: now()};
+    S.workspaces = [{id, ...doc}, ...S.workspaces.filter(w => w.id !== id)];
+    S.creating = false; S.view = 'start';
+    selectWs(id);
+    await saveDoc(P.ws(id), doc);
+    const brand = emptyBrand(); if (doc.instagram) brand.v.ig_handle = {t: doc.instagram, s:'input'};
+    S.brand = brand; saveDoc(P.brand(id), brand);
+    render();
+  },
+  /* cofounder */
+  cfOpen(){ S.cf = {step:'connect', clients:[], slug:'', docs:[], sel:{}, error:null}; render(); },
+  cfClose(){ S.cf.step = 'idle'; render(); },
+  async cfClients(){
+    if (!S.caps.mcp) return;
+    S.busy = {label:'코파운더에서 고객사 목록을 읽는 중'}; render();
+    try {
+      const pl = await cfCall('list_clients', {});
+      S.cf.clients = ((pl && pl.results) || []).map(c => ({slug: c.slug, name: c.name, phase: c.phase}));
+      S.cf.step = 'clients'; S.cf.error = null;
+      const guess = S.cf.clients.find(c => c.name === S.ws.name || c.slug === S.ws.cofounder_slug);
+      if (guess) { S.busy = null; await ACT.cfPickSlug(guess.slug); return; }
+    } catch (e) { S.cf.error = mcpErr(e); }
+    S.busy = null; render();
+  },
+  async cfPickSlug(slug){
+    S.cf.slug = slug; S.cf.docs = []; S.cf.sel = {};
+    if (!slug) { S.cf.step = 'clients'; render(); return; }
+    S.busy = {label:'이 고객사의 문서 목록을 읽는 중'}; render();
+    try {
+      const pl = await cfCall('list_documents', {client: slug, limit: 40});
+      const docs = ((pl && pl.results) || []).map(d => ({id: d.id, kind: d.kind, path: d.path, snippet: d.snippet, created_at: d.created_at}));
+      S.cf.docs = docs; S.cf.step = 'docs'; S.cf.error = null;
+      const rank = k => { const i = CF_PRIORITY.indexOf(k); return i < 0 ? 99 : i; };
+      const pick = [...docs].sort((a, b) => rank(a.kind) - rank(b.kind)).slice(0, 8);
+      pick.forEach(d => { if (CF_PRIORITY.includes(d.kind)) S.cf.sel[d.id] = true; });
+    } catch (e) { S.cf.error = mcpErr(e); }
+    S.busy = null; render();
+  },
+  async cfExtract(){
+    const ids = Object.keys(S.cf.sel).filter(k => S.cf.sel[k]).slice(0, 10);
+    if (!ids.length) return;
+    const terms = maskTerms(); const parts = []; const refs = [];
+    const perDoc = Math.min(2400, Math.floor(13000 / ids.length));
+    const ctl = new AbortController(); S.busy = {label:'문서를 읽는 중', ctl};
+    for (let i = 0; i < ids.length; i++) {
+      if (ctl.signal.aborted) break;
+      S.busy.label = `문서를 읽는 중 (${i + 1}/${ids.length})`; render();
+      try {
+        const d = await cfCall('read_document', {id_or_path: ids[i]});
+        if (d && d.body) { parts.push(`### [${d.kind}] ${d.path}\n${scrubPII(maskOthers(d.body, terms)).slice(0, perDoc)}`); refs.push({path: d.path, kind: d.kind}); }
+      } catch (e) { S.cf.error = mcpErr(e); }
+    }
+    S.busy = null;
+    if (!parts.length) { render(); return; }
+    const client = S.cf.clients.find(c => c.slug === S.cf.slug) || {};
+    const prompt = `너는 마케팅 리서처다. 아래는 개발운영 파트너(코파운더)에 쌓인 "${S.ws.name}"의 업무 기록이다. 요청·소통·변경 기록 속에서, 이 회사의 인스타그램 마케팅에 쓸 수 있는 인사이트만 뽑는다.
+${RULES}
+- 기록 속 개인(고객·직원·대표) 이름, 주문자 정보, 금액은 절대 옮기지 않는다.
+- 개발 작업 자체가 아니라 "그 작업이 고객에게 어떤 변화를 주는지"로 번역한다.
+- src에는 근거가 된 문서의 경로를 그대로 쓴다.
+
+[기록]
+${parts.join('\n\n')}
+
+아래 JSON 하나만 출력:
+{"summary":"이 회사가 무엇을 누구에게 파는지 2~3문장","products":["제품·서비스"],"customers":["고객군과 그들의 상황"],"voc":[{"t":"고객 또는 대표가 실제로 원하거나 불편해한 점(요약, 개인정보 없이)","src":"경로"}],"changes":[{"t":"고객이 체감할 최근 개선(고객 언어로)","src":"경로"}],"proof":[{"t":"기록으로 확인되는 사실","src":"경로"}],"cautions":["마케팅에 쓰면 안 되거나 조심할 것"]}`;
+    const r = await ask(prompt, {label:'마케팅 인사이트를 찾는 중', fresh:true});
+    if (!r) { render(); return; }
+    const clean = maskDeep(r, terms);
+    const ctx = {slug: S.cf.slug, client_name: client.name || S.cf.slug, extracted_at: now(), doc_refs: refs,
+      summary: clean.summary || '', products: clean.products || [], customers: clean.customers || [], voc: clean.voc || [], changes: clean.changes || [], proof: clean.proof || [], cautions: clean.cautions || []};
+    S.ctx = ctx; await saveDoc(P.ctx(S.wsId), ctx);
+    S.ws.cofounder_slug = S.cf.slug; saveWs();
+    S.cf.step = 'idle'; render();
+    toast('인사이트를 가져왔습니다. 이제 브랜드킷 추천에 반영할 수 있습니다.');
+  },
+  /* brand */
+  async brandDraft(){
+    const w = S.ws;
+    const prompt = `너는 한국 SNS 마케팅 대행사의 시니어 브랜드 플래너다. 아래 회사 정보를 보고, 브랜드킷 각 항목에 대표가 "고르기만 하면 되는" 추천 예시를 만든다. 대표가 가장 싫어하는 건 뻔한 말이다. 이 회사만의 구체적인 표현으로 쓴다.
+${RULES}
+
+[회사 정보]
+이름: ${w.name}
+업종: ${w.industry || '미정'}
+한 줄 소개: ${w.oneliner || ''}
+웹사이트: ${w.website || ''}
+인스타그램: ${w.instagram || ''}
+
+[회사가 붙여넣은 소개 자료]
+${(w.intro || '(없음)').slice(0, 6000)}
+
+[코파운더 기록에서 찾은 인사이트]
+${ctxText()}
+
+[이미 채운 값 — 겹치지 않게]
+${brandText()}
+
+아래 JSON 하나만 출력:
+{"offer":["판매하는 것 한 문장 3안"],"reasons":["선택받는 이유 5개"],"proof":[{"t":"증명 가능한 사실","src":"근거 자료 또는 '코파운더' 또는 '확인 필요'"}],"persona":["핵심 고객(상황 포함) 3안"],"pains":["고객의 고민 5개(고객 말투)"],"objections":["망설이는 이유 4개"],"customer_words":["고객이 쓸 법한 표현 5개"],"tone":["톤"],"voice_examples":["우리다운 문장 3개"],"banned":["쓰면 안 되는 표현·주장 5개"],"colors":[{"name":"팔레트 이름","main":"#RRGGBB","sub":"#RRGGBB","accent":"#RRGGBB"}],"mood":["무드"],"visual_dont":["피할 비주얼 3개"],"post_goal":"빈도","references":["참고할 계정 유형과 이유 3개"],"needed_assets":[{"type":"유형","what":"준비할 자산","why":"어디에 쓰는지"}],"notes":"대표가 꼭 확인할 점 1~2문장"}
+- tone은 다음 중 2~3개만: ${TONES.join(', ')}
+- mood는 다음 중 1~2개만: ${MOODS.join(', ')}
+- post_goal은 다음 중 하나: ${POST_GOALS.join(', ')}
+- colors는 3개. 텍스트 대비가 충분한 조합으로.
+- proof는 위 자료에서 확인되는 것만 쓴다. 자료가 없으면 "확인 필요: 어떤 숫자를 준비하면 좋은지"로 3개를 쓴다.
+- banned에는 업종 광고 규정상 조심할 표현을 포함한다(법률 검토가 아니라 주의 목록).
+- needed_assets는 6개, type은 다음 중 하나: ${ASSET_TYPES.join(', ')}
+- references에 특정 계정명을 지어내지 않는다.`;
+    const r = await ask(prompt, {label:'브랜드킷 추천을 만드는 중', fresh:true});
+    if (!r) return;
+    applyDraft(r); S.view = 'brand'; S.sec = 'biz'; saveBrand(); render();
+    toast('항목마다 추천이 생겼습니다. 눌러서 고르세요.');
+  },
+  async moreSug(el){ await fieldSug(el.dataset.key, 'ai'); },
+  async cfSug(el){ await fieldSug(el.dataset.key, 'cofounder'); },
+  applySug(el){
+    const f = FIELD[el.dataset.key]; const s = (S.brand.sug[f.key] || [])[+el.dataset.i]; if (!s) return;
+    if (f.kind === 'text') S.brand.v[f.key] = {t: s.t, s: s.s || 'ai'};
+    else { const list = S.brand.v[f.key] || []; if (!list.some(x => x.t === s.t)) list.push({t: s.t, s: s.s || 'ai', src: s.src || ''}); S.brand.v[f.key] = list; S.brand.sug[f.key] = S.brand.sug[f.key].filter((_, i) => i !== +el.dataset.i); }
+    saveBrand(); render();
+  },
+  chip(el){
+    const f = FIELD[el.dataset.key]; const cur = (S.brand.v[f.key] && S.brand.v[f.key].v) || []; const v = el.dataset.v;
+    let next = cur.includes(v) ? cur.filter(x => x !== v) : (f.single ? [v] : [...cur, v]);
+    const sug = S.brand.sug[f.key] || [];
+    S.brand.v[f.key] = {v: next, s: next.every(x => sug.includes(x)) && next.length ? 'ai' : 'input'};
+    saveBrand(); render();
+  },
+  palette(el){ const pl = (S.brand.sug.colors || [])[+el.dataset.i]; if (!pl) return; S.brand.v.colors = {main: pl.main, sub: pl.sub, accent: pl.accent, s:'ai'}; saveBrand(); render(); },
+  listAdd(el){ const k = el.dataset.key; const inp = document.getElementById('add-' + k); const t = (inp && inp.value || '').trim(); if (!t) return; const list = S.brand.v[k] || []; list.push({t, s:'input'}); S.brand.v[k] = list; saveBrand(); render(); document.getElementById('add-' + k)?.focus(); },
+  listDel(el){ const k = el.dataset.key; (S.brand.v[k] || []).splice(+el.dataset.i, 1); saveBrand(); render(); },
+  ruleDel(el){ (S.brand.rules || []).splice(+el.dataset.i, 1); saveBrand(); render(); },
+  async assetDel(el){
+    const a = S.assets.find(x => x.id === el.dataset.id); if (!a) return;
+    if (S.confirmDel !== a.id) { S.confirmDel = a.id; render(); return; }
+    S.confirmDel = null;
+    S.assets = S.assets.filter(x => x.id !== a.id); render();
+    delDoc(P.asset(S.wsId, a.id));
+    if (S.caps.assets) S.caps.assets.delete(a.asset_id).catch(() => {});
+  },
+  copyNeeds(el){ const t = (S.brand.needed || []).filter(n => !S.assets.some(a => a.type === n.type)).map((n, i) => `${i + 1}. [${n.type}] ${n.what} — ${n.why || ''}`).join('\n'); copyText(`[${S.ws.name}] 촬영·준비 요청 리스트\n${t}`, el); },
+  /* brief */
+  newBrief(){ S.draft = {purpose:'', goal:'', topic:'', angle:'', offer:'', format:'', topics:[], offers:[], topicIdx:null}; S.briefId = null; render(); },
+  cancelDraft(){ S.draft = null; render(); },
+  draftSet(el){ S.draft[el.dataset.k] = el.dataset.v; render(); },
+  pickTopic(el){ const t = S.draft.topics[+el.dataset.i]; S.draft.topicIdx = +el.dataset.i; S.draft.topic = t.topic; S.draft.angle = t.angle; S.draft.awareness = t.awareness; S.draft.recFormat = t.format; S.draft.angle_src = t.src || 'ai'; if (!S.draft.format && FORMATS.some(f => f.v === t.format)) S.draft.format = t.format; render(); },
+  pickOffer(el){ S.draft.offer = el.dataset.v; render(); },
+  async topicSug(){
+    const d = S.draft;
+    const prompt = `너는 인스타그램 콘텐츠 기획자다. 이 회사의 다음 콘텐츠 주제를 추천한다.
+${RULES}
+[브랜드킷]
+${brandText()}
+[코파운더 기록 인사이트]
+${ctxText()}
+[자산 라이브러리] ${assetText()}
+[이번 콘텐츠] 용도: ${labelOf(PURPOSES, d.purpose)} / 목표: ${labelOf(GOALS, d.goal)}
+[최근 브리프 주제 — 겹치지 않게] ${S.briefs.slice(0, 8).map(b => b.topic).join(' / ') || '(없음)'}
+
+아래 JSON 하나만 출력:
+{"topics":[{"topic":"주제(25자 이내)","angle":"어떤 이야기로 풀지 1문장","awareness":"${AWARE.join('|')} 중 하나","format":"carousel|image|reels 중 하나","why":"이 목표에 맞는 이유 1문장","src":"코파운더 인사이트에서 나왔으면 cofounder, 아니면 ai"}],"offers":["보고 나서 할 행동(CTA) 4개"]}
+- topics는 4개. 서로 다른 관점(고민 공감, 사용 장면, 근거·숫자, 비하인드 등)으로.
+- 광고 용도면 인식 단계가 "모름·문제 인지"인 사람도 멈추게 하는 주제를 1개 이상 포함.
+- 가지고 있는 자산으로 바로 만들 수 있는 주제를 우선한다.
+- offers에 자료에 없는 할인·무료 혜택을 만들지 않는다. 혜택이 필요한 문구는 끝에 "(혜택 확인 필요)"를 붙인다.`;
+    const r = await ask(prompt, {label:'주제를 추천하는 중', fresh:true});
+    if (!r) return;
+    S.draft.topics = (r.topics || []).slice(0, 4); S.draft.offers = (r.offers || []).slice(0, 4); S.draft.topicIdx = null; render();
+  },
+  async completeBrief(){
+    const d = S.draft;
+    const prompt = `너는 광고대행사 기획자다. 아래 입력으로 제작자가 바로 쓸 수 있는 인스타그램 콘텐츠 브리프를 완성한다.
+${RULES}
+[브랜드킷]
+${brandText()}
+[코파운더 기록 인사이트]
+${ctxText()}
+[자산 라이브러리] ${assetText()}
+[이번 브리프 — 대표가 정한 것]
+용도: ${labelOf(PURPOSES, d.purpose)} / 목표: ${labelOf(GOALS, d.goal)} / 포맷: ${labelOf(FORMATS, d.format)}
+주제: ${d.topic}
+관점: ${d.angle || '(AI가 정함)'}
+오퍼·CTA: ${d.offer || '(AI가 정함)'}
+
+아래 JSON 하나만 출력:
+{"persona":"이번 콘텐츠가 말을 거는 사람 1문장(상황 포함)","awareness":"${AWARE.join('|')} 중 하나","key_message":"핵심 한 문장(30자 이내)","proof":[{"t":"이번에 쓸 근거","src":"브랜드킷|코파운더|확인 필요"}],"hooks":["첫 문장 방향 3개"],"must_avoid":["이번에 특히 피할 표현·주장"],"asset_plan":[{"need":"필요한 장면·자산","match":"자산 라이브러리 이름과 정확히 같은 값 또는 null","how":"없으면 어떻게 준비·촬영할지"}],"success":"잘됐다고 판단할 지표 1줄","why":"이 브리프가 목표에 맞는 이유 1~2문장"}
+- proof는 브랜드킷·인사이트에 있는 것만. 없으면 "확인 필요:"로.
+- asset_plan은 포맷에 맞게 3~6개. match는 자산 라이브러리에 실제로 있는 이름만.`;
+    const r = await ask(prompt, {label:'브리프를 완성하는 중', fresh:true});
+    if (!r) return;
+    const id = uid();
+    const b = {id, created_at: now(), updated_at: now(), purpose: d.purpose, goal: d.goal, format: d.format, topic: d.topic, angle: d.angle || '', angle_src: d.angle_src || 'input', offer: d.offer || '', ai: r};
+    S.briefs = [b, ...S.briefs]; S.draft = null; S.briefId = id;
+    await saveDoc(P.brief(S.wsId, id), stripId(b)); render();
+  },
+  openBrief(el){ S.draft = null; S.briefId = el.dataset.id; render(); },
+  briefDel(el){ const id = el.dataset.id; if (S.confirmDel !== id) { S.confirmDel = id; render(); return; } S.confirmDel = null; S.briefs = S.briefs.filter(b => b.id !== id); if (S.briefId === id) S.briefId = null; delDoc(P.brief(S.wsId, id)); if (S.packs[id]) { delete S.packs[id]; delDoc(P.pack(S.wsId, id)); } render(); },
+  toStudio(el){ S.briefId = el.dataset.id; S.view = 'studio'; S.packTab = 'text'; render(); window.scrollTo({top:0}); },
+  /* studio */
+  packTab(el){ S.packTab = el.dataset.v; render(); },
+  async genPack(){ await generatePack(S.briefId); },
+  pickHook(el){ const p = S.packs[S.briefId]; p.hook = +el.dataset.i; const h = (p.data.hooks || [])[p.hook]; if (h && p.data.caption) { const lines = p.data.caption.split('\n'); lines[0] = h; p.data.caption = lines.join('\n'); } touchPack(p); render(); },
+  ctaBtn(el){ const p = S.packs[S.briefId]; p.data.ad = p.data.ad || {}; p.data.ad.cta_button = el.dataset.v; touchPack(p); render(); },
+  tpl(el){ const p = S.packs[S.briefId]; p.template = el.dataset.v; touchPack(p); render(); },
+  copyCaption(el){ const d = S.packs[S.briefId].data; copyText(`${d.caption || ''}\n\n${(d.hashtags || []).join(' ')}`, el); },
+  async saveSlides(){
+    const cvs = [...document.querySelectorAll('canvas[data-slide]')]; if (!cvs.length) return;
+    await afterRenderWait();
+    const name = safeName(briefById(S.briefId).topic);
+    if (window.JSZip) { const zip = new JSZip(); for (let i = 0; i < cvs.length; i++) zip.file(`${String(i + 1).padStart(2, '0')}.png`, await canvasBlob(cvs[i])); await saveFile(`${name}_캐러셀.zip`, await zip.generateAsync({type:'blob'})); }
+    else { for (let i = 0; i < cvs.length; i++) await saveFile(`${name}_${i + 1}.png`, await canvasBlob(cvs[i])); }
+  },
+  async saveAd(){ const cv = document.querySelector('canvas[data-ad-canvas]'); if (!cv) return; await afterRenderWait(); await saveFile(`${safeName(briefById(S.briefId).topic)}_광고.png`, await canvasBlob(cv)); },
+  async saveScript(){
+    const b = briefById(S.briefId); const d = S.packs[S.briefId].data; const r = d.reels || {};
+    const txt = `[${b.topic}] 릴스 ${r.duration_sec || ''}초\n커버: ${r.cover_text || ''}\n음악: ${r.music_mood || ''}\n\n` + (r.scenes || []).map(s => `[${s.sec}] ${s.visual}\n  자산: ${s.asset}\n  자막: ${s.on_screen}\n  내레이션: ${s.voiceover || '-'}`).join('\n\n') + `\n\n[CapCut 순서]\n` + (r.capcut_steps || []).map((x, i) => `${i + 1}. ${x}`).join('\n') + `\n\n[캡션]\n${d.caption || ''}\n\n${(d.hashtags || []).join(' ')}`;
+    await saveFile(`${safeName(b.topic)}_릴스대본.txt`, txt);
+  },
+  toReview(el){ S.reviewId = el.dataset.id; S.reviewDraft = null; S.view = 'review'; render(); window.scrollTo({top:0}); },
+  /* review */
+  pickReview(el){ S.reviewId = el.dataset.id; S.reviewDraft = null; render(); },
+  yn(el){ S.reviewDraft[el.dataset.q] = el.dataset.v; render(); },
+  reason(el){ const r = S.reviewDraft.reasons; const v = el.dataset.v; S.reviewDraft.reasons = r.includes(v) ? r.filter(x => x !== v) : [...r, v]; render(); },
+  async saveReview(){
+    const p = S.packs[S.reviewId]; const rd = S.reviewDraft;
+    p.reviews = [...(p.reviews || []), {gen: p.gen, q1: rd.q1, q2: rd.q2, reasons: rd.reasons, note: rd.note.trim(), at: now()}];
+    touchPack(p, true); S.reviewDraft = null; render();
+    toast(rd.q1 === 'yes' ? '통과로 기록했습니다' : '불통과 사유를 기록했습니다');
+  },
+  saveRule(){
+    const p = S.packs[S.reviewId]; const last = lastReview(p); if (!last) return;
+    const labels = (last.reasons || []).map(c => (REASONS.find(r => r.c === c) || {}).l).filter(Boolean);
+    const t = [labels.join(', '), last.note].filter(Boolean).join(' — ');
+    if (!t) { toast('저장할 사유나 메모가 없습니다', 'err'); return; }
+    S.brand.rules = [...(S.brand.rules || []), {t: `피할 것: ${t}`, at: now(), from: p.id}]; saveBrand(); render();
+    toast('브랜드킷 "검수에서 배운 규칙"에 저장했습니다');
+  },
+  async regenFromReview(){ const p = S.packs[S.reviewId]; S.briefId = p.brief_id; await generatePack(p.brief_id); S.view = 'studio'; render(); },
+};
+function afterRenderWait(){ return new Promise(r => { afterRender(); setTimeout(r, 400); }); }
+const safeName = s => String(s || 'content').replace(/[\\/:*?"<>|\n]/g, ' ').trim().slice(0, 40) || 'content';
+function touchPack(p, now_){ p.updated_at = now(); if (now_) saveDoc(P.pack(S.wsId, p.id), stripId(p)); else savePack(p); }
+
+function applyDraft(r){
+  const sg = {};
+  const toItems = arr => (arr || []).map(x => typeof x === 'string' ? {t: x, s: /코파운더/.test(x) ? 'cofounder' : 'ai'} : {t: x.t || '', src: x.src && x.src !== '코파운더' ? x.src : '', s: /코파운더/.test(x.src || '') ? 'cofounder' : 'ai'}).filter(x => x.t);
+  ['offer','reasons','proof','persona','pains','objections','customer_words','voice_examples','banned','visual_dont','references'].forEach(k => { if (r[k]) sg[k] = toItems(r[k]); });
+  if (r.tone) sg.tone = r.tone.filter(x => TONES.includes(x));
+  if (r.mood) sg.mood = r.mood.filter(x => MOODS.includes(x));
+  if (r.post_goal && POST_GOALS.includes(r.post_goal)) sg.post_goal = [r.post_goal];
+  if (Array.isArray(r.colors)) sg.colors = r.colors.filter(c => /^#[0-9a-f]{6}$/i.test(c.main || '') && /^#[0-9a-f]{6}$/i.test(c.sub || '') && /^#[0-9a-f]{6}$/i.test(c.accent || '')).slice(0, 3);
+  S.brand.sug = sg;
+  S.brand.needed = (r.needed_assets || []).filter(n => n && n.what).map(n => ({type: ASSET_TYPES.includes(n.type) ? n.type : '기타', what: n.what, why: n.why || ''}));
+  S.brand.notes = r.notes || '';
+}
+async function fieldSug(key, mode){
+  const f = FIELD[key];
+  const existing = f.kind === 'list' ? (S.brand.v[key] || []).map(x => x.t) : f.kind === 'text' ? [T(key)] : [];
+  const shape = f.kind === 'colors' ? '[{"name":"","main":"#RRGGBB","sub":"#RRGGBB","accent":"#RRGGBB"}] 3개'
+    : f.kind === 'chips' ? `다음 보기 중에서만 고른 문자열 배열: ${f.options.join(', ')}`
+    : key === 'proof' ? '[{"t":"사실","src":"근거"}] 4개' : '["..."] 5개';
+  const src = mode === 'cofounder' ? `[코파운더 기록 인사이트 — 이것만 근거로 쓴다]\n${ctxText()}` : `[코파운더 기록 인사이트]\n${ctxText()}`;
+  const prompt = `너는 한국 SNS 마케팅 대행사의 브랜드 플래너다. 브랜드킷의 "${f.label}" 항목(${f.q})에 넣을 추천을 만든다.
+${RULES}
+[브랜드킷 현재 상태]
+${brandText()}
+[소개 자료]
+${((S.ws && S.ws.intro) || '(없음)').slice(0, 3000)}
+${src}
+이미 있는 값(겹치지 않게): ${existing.filter(Boolean).join(' / ') || '(없음)'}
+형식: JSON 배열만. ${shape}${key === 'proof' ? ' 자료에 없으면 "확인 필요:"로.' : ''}`;
+  const r = await ask(prompt, {label:`"${f.label}" 추천을 만드는 중`, tier: 'quick', fresh:true});
+  if (!Array.isArray(r)) return;
+  const s = mode === 'cofounder' ? 'cofounder' : 'ai';
+  if (f.kind === 'colors') S.brand.sug.colors = r.filter(c => c && /^#[0-9a-f]{6}$/i.test(c.main || '')).slice(0, 3);
+  else if (f.kind === 'chips') S.brand.sug[key] = r.filter(x => f.options.includes(x));
+  else S.brand.sug[key] = r.map(x => typeof x === 'string' ? {t: x, s} : {t: x.t || '', src: x.src || '', s}).filter(x => x.t);
+  saveBrand(); render();
+}
+async function generatePack(briefId){
+  const b = briefById(briefId); if (!b) return;
+  const old = S.packs[briefId];
+  const reviews = (old && old.reviews) || [];
+  const fb = reviews.filter(r => r.q1 === 'no' || r.q2 === 'no').slice(-3).map(r => `- ${r.gen}번째 생성 불통과: ${(r.reasons || []).map(c => (REASONS.find(x => x.c === c) || {}).l).join(', ')} ${r.note ? '/ 메모: ' + r.note : ''}`).join('\n');
+  const a = b.ai || {};
+  const fmt = {
+    carousel: `"slides":[{"kicker":"작은 라벨(10자 이내)","title":"제목(22자 이내)","body":"본문(70자 이내)"}] (5~7장. 1장=스크롤을 멈추게 하는 훅, 가운데=한 장에 메시지 하나, 마지막 장=저장하고 싶어지는 요약. CTA는 캡션에만),
+ "cover_visual":{"gemini_prompt":"사진 배경 템플릿용 배경 이미지 프롬프트(영문)","chatgpt_prompt":"같은 목적의 ChatGPT용 프롬프트(영문)"}`,
+    image: `"image":{"concept":"비주얼 컨셉 2문장(한국어)","overlay_title":"이미지 위 헤드라인(15자 이내)","overlay_sub":"보조 문구(25자 이내)","reference_asset":"참고로 첨부할 자산 라이브러리 이름 또는 null","gemini_prompt":"Gemini용 이미지 프롬프트(영문)","chatgpt_prompt":"ChatGPT용 이미지 프롬프트(영문)","how_to":"한국어 사용법 2~3줄(자산 첨부 방법 포함)"}`,
+    reels: `"reels":{"duration_sec":15~30 사이 숫자,"cover_text":"커버 문구(12자 이내)","music_mood":"음악 분위기","scenes":[{"sec":"0-2","visual":"화면에 보이는 것","asset":"자산 라이브러리 이름과 정확히 같은 값, 없으면 '촬영 필요: 무엇을'","on_screen":"화면 자막(한 줄 14자 이내)","voiceover":"내레이션 또는 빈 문자열"}],"capcut_steps":["CapCut에서 할 일 순서 6~9개(9:16, 자막, 전환, 음악, 내보내기 포함)"],"gemini_video_prompt":"전환용 짧은 영상 생성 프롬프트(영문, 선택)"}`,
+  }[b.format];
+  const prompt = `너는 한국 인스타그램 광고대행사의 시니어 카피라이터 겸 크리에이티브 디렉터다. 대표가 한 번에 "이대로 올리자"고 할 소재를 만든다. 뻔한 광고 문구, 과장, 억지 유행어는 쓰지 않는다. 브랜드킷의 말투와 고객이 쓰는 말을 따른다.
+${RULES}
+[브랜드킷]
+${brandText()}
+[코파운더 기록 인사이트]
+${ctxText()}
+[자산 라이브러리] ${assetText()}
+[브리프]
+용도: ${labelOf(PURPOSES, b.purpose)} / 목표: ${labelOf(GOALS, b.goal)} / 포맷: ${labelOf(FORMATS, b.format)}
+주제: ${b.topic}
+관점: ${b.angle || ''}
+오퍼·CTA: ${b.offer || ''}
+타겟: ${a.persona || ''} (인식 단계: ${a.awareness || ''})
+핵심 메시지: ${a.key_message || ''}
+근거: ${(a.proof || []).map(p => `${p.t} [${p.src}]`).join(' / ')}
+훅 방향: ${(a.hooks || []).join(' / ')}
+피할 것: ${(a.must_avoid || []).join(' / ')}
+${fb ? `[이전 검수 피드백 — 반드시 고칠 것]\n${fb}` : ''}
+${old && old.regen_note ? `[대표의 추가 요청]\n${old.regen_note}` : ''}
+${old && old.data ? `[이전 버전 캡션 — 이걸 반복하지 말 것]\n${String(old.data.caption || '').slice(0, 600)}` : ''}
+
+이미지 프롬프트 규칙: 영문으로, 피사체·구도·조명·렌즈·색감(브랜드 컬러 hex 포함)·무드를 구체적으로. 위쪽 35%는 한글 문구를 얹을 깨끗한 여백. 세로 4:5. 반드시 "no text, no letters, no logos, no watermark". 스톡 사진처럼 보이지 않게, 실제 한국 생활 장면처럼. 참고 자산이 있으면 "Use the attached photo as the reference for the product/scene"으로 시작.
+
+아래 JSON 하나만 출력:
+{"hooks":["첫 문장 후보 3개(각 25자 이내, 서로 다른 방식: 질문/반전/구체적 장면)"],"caption":"캡션. 첫 줄=hooks[0]. 짧은 문단, 줄바꿈. 마지막에 CTA 한 줄","hashtags":["#해시태그 8개(브랜드 1, 카테고리 3, 상황 4)"],"first_comment":"첫 댓글(선택, 없으면 빈 문자열)","alt_text":"대체 텍스트 1문장","ad":{"primary_text":"광고 기본 문구(125자 이내, 첫 문장에 핵심)","headline":"헤드라인(40자 이내)","description":"설명(30자 이내)","cta_button":"${CTA_BUTTONS.join('|')} 중 하나"},
+ ${fmt}}`;
+  const r = await ask(prompt, {label: old ? '피드백을 반영해 다시 만드는 중' : '소재를 만드는 중', fresh: true});
+  if (!r) return;
+  if (Array.isArray(r.slides)) r.slides = r.slides.slice(0, 7);
+  const pack = {id: briefId, brief_id: briefId, format: b.format, gen: ((old && old.gen) || 0) + 1, data: r, hook: 0,
+    template: (old && old.template) || 'solid', bg: (old && old.bg) || null, overlay: null, regen_note: '', reviews, publish: (old && old.publish) || null,
+    created_at: (old && old.created_at) || now(), updated_at: now()};
+  S.packs = {...S.packs, [briefId]: pack}; S.packTab = 'text';
+  await saveDoc(P.pack(S.wsId, briefId), stripId(pack)); render();
+  toast(`${pack.gen}번째 소재를 만들었습니다`);
+}
+async function uploadFiles(files){
+  if (!S.caps.assets) { toast('업로드는 편집 권한이 있는 화면에서만 가능합니다', 'err'); return; }
+  for (const f of files) {
+    if (f.size > 20 * 1024 * 1024) { toast(`${f.name}: 20MB를 넘습니다. 짧게 자르거나 압축해주세요.`, 'err'); continue; }
+    S.busy = {label:`${f.name} 올리는 중`}; render();
+    try {
+      const r = await S.caps.assets.upload(f);
+      const id = uid(); const isV = (r.contentType || '').startsWith('video');
+      const doc = {asset_id: r.id, name: f.name.replace(/\.[^.]+$/, ''), type: isV ? '인물·대표' : (/logo|로고/i.test(f.name) ? '로고' : '제품'), note:'', content_type: r.contentType, size: r.sizeBytes, created_at: now()};
+      S.assets = [...S.assets, {id, ...doc}];
+      await saveDoc(P.asset(S.wsId, id), doc);
+    } catch (e) {
+      const c = e && e.code;
+      toast(c === 'too_large' ? `${f.name}: 파일이 너무 큽니다 (20MB 이하)` : c === 'unsupported_type' ? `${f.name}: 지원하지 않는 형식입니다` : c === 'quota_or_state' ? '저장 공간이 가득 찼습니다' : `${f.name}: 올리지 못했습니다`, 'err');
+    }
+  }
+  S.busy = null; render();
+}
+async function uploadAiImage(file){
+  if (!S.caps.assets) return;
+  S.busy = {label:'이미지를 올리는 중'}; render();
+  try {
+    const r = await S.caps.assets.upload(file);
+    const id = uid(); const b = briefById(S.briefId);
+    const doc = {asset_id: r.id, name: `AI 이미지_${(b && b.topic || '').slice(0, 16)}`, type:'기타', note:'Gemini/ChatGPT로 생성', content_type: r.contentType, size: r.sizeBytes, created_at: now()};
+    S.assets = [...S.assets, {id, ...doc}]; await saveDoc(P.asset(S.wsId, id), doc);
+    const p = S.packs[S.briefId]; p.bg = r.id; touchPack(p, true);
+  } catch (e) { toast('이미지를 올리지 못했습니다', 'err'); }
+  S.busy = null; render();
+}
+
+/* ============================ events ============================ */
+document.addEventListener('click', e => {
+  const cp = e.target.closest('[data-copy]');
+  if (cp) { copyFromKey(cp.dataset.copy, cp); return; }
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  const fn = ACT[el.dataset.act];
+  if (fn) { e.preventDefault(); fn(el, e); }
+});
+function copyFromKey(k, btn){
+  const p = S.packs[S.briefId] || {}; const d = p.data || {};
+  const m = {gemini:(d.image || {}).gemini_prompt, chatgpt:(d.image || {}).chatgpt_prompt, cgemini:(d.cover_visual || {}).gemini_prompt, cchatgpt:(d.cover_visual || {}).chatgpt_prompt, gvideo:(d.reels || {}).gemini_video_prompt, subtitle:((d.reels || {}).scenes || []).map(s => s.on_screen).filter(Boolean).join('\n')};
+  copyText(m[k] || '', btn);
+}
+document.addEventListener('input', e => {
+  const el = e.target; const ds = el.dataset;
+  if (ds.nw) { S.newWs[ds.nw] = el.value; return; }
+  if (ds.ws) { S.ws[ds.ws] = el.value; saveWs(); return; }
+  if (ds.bf) { S.brand.v[ds.bf] = {t: el.value, s: 'input'}; saveBrand(); return; }
+  if (ds.bl) { const it = (S.brand.v[ds.bl] || [])[+ds.i]; if (it) { it.t = el.value; it.s = 'input'; saveBrand(); } return; }
+  if (ds.color) { const c = S.brand.v.colors || {}; c[ds.color] = el.value; c.s = 'input'; S.brand.v.colors = c; saveBrand(); return; }
+  if (ds.asset) { const a = S.assets.find(x => x.id === ds.asset); if (a) { a[ds.afield] = el.value; saveLater(P.asset(S.wsId, a.id), () => stripId(a)); } return; }
+  if (ds.draft) { S.draft[ds.draft] = el.value; if (ds.draft === 'angle') S.draft.angle_src = 'input'; return; }
+  if (ds.brief) { const b = briefById(S.briefId); if (b) { b.ai = b.ai || {}; b.ai[ds.brief] = el.value; b.updated_at = now(); saveBrief(b); } return; }
+  const p = S.packs[S.briefId];
+  if (ds.pack && p) { p.data[ds.pack] = ds.pack === 'hashtags' ? el.value.split(/\s+/).filter(Boolean) : el.value; savePack(p); return; }
+  if (ds.ad && p) { p.data.ad = p.data.ad || {}; p.data.ad[ds.ad] = el.value; savePack(p); const cnt = el.closest('div').querySelector('.counter'); if (cnt) { const max = {primary_text:125, headline:40, description:30}[ds.ad]; const n = [...el.value].length; cnt.textContent = `${n}/${max}`; cnt.classList.toggle('over', n > max); } return; }
+  if (ds.slidef && p) { const s = p.data.slides[+ds.i]; if (s) { s[ds.slidef] = el.value; savePack(p); redrawLater(); } return; }
+  if (ds.ov && p) { p.overlay = p.overlay || {title: (p.data.image || {}).overlay_title || '', sub: (p.data.image || {}).overlay_sub || ''}; p.overlay[ds.ov] = el.value; savePack(p); redrawLater(); return; }
+  if (ds.packnote && p) { p.regen_note = el.value; savePack(p); return; }
+  if (ds.rv) { S.reviewDraft[ds.rv] = el.value; return; }
+  if (ds.pub) { const q = S.packs[ds.pub]; if (!q || el.type === 'checkbox') return; q.publish = q.publish || {metrics:{}}; q.publish.metrics = q.publish.metrics || {};
+    if (ds.metric) q.publish.metrics[ds.metric] = el.value === '' ? '' : Math.max(0, +el.value);
+    else if (ds.pf && ds.pf !== 'posted') q.publish[ds.pf] = el.value;
+    q.updated_at = now(); saveLater(P.pack(S.wsId, q.id), () => stripId(q)); return; }
+});
+document.addEventListener('change', e => {
+  const el = e.target; const ds = el.dataset;
+  if (ds.change === 'selectWs') { selectWs(el.value); return; }
+  if (ds.change === 'cfPick') { ACT.cfPickSlug(el.value); return; }
+  if (ds.change === 'studioBrief') { S.briefId = el.value; S.packTab = 'text'; render(); return; }
+  if (ds.change === 'bgAsset' || ds.change === 'imgBg') { const p = S.packs[S.briefId]; p.bg = el.value || null; touchPack(p); render(); return; }
+  if (ds.asset && ds.afield === 'type') { const a = S.assets.find(x => x.id === ds.asset); if (a) { a.type = el.value; saveDoc(P.asset(S.wsId, a.id), stripId(a)); render(); } return; }
+  if (ds.cfsel) { S.cf.sel[ds.cfsel] = el.checked; const n = Object.values(S.cf.sel).filter(Boolean).length; if (n > 10) { el.checked = false; S.cf.sel[ds.cfsel] = false; toast('한 번에 10개까지 고를 수 있습니다', 'err'); } render(); return; }
+  if (ds.upload) { uploadFiles([...el.files]); el.value = ''; return; }
+  if (ds.aiimg) { if (el.files[0]) uploadAiImage(el.files[0]); el.value = ''; return; }
+  if (ds.pub && ds.pf === 'posted') { const q = S.packs[ds.pub]; q.publish = q.publish || {metrics:{}}; q.publish.posted = el.checked; if (el.checked && !q.publish.date) q.publish.date = new Date().toISOString().slice(0, 10); q.updated_at = now(); saveDoc(P.pack(S.wsId, q.id), stripId(q)); render(); return; }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.dataset && e.target.dataset.addkey) { e.preventDefault(); ACT.listAdd({dataset:{key: e.target.dataset.addkey}}); }
+});
+
+/* ============================ boot ============================ */
+async function boot(){
+  render();
+  const use = n => (window.claude && window.claude.use) ? window.claude.use(n).catch(() => null) : Promise.resolve(null);
+  const [db, sample, assets, downloads, mcp] = await Promise.all([use('db'), use('sample'), use('assets'), use('downloads'), use('mcp')]);
+  S.caps = {db, sample, assets, downloads, mcp};
+  if (!db) { S.booted = true; render(); return; }
+  db.collection('workspaces').onSnapshot(q => {
+    const list = q.docs.map(d => ({id: d.id, ...clone(d.data())})).sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''));
+    if (S.wsId && isDirty(P.ws(S.wsId))) { const mine = S.ws; S.workspaces = list.map(w => w.id === S.wsId && mine ? mine : w); }
+    else { S.workspaces = list; if (S.wsId) S.ws = list.find(w => w.id === S.wsId) || S.ws; }
+    if (!S.wsId && list.length) { const last = lsGet('mk_ws'); selectWs(list.some(w => w.id === last) ? last : list[0].id); return; }
+    S.booted = true; render();
+  }, () => { S.booted = true; render(); });
+}
+boot();
+</script>
