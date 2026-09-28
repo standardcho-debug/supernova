@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:P;font-weight:500;src:url(fonts/Pretendard-Medium.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(fonts/Pretendard-SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(fonts/Pretendard-Bold.woff2)}
+@font-face{font-family:P;font-weight:800;src:url(fonts/Pretendard-ExtraBold.woff2)}
+:root{--navy:#16243D;--tq:#2DD4BF;--tqd:#0F9E8C;--cream:#FAF8F3;--ink:#0F1A2E;--mute:#6B7A90;--or:#C2410C}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:P,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased;background:var(--cream)}
+.sc{position:absolute;inset:0;opacity:0}
+.navy{background:var(--navy);color:#fff}.cream{background:var(--cream);color:var(--ink)}
+.eb{position:absolute;left:96px;top:150px;font-size:36px;font-weight:700;color:var(--tq);letter-spacing:-.01em}
+.cream .eb{color:var(--tqd)}
+.pg{position:absolute;right:96px;top:150px;font-size:34px;font-weight:600;opacity:.5}
+h1{font-weight:800;letter-spacing:-.045em;line-height:1.15}
+.sym{position:absolute;left:96px;bottom:420px;height:56px}
+/* s1 */
+#s1 h1{position:absolute;left:96px;top:620px;font-size:150px}
+#s1 .ul{position:absolute;left:96px;top:1010px;height:14px;background:var(--tq);width:0}
+#s1 .sub{position:absolute;left:96px;top:1080px;font-size:48px;color:rgba(255,255,255,.75);font-weight:600;line-height:1.5}
+/* s2 */
+#s2 h1{position:absolute;left:96px;top:300px;font-size:92px}
+.card{position:absolute;left:96px;right:96px;border-radius:36px;padding:48px 56px;background:#fff;box-shadow:0 20px 50px -20px rgba(22,36,61,.25)}
+.card .k{font-size:34px;font-weight:700;color:var(--tqd)}
+.card .t{font-size:62px;font-weight:800;letter-spacing:-.03em;margin-top:10px}
+#q1{top:720px}#q2{top:1010px}
+#meet{position:absolute;left:96px;right:96px;top:1330px;border-radius:36px;background:var(--tq);color:var(--navy);padding:52px 56px;font-size:60px;font-weight:800;letter-spacing:-.03em;text-align:center}
+/* s3 */
+#s3 h1{position:absolute;left:96px;top:300px;font-size:88px}
+.ba{position:absolute;left:96px;right:96px;border-radius:36px;padding:48px 56px}
+.ba .k{font-size:34px;font-weight:800;letter-spacing:.06em}
+.ba .t{font-size:74px;font-weight:800;letter-spacing:-.03em;margin-top:14px;position:relative;display:inline-block}
+#bef{top:760px;background:#ECEAE4;color:#7A7F8A}
+#bef .strike{position:absolute;left:0;top:52%;height:8px;background:#7A7F8A;width:0}
+#aft{top:1090px;background:var(--navy);color:#fff}
+#aft .k{color:var(--tq)}
+#arrow{position:absolute;left:0;right:0;top:985px;text-align:center;font-size:72px;color:var(--tqd);font-weight:800}
+#s3 .cap{position:absolute;left:96px;right:96px;top:1470px;font-size:50px;font-weight:700;line-height:1.45}
+#s3 .cap b{background:linear-gradient(transparent 58%,#9BEBDF 58%)}
+/* s4 */
+#s4 h1{position:absolute;left:96px;top:300px;font-size:84px}
+#mapwrap{position:absolute;left:60px;right:60px;top:600px;height:860px;border-radius:32px;overflow:hidden;background:#fff;box-shadow:0 20px 60px -20px rgba(22,36,61,.35)}
+#map{position:absolute;left:0;top:0;width:1782px;transform-origin:0 0}
+.co{position:absolute;display:flex;align-items:center;gap:18px;opacity:0}
+.co .n{flex:none;width:72px;height:72px;border-radius:50%;background:var(--navy);color:#fff;font-size:40px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.co .l{background:var(--navy);color:#fff;font-size:38px;font-weight:700;padding:14px 24px;border-radius:16px;white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.co .l b{color:var(--tq)}
+#legend{position:absolute;left:96px;right:96px;top:1490px;font-size:44px;font-weight:700;line-height:1.5;opacity:0}
+/* s5 */
+#s5 .ey{position:absolute;left:0;right:0;top:560px;text-align:center;font-size:40px;font-weight:700;color:var(--tq)}
+#s5 h1{position:absolute;left:0;right:0;top:640px;text-align:center;font-size:150px}
+#s5 .body{position:absolute;left:120px;right:120px;top:900px;text-align:center;font-size:54px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.85)}
+#s5 .btn{position:absolute;left:190px;right:190px;top:1180px;height:130px;border-radius:65px;background:var(--tq);color:var(--navy);font-size:54px;font-weight:800;display:flex;align-items:center;justify-content:center}
+#s5 .fine{position:absolute;left:0;right:0;top:1360px;text-align:center;font-size:30px;color:rgba(255,255,255,.5)}
+#s5 .lock{position:absolute;left:0;right:0;bottom:420px;display:flex;justify-content:center;align-items:center;gap:22px}
+#s5 .lock img{height:70px}
+/* progress */
+#bar{position:absolute;left:0;top:0;height:8px;background:var(--tq);width:0;z-index:10}
+</style></head><body>
+<div id="bar"></div>
+<div class="sc navy" id="s1"><div class="eb">TIPS 준비 노트</div>
+  <h1 id="t1"></h1><div class="ul"></div>
+  <p class="sub">답해야 할 질문 2개와<br>과제명 공식까지</p>
+  <img class="sym" src="src/logo_symbol.png"></div>
+<div class="sc cream" id="s2"><div class="eb">01 · 큰 그림</div>
+  <h1>TIPS 과제를 설명할 때<br>답해야 할 질문 2개</h1>
+  <div class="card" id="q1"><div class="k">Q1 · 기술 축</div><div class="t">이 기술, 왜 필요한가요?</div></div>
+  <div class="card" id="q2"><div class="k">Q2 · 사업 축</div><div class="t">어디까지 확장되나요?</div></div>
+  <div id="meet">두 답이 만나는 자리 = R&amp;D 과제</div></div>
+<div class="sc cream" id="s3"><div class="eb">02 · 과제명</div>
+  <h1>‘개인화’라고만 쓰면<br>누구나 하는 기술</h1>
+  <div class="ba" id="bef"><div class="k">BEFORE</div><div class="t">축구 데이터 분석<span class="strike"></span></div></div>
+  <div id="arrow">↓</div>
+  <div class="ba" id="aft"><div class="k">AFTER</div><div class="t">센티미터급 위치 측위 측정</div></div>
+  <p class="cap">왜 → 무엇 → 어떻게.<br><b>세 번째 답(우리만의 측정 지표)이 과제명</b></p></div>
+<div class="sc cream" id="s4"><div class="eb">03 · 지금 위치</div>
+  <h1>우리 회사 결정,<br>지금 누가 쥐고 있나요?</h1>
+  <div id="mapwrap"><img id="map" src="src/axmap_crop_A.png">
+    <div class="co" id="c1"><div class="n">1</div><div class="l">가로줄 = <b>누가 결정하나</b></div></div>
+    <div class="co" id="c2"><div class="n">2</div><div class="l">검정 = <b>이미 코드가 처리</b></div></div>
+    <div class="co" id="c3"><div class="n">3</div><div class="l">주황 점선 = <b>주인 없는 결정</b></div></div>
+  </div>
+  <p id="legend">코파운더 AX 시스템지도 (자사 실제 화면)</p></div>
+<div class="sc navy" id="s5"><div class="ey">TIPS 준비, 지금 위치부터</div>
+  <h1>무료 AX 진단</h1>
+  <p class="body">우리 회사 AX 시스템지도로<br>주인 없는 결정부터 찾아드립니다</p>
+  <div class="btn">프로필 링크에서 신청</div>
+  <p class="fine">TIPS 선정은 운영사·전담기관 심사로 결정됩니다</p>
+  <div class="lock"><img src="src/logo_symbol.png"><img src="src/logo_word.png" style="height:52px"></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>{x=cl(x);return 1-Math.pow(1-x,3)};
+const seg=(t,a,b)=>ease((t-a)/(b-a));
+const SC=[['s1',0,3.6],['s2',3.6,8],['s3',8,12.4],['s4',12.4,17.4],['s5',17.4,21]];
+const DUR=21;
+const T1='TIPS 준비,\n어디서부터?';
+function show(el,p,dy=40){el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`;}
+window.render=function(t){
+  $('bar').style.width=(t/DUR*100)+'%';
+  for(const [id,a,b] of SC){const el=$(id);const fi=cl((t-a)/.35),fo=cl((b-t)/.35);el.style.opacity=(t>=a-.001&&t<b+.001)?Math.min(fi,fo,1):0;}
+  // s1
+  const n=Math.round(cl((t-.2)/1.4)*T1.length);$('t1').innerHTML=T1.slice(0,n).replace('\n','<br>')+(t<1.8&&Math.floor(t*3)%2===0?'<span style="color:#2DD4BF">|</span>':'');
+  document.querySelector('#s1 .ul').style.width=(seg(t,1.6,2.4)*560)+'px';
+  show(document.querySelector('#s1 .sub'),seg(t,2.0,2.7));
+  // s2
+  show($('q1'),seg(t,4.0,4.6),60);show($('q2'),seg(t,4.9,5.5),60);show($('meet'),seg(t,6.0,6.7),60);
+  $('meet').style.transform+=` scale(${1+0.04*Math.sin(cl((t-6.7)/0.6)*Math.PI)})`;
+  // s3
+  show($('bef'),seg(t,8.3,8.8),50);document.querySelector('#bef .strike').style.width=(seg(t,9.2,9.8)*100)+'%';
+  show($('arrow'),seg(t,9.8,10.2),20);show($('aft'),seg(t,10.1,10.7),50);show(document.querySelector('#s3 .cap'),seg(t,10.8,11.4),30);
+  // s4 map: pan+zoom (map natural 1782x1609; frame 960x900)
+  const k=seg(t,12.6,17.2);const s=0.56+0.02*k;const m=$('map');
+  m.style.transform=`translate(${-10-40*k}px,${-20-30*k}px) scale(${s})`;
+  const pos=(x,y)=>[x*s-10-40*k,y*s-20-30*k];
+  const place=(id,x,y,ox,oy,a)=>{const [px,py]=pos(x,y);const e=$(id);e.style.left=(px+ox)+'px';e.style.top=(py+oy)+'px';show(e,seg(t,a,a+.5),20);};
+  place('c1',60,600,0,-36,13.4);place('c3',1530,340,-520,-110,14.6);place('c2',1530,1300,-470,-110,15.8);
+  show($('legend'),seg(t,13.0,13.6),20);
+  // s5
+  show(document.querySelector('#s5 h1'),seg(t,17.7,18.3),50);show(document.querySelector('#s5 .body'),seg(t,18.1,18.7),40);
+  show(document.querySelector('#s5 .btn'),seg(t,18.5,19.1),40);show(document.querySelector('#s5 .fine'),seg(t,18.8,19.3),10);
+  show(document.querySelector('#s5 .lock'),seg(t,18.9,19.5),20);show(document.querySelector('#s5 .ey'),seg(t,17.6,18.1),20);
+};
+render(0);
+</script></body></html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 코파운더 SNS 마스터 템플릿 v3 — 모든 정보형 게시물은 이 레이아웃·색 규칙을 복제해 쓴다 -->
+<style>
+@font-face{font-family:P;font-weight:400;src:url(fonts/Pretendard-Regular.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(fonts/Pretendard-Medium.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(fonts/Pretendard-SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(fonts/Pretendard-Bold.woff2)}
+@font-face{font-family:P;font-weight:800;src:url(fonts/Pretendard-ExtraBold.woff2)}
+/* 브랜드 토큰: 네이비·터쿼이즈·크림 3색. 주황은 시스템지도 범례(주인 없는 결정)에만 */
+:root{--navy:#16243D;--tq:#2DD4BF;--tqd:#0F9E8C;--cream:#FAF8F3;--card:#FFFFFF;--line:#E4E0D6;--ink:#16243D;--mute:#6B7280;--soft:#EEF8F6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#888;font-family:P,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.f{width:1080px;height:1350px;position:relative;overflow:hidden;margin:0 0 40px}
+.cream{background:var(--cream);color:var(--ink)}.navy{background:var(--navy);color:#fff}
+.eb{position:absolute;left:88px;top:84px;font-size:28px;font-weight:700;color:var(--tqd)}
+.navy .eb{color:var(--tq)}
+.pg{position:absolute;right:88px;top:84px;font-size:28px;font-weight:600;color:#9CA3AF}
+h1{position:absolute;left:88px;top:150px;font-size:76px;font-weight:800;line-height:1.22;letter-spacing:-.04em}
+.lead{position:absolute;left:88px;font-size:34px;font-weight:500;line-height:1.5;color:var(--mute)}
+.foot{position:absolute;left:88px;bottom:64px;height:56px;width:88px;border-radius:14px;background:var(--navy)}
+.foot img{position:absolute;left:14px;top:9px;height:38px}
+.fnote{position:absolute;right:88px;bottom:76px;font-size:26px;font-weight:600;color:#9CA3AF}
+.navy .fnote{color:#8FA0BA}
+.box{position:absolute;border-radius:28px}
+/* s1 */
+#s1 h1{top:360px;font-size:118px;line-height:1.16}
+#s1 .hl{color:var(--tq)}
+#s1 .lead{top:790px;color:#C9D3E3;font-size:42px}
+#s1 .c1{position:absolute;right:-120px;bottom:170px;width:420px;height:420px;border-radius:50%;background:#FFFFFF}
+#s1 .c2{position:absolute;right:-300px;bottom:170px;width:420px;height:420px;border-radius:50%;background:var(--tq)}
+/* s2 */
+.q{left:88px;right:88px;background:var(--card);border:2px solid var(--line);padding:40px 48px}
+.q .k{font-size:28px;font-weight:700;color:var(--tqd)}
+.q .t{font-size:54px;font-weight:800;margin-top:10px;letter-spacing:-.03em}
+.q .d{font-size:28px;font-weight:500;color:var(--mute);margin-top:14px}
+#q1{top:420px}#q2{top:720px}
+#meet{left:88px;right:88px;top:1030px;background:var(--tq);color:var(--navy);padding:40px 48px;font-size:50px;font-weight:800;text-align:center;letter-spacing:-.03em}
+/* s3 */
+.step{position:absolute;left:88px;right:88px;height:92px;border-radius:20px;background:var(--card);border:2px solid var(--line)}
+.step .a{position:absolute;left:36px;top:24px;font-size:34px;font-weight:800;color:var(--tqd)}
+.step .b{position:absolute;left:190px;top:24px;font-size:34px;font-weight:600}
+.step.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.step.on .a{color:var(--tq)}
+#st1{top:430px}#st2{top:538px}#st3{top:646px}
+#bef{left:88px;right:88px;top:800px;background:#ECEAE4;padding:30px 44px}
+#aft{left:88px;right:88px;top:1000px;background:var(--tq);padding:30px 44px}
+.ba .k{font-size:26px;font-weight:800;letter-spacing:.08em}
+#bef .k{color:#8A8F99}#aft .k{color:var(--navy)}
+.ba .t{font-size:52px;font-weight:800;margin-top:6px;letter-spacing:-.03em}
+#bef .t{color:#8A8F99;text-decoration:line-through;text-decoration-thickness:4px}
+#aft .t{color:var(--navy)}
+#s3 .arr{position:absolute;left:0;right:0;top:944px;text-align:center;font-size:44px;font-weight:800;color:var(--tqd)}
+/* s4 */
+.gy{position:absolute;left:88px;width:170px;font-size:28px;font-weight:600;color:var(--mute);text-align:right}
+.gx{position:absolute;top:1010px;width:220px;font-size:28px;font-weight:600;color:var(--mute);text-align:center}
+.cell{position:absolute;width:220px;height:120px;border-radius:18px;background:#EFEDE7}
+.cell.now{background:var(--navy)}.cell.nx{background:var(--soft);border:2px solid var(--tq)}
+.cl{position:absolute;width:220px;text-align:center;font-size:40px;font-weight:800}
+.rule{position:absolute;left:88px;right:88px;font-size:32px;font-weight:600;line-height:1.4}
+.rule b{color:var(--tqd);font-weight:800}
+/* s5 */
+.ws{position:absolute;left:88px;right:88px;height:132px;border-radius:24px;background:var(--card);border:2px solid var(--line)}
+.ws .k{position:absolute;left:40px;top:44px;font-size:36px;font-weight:800;color:var(--tqd)}
+.ws .ln{position:absolute;left:300px;right:48px;top:84px;height:4px;background:#D6D2C7}
+#ex{left:88px;right:88px;top:880px;background:var(--navy);color:#fff;padding:40px 48px}
+#ex .k{font-size:28px;font-weight:700;color:var(--tq)}
+#ex .t{font-size:44px;font-weight:800;margin-top:14px;line-height:1.45;letter-spacing:-.02em}
+/* s6 */
+#mapbox{position:absolute;left:88px;top:500px;width:904px;height:680px;border-radius:24px;background:#FFFFFF;border:2px solid var(--line);overflow:hidden}
+#mapbox img{position:absolute;left:0;top:0;width:904px;height:680px}
+.co{position:absolute;height:64px;border-radius:32px;background:var(--navy);color:#fff;font-size:30px;font-weight:700;padding:0 28px 0 12px;display:flex;align-items:center;gap:14px;white-space:nowrap}
+.co .n{width:44px;height:44px;border-radius:50%;background:var(--tq);color:var(--navy);font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.co.or .n{background:#C2410C;color:#fff}
+/* s7 */
+#s7 h1{top:360px;font-size:120px}
+#s7 .lead{top:560px;color:#C9D3E3;font-size:44px}
+#btn{left:88px;width:600px;top:760px;height:120px;border-radius:60px;background:var(--tq);color:var(--navy);font-size:46px;font-weight:800;display:flex;align-items:center;justify-content:center}
+#s7 .fine{position:absolute;left:88px;top:940px;font-size:28px;color:#8FA0BA;font-weight:500}
+.lock{position:absolute;left:88px;bottom:64px;height:56px}
+/* ad */
+#ad h1{top:150px;font-size:80px}
+#ad .lead{top:360px}
+#admap{position:absolute;left:88px;top:470px;width:904px;height:610px;border-radius:24px;background:#FFFFFF;border:2px solid var(--line);overflow:hidden}
+#admap img{position:absolute;left:0;top:0;width:904px;height:610px}
+#adbtn{left:88px;right:88px;top:1130px;height:120px;border-radius:24px;background:var(--navy);color:#fff;font-size:44px;font-weight:800;display:flex;align-items:center;justify-content:center}
+</style></head><body>
+
+<!-- 1 표지 -->
+<div class="f navy" id="s1"><div class="c1"></div><div class="c2"></div>
+  <div class="eb">TIPS 준비 노트</div><div class="pg">1 / 7</div>
+  <h1>TIPS 준비,<br>어디서부터<br><span class="hl">해야 할까요?</span></h1>
+  <p class="lead">답해야 할 질문 2개와<br>과제명 공식까지 정리했어요</p>
+  <div class="foot"><img src="src/logo_symbol.png"></div><div class="fnote">저장해두고 하나씩 채워보세요 →</div>
+</div>
+
+<!-- 2 질문 2개 -->
+<div class="f cream" id="s2">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">2 / 7</div>
+  <h1>TIPS 과제를 설명할 때<br>답해야 할 질문 2개</h1>
+  <div class="box q" id="q1"><div class="k">Q1 · 기술 축</div><div class="t">이 기술, 왜 필요한가요?</div><div class="d">→ 3장: 과제명으로 답합니다</div></div>
+  <div class="box q" id="q2"><div class="k">Q2 · 사업 축</div><div class="t">어디까지 확장되나요?</div><div class="d">→ 4장: 확장 지도로 답합니다</div></div>
+  <div class="box" id="meet">두 답이 만나는 자리 = R&amp;D 과제</div>
+  <div class="foot"><img src="src/logo_symbol.png"></div>
+</div>
+
+<!-- 3 과제명 전후 -->
+<div class="f cream" id="s3">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">3 / 7</div>
+  <h1>‘개인화’라고만 쓰면<br>누구나 하는 기술이 됩니다</h1>
+  <div class="step" id="st1"><span class="a">왜</span><span class="b">개인화</span></div>
+  <div class="step" id="st2"><span class="a">무엇</span><span class="b">무엇을 개인화하나</span></div>
+  <div class="step on" id="st3"><span class="a">어떻게</span><span class="b">우리만의 측정 지표 ← 과제명</span></div>
+  <div class="box ba" id="bef"><div class="k">BEFORE</div><div class="t">축구 데이터 분석</div></div>
+  <div class="arr">↓</div>
+  <div class="box ba" id="aft"><div class="k">AFTER</div><div class="t">센티미터급 위치 측위 측정</div></div>
+  <div class="foot"><img src="src/logo_symbol.png"></div><div class="fnote">예시: 스포츠테크 기업의 과제명</div>
+</div>
+
+<!-- 4 확장 매트릭스 -->
+<div class="f cream" id="s4">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">4 / 7</div>
+  <h1>확장 시장은<br>‘지금 지점’부터 찍습니다</h1>
+  <div class="gy" style="top:490px">시니어·재활</div><div class="gy" style="top:630px">복싱·줌바</div><div class="gy" style="top:770px">태권도</div>
+  <div class="cell" style="left:282px;top:450px"></div><div class="cell" style="left:522px;top:450px"></div><div class="cell" style="left:762px;top:450px"></div>
+  <div class="cell" style="left:282px;top:590px"></div><div class="cell" style="left:522px;top:590px"></div><div class="cell" style="left:762px;top:590px"></div>
+  <div class="cell now" style="left:282px;top:730px"></div><div class="cell nx" style="left:522px;top:730px"></div><div class="cell nx" style="left:762px;top:730px"></div>
+  <div class="cl" style="left:282px;top:764px;color:#fff">지금</div><div class="cl" style="left:522px;top:764px;color:#0F9E8C">①</div><div class="cl" style="left:762px;top:764px;color:#0F9E8C">②</div>
+  <div class="gx" style="left:282px;top:870px">신규 창업</div><div class="gx" style="left:522px;top:870px">공간 전환</div><div class="gx" style="left:762px;top:870px">샵인샵</div>
+  <p class="rule" style="top:960px">1. 지금 있는 지점 하나를 찍는다</p>
+  <p class="rule" style="top:1020px">2. 다음 칸으로 가는 이유 = <b>같은 기술의 고도화</b></p>
+  <p class="rule" style="top:1080px">3. 칸마다 시점·숫자를 붙이면 <b>2년 스케일업 스토리</b></p>
+  <div class="foot"><img src="src/logo_symbol.png"></div><div class="fnote">예시: 태권도장 운영 솔루션</div>
+</div>
+
+<!-- 5 과제명 공식 워크시트 -->
+<div class="f cream" id="s5">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">5 / 7</div>
+  <h1>과제명 공식<br><span style="color:#0F9E8C">캡처해서 채워보세요</span></h1>
+  <div class="ws" style="top:420px"><span class="k">누구의</span><div class="ln"></div></div>
+  <div class="ws" style="top:572px"><span class="k">무엇을</span><div class="ln"></div></div>
+  <div class="ws" style="top:724px"><span class="k">어떤 지표로</span><div class="ln"></div></div>
+  <div class="box" id="ex"><div class="k">예시</div><div class="t">축구 선수의 / 경기 중 위치를 /<br>센티미터 단위로 측정하는 기술</div></div>
+  <div class="foot"><img src="src/logo_symbol.png"></div><div class="fnote">세 번째 칸이 우리 회사만의 것</div>
+</div>
+
+<!-- 6 AX 시스템지도 -->
+<div class="f cream" id="s6">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">6 / 7</div>
+  <h1>우리 회사 결정,<br>지금 누가 쥐고 있나요?</h1>
+  <p class="lead" style="top:390px">과제의 재료는 지금 돌아가는 운영에 있어요</p>
+  <div id="mapbox"><img src="src/axmap_s6.png"></div>
+  <div class="co" style="left:120px;top:880px"><span class="n">1</span>가로줄 = 누가 결정하나</div>
+  <div class="co" style="left:470px;top:560px"><span class="n or">3</span>주황 점선 = 주인 없는 결정</div>
+  <div class="co" style="left:420px;top:1080px"><span class="n">2</span>검정 칸 = 이미 코드가 처리</div>
+  <div class="foot"><img src="src/logo_symbol.png"></div><div class="fnote">코파운더 AX 시스템지도 · 자사 실제 화면</div>
+</div>
+
+<!-- 7 CTA -->
+<div class="f navy" id="s7">
+  <div class="eb">TIPS 준비 노트</div><div class="pg">7 / 7</div>
+  <h1>무료 AX 진단</h1>
+  <p class="lead">우리 회사 AX 시스템지도로<br>주인 없는 결정부터 찾아드립니다</p>
+  <div class="box" id="btn">프로필 링크에서 신청</div>
+  <p class="fine">TIPS 선정은 운영사·전담기관 심사로 결정됩니다</p>
+  <img class="lock" src="src/logo_symbol.png">
+</div>
+
+<!-- AD -->
+<div class="f cream" id="ad">
+  <div class="eb">co-founder</div>
+  <h1>TIPS 준비 전에,<br>우리 회사 시스템지도부터</h1>
+  <p class="lead">사람·AI·코드 중 누가 결정하는지 한 장으로</p>
+  <div id="admap"><img src="src/axmap_ad.png"></div>
+  <div class="co" style="left:130px;top:760px"><span class="n">1</span>누가 결정하나</div>
+  <div class="co" style="left:560px;top:520px"><span class="n or">!</span>주인 없는 결정</div>
+  <div class="box" id="adbtn">무료 AX 진단 신청 →</div>
+</div>
+</body></html>
