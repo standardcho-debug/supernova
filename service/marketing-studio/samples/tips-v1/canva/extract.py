@@ -18,6 +18,9 @@ JS = r"""
   const bgUnder = el => { const chain=[]; for(let e=el; e && e!==document.body; e=e.parentElement){
       const c=parse(getComputedStyle(e).backgroundColor); if(c&&c.a>0) chain.push(c); if(e===f) break; }
     let acc={r:255,g:255,b:255,a:1}; for(let i=chain.length-1;i>=0;i--) acc=over(chain[i],acc); return acc; };
+  // 조상 opacity 곱 — 색에 미리 반영해 Canva 에서는 불투명 단색으로 둔다
+  const opac = el => { let o=1; for(let e=el; e && e!==document.body; e=e.parentElement){ o*=parseFloat(getComputedStyle(e).opacity); if(e===f) break; } return o; };
+  const fade = (c, el) => ({...c, a: c.a*opac(el)});
   const rel = r => ({x:r.left-F.left, y:r.top-F.top, w:r.width, h:r.height});
   const out = {bg: hex(parse(getComputedStyle(f).backgroundColor)), layers: []};
   const boxed = e => { const s=getComputedStyle(e); const c=parse(s.backgroundColor);
@@ -34,7 +37,7 @@ JS = r"""
       const parentBg = bgUnder(e.parentElement);
       const L = {kind:'shape', ...rel(r), radius: Math.min(radius, Math.min(r.width,r.height)/2),
                  ellipse: s.borderTopLeftRadius==='50%' || radius>=Math.min(r.width,r.height)/2 && r.width===r.height};
-      if (c && c.a>0) L.fill = hex(over(c, parentBg));
+      if (c && c.a>0) L.fill = hex(over(fade(c, e), parentBg));
       if (parseFloat(s.borderTopWidth)>0) { L.line = hex(over(parse(s.borderTopColor), parentBg)); L.lineW = parseFloat(s.borderTopWidth); L.dash = s.borderTopStyle==='dashed'; }
       if (s.backgroundImage.includes('gradient') && e.tagName==='B') { L.fill='#9BEBDF'; L.y+=r.height*0.6; L.h=r.height*0.4; }
       L.name = (e.className||e.tagName).toString();
@@ -61,7 +64,7 @@ JS = r"""
           const ps = getComputedStyle(n.parentElement); const col=parse(ps.color);
           const rg=document.createRange(); rg.selectNodeContents(n); for(const q of rg.getClientRects()) rects.push(q);
           lines[lines.length-1].push({t, size:parseFloat(ps.fontSize), weight:parseInt(ps.fontWeight),
-            color: hex(over(col, bgUnder(n.parentElement))), strike: ps.textDecorationLine.includes('line-through'),
+            color: hex(over(fade(col, n.parentElement), bgUnder(n.parentElement))), strike: ps.textDecorationLine.includes('line-through'),
             ls: parseFloat(ps.letterSpacing)||0});
         } else if (n.nodeName==='BR') lines.push([]);
         else if (n.nodeType===1 && absorbable(n)) walk(n);

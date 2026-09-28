@@ -50,7 +50,7 @@
        "t": "1 / 5",
        "size": 24,
        "weight": 400,
-       "color": "#FFFFFF",
+       "color": "#969CA8",
        "strike": false,
        "ls": -0.24
       }
@@ -328,7 +328,7 @@
        "t": "2 / 5",
        "size": 24,
        "weight": 400,
-       "color": "#0F1A2E",
+       "color": "#767D89",
        "strike": false,
        "ls": -0.24
       }
@@ -407,7 +407,7 @@
        "t": "사업 축",
        "size": 24,
        "weight": 700,
-       "color": "#FFFFFF",
+       "color": "#B9BDC5",
        "strike": false,
        "ls": 0
       }
@@ -455,7 +455,7 @@
        "t": "“이 기술에 왜 이만큼 투자해야 하나”에 대한 답",
        "size": 27,
        "weight": 400,
-       "color": "#FFFFFF",
+       "color": "#CCCFD4",
        "strike": false,
        "ls": 0
       }
@@ -538,7 +538,7 @@
        "t": "두 축이 만나는 자리 = R&D 과제",
        "size": 27,
        "weight": 700,
-       "color": "#16243D",
+       "color": "#193E51",
        "strike": false,
        "ls": 0
       }
@@ -597,7 +597,7 @@
        "t": "기술 축",
        "size": 24,
        "weight": 700,
-       "color": "#FFFFFF",
+       "color": "#B9BDC5",
        "strike": false,
        "ls": 0
       }
@@ -645,7 +645,7 @@
        "t": "신사업 나열이 아니라, 같은 기술을 넓혀 적용하는 구조",
        "size": 27,
        "weight": 400,
-       "color": "#FFFFFF",
+       "color": "#CCCFD4",
        "strike": false,
        "ls": 0
       }
@@ -689,7 +689,7 @@
        "t": "사업 축 ↔ 기술 축",
        "size": 22,
        "weight": 400,
-       "color": "#0F1A2E",
+       "color": "#767D89",
        "strike": false,
        "ls": 0
       }
@@ -742,7 +742,7 @@
        "t": "3 / 5",
        "size": 24,
        "weight": 400,
-       "color": "#0F1A2E",
+       "color": "#7B818C",
        "strike": false,
        "ls": -0.24
       }
@@ -1060,7 +1060,7 @@
        "t": "고객·회사·팀에 따라 달라지는, 차별점이 생기는 영역",
        "size": 26,
        "weight": 400,
-       "color": "#16243D",
+       "color": "#1B4757",
        "strike": false,
        "ls": 0
       }
@@ -1202,7 +1202,7 @@
        "t": "왜 → 무엇 → 어떻게",
        "size": 22,
        "weight": 400,
-       "color": "#0F1A2E",
+       "color": "#7B818C",
        "strike": false,
        "ls": 0
       }
@@ -1255,7 +1255,7 @@
        "t": "4 / 5",
        "size": 24,
        "weight": 400,
-       "color": "#FFFFFF",
+       "color": "#969CA8",
        "strike": false,
        "ls": -0.24
       }
@@ -1988,7 +1988,7 @@
        "t": "5 / 5",
        "size": 24,
        "weight": 400,
-       "color": "#0F1A2E",
+       "color": "#797E87",
        "strike": false,
        "ls": -0.24
       }
