@@ -12,6 +12,7 @@ Claude가 카피·레이아웃을 직접 설계한 수작업 시안. Canva 편�
 | `src/logo_symbol.png`, `src/logo_word.png` | 워드마크 락업(다크)에서 잘라낸 심볼·워드마크 |
 | `src/map_crop.png` | spnv-platform 결정지도(이익식) 화면 크롭 — 자사 데이터, 공개 승인됨(2026-09-28) |
 | `fonts/` | Pretendard (SIL OFL 1.1) |
+| `canva/` | Canva 편집본 이관 파이프라인(HTML→레이어 추출→PPTX→Canva 가져오기). `canva/README.md` 참고 |
 
 ## 브랜드 토큰 (실제 로고에서 추출)
 - 네이비 `#16243D` · 터쿼이즈 `#2DD4BF` · 진한 터쿼이즈 `#0F9E8C` · 민트 `#E3F8F4` · 크림 `#FAF8F3`
