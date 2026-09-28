@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:P;font-weight:400;src:url(fonts/Pretendard-Regular.woff2)}
+@font-face{font-family:P;font-weight:500;src:url(fonts/Pretendard-Medium.woff2)}
+@font-face{font-family:P;font-weight:600;src:url(fonts/Pretendard-SemiBold.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(fonts/Pretendard-Bold.woff2)}
+@font-face{font-family:P;font-weight:800;src:url(fonts/Pretendard-ExtraBold.woff2)}
+:root{--navy:#16243D;--navy2:#1F3152;--ink:#0F1A2E;--tq:#2DD4BF;--tqd:#0F9E8C;--mint:#E3F8F4;--mute:#6B7A90;--line:#DCE3EC;--cream:#FAF8F3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#888;font-family:P,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.f{width:1080px;height:1350px;position:relative;overflow:hidden;margin:0 0 40px}
+.pad{position:absolute;inset:0;padding:96px 88px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:600;letter-spacing:-.01em}
+.pg{font-weight:500;opacity:.55;font-variant-numeric:tabular-nums}
+.foot{position:absolute;left:88px;right:88px;bottom:72px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .sym{height:40px}.brand .wm{height:30px}
+.navy{background:var(--navy);color:#fff}
+.light{background:#F3F6F9;color:var(--ink)}
+.white{background:#fff;color:var(--ink)}
+.cream{background:var(--cream);color:var(--ink)}
+.eyebrow{font-size:26px;font-weight:700;color:var(--tqd);letter-spacing:-.01em}
+.navy .eyebrow{color:var(--tq)}
+h1{font-weight:800;letter-spacing:-.045em;line-height:1.16}
+.chip{display:inline-block;padding:12px 22px;border-radius:999px;font-size:24px;font-weight:600}
+.lightpill{background:var(--navy);border-radius:12px;padding:8px 14px;display:flex;gap:10px;align-items:center}
+.next{font-size:24px;font-weight:600;color:rgba(255,255,255,.7)}
+/* s1 */
+#s1 h1{font-size:108px;margin-top:64px}
+#s1 h1 em{font-style:normal;color:var(--tq)}
+#s1 .sub{font-size:34px;line-height:1.5;color:rgba(255,255,255,.72);margin-top:40px;font-weight:500;letter-spacing:-.02em}
+.venn{position:absolute;right:-60px;bottom:170px;width:760px;height:430px}
+.venn .c{position:absolute;top:0;width:430px;height:430px;border-radius:50%;display:flex;align-items:center;font-size:34px;font-weight:700;letter-spacing:-.02em}
+.venn .a{left:0;background:#fff;color:var(--navy);justify-content:flex-start;padding-left:78px}
+.venn .b{left:280px;background:var(--tq);color:var(--navy);justify-content:flex-end;padding-right:118px;mix-blend-mode:normal}
+.venn .mid{position:absolute;left:280px;top:0;width:150px;height:430px;display:flex;align-items:center;justify-content:center;z-index:3}
+.venn .mid span{background:var(--navy);color:#fff;font-size:24px;font-weight:700;padding:10px 14px;border-radius:10px;white-space:nowrap}
+/* s2 */
+#s2 h1{font-size:76px;margin-top:28px}
+.stack{margin-top:64px;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.card{border-radius:24px;padding:36px 44px}
+.card .k{font-size:24px;font-weight:700;opacity:.7}
+.card .t{font-size:42px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.card .d{font-size:27px;font-weight:500;margin-top:12px;opacity:.78;line-height:1.45}
+.cn{background:var(--navy);color:#fff}
+.ct{background:var(--tq);color:var(--navy);text-align:center;padding:44px}
+.ct .t{font-size:52px}
+.arrow{height:54px;display:flex;justify-content:center;align-items:center;color:#9AAABD;font-size:30px}
+/* s3 */
+#s3 h1{font-size:74px;margin-top:28px}
+.rows{margin-top:56px;display:flex;flex-direction:column;gap:18px}
+.row{display:grid;grid-template-columns:150px 1fr;align-items:center;border-radius:22px;padding:34px 40px;background:#F3F6F9}
+.row .q{font-size:40px;font-weight:800;letter-spacing:-.03em}
+.row .t{font-size:36px;font-weight:700;letter-spacing:-.03em}
+.row .d{font-size:26px;color:var(--mute);margin-top:8px;font-weight:500}
+.row.hl{background:var(--tq);color:var(--navy)}
+.row.hl .d{color:var(--navy);opacity:.8}
+.star{display:inline-block;margin-left:12px;font-size:22px;font-weight:700;background:var(--navy);color:#fff;border-radius:8px;padding:4px 10px;vertical-align:6px}
+.ex{margin-top:34px;border:2px dashed #B8C4D2;border-radius:22px;padding:30px 40px}
+.ex .l{font-size:23px;font-weight:700;color:var(--tqd)}
+.ex .v{font-size:31px;font-weight:600;margin-top:12px;letter-spacing:-.02em;line-height:1.5}
+.ex .v s{color:#9AA7B8;text-decoration-thickness:2px}
+.ex .v b{color:var(--ink);background:linear-gradient(transparent 60%,#9BEBDF 60%)}
+/* s4 */
+#s4 h1{font-size:76px;margin-top:28px}
+.mx{margin-top:56px;display:grid;grid-template-columns:150px repeat(3,1fr);gap:12px;align-items:center}
+.mx .yl{font-size:22px;color:rgba(255,255,255,.6);text-align:right;padding-right:10px;font-weight:500}
+.mx .cell{height:96px;border-radius:14px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800}
+.mx .now{background:var(--tq);color:var(--navy)}
+.mx .nx{background:rgba(45,212,191,.2);color:var(--tq)}
+.mx .xl{font-size:22px;color:rgba(255,255,255,.6);text-align:center;font-weight:500}
+.mxcap{font-size:20px;color:rgba(255,255,255,.45);margin-top:14px;text-align:right}
+.rules{margin-top:44px;display:flex;flex-direction:column;gap:26px}
+.rule{display:flex;gap:24px;align-items:flex-start}
+.rule .n{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800}
+.rule .t{font-size:34px;font-weight:700;letter-spacing:-.03em}
+.rule .d{font-size:25px;color:rgba(255,255,255,.66);margin-top:6px;font-weight:500}
+.rule .d b{color:var(--tq)}
+/* s5 */
+#s5 h1{font-size:70px;margin-top:28px}
+.shot{margin-top:48px;background:#fff;border:1px solid #E4DFD4;border-radius:24px;padding:22px;box-shadow:0 30px 60px -30px rgba(22,36,61,.35)}
+.shot .bar{display:flex;gap:8px;margin-bottom:16px}.shot .bar i{width:12px;height:12px;border-radius:50%;background:#E4DFD4}
+.shot img{width:100%;display:block;border-radius:10px}
+.cap{font-size:21px;color:#8C8577;margin-top:14px;font-weight:500}
+.body5{font-size:29px;line-height:1.55;margin-top:34px;font-weight:500;letter-spacing:-.02em;color:#2B3446}
+.cta{margin-top:40px;display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;border-radius:22px;padding:30px 40px}
+.cta .t{font-size:36px;font-weight:800;letter-spacing:-.03em}
+.cta .go{width:64px;height:64px;border-radius:50%;background:var(--tq);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800}
+.fine{font-size:19px;color:#9B9486;margin-top:18px}
+/* ad */
+#ad h1{font-size:96px;margin-top:70px}
+#ad h1 em{font-style:normal;color:var(--tq)}
+#ad .sub{font-size:33px;color:rgba(255,255,255,.75);margin-top:34px;font-weight:500;letter-spacing:-.02em;line-height:1.5}
+.checks{margin-top:44px;display:flex;flex-wrap:wrap;gap:14px}
+.checks span{font-size:26px;font-weight:700;padding:14px 22px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.checks span:before{content:"✓ ";color:var(--tq)}
+.adshot{position:absolute;left:88px;right:88px;bottom:190px;height:330px;border-radius:24px 24px 24px 24px;overflow:hidden;background:var(--cream);box-shadow:0 30px 70px -20px rgba(0,0,0,.55)}
+.adshot img{width:100%;display:block;margin-top:-6px}
+.adshot:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(250,248,243,1))}
+.adshot .tag{position:absolute;left:22px;top:18px;z-index:2;background:var(--navy);color:#fff;font-size:20px;font-weight:700;border-radius:8px;padding:6px 12px}
+.adcta{position:absolute;left:88px;right:88px;bottom:72px;height:96px;border-radius:20px;background:var(--tq);color:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 40px;font-size:36px;font-weight:800;letter-spacing:-.03em}
+</style></head><body>
+
+<!-- 1 COVER -->
+<div class="f navy" id="s1"><div class="pad">
+  <div class="top"><span class="chip" style="background:rgba(45,212,191,.14);color:var(--tq)">비개발 대표를 위한 TIPS 준비 노트</span><span class="pg">1 / 5</span></div>
+  <h1>TIPS 준비,<br>어디서부터<br><em>해야 할까요?</em></h1>
+  <p class="sub">사업계획서를 쓰기 전에<br>먼저 세워야 할 두 개의 축이 있습니다.</p>
+</div>
+  <div class="venn"><div class="c a">사업 축</div><div class="c b">기술 축</div><div class="mid"><span>R&amp;D 과제</span></div></div>
+  <div class="foot"><div class="brand"><img class="sym" src="src/logo_symbol.png"><img class="wm" src="src/logo_word.png"></div><span class="next">넘겨보세요 →</span></div>
+</div>
+
+<!-- 2 BIG PICTURE -->
+<div class="f light" id="s2"><div class="pad">
+  <div class="top"><span class="eyebrow">01 · 큰 그림</span><span class="pg">2 / 5</span></div>
+  <h1>R&amp;D 과제는<br>두 축이 만나는 자리에서<br>나옵니다</h1>
+  <div class="stack">
+    <div class="card cn"><div class="k">사업 축</div><div class="t">어디까지 확장 가능한가</div><div class="d">“이 기술에 왜 이만큼 투자해야 하나”에 대한 답</div></div>
+    <div class="arrow">▼</div>
+    <div class="card ct"><div class="t">우리 회사 코어 기술 엔진</div><div class="d" style="opacity:.85;font-weight:700">두 축이 만나는 자리 = R&amp;D 과제</div></div>
+    <div class="arrow">▲</div>
+    <div class="card cn"><div class="k">기술 축</div><div class="t">이 기술이 왜 필요한가</div><div class="d">신사업 나열이 아니라, 같은 기술을 넓혀 적용하는 구조</div></div>
+  </div>
+</div>
+  <div class="foot"><div class="lightpill"><img src="src/logo_symbol.png" style="height:26px"></div><span class="pg" style="font-size:22px">사업 축 ↔ 기술 축</span></div>
+</div>
+
+<!-- 3 TECH AXIS -->
+<div class="f white" id="s3"><div class="pad">
+  <div class="top"><span class="eyebrow">02 · 기술 축</span><span class="pg">3 / 5</span></div>
+  <h1>‘개인화’라고만 쓰면<br>누구나 하는 기술이 됩니다</h1>
+  <div class="rows">
+    <div class="row"><div class="q">왜</div><div><div class="t">개인화</div><div class="d">여기서 멈추면 모두가 같은 목표를 말합니다</div></div></div>
+    <div class="row"><div class="q">무엇</div><div><div class="t">무엇을 개인화하는가</div><div class="d">업종마다, 사업마다 달라집니다</div></div></div>
+    <div class="row hl"><div class="q">어떻게</div><div><div class="t">우리만의 측정 지표<span class="star">★ 과제명</span></div><div class="d">고객·회사·팀에 따라 달라지는, 차별점이 생기는 영역</div></div></div>
+  </div>
+  <div class="ex"><div class="l">예시 — 과제 이름이 바뀌는 순간</div><div class="v"><s>축구 데이터 분석</s> → <b>센티미터급 위치 측위 측정</b><br>3번째 질문까지 내려가야 과제명이 됩니다.</div></div>
+</div>
+  <div class="foot"><div class="lightpill"><img src="src/logo_symbol.png" style="height:26px"></div><span class="pg" style="font-size:22px">왜 → 무엇 → 어떻게</span></div>
+</div>
+
+<!-- 4 BIZ AXIS -->
+<div class="f navy" id="s4"><div class="pad">
+  <div class="top"><span class="eyebrow">03 · 사업 축</span><span class="pg">4 / 5</span></div>
+  <h1>확장 시장은<br><span style="color:var(--tq)">‘지금 지점’</span>부터 찍습니다</h1>
+  <div class="mx">
+    <div class="yl">시니어·재활</div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="yl">복싱·줌바</div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="yl">태권도</div><div class="cell now">지금</div><div class="cell nx">①</div><div class="cell nx">②</div>
+    <div></div><div class="xl">신규 창업</div><div class="xl">공간 전환</div><div class="xl">샵인샵</div>
+  </div>
+  <div class="mxcap">예시 · x축 도입 공간 / y축 종목·프로그램</div>
+  <div class="rules">
+    <div class="rule"><div class="n">1</div><div><div class="t">지금 있는 지점을 하나로 찍는다</div><div class="d">“우리는 A시장의 B단계에 있다”</div></div></div>
+    <div class="rule"><div class="n">2</div><div><div class="t">다음 지점으로 가는 이유를 붙인다</div><div class="d">핵심은 <b>같은 기술의 고도화 적용</b></div></div></div>
+    <div class="rule"><div class="n">3</div><div><div class="t">칸마다 시점과 숫자를 붙인다</div><div class="d">그대로 2년짜리 스케일업 스토리가 됩니다</div></div></div>
+  </div>
+</div>
+  <div class="foot"><div class="brand"><img class="sym" src="src/logo_symbol.png" style="height:34px"><img class="wm" src="src/logo_word.png" style="height:25px"></div><span class="next">마지막 장 →</span></div>
+</div>
+
+<!-- 5 CTA -->
+<div class="f cream" id="s5"><div class="pad">
+  <div class="top"><span class="eyebrow">04 · 시작점</span><span class="pg">5 / 5</span></div>
+  <h1>순서는 알겠는데,<br>우리 회사는 지금 어디쯤일까요?</h1>
+  <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="src/map_crop.png"></div>
+  <div class="cap">코파운더 결정지도 — 실제 화면 (자사 사례)</div>
+  <p class="body5">이익을 이루는 숫자를 결정 단위로 쪼개고,<br>지금 재고 있는 곳과 비어 있는 곳을 지도로 보여드립니다.</p>
+  <div class="cta"><div class="t">우리 회사 AX 수준 진단받아보기</div><div class="go">→</div></div>
+  <div class="fine">프로필 링크 또는 DM으로 문의 · TIPS 선정은 운영사·전담기관 심사로 결정됩니다</div>
+</div></div>
+
+<!-- AD -->
+<div class="f navy" id="ad"><div class="pad">
+  <div class="top"><div class="brand"><img class="sym" src="src/logo_symbol.png"><img class="wm" src="src/logo_word.png"></div><span class="chip" style="background:rgba(45,212,191,.14);color:var(--tq);font-size:22px">개발자 없는 창업팀</span></div>
+  <h1>TIPS 준비,<br>사업계획서보다<br><em>순서가 먼저입니다</em></h1>
+  <p class="sub">사업 축과 기술 축이 만나는 자리,<br>우리 회사 지금 위치부터 진단합니다.</p>
+  <div class="checks"><span>사업 축 정의</span><span>기술 축 3단 질문</span><span>현재 위치 진단</span></div>
+</div>
+  <div class="adshot"><span class="tag">실제 진단 화면</span><img src="src/map_crop.png"></div>
+  <div class="adcta"><span>AX 수준 진단받아보기</span><span>→</span></div>
+</div>
+</body></html>
