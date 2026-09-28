@@ -107,6 +107,7 @@ label.lbl{display:block;font-size:12.5px;font-weight:600;color:var(--muted);marg
 .choice.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft) inset;background:var(--accent-soft)}
 .choice b{display:block;font-size:14px}
 .choice span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.choice .step-label{display:block;font-size:11.5px;font-weight:700;color:var(--accent);margin:0 0 2px;letter-spacing:.04em}
 .choice .meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
 
 .progress{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden}
@@ -1077,9 +1078,9 @@ function viewStart(){
   <div class="page-head"><div><h1>${esc(w.name)}</h1><p>브랜드킷을 어떻게 시작할지 고르세요. 셋 다 결국 같은 질문지로 모이고, 대표님은 추천 중에서 고르거나 고쳐 쓰면 됩니다.</p></div>
     <span class="pill ${p.n ? 'accent' : ''}">브랜드킷 ${p.n}/${p.total}</span></div>
   <section class="choice-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
-    <button class="choice" data-act="brandDraft"><b>AI 추천으로 시작</b><span>등록한 회사 정보${w.intro ? '와 붙여넣은 소개 자료' : ''}로 항목마다 고를 수 있는 예시를 만듭니다.</span><div class="meta"><span class="pill info">1분 내외</span>${hasSug ? '<span class="pill">추천 있음 · 다시 만들기</span>' : ''}</div></button>
-    <button class="choice ${S.cf.step !== 'idle' ? 'on' : ''}" data-act="cfOpen"><b>코파운더 데이터 가져오기</b><span>코파운더에 쌓인 요청·소통·변경 기록에서 고객의 목소리와 강점을 찾아 추천에 반영합니다.</span><div class="meta"><span class="pill accent">코파운더 고객사</span>${S.ctx ? `<span class="pill">가져옴 · ${fmtDate(S.ctx.extracted_at)}</span>` : ''}</div></button>
-    <button class="choice" data-act="go" data-v="brand"><b>질문 보면서 직접 쓰기</b><span>추천 없이 질문지부터 봅니다. 쓰다가 언제든 항목별로 추천을 받을 수 있습니다.</span></button>
+    <button class="choice ${S.cf.step !== 'idle' ? 'on' : ''}" data-act="cfOpen"><span class="step-label">01</span><b>코파운더 데이터 가져오기</b><span>코파운더에 쌓인 요청·소통·변경 기록에서 고객의 목소리와 강점을 찾아 추천에 반영합니다.</span><div class="meta"><span class="pill accent">코파운더 고객사</span>${S.ctx ? `<span class="pill">가져옴 · ${fmtDate(S.ctx.extracted_at)}</span>` : ''}</div></button>
+    <button class="choice" data-act="brandDraft"><span class="step-label">02</span><b>AI 추천으로 시작</b><span>등록한 회사 정보${w.intro ? '와 붙여넣은 소개 자료' : ''}로 항목마다 고를 수 있는 예시를 만듭니다.</span><div class="meta"><span class="pill info">1분 내외</span>${hasSug ? '<span class="pill">추천 있음 · 다시 만들기</span>' : ''}</div></button>
+    <button class="choice" data-act="go" data-v="brand"><span class="step-label">03</span><b>질문 보면서 직접 쓰기</b><span>추천 없이 질문지부터 봅니다. 쓰다가 언제든 항목별로 추천을 받을 수 있습니다.</span></button>
   </section>
   ${viewCofounder()}
   ${S.ctx ? viewCtxCard() : ''}
