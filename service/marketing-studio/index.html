@@ -223,7 +223,73 @@ label.lbl{display:block;font-size:12.5px;font-weight:600;color:var(--muted);marg
 .insight{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
 .insight:last-child{border-bottom:0}
 
+/* ---- channel preview ---- */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:transparent;padding:7px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--accent-soft);color:var(--accent)}
+.seg button:disabled{opacity:.4;cursor:not-allowed}
+.preview-card{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.preview-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:22px;align-items:start}
+.linkbtn{border:0;background:none;padding:0;color:var(--info);font-weight:600;text-decoration:underline;font-size:inherit}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.checks li{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:9px;background:var(--surface-2)}
+.checks li i{font-style:normal;font-weight:800;flex:0 0 18px;text-align:center}
+.checks li.ok i{color:var(--accent)} .checks li.warn i{color:var(--warn)} .checks li.bad i{color:var(--danger)}
+.phone{--ig-ink:#0f1419;--ig-sub:#737373;--ig-line:#dbdbdb;background:#ffffff;color:var(--ig-ink);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 8px 30px rgba(16,24,40,.12);font-family:-apple-system,'Apple SD Gothic Neo','IBM Plex Sans KR',sans-serif;font-size:13.5px;max-width:380px;width:100%}
+.ig-top{display:flex;align-items:center;gap:9px;padding:10px 12px}
+.ig-av{width:32px;height:32px;border-radius:50%;background:#eef2f6;border:1px solid var(--ig-line);object-fit:contain;flex:0 0 auto}
+.ig-top b{font-size:13.5px;display:block;line-height:1.2}
+.ig-top small{font-size:11.5px;color:var(--ig-sub)}
+.ig-top .more{margin-left:auto;color:var(--ig-ink);font-weight:700;letter-spacing:1px}
+.ig-media{position:relative;background:#f1f1f1;aspect-ratio:4/5}
+.ig-media canvas{width:100%;height:100%;display:block}
+.ig-nav{position:absolute;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#111;font-weight:800;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.ig-nav.prev{left:8px} .ig-nav.next{right:8px}
+.ig-count{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;font-size:11.5px;border-radius:999px;padding:2px 8px}
+.ig-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:#f5f7fa;border-bottom:1px solid var(--ig-line)}
+.ig-cta b{display:block;font-size:13px;line-height:1.3}
+.ig-cta small{color:var(--ig-sub);font-size:11.5px}
+.ig-cta span.cta{flex:0 0 auto;background:#0095f6;color:#fff;font-weight:700;font-size:12.5px;border-radius:8px;padding:6px 12px}
+.ig-actions{display:flex;gap:14px;padding:9px 12px 4px;align-items:center}
+.ig-actions svg{width:24px;height:24px;fill:none;stroke:var(--ig-ink);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.ig-actions .sp{margin-left:auto}
+.ig-dots{display:flex;gap:4px;justify-content:center;flex:1}
+.ig-dots i{width:6px;height:6px;border-radius:50%;background:#c7c7c7}
+.ig-dots i.on{background:#0095f6}
+.ig-cap{padding:2px 12px 12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
+.ig-cap .tag{color:#00376b}
+.ig-cap .more-btn{border:0;background:none;padding:0;color:var(--ig-sub);font-size:inherit}
+.ig-cap .cmt{display:block;color:var(--ig-sub);margin-top:6px;white-space:normal}
+.ig-likes{padding:0 12px 4px;font-weight:700;font-size:13px}
+.vframe{position:relative;aspect-ratio:9/16;background:#000;max-width:340px;width:100%;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px rgba(16,24,40,.18)}
+.vframe canvas{width:100%;height:100%;display:block}
+.chrome{position:absolute;inset:0;pointer-events:none;color:#fff;font-family:-apple-system,'Apple SD Gothic Neo','IBM Plex Sans KR',sans-serif;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.chrome .lab{position:absolute;top:12px;left:14px;font-weight:800;font-size:17px}
+.chrome .rail{position:absolute;right:10px;bottom:84px;display:flex;flex-direction:column;gap:16px;align-items:center;font-size:10.5px}
+.chrome .rail svg{width:26px;height:26px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.chrome .rail span{display:flex;flex-direction:column;align-items:center;gap:2px}
+.chrome .who{position:absolute;left:12px;right:64px;bottom:16px;font-size:12.5px;line-height:1.4}
+.chrome .who .h{display:flex;align-items:center;gap:7px;font-weight:700}
+.chrome .who .h img{width:26px;height:26px;border-radius:50%;background:#fff;object-fit:contain}
+.chrome .who .fl{border:1px solid rgba(255,255,255,.8);border-radius:7px;padding:1px 8px;font-size:11.5px}
+.chrome .who .sub{background:#fff;color:#0f0f0f;text-shadow:none;border-radius:999px;padding:2px 10px;font-size:11.5px}
+.chrome .who p{margin:5px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.chrome .who .mu{font-size:11.5px;opacity:.9;margin-top:4px}
+.vbar{height:3px;background:rgba(127,127,127,.25);border-radius:2px;overflow:hidden;margin-top:10px;max-width:340px}
+.vbar i{display:block;height:100%;width:0;background:var(--accent)}
+.vctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.rec-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--danger);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+.scene-cap{min-width:140px}
+.modal .box{text-align:left;max-width:520px}
+.modal .box h2{font-size:17px;margin-bottom:6px}
+.free-img{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;padding:6px 0;border-bottom:1px solid var(--line)}
+.free-img:last-child{border-bottom:0}
+.free-img a{font-size:12px;font-weight:600}
+
 @media (max-width:900px){
+  .preview-grid{grid-template-columns:minmax(0,1fr)}
   .layout{grid-template-columns:minmax(0,1fr);padding-top:12px}
   .nav{position:static;flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}
   .nav button{flex:0 0 auto;grid-template-columns:22px auto}
@@ -556,69 +622,356 @@ function wrapLines(ctx, text, maxW){
 }
 function drawCoverImg(c, img, W, H){ const r = Math.max(W / img.width, H / img.height); const w = img.width * r, h = img.height * r; c.drawImage(img, (W - w) / 2, (H - h) / 2, w, h); }
 function brandColors(){ const v = S.brand.v.colors || {}; return {main: v.main || '#0f1b33', sub: v.sub || '#f4f6f9', accent: v.accent || '#3cc99c'}; }
-function logoSrc(){ const a = S.assets.find(x => x.type === '로고'); return a ? '/_blob/' + a.asset_id : null; }
-
-async function drawSlide(cv, {slide, idx, total, template, bgSrc}){
+function assetKind(a){ return !a ? null : a.type === '로고' ? 'logo' : a.type === '서비스 화면' ? 'screen' : ((a.content_type || '').startsWith('video') ? 'video' : 'photo'); }
+function findAsset(ref){
+  if (!ref) return null;
+  const r = String(ref).trim();
+  if (!r || /^촬영 필요|^null$/.test(r)) return null;
+  const clean = r.replace(/^asset:\s*/, '').replace(/^\[[^\]]*\]\s*/, '').trim();
+  let a = S.assets.find(x => x.name === clean || x.name === r || x.asset_id === clean);
+  if (!a) a = S.assets.find(x => clean.startsWith(x.name + ' ') || clean.startsWith(x.name + '-') || clean.startsWith(x.name + '_'));
+  if (!a) a = S.assets.filter(x => x.name.length >= 2 && clean.includes(x.name)).sort((p, q) => q.name.length - p.name.length)[0];
+  return a || null;
+}
+function logoAsset(){
+  const logos = S.assets.filter(x => x.type === '로고');
+  return logos.find(x => x.id === S.brand.logo_id) || logos.find(x => /워드마크|락업|lockup|wordmark/i.test(x.name)) || logos[0] || null;
+}
+function logoSrc(){ const a = logoAsset(); return a ? '/_blob/' + a.asset_id : null; }
+function sanitizeSvg(svg, w, h){
+  let s = String(svg || '').trim();
+  const i = s.indexOf('<svg'), j = s.lastIndexOf('</svg>');
+  if (i < 0 || j < 0) return null;
+  s = s.slice(i, j + 6);
+  if (s.length > 40000) return null;
+  s = s.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '')
+       .replace(/<text[\s\S]*?<\/text>/gi, '').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '')
+       .replace(/\s(?:xlink:)?href\s*=\s*("(?!#)[^"]*"|'(?!#)[^']*')/gi, '');
+  const head = s.slice(0, s.indexOf('>'));
+  let h2 = head;
+  if (!/xmlns=/.test(h2)) h2 = h2.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  if (!/viewBox=/i.test(h2)) h2 = h2.replace('<svg', `<svg viewBox="0 0 ${w} ${h}"`);
+  if (!/\swidth=/.test(h2)) h2 = h2.replace('<svg', `<svg width="${w}"`);
+  if (!/\sheight=/.test(h2)) h2 = h2.replace('<svg', `<svg height="${h}"`);
+  return h2 + s.slice(head.length);
+}
+const svgSrc = s => s ? 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s) : null;
+function resolveBg(ref, art){
+  if (!ref || ref === 'brand' || ref === 'null') return null;
+  const r = String(ref);
+  if (/^art\d/.test(r)) { const a = (art || []).find(x => x.id === r); return a && a.svg ? {src: svgSrc(a.svg), kind: 'art'} : null; }
+  const as = findAsset(r);
+  if (!as || assetKind(as) === 'logo') return null;
+  return {src: '/_blob/' + as.asset_id, kind: assetKind(as), name: as.name};
+}
+function finalOf(p, tab){ return (p && p.final && p.final[tab]) || null; }
+function packSlides(p){ const fi = finalOf(p, 'image'); return (fi && fi.slides && fi.slides.length) ? fi.slides : ((p && p.data && p.data.slides) || []); }
+function slideBg(p, i){
+  const fi = finalOf(p, 'image'); const sl = packSlides(p)[i] || {};
+  if (sl.bg) return resolveBg(sl.bg, fi && fi.art);
+  if (p.template === 'photo' && p.bg) { const as = S.assets.find(a => a.asset_id === p.bg); return {src: '/_blob/' + p.bg, kind: as ? assetKind(as) : 'photo'}; }
+  return null;
+}
+function adSpec(p){
+  const fi = finalOf(p, 'image'); const im = (p.data && p.data.image) || {}; const ad = (p.data && p.data.ad) || {};
+  const ov = p.overlay || (fi && fi.ad) || {title: im.overlay_title || ad.headline || '', sub: im.overlay_sub || ad.description || ''};
+  let bg = null;
+  if (p.bg && !(fi && fi.ad && fi.ad.bg && !p.overlay_bg_manual)) { const as = S.assets.find(a => a.asset_id === p.bg); bg = {src: '/_blob/' + p.bg, kind: as ? assetKind(as) : 'photo'}; }
+  if (!bg && fi && fi.ad && fi.ad.bg) bg = resolveBg(fi.ad.bg, fi.art);
+  return {title: ov.title || '', sub: ov.sub || '', bg};
+}
+function coverSpec(p){
+  const fi = finalOf(p, 'image'); const fv = finalOf(p, 'video'); const r = (p.data && p.data.reels) || {};
+  const c = p.cover || (fi && fi.cover) || {title: (fv && fv.cover_text) || r.cover_text || ((p.data && p.data.hooks) || [])[0] || '', bg: null};
+  return {title: c.title || '', bg: resolveBg(c.bg, (fi && fi.art) || (fv && fv.art))};
+}
+function roundRect(c, x, y, w, h, r){ c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function drawFramed(c, img, x, y, w, h, r){
+  const s = Math.min(w / img.width, h / img.height); const dw = img.width * s, dh = img.height * s;
+  const dx = x + (w - dw) / 2, dy = y + (h - dh) / 2;
+  c.save(); c.shadowColor = 'rgba(0,0,0,0.28)'; c.shadowBlur = 40; c.shadowOffsetY = 14;
+  roundRect(c, dx, dy, dw, dh, r); c.fillStyle = '#ffffff'; c.fill(); c.restore();
+  c.save(); roundRect(c, dx, dy, dw, dh, r); c.clip(); c.drawImage(img, dx, dy, dw, dh); c.restore();
+  c.save(); roundRect(c, dx, dy, dw, dh, r); c.strokeStyle = 'rgba(255,255,255,0.5)'; c.lineWidth = 2; c.stroke(); c.restore();
+  return {dx, dy, dw, dh};
+}
+const lumCache = new WeakMap();
+function imgLum(img){
+  if (lumCache.has(img)) return lumCache.get(img);
+  let v = 0.5;
+  try { const cv = document.createElement('canvas'); cv.width = 32; cv.height = 32; const c = cv.getContext('2d'); c.drawImage(img, 0, 0, 32, 32); const d = c.getImageData(0, 0, 32, 32).data; let s = 0, n = 0; for (let i = 0; i < d.length; i += 4) { if (d[i + 3] > 40) { s += (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255; n++; } } if (n) v = s / n; } catch (e) {}
+  lumCache.set(img, v); return v;
+}
+function drawLogo(c, logo, x, y, h, groundDark, maxW = 340){
+  if (!logo) return;
+  const w = Math.min(maxW, logo.width * (h / logo.height)); const hh = w / (logo.width / logo.height);
+  const logoDark = imgLum(logo) < 0.45;
+  if (groundDark === logoDark) { c.save(); c.fillStyle = groundDark ? 'rgba(255,255,255,0.92)' : 'rgba(15,20,30,0.85)'; roundRect(c, x - 14, y - 10, w + 28, hh + 20, 14); c.fill(); c.restore(); }
+  c.drawImage(logo, x, y, w, hh);
+}
+async function drawSlide(cv, {slide, idx, total, bg}){
   await fontsReady();
   const W = 1080, H = 1350; cv.width = W; cv.height = H;
-  const c = cv.getContext('2d');
-  const col = brandColors();
-  const bg = template === 'photo' ? await loadImg(bgSrc) : null;
+  const c = cv.getContext('2d'); const col = brandColors();
+  const img = bg ? await loadImg(bg.src) : null;
   const logo = await loadImg(logoSrc());
-  let ground, ink, kick;
-  if (bg) {
-    drawCoverImg(c, bg, W, H);
-    const g = c.createLinearGradient(0, H * .2, 0, H); g.addColorStop(0, 'rgba(0,0,0,0.05)'); g.addColorStop(1, 'rgba(0,0,0,0.82)');
+  const pad = 96; let ground, ink;
+  const screen = img && bg.kind === 'screen';
+  if (img && !screen) {
+    drawCoverImg(c, img, W, H);
+    const g = c.createLinearGradient(0, H * .15, 0, H); g.addColorStop(0, 'rgba(0,0,0,0.08)'); g.addColorStop(1, 'rgba(0,0,0,0.80)');
     c.fillStyle = g; c.fillRect(0, 0, W, H); ground = '#111111'; ink = '#ffffff';
   } else {
     ground = (idx === 0 || idx === total - 1) ? col.main : col.sub;
     c.fillStyle = ground; c.fillRect(0, 0, W, H);
     ink = lum(ground) > .4 ? '#121826' : '#ffffff';
   }
-  kick = contrast(col.accent, ground) >= 2.6 ? col.accent : ink;
-  const pad = 96;
+  const kick = contrast(col.accent, ground) >= 2.6 ? col.accent : ink;
   c.textBaseline = 'top';
   c.fillStyle = kick; c.fillRect(pad, pad, 76, 10);
   c.font = '600 36px "IBM Plex Sans KR", sans-serif';
   if (slide.kicker) c.fillText(String(slide.kicker).slice(0, 40), pad, pad + 38);
-  const tSize = idx === 0 ? 86 : 70;
+  const tSize = idx === 0 ? (screen ? 72 : 86) : (screen ? 62 : 70);
   c.font = `700 ${tSize}px "IBM Plex Sans KR", sans-serif`;
-  const tLines = wrapLines(c, slide.title, W - pad * 2).slice(0, 5);
-  const bSize = 46;
+  const tLines = wrapLines(c, slide.title, W - pad * 2).slice(0, screen ? 3 : 5);
+  const bSize = screen ? 38 : 46;
   c.font = `400 ${bSize}px "IBM Plex Sans KR", sans-serif`;
-  const bLines = wrapLines(c, slide.body, W - pad * 2).slice(0, 7);
-  const tH = tLines.length * tSize * 1.28, bH = bLines.length ? bLines.length * bSize * 1.6 + 44 : 0;
-  let y = bg ? H - pad - 110 - tH - bH : Math.max(250, (H - tH - bH) / 2 - 30);
+  const bLines = wrapLines(c, slide.body, W - pad * 2).slice(0, screen ? 3 : 7);
+  const tH = tLines.length * tSize * 1.28, bH = bLines.length ? bLines.length * bSize * 1.55 + 36 : 0;
+  let y = screen ? pad + 110 : (img ? H - pad - 110 - tH - bH : Math.max(250, (H - tH - bH) / 2 - 30));
   c.fillStyle = ink; c.font = `700 ${tSize}px "IBM Plex Sans KR", sans-serif`;
   tLines.forEach(l => { c.fillText(l, pad, y); y += tSize * 1.28; });
-  y += 44;
+  y += 36;
   c.globalAlpha = .86; c.font = `400 ${bSize}px "IBM Plex Sans KR", sans-serif`;
-  bLines.forEach(l => { c.fillText(l, pad, y); y += bSize * 1.6; });
+  bLines.forEach(l => { c.fillText(l, pad, y); y += bSize * 1.55; });
   c.globalAlpha = 1;
+  if (screen) { const top = y + 30, bottom = H - pad - 80; if (bottom - top > 200) drawFramed(c, img, pad - 16, top, W - (pad - 16) * 2, bottom - top, 22); }
   c.font = '600 30px "IBM Plex Sans KR", sans-serif'; c.fillStyle = ink; c.globalAlpha = .7;
   const pg = `${idx + 1} / ${total}`; c.fillText(pg, W - pad - c.measureText(pg).width, H - pad - 30);
   c.globalAlpha = 1;
-  if (logo) { const lh = 56, lw = logo.width * (lh / logo.height); c.drawImage(logo, pad, H - pad - lh + 10, Math.min(lw, 320), lh); }
+  if (logo) drawLogo(c, logo, pad, H - pad - 40, 50, lum(ground) < .4, 300);
   else { c.font = '700 30px "IBM Plex Sans KR", sans-serif'; c.globalAlpha = .8; c.fillText((S.ws && S.ws.name) || '', pad, H - pad - 30); c.globalAlpha = 1; }
 }
-async function drawAd(cv, {bgSrc, title, sub}){
+async function drawAd(cv, {bg, title, sub}){
   await fontsReady();
   const W = 1080, H = 1350; cv.width = W; cv.height = H;
   const c = cv.getContext('2d'); const col = brandColors();
-  const bg = await loadImg(bgSrc); const logo = await loadImg(logoSrc());
-  if (bg) { drawCoverImg(c, bg, W, H); const g = c.createLinearGradient(0, 0, 0, H * .55); g.addColorStop(0, 'rgba(0,0,0,0.62)'); g.addColorStop(1, 'rgba(0,0,0,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H); }
-  else { c.fillStyle = col.main; c.fillRect(0, 0, W, H); }
+  const img = bg ? await loadImg(bg.src) : null; const logo = await loadImg(logoSrc());
+  const screen = img && bg.kind === 'screen';
+  let ground;
+  if (img && !screen) { drawCoverImg(c, img, W, H); const g = c.createLinearGradient(0, 0, 0, H * .6); g.addColorStop(0, 'rgba(0,0,0,0.66)'); g.addColorStop(1, 'rgba(0,0,0,0)'); c.fillStyle = g; c.fillRect(0, 0, W, H); ground = '#111111'; }
+  else { ground = col.main; c.fillStyle = ground; c.fillRect(0, 0, W, H); }
+  const ink = lum(ground) > .4 ? '#121826' : '#ffffff';
   const pad = 90; c.textBaseline = 'top';
-  c.fillStyle = col.accent; c.fillRect(pad, pad + 70, 76, 10);
-  c.fillStyle = '#ffffff'; c.font = '700 84px "IBM Plex Sans KR", sans-serif';
-  let y = pad + 110;
+  if (logo) drawLogo(c, logo, pad, pad - 6, 50, lum(ground) < .4, 300);
+  c.fillStyle = contrast(col.accent, ground) >= 2.6 ? col.accent : ink; c.fillRect(pad, pad + 80, 76, 10);
+  c.fillStyle = ink; c.font = '700 84px "IBM Plex Sans KR", sans-serif';
+  let y = pad + 118;
   wrapLines(c, title, W - pad * 2).slice(0, 3).forEach(l => { c.fillText(l, pad, y); y += 84 * 1.25; });
   c.font = '500 42px "IBM Plex Sans KR", sans-serif'; c.globalAlpha = .92; y += 18;
   wrapLines(c, sub, W - pad * 2).slice(0, 3).forEach(l => { c.fillText(l, pad, y); y += 42 * 1.5; });
   c.globalAlpha = 1;
-  if (logo) { const lh = 52, lw = logo.width * (lh / logo.height); c.drawImage(logo, pad, pad - 8, Math.min(lw, 300), lh); }
+  if (screen) { const top = y + 40, bottom = H - 70; if (bottom - top > 240) drawFramed(c, img, 60, top, W - 120, bottom - top, 24); }
+}
+async function drawCover(cv, {bg, title}){
+  await fontsReady();
+  const W = 1080, H = 1920; cv.width = W; cv.height = H;
+  const c = cv.getContext('2d'); const col = brandColors();
+  const img = bg ? await loadImg(bg.src) : null; const logo = await loadImg(logoSrc());
+  const screen = img && bg.kind === 'screen';
+  if (img && !screen) { drawCoverImg(c, img, W, H); c.fillStyle = 'rgba(0,0,0,0.35)'; c.fillRect(0, 0, W, H); }
+  else { const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, col.main); g.addColorStop(1, '#0b1020'); c.fillStyle = g; c.fillRect(0, 0, W, H); if (screen) drawFramed(c, img, 90, 820, W - 180, 760, 26); }
+  c.textBaseline = 'top'; c.fillStyle = col.accent; c.fillRect(100, 420, 90, 12);
+  c.fillStyle = '#ffffff'; c.font = '800 112px "IBM Plex Sans KR", sans-serif';
+  let y = 470; wrapLines(c, title, W - 200).slice(0, 4).forEach(l => { c.fillText(l, 100, y); y += 112 * 1.22; });
+  if (logo) drawLogo(c, logo, 100, H - 300, 64, true, 380);
 }
 const canvasBlob = cv => new Promise(r => cv.toBlob(b => r(b), 'image/png'));
+/* ---------- video timeline + player ---------- */
+function timelineOf(p){
+  if (!p) return null;
+  const fv = finalOf(p, 'video');
+  const src = fv && (fv.scenes || []).length ? fv : ((p.data && p.data.reels && (p.data.reels.scenes || []).length) ? p.data.reels : null);
+  if (!src) return null;
+  const dur = +src.duration_sec || 20;
+  let sc = src.scenes.map(s => {
+    let st = +s.start, en = +s.end;
+    if (!(en > st)) { const m = /(\d+(?:\.\d+)?)\s*[-~–]\s*(\d+(?:\.\d+)?)/.exec(String(s.sec || '')); if (m) { st = +m[1]; en = +m[2]; } }
+    return {st, en, s};
+  });
+  if (sc.some(x => !(x.en > x.st))) { const d = dur / sc.length; sc = sc.map((x, i) => ({...x, st: i * d, en: (i + 1) * d})); }
+  return {
+    duration: Math.max(...sc.map(x => x.en)), cover: src.cover_text || '', art: (fv && fv.art) || [], music: src.music_mood || '',
+    scenes: sc.map(x => ({start: x.st, end: x.en, caption: x.s.caption || x.s.on_screen || '', pos: x.s.pos || 'center', motion: x.s.motion || 'zoom-in', ref: x.s.asset || null, bgRef: x.s.bg || null, visual: x.s.visual || '', voiceover: x.s.voiceover || ''})),
+  };
+}
+function sceneBg(sc, tl){ return (sc.bgRef && resolveBg(sc.bgRef, tl.art)) || resolveBg(sc.ref, tl.art); }
+const PL = {playing:false, t:0, last:0, tl:null, key:'', media:{}, logo:null, rec:null, canvas:null, ready:false};
+async function playerPrepare(tl, key){
+  PL.ready = false; PL.tl = tl; PL.key = key; PL.t = Math.min(PL.t, tl.duration);
+  if (!PL.canvas) { PL.canvas = document.createElement('canvas'); PL.canvas.width = 1080; PL.canvas.height = 1920; }
+  for (const sc of tl.scenes) {
+    const b = sceneBg(sc, tl); sc._bg = b;
+    if (b && !PL.media[b.src]) {
+      if (b.kind === 'video') { const v = document.createElement('video'); v.src = b.src; v.muted = true; v.playsInline = true; v.preload = 'auto'; PL.media[b.src] = v; }
+      else PL.media[b.src] = await loadImg(b.src);
+    }
+  }
+  PL.logo = await loadImg(logoSrc()); await fontsReady();
+  if (PL.key === key) { PL.ready = true; drawNow(); }
+}
+function drawVideoFrame(c, t, tl){
+  const W = 1080, H = 1920; const col = brandColors();
+  const sc = tl.scenes.find(s => t >= s.start && t < s.end) || tl.scenes[tl.scenes.length - 1];
+  const idx = tl.scenes.indexOf(sc);
+  const lt = Math.max(0, t - sc.start), dur = Math.max(.1, sc.end - sc.start), k = Math.min(1, lt / dur);
+  const b = sc._bg; const m = b && PL.media[b.src];
+  c.save(); c.clearRect(0, 0, W, H);
+  if (m && b.kind === 'video') {
+    if (PL.playing && m.paused) { try { m.currentTime = lt; m.play().catch(() => {}); } catch (e) {} }
+    if (Math.abs(m.currentTime - lt) > .5) { try { m.currentTime = lt; } catch (e) {} }
+    if (m.videoWidth) { const iw = m.videoWidth, ih = m.videoHeight, r = Math.max(W / iw, H / ih); c.drawImage(m, (W - iw * r) / 2, (H - ih * r) / 2, iw * r, ih * r); }
+  } else if (m && b.kind === 'screen') {
+    c.filter = 'blur(38px) brightness(0.55)'; drawCoverImg(c, m, W, H); c.filter = 'none';
+    const z = 1 + .05 * k; const w = 960 * z, h = 1100 * z;
+    drawFramed(c, m, (W - w) / 2, 420 - (h - 1100) / 2, w, h, 30);
+  } else if (m) {
+    const z = sc.motion === 'zoom-out' ? 1.14 - .14 * k : sc.motion === 'none' ? 1.04 : 1 + .14 * k;
+    const px = sc.motion === 'pan-left' ? -60 * k : sc.motion === 'pan-right' ? 60 * k : 0;
+    c.translate(W / 2 + px, H / 2); c.scale(z, z); c.translate(-W / 2, -H / 2); drawCoverImg(c, m, W, H); c.setTransform(1, 0, 0, 1, 0, 0);
+  } else {
+    const g = c.createLinearGradient(0, 0, W, H); g.addColorStop(0, col.main); g.addColorStop(1, '#0b1020'); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    c.globalAlpha = .18; c.fillStyle = col.accent; c.beginPath(); c.arc(W * .8, H * (.25 + .05 * k), 360, 0, Math.PI * 2); c.fill(); c.globalAlpha = 1;
+  }
+  const sh = c.createLinearGradient(0, H * .55, 0, H); sh.addColorStop(0, 'rgba(0,0,0,0)'); sh.addColorStop(1, 'rgba(0,0,0,0.55)'); c.fillStyle = sh; c.fillRect(0, H * .55, W, H * .45);
+  if (sc.caption) {
+    const a = Math.min(1, lt / .35); c.globalAlpha = a;
+    const size = idx === 0 ? 86 : 74; c.font = `800 ${size}px "IBM Plex Sans KR", sans-serif`; c.textBaseline = 'top';
+    const lines = wrapLines(c, sc.caption, 860).slice(0, 3); const lh = size * 1.3; const bh = lines.length * lh;
+    let y = sc.pos === 'top' ? 300 : sc.pos === 'bottom' ? 1180 - bh : (H - bh) / 2 - 60;
+    y += (1 - a) * 28;
+    lines.forEach(l => {
+      const w = c.measureText(l).width; const x = (W - w) / 2;
+      c.fillStyle = idx === 0 ? col.accent : 'rgba(0,0,0,0.62)';
+      roundRect(c, x - 26, y - 12, w + 52, size + 26, 16); c.fill();
+      c.fillStyle = idx === 0 && lum(col.accent) > .45 ? '#0b1020' : '#ffffff'; c.fillText(l, x, y); y += lh;
+    });
+    c.globalAlpha = 1;
+  }
+  if (idx === tl.scenes.length - 1 && PL.logo) { const a = Math.min(1, lt / .5); c.globalAlpha = a; drawLogo(c, PL.logo, (W - 360) / 2, 1320, 80, true, 360); c.globalAlpha = 1; }
+  c.restore();
+}
+function drawNow(){
+  if (!PL.tl || !PL.canvas || !PL.ready) return;
+  drawVideoFrame(PL.canvas.getContext('2d'), PL.t, PL.tl);
+  const cv = document.getElementById('vid-canvas');
+  if (cv) { if (cv.width !== 540) { cv.width = 540; cv.height = 960; } cv.getContext('2d').drawImage(PL.canvas, 0, 0, 540, 960); }
+  const pr = document.getElementById('vid-progress'); if (pr) pr.style.width = (PL.t / PL.tl.duration * 100) + '%';
+  const tm = document.getElementById('vid-time'); if (tm) tm.textContent = `${PL.t.toFixed(1)} / ${PL.tl.duration.toFixed(0)}초`;
+}
+function playerLoop(ts){
+  if (!PL.playing) return;
+  const dt = PL.last ? Math.min(.1, (ts - PL.last) / 1000) : 0; PL.last = ts; PL.t += dt;
+  if (PL.t >= PL.tl.duration) {
+    if (PL.rec) { PL.t = PL.tl.duration - .01; drawNow(); stopRecording(); return; }
+    PL.t = 0;
+  }
+  drawNow(); requestAnimationFrame(playerLoop);
+}
+function playerPlay(){ if (!PL.tl || !PL.ready) return; PL.playing = true; PL.last = 0; requestAnimationFrame(playerLoop); syncPlayBtn(); }
+function playerPause(){ PL.playing = false; Object.values(PL.media).forEach(m => { if (m && m.pause) m.pause(); }); syncPlayBtn(); }
+function syncPlayBtn(){ const b = document.getElementById('vid-play'); if (b) b.textContent = PL.playing ? '일시정지' : '재생'; }
+async function recordVideo(name){
+  if (!window.MediaRecorder || !PL.canvas || !PL.canvas.captureStream) { toast('이 브라우저에서는 영상 저장을 지원하지 않습니다. 크롬에서 열어주세요.', 'err'); return; }
+  const types = ['video/mp4;codecs=avc1.42E01E', 'video/mp4', 'video/webm;codecs=vp9', 'video/webm'];
+  const mime = types.find(t => { try { return MediaRecorder.isTypeSupported(t); } catch (e) { return false; } });
+  if (!mime) { toast('이 브라우저에서는 영상 저장을 지원하지 않습니다.', 'err'); return; }
+  const stream = PL.canvas.captureStream(30); const chunks = [];
+  const rec = new MediaRecorder(stream, {mimeType: mime, videoBitsPerSecond: 6000000});
+  rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+  rec.onstop = async () => {
+    PL.rec = null; render();
+    const ext = mime.startsWith('video/mp4') ? 'mp4' : 'webm';
+    await saveFile(`${name}.${ext}`, new Blob(chunks, {type: mime.split(';')[0]}));
+    if (ext === 'webm') toast('WebM으로 저장했습니다. 인스타 업로드 전 CapCut에서 MP4로 내보내세요.');
+  };
+  PL.rec = rec; PL.t = 0; rec.start(250); render(); playerPlay();
+}
+function stopRecording(){ PL.playing = false; syncPlayBtn(); if (PL.rec && PL.rec.state !== 'inactive') PL.rec.stop(); }
+
+/* ---------- top-tier AI (final preview) ---------- */
+function parseJsonLoose(t){
+  const s = String(t || '').trim();
+  try { return JSON.parse(s); } catch (e) {}
+  const m = /```(?:json)?\s*([\s\S]*?)```/.exec(s); if (m) { try { return JSON.parse(m[1]); } catch (e) {} }
+  const a = s.indexOf('{'), b = s.lastIndexOf('}');
+  if (a >= 0 && b > a) { try { return JSON.parse(s.slice(a, b + 1)); } catch (e) {} }
+  return null;
+}
+async function askFinal(prompt, {label, images} = {}){
+  if (!S.caps.sample) { toast('이 화면에서는 AI를 호출할 수 없습니다. claude.ai에서 열어주세요.', 'err'); return null; }
+  const ctl = new AbortController(); const t0 = Date.now();
+  S.busy = {label, ctl, t0, sub: '최상위 모델이 생각하는 중'}; render();
+  const upd = () => { const el = document.getElementById('busy-sub'); if (el && S.busy) el.textContent = `${S.busy.sub} · ${Math.round((Date.now() - t0) / 1000)}초`; };
+  const tick = setInterval(upd, 1000);
+  try {
+    const opts = {modelTier: 'complex', cache: false, signal: ctl.signal, onText: ({text}) => { if (S.busy) { S.busy.sub = `작성 중 · ${text.length.toLocaleString()}자`; upd(); } }};
+    if (images && images.length) opts.images = images;
+    const r = await S.caps.sample(prompt, opts);
+    const data = parseJsonLoose(r.text);
+    if (!data) { toast('AI 응답을 읽지 못했습니다. 한 번 더 눌러주세요.', 'err'); return null; }
+    if (r.truncated) toast('응답이 길어 일부가 잘렸을 수 있습니다. 결과를 확인해주세요.', 'err');
+    return {data, tier: r.modelTierApplied || 'complex'};
+  } catch (e) {
+    if (e && e.code === 'images_unavailable') toast('이 화면에서는 AI에게 이미지를 보여줄 수 없어 목록만 보냈습니다. 다시 눌러주세요.', 'err');
+    else if (e && e.code !== 'cancelled') toast(sampleErr(e), 'err');
+    return null;
+  } finally { clearInterval(tick); S.busy = null; render(); }
+}
+const tierLabel = t => t === 'complex' ? '최상위 모델로 생성' : t === 'default' ? '요금제에 따라 기본 모델로 생성됨' : t === 'quick' ? '요금제에 따라 빠른 모델로 생성됨' : '';
+async function downsize(src, maxSide){
+  const im = await loadImg(src); if (!im) return null;
+  const r = Math.min(1, maxSide / Math.max(im.width, im.height));
+  const cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(im.width * r)); cv.height = Math.max(1, Math.round(im.height * r));
+  const c = cv.getContext('2d'); c.fillStyle = '#ffffff'; c.fillRect(0, 0, cv.width, cv.height); c.drawImage(im, 0, 0, cv.width, cv.height);
+  return new Promise(res => cv.toBlob(b => res(b), 'image/jpeg', .85));
+}
+async function libraryImages(){
+  const sm = S.caps.sample; if (!sm || !sm.limits) return {blobs: [], names: []};
+  let lim = null; try { lim = await sm.limits(); } catch (e) {}
+  const max = lim && lim.images ? Math.min(lim.images.maxCount || 0, 8) : 0;
+  if (!max) return {blobs: [], names: []};
+  const cand = S.assets.filter(a => (a.content_type || '').startsWith('image') && a.type !== '로고').slice(-max);
+  const blobs = [], names = [];
+  for (const a of cand) { const b = await downsize('/_blob/' + a.asset_id, 1000); if (b) { blobs.push(b); names.push(a); } }
+  return {blobs, names};
+}
+function assetList(){ return S.assets.filter(a => a.type !== '로고').map(a => `"${a.name}" (${a.type}${a.note ? ', ' + a.note : ''})`).join('\n') || '(없음)'; }
+function packContext(b, p){
+  const a = b.ai || {}; const d = p.data || {};
+  const fb = (p.reviews || []).filter(r => r.q1 === 'no' || r.q2 === 'no').slice(-3).map(r => `- ${(r.reasons || []).map(c => (REASONS.find(x => x.c === c) || {}).l).join(', ')} ${r.note ? '/ ' + r.note : ''}`).join('\n');
+  return `[브랜드킷]
+${brandText()}
+[코파운더 기록 인사이트]
+${ctxText()}
+[브리프]
+용도: ${labelOf(PURPOSES, b.purpose)} / 목표: ${labelOf(GOALS, b.goal)} / 대표 포맷: ${labelOf(FORMATS, b.format)}
+주제: ${b.topic} / 관점: ${b.angle || ''} / 오퍼·CTA: ${b.offer || ''}
+타겟: ${a.persona || ''} (인식 단계: ${a.awareness || ''})
+핵심 메시지: ${a.key_message || ''}
+근거: ${(a.proof || []).map(x => `${x.t} [${x.src}]`).join(' / ')}
+피할 것: ${(a.must_avoid || []).join(' / ')}
+[현재 캡션]
+${String(d.caption || '').slice(0, 900)}
+[현재 광고 문구] ${JSON.stringify(d.ad || {})}
+${fb ? `[검수 피드백 — 반드시 반영]\n${fb}` : ''}`;
+}
+const SVG_RULES = (w, h, clear) => `[배경 그래픽(SVG) 규칙]
+- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}"> 로 시작하는 완결된 SVG 한 개.
+- 글자·숫자·로고·<text> 절대 금지. 외부 이미지·링크·script·foreignObject 금지.
+- 브랜드 컬러 hex만 사용해 그라디언트, 기하 도형, 부드러운 곡선, 은유적 오브젝트(길·계단·연결선·카드 더미 등)로 주제를 표현.
+- ${clear} 영역은 문구가 올라가므로 조용하고 깨끗하게 비워둔다.
+- 스톡 일러스트처럼 뻔하지 않게, 여백이 넉넉한 세련된 에디토리얼 톤. 파일 크기 10KB 이내(경로 단순하게).`;
 async function saveFile(filename, data){
   const d = S.caps.downloads;
   if (!d) { toast('이 화면에서는 파일 저장을 쓸 수 없습니다. claude.ai에서 열어주세요.', 'err'); return; }
@@ -681,6 +1034,7 @@ function viewShell(){
     <div class="ws-switch">
       ${S.workspaces.length ? `<label class="sr" for="ws-select">회사 선택</label><select class="inp" id="ws-select" data-change="selectWs">${opts}</select>` : ''}
       <button class="btn sm ghost" data-act="newWs">+ 새 회사</button>
+      ${S.ws ? '<button class="btn sm ghost" data-act="openBackup">백업·불러오기</button>' : ''}
     </div>
   </header>
   <div class="layout">
@@ -691,7 +1045,8 @@ function viewShell(){
     </nav>
     <main class="main">${noWs || S.creating ? viewCreate() : ({start:viewStart, brand:viewBrand, brief:viewBrief, studio:viewStudio, review:viewReview, publish:viewPublish}[S.view] || viewStart)()}</main>
   </div>
-  ${S.busy ? `<div class="overlay" role="alertdialog" aria-live="polite"><div class="box"><div class="spinner"></div><b>${esc(S.busy.label)}</b><p class="small muted">보통 10~60초 걸립니다. 첫 요청에서는 Claude 사용 허용을 묻습니다.</p>${S.busy.ctl ? '<button class="btn ghost sm" data-act="stopBusy">중지</button>' : ''}</div></div>` : ''}`;
+  ${S.busy ? `<div class="overlay" role="alertdialog" aria-live="polite"><div class="box"><div class="spinner"></div><b>${esc(S.busy.label)}</b><p class="small muted" id="busy-sub">${S.busy.t0 ? esc(S.busy.sub || '') : '보통 10~60초 걸립니다. 첫 요청에서는 Claude 사용 허용을 묻습니다.'}</p>${S.busy.t0 ? '<p class="small faint" style="margin:0 0 10px">최상위 모델은 먼저 충분히 생각한 뒤 씁니다. 1~3분 걸릴 수 있습니다.</p>' : ''}${S.busy.ctl ? '<button class="btn ghost sm" data-act="stopBusy">중지</button>' : ''}</div></div>` : ''}
+  ${S.modal === 'backup' ? viewBackup() : ''}`;
 }
 const srcBadge = s => !s ? '' : `<span class="src ${s === 'cofounder' ? 'cofounder' : s === 'ai' ? 'ai' : 'input'}">${s === 'cofounder' ? '코파운더' : s === 'ai' ? 'AI 추천' : '입력'}</span>`;
 
@@ -842,6 +1197,7 @@ function viewAssets(){
       <div class="body"><input class="inp" id="an-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="name" value="${esc(a.name)}" aria-label="자산 이름">
         <select class="inp" id="at-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="type" aria-label="자산 유형">${ASSET_TYPES.map(t => `<option ${a.type === t ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select>
         <input class="inp" id="ano-${esc(a.id)}" data-asset="${esc(a.id)}" data-afield="note" value="${esc(a.note || '')}" placeholder="메모 (예: 흰 배경, 가로)" aria-label="메모">
+        ${a.type === '로고' ? (logoAsset() && logoAsset().id === a.id ? '<span class="pill accent">대표 로고</span>' : `<button class="btn sm soft" data-act="setLogo" data-id="${esc(a.id)}">대표 로고로 쓰기</button>`) : ''}
         <button class="btn sm danger" data-act="assetDel" data-id="${esc(a.id)}">${S.confirmDel === a.id ? '한 번 더 누르면 삭제' : '삭제'}</button></div></div>`).join('')}</div>` : '<div class="empty">아직 자산이 없습니다. 로고부터 올려주세요 — 캐러셀과 광고 이미지에 자동으로 들어갑니다.</div>'}
   </section>
   <section class="field stack">
@@ -898,7 +1254,7 @@ function viewDraft(){
 }
 function viewBriefDetail(b){
   const a = b.ai || {}; const pack = S.packs[b.id];
-  const assetName = n => S.assets.some(x => x.name === n);
+  const assetName = n => !!findAsset(n);
   return `
   <section class="card stack">
     <div class="row" style="justify-content:space-between"><div><span class="step-label">브리프</span><h2>${esc(b.topic)}</h2></div>
@@ -920,7 +1276,7 @@ function viewBriefDetail(b){
   </section>
   <section class="card stack">
     <h2>필요한 원천 자산</h2>
-    ${(a.asset_plan || []).length ? `<ul class="need-list">${a.asset_plan.map(x => `<li><span class="st">${x.match && assetName(x.match) ? '<span class="pill accent">있음</span>' : '<span class="pill warn">준비 필요</span>'}</span><span><b>${esc(x.need)}</b>${x.match && assetName(x.match) ? `<br><span class="small muted">사용: ${esc(x.match)}</span>` : `<br><span class="small muted">${esc(x.how || '')}</span>`}</span></li>`).join('')}</ul>` : '<p class="small faint">-</p>'}
+    ${(a.asset_plan || []).length ? `<ul class="need-list">${a.asset_plan.map(x => `<li><span class="st">${x.match && assetName(x.match) ? '<span class="pill accent">있음</span>' : '<span class="pill warn">준비 필요</span>'}</span><span><b>${esc(x.need)}</b>${x.match && assetName(x.match) ? `<br><span class="small muted">사용: ${esc(findAsset(x.match).name)}</span>` : `<br><span class="small muted">${esc(x.how || '')}</span>`}</span></li>`).join('')}</ul>` : '<p class="small faint">-</p>'}
   </section>`;
 }
 
@@ -937,18 +1293,96 @@ function viewStudio(){
     ${p ? `<span class="pill">${p.gen}번째 생성 · ${fmtDate(p.updated_at)}</span>` : ''}</div></section>
   ${!p ? `<section class="card stack" style="text-align:center"><p class="muted">아직 소재가 없습니다. 브랜드킷, 브리프, 자산 라이브러리, 검수에서 배운 규칙을 모두 반영해 만듭니다.</p><div><button class="btn lg" data-act="genPack">소재 만들기</button></div></section>` : viewPack(b, p)}`;
 }
+const ICON = {
+  heart: '<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.6-9C.8 7.9 3.2 4 6.9 4c2.1 0 3.6 1.1 5.1 3 1.5-1.9 3-3 5.1-3 3.7 0 6.1 3.9 4.5 7.5-2.1 4.4-9.6 9-9.6 9z"/></svg>',
+  comment: '<svg viewBox="0 0 24 24"><path d="M20.7 12.3a8.4 8.4 0 0 1-12.4 7.4L3 21l1.4-5a8.4 8.4 0 1 1 16.3-3.7z"/></svg>',
+  send: '<svg viewBox="0 0 24 24"><path d="M21.5 3 10.2 13.4M21.5 3l-6.8 18-4.5-7.6L2.5 9.4z"/></svg>',
+  save: '<svg viewBox="0 0 24 24"><path d="M5.5 3.5h13v17l-6.5-4.6-6.5 4.6z"/></svg>',
+  like: '<svg viewBox="0 0 24 24"><path d="M7 10v10.5H3.5V10zm2.5 10.5h7.8a2 2 0 0 0 2-1.6l1.3-6.5A2 2 0 0 0 18.6 10h-4.9l.9-4.1A1.9 1.9 0 0 0 12.8 3.6L9.5 10z"/></svg>',
+  dislike: '<svg viewBox="0 0 24 24" style="transform:rotate(180deg)"><path d="M7 10v10.5H3.5V10zm2.5 10.5h7.8a2 2 0 0 0 2-1.6l1.3-6.5A2 2 0 0 0 18.6 10h-4.9l.9-4.1A1.9 1.9 0 0 0 12.8 3.6L9.5 10z"/></svg>',
+  share: '<svg viewBox="0 0 24 24"><path d="M14 5l7 7-7 7M21 12H10a7 7 0 0 0-7 7"/></svg>',
+  remix: '<svg viewBox="0 0 24 24"><path d="M4 7h11l-3-3m3 3-3 3M20 17H9l3 3m-3-3 3-3"/></svg>',
+};
+function handleName(){
+  const h = String(T('ig_handle') || (S.ws && S.ws.instagram) || (S.ws && S.ws.name) || 'brand').trim();
+  const m = /instagram\.com\/([^/?#\s]+)/i.exec(h);
+  return (m ? m[1] : h).replace(/^@/, '').replace(/\/+$/, '');
+}
+function avatarImg(){ const s = logoSrc(); return s ? `<img class="ig-av" src="${esc(s)}" alt="">` : '<span class="ig-av"></span>'; }
+function captionHtml(text, open){
+  const t = String(text || '');
+  const short = !open && t.length > 125 ? t.slice(0, 125).replace(/\s+\S*$/, '') : t;
+  const body = esc(short).replace(/(#[^\s#]+)/g, '<span class="tag">$1</span>');
+  return body + (short.length < t.length ? '… <button class="more-btn" data-act="capOpen">더 보기</button>' : '');
+}
+function checklist(items){ return `<ul class="checks">${items.map(x => `<li class="${x.s}"><i>${x.s === 'ok' ? '✓' : x.s === 'warn' ? '!' : '×'}</i><span>${esc(x.t)}</span></li>`).join('')}</ul>`; }
+function bannedTerms(){ return (S.brand.v.banned || []).flatMap(x => String(x.t || '').split(/[,·/()\[\]"'“”‘’]|\s+등|\s+및\s+/)).map(s => s.replace(/표현|관련|근거 없는|같은|주장/g, '').trim()).filter(s => s.length >= 2 && s.length <= 12); }
+function textChecks(p){
+  const d = p.data || {}; const ad = d.ad || {}; const cap = String(d.caption || ''); const lines = cap.split('\n').filter(x => x.trim());
+  const first = lines[0] || ''; const last = lines[lines.length - 1] || '';
+  const found = bannedTerms().filter(t => (cap + ' ' + (ad.primary_text || '') + ' ' + (ad.headline || '')).includes(t));
+  const n = s => [...String(s || '')].length; const tags = (d.hashtags || []).length;
+  return [
+    {s: n(first) <= 40 ? 'ok' : 'warn', t: `캡션 첫 줄 ${n(first)}자 — ${n(first) <= 40 ? '피드에서 잘리지 않습니다' : '40자를 넘으면 첫 줄이 잘려 보입니다'}`},
+    {s: /링크|신청|문의|DM|디엠|확인|받아|클릭|구매|가입|저장|예약|👇|→/.test(last) ? 'ok' : 'warn', t: '마지막 줄에 행동 유도(CTA)'},
+    {s: tags >= 3 && tags <= 10 ? 'ok' : 'warn', t: `해시태그 ${tags}개 (권장 3~10개)`},
+    {s: n(ad.primary_text) <= 125 ? 'ok' : 'bad', t: `광고 기본 문구 ${n(ad.primary_text)}/125자`},
+    {s: n(ad.headline) <= 40 ? 'ok' : 'bad', t: `광고 헤드라인 ${n(ad.headline)}/40자`},
+    {s: found.length ? 'bad' : 'ok', t: found.length ? `금지 표현 포함: ${found.join(', ')}` : '브랜드킷의 금지 표현 없음'},
+    {s: /확인 필요/.test(cap + JSON.stringify(ad)) ? 'bad' : 'ok', t: /확인 필요/.test(cap + JSON.stringify(ad)) ? '"확인 필요" 문구가 남아 있습니다' : '미확인 주장 없음'},
+  ];
+}
+function previewHead(title, tab, p, extra){
+  const f = finalOf(p, tab); const hist = (p.history || []).some(h => h.tab === tab);
+  return `<div class="row" style="justify-content:space-between;align-items:flex-start">
+    <div><span class="step-label">채널 미리보기</span><h2>${esc(title)}</h2>
+      ${f ? `<p class="small faint" style="margin:2px 0 0">${esc(tierLabel(f.tier))} · ${fmtDate(f.at)}${hist ? ` · <button class="linkbtn" data-act="undo" data-tab="${tab}">이전 버전으로 되돌리기</button>` : ''}</p>` : '<p class="small faint" style="margin:2px 0 0">지금 초안으로 보여줍니다. "최종본 만들기"를 누르면 최상위 모델이 완성본을 만듭니다.</p>'}</div>
+    <div class="row">${extra || ''}<button class="btn" data-act="final" data-tab="${tab}">${f ? '최종본 다시 만들기' : '최종본 만들기'}</button></div></div>`;
+}
+function feedMedia(p, mode){
+  const sl = packSlides(p);
+  if (mode === 'carousel' && sl.length) { const i = Math.min(S.mockIdx || 0, sl.length - 1); return `<div class="ig-media"><canvas data-mock-slide="${i}" aria-label="캐러셀 ${i + 1}번째 장"></canvas>${i > 0 ? '<button class="ig-nav prev" data-act="mockPrev" aria-label="이전">‹</button>' : ''}${i < sl.length - 1 ? '<button class="ig-nav next" data-act="mockNext" aria-label="다음">›</button>' : ''}<span class="ig-count">${i + 1}/${sl.length}</span></div>`; }
+  if (mode === 'ad') return '<div class="ig-media"><canvas data-mock-ad="1" aria-label="광고 이미지"></canvas></div>';
+  if (sl.length) return '<div class="ig-media"><canvas data-mock-slide="0" aria-label="첫 장"></canvas></div>';
+  return '<div class="ig-media"><canvas data-mock-ad="1" aria-label="이미지"></canvas></div>';
+}
+function igPost(p, {mode, sponsored}){
+  const d = p.data || {}; const ad = d.ad || {}; const sl = packSlides(p);
+  const dots = mode === 'carousel' && sl.length > 1 ? `<span class="ig-dots">${sl.map((_, i) => `<i class="${i === Math.min(S.mockIdx || 0, sl.length - 1) ? 'on' : ''}"></i>`).join('')}</span>` : '<span class="ig-dots"></span>';
+  const text = sponsored ? (ad.primary_text || '') : `${d.caption || ''}\n\n${(d.hashtags || []).join(' ')}`;
+  return `<div class="phone">
+    <div class="ig-top">${avatarImg()}<div><b>${esc(handleName())}</b><small>${sponsored ? '광고' : '원본 오디오'}</small></div><span class="more">···</span></div>
+    ${feedMedia(p, sponsored ? 'ad' : mode)}
+    ${sponsored ? `<div class="ig-cta"><div><b>${esc(ad.headline || '')}</b><small>${esc(ad.description || '')}</small></div><span class="cta">${esc(ad.cta_button || '더 알아보기')}</span></div>` : ''}
+    <div class="ig-actions">${ICON.heart}${ICON.comment}${ICON.send}${dots}<span class="sp">${ICON.save}</span></div>
+    <div class="ig-likes">좋아요 128개</div>
+    <div class="ig-cap"><b>${esc(handleName())}</b> ${captionHtml(text, S.capOpen)}${!sponsored && d.first_comment ? `<span class="cmt">댓글 1개 · <b style="color:#0f1419">${esc(handleName())}</b> ${esc(d.first_comment)}</span>` : ''}</div>
+  </div>`;
+}
 function viewPack(b, p){
-  const tabs = [['text','텍스트'],['visual', b.format === 'reels' ? '릴스 제작' : b.format === 'carousel' ? '캐러셀' : '이미지'],['prompts','생성 도구용 프롬프트']];
+  const tabs = [['text', '텍스트'], ['image', '이미지'], ['video', '영상'], ['prompts', '생성 도구용 프롬프트']];
+  if (!tabs.some(t => t[0] === S.packTab)) S.packTab = 'text';
+  const body = {text: viewTabText, image: viewTabImage, video: viewTabVideo, prompts: viewTabPrompts}[S.packTab](b, p);
   return `
   <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" class="${S.packTab === k ? 'on' : ''}" data-act="packTab" data-v="${k}">${l}</button>`).join('')}</div>
-  ${S.packTab === 'text' ? viewPackText(p) : S.packTab === 'visual' ? viewPackVisual(b, p) : viewPackPrompts(b, p)}
+  ${body}
   <section class="card stack">
     <h2>다시 만들기</h2>
+    <p class="small muted" style="margin:0">초안 전체(캡션·구성)를 새로 만듭니다. 한 탭만 고치고 싶으면 위의 "최종본 다시 만들기"를 쓰세요.</p>
     <textarea class="inp" id="regen-note" rows="2" data-packnote="1" placeholder="바꾸고 싶은 점 (예: 첫 문장을 질문형으로, 더 담백하게)">${esc(p.regen_note || '')}</textarea>
     <div class="row"><button class="btn ghost" data-act="genPack">이 요청 반영해 다시 만들기</button><button class="btn" data-act="toReview" data-id="${esc(p.id)}">검수하러 가기 →</button></div>
   </section>`;
 }
-function counter(text, max){ const n = [...String(text || '')].length; return `<span class="counter ${n > max ? 'over' : ''}">${n}/${max}</span>`; }
+function viewTabText(b, p){
+  const mode = S.textMode || 'feed'; const hasSl = packSlides(p).length > 0;
+  const seg = `<div class="seg"><button class="${mode === 'feed' ? 'on' : ''}" data-act="textMode" data-v="feed">피드 게시물</button><button class="${mode === 'ad' ? 'on' : ''}" data-act="textMode" data-v="ad">광고</button></div>`;
+  return `<section class="card stack preview-card">${previewHead('인스타그램에서 이렇게 보입니다', 'text', p, seg)}
+    <div class="preview-grid">${igPost(p, {mode: hasSl ? 'carousel' : 'single', sponsored: mode === 'ad'})}
+      <div class="stack"><span class="lbl">자동 점검</span>${checklist(textChecks(p))}
+      ${(finalOf(p, 'text') || {}).changes ? `<div class="callout"><b>바뀐 점</b><span>${esc(finalOf(p, 'text').changes.join(' / '))}</span></div>` : ''}</div></div>
+  </section>
+  ${viewPackText(p)}`;
+}
 function viewPackText(p){
   const d = p.data || {}; const ad = d.ad || {};
   const hooks = d.hooks || [];
@@ -961,7 +1395,7 @@ function viewPackText(p){
     <div class="row" style="justify-content:space-between"><h2>인스타그램 캡션</h2><button class="btn sm ghost" data-act="copyCaption">캡션+해시태그 복사</button></div>
     <textarea class="inp" id="p-caption" rows="9" data-pack="caption">${esc(d.caption || '')}</textarea>
     <div><label class="lbl" for="p-tags">해시태그</label><input class="inp" id="p-tags" data-pack="hashtags" value="${esc((d.hashtags || []).join(' '))}"></div>
-    ${d.first_comment ? `<div><label class="lbl" for="p-fc">첫 댓글</label><input class="inp" id="p-fc" data-pack="first_comment" value="${esc(d.first_comment)}"></div>` : ''}
+    <div><label class="lbl" for="p-fc">첫 댓글</label><input class="inp" id="p-fc" data-pack="first_comment" value="${esc(d.first_comment || '')}"></div>
     ${d.alt_text ? `<p class="small muted" style="margin:0">대체 텍스트: ${esc(d.alt_text)}</p>` : ''}
   </section>
   <section class="card stack">
@@ -974,68 +1408,161 @@ function viewPackText(p){
     <div><span class="lbl">버튼</span><div class="chips">${CTA_BUTTONS.map(c => `<button class="chip ${ad.cta_button === c ? 'on' : ''}" data-act="ctaBtn" data-v="${esc(c)}">${esc(c)}</button>`).join('')}</div></div>
   </section>`;
 }
-function viewPackVisual(b, p){
-  const d = p.data || {};
-  if (b.format === 'carousel') {
-    const slides = d.slides || [];
-    const photos = S.assets.filter(a => !(a.content_type || '').startsWith('video'));
-    return `
-    <section class="card stack">
-      <div class="row" style="justify-content:space-between"><h2>캐러셀 ${slides.length}장</h2>
-        <div class="row"><div class="chips"><button class="chip ${p.template !== 'photo' ? 'on' : ''}" data-act="tpl" data-v="solid">브랜드 컬러</button><button class="chip ${p.template === 'photo' ? 'on' : ''}" data-act="tpl" data-v="photo">사진 배경</button></div>
-        <button class="btn sm" data-act="saveSlides">PNG 전체 저장 (ZIP)</button></div></div>
-      ${p.template === 'photo' ? `<div><label class="lbl" for="bg-asset">배경 사진 (자산 라이브러리 또는 AI로 만든 이미지)</label><select class="inp" id="bg-asset" data-change="bgAsset" style="max-width:360px"><option value="">선택하세요</option>${photos.map(a => `<option value="${esc(a.asset_id)}" ${p.bg === a.asset_id ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}</select></div>` : ''}
-      <div class="slide-grid">${slides.map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>
-      <p class="small faint" style="margin:0">첫 장은 훅, 마지막 장은 저장을 부르는 요약입니다. 행동 유도(CTA)는 캡션에 둡니다.</p>
-    </section>
-    <section class="card stack"><h2>슬라이드 문구 수정</h2>
-      ${slides.map((s, i) => `<div class="slide-edit"><span class="no">${i + 1}</span><div>
-        <input class="inp" id="sk-${i}" data-slidef="kicker" data-i="${i}" value="${esc(s.kicker || '')}" placeholder="작은 라벨">
-        <input class="inp" id="st-${i}" data-slidef="title" data-i="${i}" value="${esc(s.title || '')}" placeholder="제목" style="font-weight:600">
-        <textarea class="inp" id="sb-${i}" rows="2" data-slidef="body" data-i="${i}" placeholder="본문">${esc(s.body || '')}</textarea></div></div>`).join('')}
-    </section>`;
+function counter(text, max){ const n = [...String(text || '')].length; return `<span class="counter ${n > max ? 'over' : ''}">${n}/${max}</span>`; }
+function bgOptions(cur, art){
+  const opts = [['brand', '브랜드 컬러']].concat((art || []).filter(a => a.svg).map(a => [a.id, `AI 그래픽 ${a.id.replace('art', '')}`])).concat(S.assets.filter(a => a.type !== '로고' && !(a.content_type || '').startsWith('video')).map(a => ['asset:' + a.name, `${a.type === '서비스 화면' ? '화면' : '사진'} · ${a.name}`]));
+  const curN = !cur ? 'brand' : /^art\d/.test(cur) ? cur : (findAsset(cur) ? 'asset:' + findAsset(cur).name : 'brand');
+  return opts.map(([v, l]) => `<option value="${esc(v)}" ${v === curN ? 'selected' : ''}>${esc(l)}</option>`).join('');
+}
+function imageChecks(p, mode){
+  const out = []; const sl = packSlides(p);
+  if (mode === 'carousel') {
+    out.push({s: sl.length >= 5 && sl.length <= 7 ? 'ok' : 'warn', t: `슬라이드 ${sl.length}장 (권장 5~7장)`});
+    const long = sl.filter(s => [...String(s.title || '')].length > 22).length;
+    out.push({s: long ? 'warn' : 'ok', t: long ? `제목이 22자를 넘는 장 ${long}개 — 줄바꿈이 많아집니다` : '제목 길이 적정'});
+    const withBg = sl.filter((s, i) => slideBg(p, i)).length;
+    out.push({s: withBg ? 'ok' : 'warn', t: withBg ? `실제 자산·그래픽이 들어간 장 ${withBg}개` : '모든 장이 단색입니다 — 자산이나 AI 그래픽을 넣어보세요'});
   }
-  if (b.format === 'image') {
-    const im = d.image || {};
-    return `
-    <section class="card stack">
-      <h2>광고 이미지 만들기</h2>
-      <ol class="small" style="margin:0;padding-left:18px"><li>"생성 도구용 프롬프트" 탭의 프롬프트를 Gemini(또는 ChatGPT)에 붙여넣어 <b>글자 없는</b> 이미지를 만듭니다.</li><li>만든 이미지를 아래에서 올립니다.</li><li>한글 문구와 로고는 여기서 브랜드 폰트·컬러로 합성됩니다 (AI가 한글을 깨뜨리는 문제 방지).</li></ol>
-      <div class="row">${S.caps.assets ? `<label class="btn sm" for="ai-img">생성한 이미지 올리기</label><input type="file" id="ai-img" class="sr" accept="image/png,image/jpeg,image/webp" data-aiimg="1">` : ''}
-        ${S.assets.length ? `<label class="sr" for="img-bg">라이브러리에서 고르기</label><select class="inp" id="img-bg" data-change="imgBg" style="max-width:280px"><option value="">또는 라이브러리에서 고르기</option>${S.assets.filter(a => !(a.content_type || '').startsWith('video')).map(a => `<option value="${esc(a.asset_id)}" ${p.bg === a.asset_id ? 'selected' : ''}>${esc(a.name)}</option>`).join('')}</select>` : ''}
-        <button class="btn sm" data-act="saveAd">PNG 저장</button></div>
-      <div class="grid2">
-        <canvas class="ad-preview" data-ad-canvas="1" aria-label="광고 이미지 미리보기"></canvas>
-        <div class="stack">
-          <div><label class="lbl" for="ov-title">이미지 위 헤드라인</label><input class="inp" id="ov-title" data-ov="title" value="${esc(p.overlay ? p.overlay.title : im.overlay_title || '')}"></div>
-          <div><label class="lbl" for="ov-sub">보조 문구</label><input class="inp" id="ov-sub" data-ov="sub" value="${esc(p.overlay ? p.overlay.sub : im.overlay_sub || '')}"></div>
-          <div class="callout"><b>비주얼 컨셉</b><span>${esc(im.concept || '')}</span></div>
-          ${im.reference_asset ? `<p class="small muted" style="margin:0">참고로 첨부할 자산: ${esc(im.reference_asset)}</p>` : ''}
-        </div>
-      </div>
-    </section>`;
-  }
-  const r = d.reels || {}; const scenes = r.scenes || [];
-  const subtitle = scenes.map(s => s.on_screen).filter(Boolean).join('\n');
-  return `
-  <section class="card stack">
-    <div class="row" style="justify-content:space-between"><h2>릴스 ${esc(r.duration_sec || '')}초 · 컷 리스트</h2><button class="btn sm ghost" data-act="saveScript">대본·자막 저장 (.txt)</button></div>
-    <div class="row"><span class="pill">커버: ${esc(r.cover_text || '-')}</span><span class="pill">음악: ${esc(r.music_mood || '-')}</span></div>
-    <div class="table-wrap"><table class="scene-table"><thead><tr><th>구간</th><th>화면</th><th>사용할 자산</th><th>자막</th><th>내레이션</th></tr></thead><tbody>
-      ${scenes.map(s => { const ok = S.assets.some(a => a.name === s.asset); return `<tr><td class="mono">${esc(s.sec)}</td><td>${esc(s.visual)}</td><td>${ok ? `<span class="pill accent">${esc(s.asset)}</span>` : `<span class="pill warn">${esc(s.asset || '촬영 필요')}</span>`}</td><td>${esc(s.on_screen)}</td><td>${esc(s.voiceover || '')}</td></tr>`; }).join('')}
+  if (mode === 'single') { const a = adSpec(p); out.push({s: a.bg ? 'ok' : 'warn', t: a.bg ? `배경: ${a.bg.name || 'AI 그래픽'}` : '배경 이미지가 없습니다'}); out.push({s: [...a.title].length <= 16 ? 'ok' : 'warn', t: `헤드라인 ${[...a.title].length}자 (권장 16자 이내)`}); }
+  if (mode === 'cover') { const c = coverSpec(p); out.push({s: [...c.title].length <= 14 ? 'ok' : 'warn', t: `커버 문구 ${[...c.title].length}자 (권장 14자 이내)`}); }
+  out.push({s: logoAsset() ? 'ok' : 'warn', t: logoAsset() ? `로고: ${logoAsset().name}` : '로고가 없습니다 — 브랜드킷 → 원천 자산에 올려주세요'});
+  return out;
+}
+function viewTabImage(b, p){
+  const sl = packSlides(p); const hasSl = sl.length > 0;
+  let mode = S.imgMode || (hasSl ? 'carousel' : b.format === 'reels' ? 'cover' : 'single');
+  if (mode === 'carousel' && !hasSl) mode = 'single';
+  const fi = finalOf(p, 'image');
+  const seg = `<div class="seg"><button class="${mode === 'carousel' ? 'on' : ''}" data-act="imgMode" data-v="carousel" ${hasSl ? '' : 'disabled title="최종본 만들기를 누르면 캐러셀이 생깁니다"'}>캐러셀</button><button class="${mode === 'single' ? 'on' : ''}" data-act="imgMode" data-v="single">단일·광고</button><button class="${mode === 'cover' ? 'on' : ''}" data-act="imgMode" data-v="cover">릴스 커버</button></div>`;
+  const phone = mode === 'cover'
+    ? `<div class="vframe" style="max-width:300px"><canvas data-cover-canvas="1" aria-label="릴스 커버"></canvas></div>`
+    : igPost(p, {mode: mode === 'carousel' ? 'carousel' : 'single', sponsored: mode === 'single' && b.purpose !== 'organic'});
+  const free = (fi && fi.free_images) || [];
+  return `<section class="card stack preview-card">${previewHead(mode === 'cover' ? '릴스 커버 (9:16)' : '피드에서 이렇게 보입니다', 'image', p, seg)}
+    <div class="preview-grid"><div>${phone}</div>
+      <div class="stack"><span class="lbl">자동 점검</span>${checklist(imageChecks(p, mode))}
+        ${fi && (fi.asset_picks || []).length ? `<div class="callout"><b>AI가 고른 자산</b><span>${esc(fi.asset_picks.map(x => `${x.name} → ${x.use}`).join(' / '))}</span></div>` : ''}
+        ${fi && (fi.checks || []).length ? `<div class="callout warn"><b>대표님 확인</b><span>${esc(fi.checks.join(' / '))}</span></div>` : ''}
+        ${!hasSl ? '<p class="small faint" style="margin:0">"최종본 만들기"를 누르면 같은 메시지로 캐러셀 5~7장과 광고 이미지, 릴스 커버를 함께 만듭니다. 최상위 모델이 자산 라이브러리 이미지를 직접 보고 어울리는 것을 고릅니다.</p>' : ''}
+      </div></div>
+  </section>
+  ${mode === 'carousel' ? slidesEditor(p, sl, fi) : mode === 'single' ? singleEditor(b, p, fi) : coverEditor(p, fi)}
+  ${free.length ? `<section class="card stack"><h2>무료 이미지 찾기</h2><p class="small muted" style="margin:0">이 페이지는 보안상 외부 사이트에 접속할 수 없어, AI가 고른 검색어로 바로 가는 링크를 드립니다. 받은 이미지는 브랜드킷 → 원천 자산에 올리면 배경으로 고를 수 있습니다.</p>
+    ${free.map(f => `<div class="free-img"><b>${esc(f.q_ko || f.q_en)}</b><span class="faint small">${esc(f.use || '')}</span><a href="https://unsplash.com/s/photos/${encodeURIComponent(f.q_en || f.q_ko)}" target="_blank" rel="noopener">Unsplash</a><a href="https://www.pexels.com/search/${encodeURIComponent(f.q_en || f.q_ko)}/" target="_blank" rel="noopener">Pexels</a></div>`).join('')}</section>` : ''}`;
+}
+function slidesEditor(p, slides, fi){
+  return `<section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>캐러셀 ${slides.length}장</h2><button class="btn sm" data-act="saveSlides">PNG 전체 저장 (ZIP)</button></div>
+    <div class="slide-grid">${slides.map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>
+  </section>
+  <section class="card stack"><h2>장별 문구·배경</h2>
+    ${slides.map((s, i) => `<div class="slide-edit"><span class="no">${i + 1}</span><div>
+      <input class="inp" id="sk-${i}" data-slidef="kicker" data-i="${i}" value="${esc(s.kicker || '')}" placeholder="작은 라벨">
+      <input class="inp" id="st-${i}" data-slidef="title" data-i="${i}" value="${esc(s.title || '')}" placeholder="제목" style="font-weight:600">
+      <textarea class="inp" id="sb-${i}" rows="2" data-slidef="body" data-i="${i}" placeholder="본문">${esc(s.body || '')}</textarea>
+      <label class="sr" for="sbg-${i}">배경</label><select class="inp" id="sbg-${i}" data-slidebg="${i}">${bgOptions(s.bg, fi && fi.art)}</select></div></div>`).join('')}
+  </section>`;
+}
+function singleEditor(b, p, fi){
+  const a = adSpec(p);
+  return `<section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>단일 이미지 · 광고</h2><button class="btn sm" data-act="saveAd">PNG 저장</button></div>
+    <div class="grid2">
+      <div><label class="lbl" for="ov-title">이미지 위 헤드라인</label><input class="inp" id="ov-title" data-ov="title" value="${esc(a.title)}"></div>
+      <div><label class="lbl" for="ov-sub">보조 문구</label><input class="inp" id="ov-sub" data-ov="sub" value="${esc(a.sub)}"></div>
+    </div>
+    <div class="row"><label class="lbl" for="ad-bg" style="margin:0">배경</label><select class="inp" id="ad-bg" data-adbg="1" style="max-width:360px">${bgOptions(a.bg ? (a.bg.kind === 'art' ? ((fi && fi.ad && fi.ad.bg) || 'brand') : 'asset:' + (a.bg.name || (S.assets.find(x => '/_blob/' + x.asset_id === a.bg.src) || {}).name || '')) : 'brand', fi && fi.art)}</select>
+      ${S.caps.assets ? `<label class="btn sm ghost" for="ai-img">Gemini·ChatGPT로 만든 이미지 올리기</label><input type="file" id="ai-img" class="sr" accept="image/png,image/jpeg,image/webp" data-aiimg="1">` : ''}</div>
+  </section>`;
+}
+function coverEditor(p, fi){
+  const c = coverSpec(p);
+  return `<section class="card stack">
+    <div class="row" style="justify-content:space-between"><h2>릴스 커버</h2><button class="btn sm" data-act="saveCover">PNG 저장</button></div>
+    <div><label class="lbl" for="cv-title">커버 문구</label><input class="inp" id="cv-title" data-cover="title" value="${esc(c.title)}"></div>
+    <div class="row"><label class="lbl" for="cv-bg" style="margin:0">배경</label><select class="inp" id="cv-bg" data-coverbg="1" style="max-width:360px">${bgOptions((p.cover && p.cover.bg) || (fi && fi.cover && fi.cover.bg) || null, (fi && fi.art) || ((finalOf(p, 'video') || {}).art))}</select></div>
+  </section>`;
+}
+function videoChecks(tl, plat){
+  const out = []; const d = tl.duration;
+  out.push({s: plat === 'reels' ? (d >= 7 && d <= 30 ? 'ok' : 'warn') : (d <= 60 ? 'ok' : 'bad'), t: `길이 ${d.toFixed(0)}초 (${plat === 'reels' ? '릴스 권장 7~30초' : '쇼츠 60초 이내'})`});
+  const first = tl.scenes[0]; out.push({s: first && first.caption && first.end <= 3.5 ? 'ok' : 'warn', t: '처음 3초 안에 훅 자막'});
+  const miss = tl.scenes.filter(s => !sceneBg(s, tl)).length;
+  out.push({s: miss ? 'warn' : 'ok', t: miss ? `배경 없는 장면 ${miss}개 (브랜드 그라디언트로 대체됨)` : '모든 장면에 실제 자산·그래픽'});
+  const longCap = tl.scenes.filter(s => (String(s.caption || '').split('\n')).some(l => [...l].length > 16)).length;
+  out.push({s: longCap ? 'warn' : 'ok', t: longCap ? `한 줄이 16자를 넘는 자막 ${longCap}개` : '자막 길이 적정'});
+  out.push({s: 'warn', t: '미리보기 영상에는 음악·내레이션이 없습니다. CapCut에서 추가하세요'});
+  return out;
+}
+function viewTabVideo(b, p){
+  const tl = timelineOf(p); const plat = S.vidPlat || 'reels'; const fv = finalOf(p, 'video');
+  const seg = `<div class="seg"><button class="${plat === 'reels' ? 'on' : ''}" data-act="vidPlat" data-v="reels">릴스</button><button class="${plat === 'shorts' ? 'on' : ''}" data-act="vidPlat" data-v="shorts">쇼츠</button></div>`;
+  if (!tl) return `<section class="card stack preview-card">${previewHead('릴스·쇼츠', 'video', p, seg)}<div class="empty">이 브리프는 아직 영상 구성이 없습니다. "최종본 만들기"를 누르면 같은 메시지로 15~30초 릴스·쇼츠 버전을 만듭니다.</div></section>`;
+  const sh = (fv && fv.shorts) || {};
+  const cap = plat === 'shorts' ? (sh.title || tl.scenes[0].caption) : String((p.data || {}).caption || '').split('\n')[0];
+  const chrome = plat === 'reels'
+    ? `<div class="chrome"><span class="lab">릴스</span><div class="rail"><span>${ICON.heart}1.2천</span><span>${ICON.comment}48</span><span>${ICON.send}</span><span>···</span></div>
+        <div class="who"><div class="h">${logoSrc() ? `<img src="${esc(logoSrc())}" alt="">` : ''}${esc(handleName())}<span class="fl">팔로우</span></div><p>${esc(cap)}</p><div class="mu">♫ ${esc(tl.music || '오리지널 오디오')}</div></div></div>`
+    : `<div class="chrome"><span class="lab">Shorts</span><div class="rail"><span>${ICON.like}1.2천</span><span>${ICON.dislike}싫어요</span><span>${ICON.comment}48</span><span>${ICON.share}공유</span><span>${ICON.remix}리믹스</span></div>
+        <div class="who"><div class="h">${logoSrc() ? `<img src="${esc(logoSrc())}" alt="">` : ''}@${esc(handleName())}<span class="sub">구독</span></div><p>${esc(cap)}</p></div></div>`;
+  const name = safeName(b.topic) + (plat === 'reels' ? '_릴스' : '_쇼츠');
+  return `<section class="card stack preview-card">${previewHead(plat === 'reels' ? '인스타그램 릴스' : '유튜브 쇼츠', 'video', p, seg)}
+    <div class="preview-grid">
+      <div><div class="vframe"><canvas id="vid-canvas" width="540" height="960" aria-label="영상 미리보기"></canvas>${chrome}</div>
+        <div class="vbar"><i id="vid-progress"></i></div>
+        <div class="vctl"><button class="btn sm" id="vid-play" data-act="vPlay">${PL.playing ? '일시정지' : '재생'}</button><button class="btn sm ghost" data-act="vRestart">처음부터</button>
+          <span class="small faint mono" id="vid-time"></span></div></div>
+      <div class="stack"><span class="lbl">자동 점검</span>${checklist(videoChecks(tl, plat))}
+        ${PL.rec ? '<div class="callout warn"><span class="rec-dot"></span><span>녹화 중입니다. 끝까지 재생되면 저장 창이 뜹니다.</span></div>' : `<button class="btn soft" data-act="vRecord" data-name="${esc(name)}">미리보기 영상 파일로 저장</button><p class="small faint" style="margin:0">브라우저가 MP4를 지원하면 MP4로, 아니면 WebM으로 저장합니다. 소리는 없습니다.</p>`}
+        ${plat === 'shorts' && (sh.title || sh.description) ? `<div class="copy-box pad-r">${esc(`${sh.title || ''}\n\n${sh.description || ''}`)}<button class="btn sm ghost" data-copy="shorts">복사</button></div>` : ''}
+        ${fv && (fv.checks || []).length ? `<div class="callout warn"><b>대표님 확인</b><span>${esc(fv.checks.join(' / '))}</span></div>` : ''}
+      </div></div>
+  </section>
+  <section class="card stack"><div class="row" style="justify-content:space-between"><h2>장면 구성 ${tl.scenes.length}개 · ${tl.duration.toFixed(0)}초</h2><button class="btn sm ghost" data-act="saveScript">대본·자막 저장 (.txt)</button></div>
+    <div class="table-wrap"><table class="scene-table"><thead><tr><th>구간</th><th>자막 (수정 가능)</th><th>배경</th><th>화면 설명</th></tr></thead><tbody>
+      ${tl.scenes.map((s, i) => { const bg = sceneBg(s, tl); return `<tr><td class="mono">${s.start.toFixed(1)}–${s.end.toFixed(1)}</td>
+        <td><textarea class="inp scene-cap" id="scap-${i}" rows="2" data-scenecap="${i}">${esc(s.caption)}</textarea></td>
+        <td>${bg ? `<span class="pill ${bg.kind === 'art' ? 'info' : 'accent'}">${esc(bg.kind === 'art' ? 'AI 그래픽' : bg.name)}</span>` : `<span class="pill warn">${esc(s.ref && /촬영/.test(s.ref) ? s.ref : '브랜드 배경')}</span>`}</td>
+        <td class="small">${esc(s.visual)}${s.voiceover ? `<br><span class="faint">내레이션: ${esc(s.voiceover)}</span>` : ''}</td></tr>`; }).join('')}
     </tbody></table></div>
   </section>
-  <section class="card stack"><h2>CapCut 편집 순서</h2><ol style="margin:0;padding-left:18px">${(r.capcut_steps || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
-    <div class="copy-box pad-r">${esc(subtitle)}<button class="btn sm ghost" data-copy="subtitle">자막 복사</button></div></section>`;
+  <section class="card stack"><h2>CapCut 마무리</h2><ol style="margin:0;padding-left:18px">${(((fv && fv.capcut_steps) || ((p.data || {}).reels || {}).capcut_steps) || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+    <p class="small muted" style="margin:0">위에서 저장한 미리보기 영상을 CapCut에 불러와 음악·내레이션만 얹으면 됩니다.</p></section>`;
 }
-function viewPackPrompts(b, p){
-  const d = p.data || {};
+function viewTabPrompts(b, p){
+  const fp = finalOf(p, 'prompts') || {}; const d = p.data || {}; const im = d.image || {}; const cv = d.cover_visual || {}; const r = d.reels || {};
   const box = (label, text, key) => text ? `<div><span class="lbl">${esc(label)}</span><div class="copy-box mono pad-r">${esc(text)}<button class="btn sm ghost" data-copy="${key}">복사</button></div></div>` : '';
-  let body = '';
-  if (b.format === 'image') { const im = d.image || {}; body = box('Gemini용', im.gemini_prompt, 'gemini') + box('ChatGPT용', im.chatgpt_prompt, 'chatgpt') + (im.how_to ? `<div class="callout"><b>사용법</b><span>${esc(im.how_to)}</span></div>` : ''); }
-  else if (b.format === 'carousel') { const cv = d.cover_visual || {}; body = `<p class="small muted" style="margin:0">"사진 배경" 템플릿에 쓸 배경 이미지가 필요할 때만 쓰세요. 만든 이미지는 자산 라이브러리에 올리면 배경으로 고를 수 있습니다.</p>` + box('Gemini용 (배경 이미지)', cv.gemini_prompt, 'cgemini') + box('ChatGPT용 (배경 이미지)', cv.chatgpt_prompt, 'cchatgpt'); }
-  else { const r = d.reels || {}; body = box('Gemini용 (영상 생성 — 플랜에서 지원될 때)', r.gemini_video_prompt, 'gvideo') + `<div class="callout warn"><b>권장</b><span>AI 생성 영상보다 실제 화면 녹화·대표님 촬영 영상이 신뢰를 줍니다. 생성 영상은 전환 컷이나 배경으로만 쓰는 걸 권합니다.</span></div>`; }
-  return `<section class="card stack"><h2>생성 도구용 프롬프트</h2><p class="small muted" style="margin:0">이미지 속 글자는 AI가 자주 깨뜨려서, 프롬프트는 모두 "글자 없는 이미지"를 요청합니다. 문구는 이 페이지에서 합성합니다.</p>${body || '<p class="small faint">이 포맷에는 별도 프롬프트가 없습니다.</p>'}</section>`;
+  const vids = fp.gemini_video || [];
+  const free = fp.free_images || (finalOf(p, 'image') || {}).free_images || [];
+  return `<section class="card stack preview-card">${previewHead('Gemini · ChatGPT · CapCut용', 'prompts', p)}
+    <p class="small muted" style="margin:0">이미지 속 한글은 AI가 자주 깨뜨려서, 모든 이미지 프롬프트는 "글자 없는 이미지"를 요청합니다. 만든 이미지는 원천 자산에 올리면 이미지 탭에서 배경으로 고를 수 있습니다.</p>
+    ${(fp.tips || []).length ? `<div class="callout"><b>품질 팁</b><span>${esc(fp.tips.join(' / '))}</span></div>` : ''}
+  </section>
+  <section class="card stack"><h2>이미지</h2>
+    ${box('Gemini 이미지', fp.gemini_image || im.gemini_prompt || cv.gemini_prompt, 'gemini')}
+    ${box('ChatGPT 이미지', fp.chatgpt_image || im.chatgpt_prompt || cv.chatgpt_prompt, 'chatgpt')}
+    ${!(fp.gemini_image || im.gemini_prompt || cv.gemini_prompt) ? '<p class="small faint" style="margin:0">"최종본 만들기"를 누르면 도구별로 다듬은 프롬프트가 생깁니다.</p>' : ''}
+  </section>
+  <section class="card stack"><h2>영상</h2>
+    ${vids.length ? vids.map((v, i) => box(`Gemini 영상 · ${v.scene || i + 1}`, v.prompt, 'gv-' + i)).join('') : box('Gemini 영상 (전환 컷)', r.gemini_video_prompt, 'gvideo')}
+    <div class="callout warn"><b>권장</b><span>AI 생성 영상보다 실제 화면 녹화·대표님 촬영 영상이 신뢰를 줍니다. 생성 영상은 전환 컷이나 배경으로만 쓰세요.</span></div>
+    ${(fp.capcut || []).length ? `<div><span class="lbl">CapCut</span><ol style="margin:0;padding-left:18px">${fp.capcut.map(x => `<li>${esc(x)}</li>`).join('')}</ol></div>` : ''}
+  </section>
+  ${free.length ? `<section class="card stack"><h2>무료 이미지 검색어</h2>${free.map(f => `<div class="free-img"><b>${esc(f.q_ko || f.q_en)}</b><span class="faint small mono">${esc(f.q_en || '')}</span><a href="https://unsplash.com/s/photos/${encodeURIComponent(f.q_en || f.q_ko)}" target="_blank" rel="noopener">Unsplash</a><a href="https://www.pexels.com/search/${encodeURIComponent(f.q_en || f.q_ko)}/" target="_blank" rel="noopener">Pexels</a></div>`).join('')}</section>` : ''}`;
+}
+function viewBackup(){
+  const n = {briefs: S.briefs.length, packs: Object.keys(S.packs).length, assets: S.assets.length};
+  const imp = S.importData;
+  return `<div class="overlay modal" role="dialog" aria-modal="true" aria-label="백업·불러오기"><div class="box stack">
+    <h2>백업 · 불러오기</h2>
+    <p class="small muted" style="margin:0">입력한 내용은 이 페이지에 자동 저장되고, 페이지가 업데이트돼도 그대로 남습니다. 백업 파일은 만일을 위한 사본입니다.</p>
+    <div class="callout ok"><b>지금 저장된 것</b><span>${esc(S.ws ? S.ws.name : '')} · 브랜드킷 · 브리프 ${n.briefs}건 · 소재 ${n.packs}세트 · 자산 ${n.assets}개</span></div>
+    <button class="btn" data-act="exportBackup">백업 파일 저장 (JSON)</button>
+    <div><span class="lbl">백업 파일 불러오기</span>${imp ? `<div class="callout warn"><b>확인</b><span>"${esc(imp.workspace.name)}" · 브리프 ${imp.briefs.length}건 · 소재 ${imp.packs.length}세트를 불러옵니다. 같은 항목은 백업 내용으로 덮어씁니다.</span></div><div class="row"><button class="btn" data-act="doImport">불러오기</button><button class="btn ghost" data-act="cancelImport">취소</button></div>`
+      : `<label class="btn ghost sm" for="imp-file">파일 선택</label><input type="file" id="imp-file" class="sr" accept="application/json,.json" data-import="1">`}</div>
+    <p class="small faint" style="margin:0">자산 파일(이미지 원본)은 페이지 저장소에 그대로 있고, 백업에는 목록만 들어갑니다.</p>
+    <div class="row" style="justify-content:flex-end"><button class="btn ghost sm" data-act="closeModal">닫기</button></div>
+  </div></div>`;
 }
 
 /* ---------- 4. review ---------- */
@@ -1054,7 +1581,8 @@ function viewReview(){
     <div class="stack">
       <section class="card stack">
         <span class="step-label">${esc(labelOf(FORMATS, b.format))} · ${p.gen}번째 생성</span><h2>${esc(b.topic || '')}</h2>
-        ${b.format === 'carousel' ? `<div class="slide-grid">${((p.data || {}).slides || []).map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>` : b.format === 'image' ? '<canvas class="ad-preview" data-ad-canvas="1" aria-label="광고 이미지"></canvas>' : `<div class="copy-box">${esc(((p.data || {}).reels || {}).scenes ? p.data.reels.scenes.map(s => `[${s.sec}] ${s.on_screen}`).join('\n') : '')}</div>`}
+        ${packSlides(p).length ? `<div class="slide-grid">${packSlides(p).map((s, i) => `<canvas data-slide="${i}" aria-label="슬라이드 ${i + 1}"></canvas>`).join('')}</div>` : b.format === 'image' ? '<canvas class="ad-preview" data-ad-canvas="1" aria-label="광고 이미지"></canvas>' : ''}
+        ${timelineOf(p) ? `<div class="copy-box">${esc(timelineOf(p).scenes.map(s => `[${s.start.toFixed(1)}–${s.end.toFixed(1)}초] ${s.caption}`).join('\n'))}</div>` : ''}
         <div class="copy-box">${esc((p.data || {}).caption || '')}</div>
         <button class="btn sm ghost" data-act="go" data-v="studio" style="align-self:flex-start">스튜디오에서 고치기</button>
       </section>
@@ -1102,6 +1630,7 @@ function viewPublish(){
 
 /* ============================ after render (canvas) ============================ */
 let drawSeq = 0;
+function currentPack(){ return S.view === 'review' ? S.packs[S.reviewId] : (S.view === 'studio' && S.briefId ? S.packs[S.briefId] : null); }
 function afterRender(){
   const seq = ++drawSeq;
   const dz = document.getElementById('dropzone');
@@ -1110,19 +1639,150 @@ function afterRender(){
     dz.ondragleave = () => dz.classList.remove('over');
     dz.ondrop = e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer && e.dataTransfer.files.length) uploadFiles([...e.dataTransfer.files]); };
   }
-  const pack = S.view === 'review' ? S.packs[S.reviewId] : (S.view === 'studio' && S.briefId ? S.packs[S.briefId] : null);
+  const pack = currentPack();
+  const vc = document.getElementById('vid-canvas');
+  if (!vc && PL.playing && !PL.rec) playerPause();
   if (!pack) return;
-  const slides = (pack.data || {}).slides || [];
-  document.querySelectorAll('canvas[data-slide]').forEach(cv => {
-    const i = +cv.dataset.slide;
-    if (seq !== drawSeq) return;
-    drawSlide(cv, {slide: slides[i] || {}, idx: i, total: slides.length, template: pack.template || 'solid', bgSrc: pack.bg ? '/_blob/' + pack.bg : null});
-  });
-  const ad = document.querySelector('canvas[data-ad-canvas]');
-  if (ad) { const im = (pack.data || {}).image || {}; const ov = pack.overlay || {title: im.overlay_title, sub: im.overlay_sub}; drawAd(ad, {bgSrc: pack.bg ? '/_blob/' + pack.bg : null, title: ov.title, sub: ov.sub}); }
+  const slides = packSlides(pack);
+  document.querySelectorAll('canvas[data-slide]').forEach(cv => { const i = +cv.dataset.slide; if (seq === drawSeq) drawSlide(cv, {slide: slides[i] || {}, idx: i, total: slides.length, bg: slideBg(pack, i)}); });
+  document.querySelectorAll('canvas[data-mock-slide]').forEach(cv => { const i = +cv.dataset.mockSlide; drawSlide(cv, {slide: slides[i] || {}, idx: i, total: slides.length, bg: slideBg(pack, i)}); });
+  document.querySelectorAll('canvas[data-ad-canvas],canvas[data-mock-ad]').forEach(cv => drawAd(cv, adSpec(pack)));
+  document.querySelectorAll('canvas[data-cover-canvas]').forEach(cv => drawCover(cv, coverSpec(pack)));
+  if (vc) {
+    const tl = timelineOf(pack);
+    if (tl) {
+      const key = pack.id + '|' + JSON.stringify(tl.scenes.map(s => [s.start, s.end, s.caption, s.ref, s.bgRef])) + '|' + (tl.art || []).length + '|' + S.assets.length + '|' + (S.brand.logo_id || '');
+      if (key !== PL.key || !PL.ready) playerPrepare(tl, key); else drawNow();
+    }
+  }
 }
 let redrawT = null;
 function redrawLater(){ clearTimeout(redrawT); redrawT = setTimeout(afterRender, 250); }
+
+async function genFinal(tab){
+  const b = briefById(S.briefId); const p = S.packs[S.briefId]; if (!b || !p) return;
+  if (PL.playing) playerPause();
+  const ctx = packContext(b, p); const col = brandColors();
+  let prompt = '', images = [], picked = [];
+  if (tab === 'image' || tab === 'video') { const li = await libraryImages(); images = li.blobs; picked = li.names; }
+  const seen = picked.length ? `[첨부 이미지 = 자산 라이브러리 일부. 직접 보고 판단할 것]\n${picked.map((a, i) => `이미지 ${i + 1}: "${a.name}" (${a.type})`).join('\n')}` : '[첨부 이미지 없음 — 이름과 유형만 보고 고를 것]';
+  if (tab === 'text') {
+    prompt = `너는 한국 인스타그램 브랜드 계정의 헤드 카피라이터다. 아래 초안을 대표가 "수정 없이 그대로 올리는" 최종본으로 다듬는다.
+[판단 기준] 첫 줄에서 스크롤이 멈추는가 / 고객이 실제로 쓰는 말인가 / 근거 없는 주장이 없는가 / 브랜드 톤을 지키는가 / 모바일에서 한 문단 2~3줄로 읽히는가 / 마지막 줄에 행동 유도 하나.
+${RULES}
+${ctx}
+
+아래 JSON 하나만 출력:
+{"hooks":["첫 문장 후보 3개(각 25자 이내)"],"caption":"최종 캡션. 첫 줄은 hooks[0], 첫 줄 40자 이내, 짧은 문단과 줄바꿈, 마지막 줄 CTA","hashtags":["#해시태그 6~9개"],"first_comment":"첫 댓글(링크 안내 등)","ad":{"primary_text":"광고 기본 문구(125자 이내, 첫 문장에 핵심)","headline":"40자 이내","description":"30자 이내","cta_button":"${CTA_BUTTONS.join('|')} 중 하나"},"changes":["초안에서 무엇을 왜 바꿨는지 3개 이내"]}`;
+  } else if (tab === 'image') {
+    prompt = `너는 한국 인스타그램 브랜드 콘텐츠의 아트디렉터 겸 카피라이터다. 이 회사의 피드 이미지 세트(캐러셀·광고 이미지·릴스 커버)를 완성한다.
+${RULES}
+- 서비스 화면 캡처는 실제 화면이므로 그대로 보여주되, 화면에 없는 기능을 말하지 않는다.
+- 로고는 배경으로 쓰지 않는다(로고는 자동으로 들어간다).
+${ctx}
+[자산 라이브러리 — bg에는 따옴표 안 이름을 그대로 쓴다]
+${assetList()}
+${seen}
+${SVG_RULES(1080, 1350, '위쪽 45%와 가운데')}
+
+아래 JSON 하나만 출력:
+{"slides":[{"kicker":"작은 라벨(10자 이내)","title":"제목(22자 이내)","body":"본문(60자 이내)","bg":"asset:자산이름 | art1 | art2 | brand"}],
+ "ad":{"title":"광고 이미지 헤드라인(16자 이내)","sub":"보조 문구(26자 이내)","bg":"asset:자산이름 | art1 | art2 | brand"},
+ "cover":{"title":"릴스 커버 문구(14자 이내)","bg":"asset:자산이름 | art1 | art2 | brand"},
+ "art":[{"id":"art1","svg":"<svg ...>"},{"id":"art2","svg":"<svg ...>"}],
+ "asset_picks":[{"name":"고른 자산 이름","use":"어디에","why":"왜"}],
+ "free_images":[{"q_en":"영문 검색어","q_ko":"한글 설명","use":"어디에 쓸지"}],
+ "checks":["게시 전에 대표가 꼭 확인할 점 2~3개"]}
+- slides는 5~7장: 1장 훅, 가운데 한 장에 메시지 하나, 마지막 장은 저장하고 싶어지는 요약. CTA는 캡션에만.
+- 실제 자산이 어울리는 장에는 자산을, 추상적인 개념 장에는 art를, 텍스트 중심 장은 brand를 쓴다. 같은 자산을 3번 이상 반복하지 않는다.
+- art는 1~2개. free_images는 자산으로 채우기 어려운 장면이 있을 때만 2~4개.`;
+  } else if (tab === 'video') {
+    prompt = `너는 한국 숏폼(인스타 릴스·유튜브 쇼츠) 전문 PD다. 이 회사의 15~30초 세로 영상을 장면 단위로 설계한다. 이 설계대로 페이지가 실제 미리보기 영상을 렌더링한다.
+${RULES}
+- 서비스 화면 캡처는 휴대폰 화면처럼 보여준다(자동 연출됨). 화면에 없는 기능을 말하지 않는다.
+- 로고는 마지막 장면에 자동으로 들어가니 장면 배경으로 쓰지 않는다.
+${ctx}
+[자산 라이브러리 — asset에는 따옴표 안 이름을 그대로 쓴다]
+${assetList()}
+${seen}
+${SVG_RULES(1080, 1920, '세로 가운데 띠(자막 자리)')}
+
+아래 JSON 하나만 출력:
+{"duration_sec":숫자,"cover_text":"커버 문구(14자 이내)","music_mood":"음악 분위기","scenes":[{"start":0,"end":2.5,"caption":"화면 자막(한 줄 14자 이내, 최대 2줄, 줄바꿈은 \\n)","pos":"top|center|bottom","asset":"자산 이름 또는 null","bg":"art1|art2|null","motion":"zoom-in|zoom-out|pan-left|pan-right|none","visual":"화면 설명","voiceover":"내레이션(없으면 빈 문자열)"}],
+ "art":[{"id":"art1","svg":"<svg ...>"}],
+ "shorts":{"title":"쇼츠 제목(40자 이내)","description":"설명 2줄 + #shorts 포함 해시태그 3개"},
+ "capcut_steps":["저장한 미리보기 영상에 음악·내레이션을 얹는 CapCut 작업 5~7단계"],
+ "checks":["게시 전에 대표가 꼭 확인할 점 2~3개"]}
+- 5~8장면. 처음 0~2.5초는 스크롤을 멈추는 훅 자막. 장면당 메시지 하나. 마지막 장면은 행동 유도(CTA).
+- 장면 시간은 겹치지 않고 이어지게(0부터 duration_sec까지). 자산이 있으면 asset을 우선 쓰고, 없을 때 bg에 art를 쓴다.
+- art는 0~2개.`;
+  } else {
+    prompt = `너는 생성형 이미지·영상 도구 전문 프롬프트 엔지니어다. 이 회사 콘텐츠에 쓸 도구별 최적 프롬프트를 만든다.
+${RULES}
+${ctx}
+[자산 라이브러리] ${assetList()}
+[브랜드 컬러] ${col.main}, ${col.sub}, ${col.accent}
+
+아래 JSON 하나만 출력:
+{"gemini_image":"Gemini용 이미지 프롬프트(영문, 참고 사진 첨부 시 첫 문장에 사용법 포함)","chatgpt_image":"ChatGPT용 이미지 프롬프트(영문)","gemini_video":[{"scene":"장면 이름(한국어)","prompt":"5초 이내 전환 컷 영상 프롬프트(영문)"}],"capcut":["CapCut 작업 순서 5~7개(한국어)"],"free_images":[{"q_en":"영문 검색어","q_ko":"한글 설명","use":"어디에 쓸지"}],"tips":["각 도구에서 품질을 높이는 팁 3개(한국어)"]}
+- 이미지 프롬프트: 피사체·구도·조명·렌즈·색감(브랜드 hex)·무드를 구체적으로, 세로 4:5, 위쪽 35%는 글자 올릴 여백, 반드시 "no text, no letters, no logos, no watermark", 스톡 사진 느낌 금지, 실제 한국 생활 장면.
+- gemini_video는 2~3개.`;
+  }
+  const r = await askFinal(prompt, {label: {text:'텍스트 최종본을 만드는 중', image:'이미지 세트를 만드는 중', video:'영상을 설계하는 중', prompts:'도구별 프롬프트를 만드는 중'}[tab], images});
+  if (!r) return;
+  const d = r.data; const at = now();
+  p.history = (p.history || []).concat([{tab, at, snap: tab === 'text' ? clone({hooks: p.data.hooks, caption: p.data.caption, hashtags: p.data.hashtags, first_comment: p.data.first_comment, ad: p.data.ad, hook: p.hook}) : clone(finalOf(p, tab))}]).slice(-8);
+  p.final = p.final || {};
+  if (tab === 'text') {
+    ['hooks', 'caption', 'hashtags', 'first_comment'].forEach(k => { if (d[k]) p.data[k] = d[k]; });
+    if (d.ad) p.data.ad = Object.assign({}, p.data.ad || {}, d.ad);
+    p.hook = 0; p.final.text = {tier: r.tier, at, changes: (d.changes || []).slice(0, 3)};
+  } else if (tab === 'image') {
+    const art = (d.art || []).map(a => ({id: String(a.id || ''), svg: sanitizeSvg(a.svg, 1080, 1350)})).filter(a => a.id && a.svg).slice(0, 2);
+    p.final.image = {tier: r.tier, at, slides: (d.slides || []).slice(0, 7), ad: d.ad || null, cover: d.cover || null, art, asset_picks: (d.asset_picks || []).slice(0, 8), free_images: (d.free_images || []).slice(0, 4), checks: (d.checks || []).slice(0, 3)};
+    p.overlay = null; p.cover = null; p.bg = null; p.overlay_bg_manual = false; S.imgMode = 'carousel'; S.mockIdx = 0;
+  } else if (tab === 'video') {
+    const art = (d.art || []).map(a => ({id: String(a.id || ''), svg: sanitizeSvg(a.svg, 1080, 1920)})).filter(a => a.id && a.svg).slice(0, 2);
+    p.final.video = {tier: r.tier, at, duration_sec: +d.duration_sec || 20, cover_text: d.cover_text || '', music_mood: d.music_mood || '', scenes: (d.scenes || []).slice(0, 10), art, shorts: d.shorts || {}, capcut_steps: (d.capcut_steps || []).slice(0, 8), checks: (d.checks || []).slice(0, 3)};
+    PL.t = 0;
+  } else {
+    p.final.prompts = {tier: r.tier, at, gemini_image: d.gemini_image || '', chatgpt_image: d.chatgpt_image || '', gemini_video: (d.gemini_video || []).slice(0, 4), capcut: (d.capcut || []).slice(0, 8), free_images: (d.free_images || []).slice(0, 5), tips: (d.tips || []).slice(0, 3)};
+  }
+  const size = JSON.stringify(stripId(p)).length;
+  if (size > 240000) { p.history = p.history.slice(-2); }
+  touchPack(p, true); render();
+  toast({text:'텍스트 최종본', image:'이미지 세트', video:'영상', prompts:'프롬프트'}[tab] + '을 만들었습니다');
+}
+function undoFinal(tab){
+  const p = S.packs[S.briefId]; if (!p) return;
+  const hs = p.history || []; let i = -1; for (let k = hs.length - 1; k >= 0; k--) if (hs[k].tab === tab) { i = k; break; }
+  if (i < 0) return;
+  const h = hs[i];
+  if (tab === 'text') { const s = h.snap || {}; Object.assign(p.data, {hooks: s.hooks, caption: s.caption, hashtags: s.hashtags, first_comment: s.first_comment, ad: s.ad}); p.hook = s.hook || 0; if (p.final) delete p.final.text; }
+  else { p.final = p.final || {}; if (h.snap) p.final[tab] = h.snap; else delete p.final[tab]; }
+  p.history = hs.filter((_, k) => k !== i);
+  touchPack(p, true); render(); toast('이전 버전으로 되돌렸습니다');
+}
+function sceneSource(p){ const fv = finalOf(p, 'video'); return fv && (fv.scenes || []).length ? {list: fv.scenes, key: 'caption'} : {list: ((p.data || {}).reels || {}).scenes || [], key: 'on_screen'}; }
+async function exportBackup(){
+  const out = {kind: 'cofounder-marketing-studio-backup', version: 1, exported_at: now(), workspace: stripId(S.ws), workspace_id: S.wsId, brand: S.brand, ctx: S.ctx, briefs: S.briefs, packs: Object.values(S.packs), assets: S.assets};
+  await saveFile(`${safeName(S.ws.name)}_마케팅스튜디오_백업_${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(out, null, 1));
+}
+async function doImport(){
+  const d = S.importData; if (!d) return;
+  const id = d.workspace_id || uid();
+  S.busy = {label: '백업을 불러오는 중'}; render();
+  try {
+    await saveDoc(P.ws(id), Object.assign({}, d.workspace, {updated_at: now()}));
+    if (d.brand) await saveDoc(P.brand(id), d.brand);
+    if (d.ctx) await saveDoc(P.ctx(id), d.ctx);
+    for (const b of d.briefs || []) if (b && b.id) await saveDoc(P.brief(id, b.id), stripId(b));
+    for (const p of d.packs || []) if (p && p.id) await saveDoc(P.pack(id, p.id), stripId(p));
+    for (const a of d.assets || []) if (a && a.id) await saveDoc(P.asset(id, a.id), stripId(a));
+    if (!S.workspaces.some(w => w.id === id)) S.workspaces = [{id, ...d.workspace}, ...S.workspaces];
+    S.importData = null; S.modal = null; S.busy = null; selectWs(id); toast('백업을 불러왔습니다');
+  } catch (e) { S.busy = null; toast('불러오지 못했습니다', 'err'); render(); }
+}
 
 /* ============================ actions ============================ */
 const ACT = {
@@ -1342,13 +2002,31 @@ ${ctxText()}
   tpl(el){ const p = S.packs[S.briefId]; p.template = el.dataset.v; touchPack(p); render(); },
   copyCaption(el){ const d = S.packs[S.briefId].data; copyText(`${d.caption || ''}\n\n${(d.hashtags || []).join(' ')}`, el); },
   async saveSlides(){
-    const cvs = [...document.querySelectorAll('canvas[data-slide]')]; if (!cvs.length) return;
-    await afterRenderWait();
-    const name = safeName(briefById(S.briefId).topic);
-    if (window.JSZip) { const zip = new JSZip(); for (let i = 0; i < cvs.length; i++) zip.file(`${String(i + 1).padStart(2, '0')}.png`, await canvasBlob(cvs[i])); await saveFile(`${name}_캐러셀.zip`, await zip.generateAsync({type:'blob'})); }
-    else { for (let i = 0; i < cvs.length; i++) await saveFile(`${name}_${i + 1}.png`, await canvasBlob(cvs[i])); }
+    const p = S.packs[S.briefId]; const sl = packSlides(p); if (!sl.length) return;
+    const name = safeName(briefById(S.briefId).topic); const blobs = [];
+    for (let i = 0; i < sl.length; i++) { const cv = document.createElement('canvas'); await drawSlide(cv, {slide: sl[i], idx: i, total: sl.length, bg: slideBg(p, i)}); blobs.push(await canvasBlob(cv)); }
+    if (window.JSZip) { const zip = new JSZip(); blobs.forEach((bl, i) => zip.file(`${String(i + 1).padStart(2, '0')}.png`, bl)); await saveFile(`${name}_캐러셀.zip`, await zip.generateAsync({type:'blob'})); }
+    else { for (let i = 0; i < blobs.length; i++) await saveFile(`${name}_${i + 1}.png`, blobs[i]); }
   },
-  async saveAd(){ const cv = document.querySelector('canvas[data-ad-canvas]'); if (!cv) return; await afterRenderWait(); await saveFile(`${safeName(briefById(S.briefId).topic)}_광고.png`, await canvasBlob(cv)); },
+  async saveAd(){ const p = S.packs[S.briefId]; const cv = document.createElement('canvas'); await drawAd(cv, adSpec(p)); await saveFile(`${safeName(briefById(S.briefId).topic)}_광고.png`, await canvasBlob(cv)); },
+  async saveCover(){ const p = S.packs[S.briefId]; const cv = document.createElement('canvas'); await drawCover(cv, coverSpec(p)); await saveFile(`${safeName(briefById(S.briefId).topic)}_릴스커버.png`, await canvasBlob(cv)); },
+  async final(el){ await genFinal(el.dataset.tab); },
+  undo(el){ undoFinal(el.dataset.tab); },
+  textMode(el){ S.textMode = el.dataset.v; render(); },
+  imgMode(el){ S.imgMode = el.dataset.v; render(); },
+  vidPlat(el){ S.vidPlat = el.dataset.v; render(); },
+  mockPrev(){ S.mockIdx = Math.max(0, (S.mockIdx || 0) - 1); render(); },
+  mockNext(){ const n = packSlides(S.packs[S.briefId] || S.packs[S.reviewId]).length; S.mockIdx = Math.min(n - 1, (S.mockIdx || 0) + 1); render(); },
+  capOpen(){ S.capOpen = true; render(); },
+  vPlay(){ if (PL.playing) playerPause(); else playerPlay(); },
+  vRestart(){ PL.t = 0; drawNow(); if (!PL.playing) playerPlay(); },
+  vRecord(el){ if (PL.rec) return; recordVideo(el.dataset.name || 'video'); },
+  openBackup(){ S.modal = 'backup'; S.importData = null; render(); },
+  closeModal(){ S.modal = null; S.importData = null; render(); },
+  async exportBackup(){ await exportBackup(); },
+  async doImport(){ await doImport(); },
+  cancelImport(){ S.importData = null; render(); },
+  setLogo(el){ S.brand.logo_id = el.dataset.id; saveBrand(); render(); toast('대표 로고로 지정했습니다'); },
   async saveScript(){
     const b = briefById(S.briefId); const d = S.packs[S.briefId].data; const r = d.reels || {};
     const txt = `[${b.topic}] 릴스 ${r.duration_sec || ''}초\n커버: ${r.cover_text || ''}\n음악: ${r.music_mood || ''}\n\n` + (r.scenes || []).map(s => `[${s.sec}] ${s.visual}\n  자산: ${s.asset}\n  자막: ${s.on_screen}\n  내레이션: ${s.voiceover || '-'}`).join('\n\n') + `\n\n[CapCut 순서]\n` + (r.capcut_steps || []).map((x, i) => `${i + 1}. ${x}`).join('\n') + `\n\n[캡션]\n${d.caption || ''}\n\n${(d.hashtags || []).join(' ')}`;
@@ -1504,8 +2182,11 @@ document.addEventListener('click', e => {
   if (fn) { e.preventDefault(); fn(el, e); }
 });
 function copyFromKey(k, btn){
-  const p = S.packs[S.briefId] || {}; const d = p.data || {};
-  const m = {gemini:(d.image || {}).gemini_prompt, chatgpt:(d.image || {}).chatgpt_prompt, cgemini:(d.cover_visual || {}).gemini_prompt, cchatgpt:(d.cover_visual || {}).chatgpt_prompt, gvideo:(d.reels || {}).gemini_video_prompt, subtitle:((d.reels || {}).scenes || []).map(s => s.on_screen).filter(Boolean).join('\n')};
+  const p = S.packs[S.briefId] || {}; const d = p.data || {}; const fp = finalOf(p, 'prompts') || {}; const fv = finalOf(p, 'video') || {};
+  const im = d.image || {}; const cv = d.cover_visual || {};
+  const m = {gemini: fp.gemini_image || im.gemini_prompt || cv.gemini_prompt, chatgpt: fp.chatgpt_image || im.chatgpt_prompt || cv.chatgpt_prompt, gvideo:(d.reels || {}).gemini_video_prompt,
+    subtitle: (timelineOf(p) || {scenes: []}).scenes.map(s => s.caption).filter(Boolean).join('\n'), shorts: `${(fv.shorts || {}).title || ''}\n\n${(fv.shorts || {}).description || ''}`};
+  if (/^gv-\d+$/.test(k)) m[k] = ((fp.gemini_video || [])[+k.slice(3)] || {}).prompt;
   copyText(m[k] || '', btn);
 }
 document.addEventListener('input', e => {
@@ -1521,8 +2202,10 @@ document.addEventListener('input', e => {
   const p = S.packs[S.briefId];
   if (ds.pack && p) { p.data[ds.pack] = ds.pack === 'hashtags' ? el.value.split(/\s+/).filter(Boolean) : el.value; savePack(p); return; }
   if (ds.ad && p) { p.data.ad = p.data.ad || {}; p.data.ad[ds.ad] = el.value; savePack(p); const cnt = el.closest('div').querySelector('.counter'); if (cnt) { const max = {primary_text:125, headline:40, description:30}[ds.ad]; const n = [...el.value].length; cnt.textContent = `${n}/${max}`; cnt.classList.toggle('over', n > max); } return; }
-  if (ds.slidef && p) { const s = p.data.slides[+ds.i]; if (s) { s[ds.slidef] = el.value; savePack(p); redrawLater(); } return; }
-  if (ds.ov && p) { p.overlay = p.overlay || {title: (p.data.image || {}).overlay_title || '', sub: (p.data.image || {}).overlay_sub || ''}; p.overlay[ds.ov] = el.value; savePack(p); redrawLater(); return; }
+  if (ds.slidef && p) { const s = packSlides(p)[+ds.i]; if (s) { s[ds.slidef] = el.value; savePack(p); redrawLater(); } return; }
+  if (ds.ov && p) { const a = adSpec(p); p.overlay = p.overlay || {title: a.title, sub: a.sub}; p.overlay[ds.ov] = el.value; savePack(p); redrawLater(); return; }
+  if (ds.cover && p) { const c = coverSpec(p); const fi = finalOf(p, 'image'); p.cover = p.cover || {title: c.title, bg: (fi && fi.cover && fi.cover.bg) || null}; p.cover.title = el.value; savePack(p); redrawLater(); return; }
+  if (ds.scenecap && p) { const src = sceneSource(p); const s = src.list[+ds.scenecap]; if (s) { s[src.key] = el.value; savePack(p); redrawLater(); } return; }
   if (ds.packnote && p) { p.regen_note = el.value; savePack(p); return; }
   if (ds.rv) { S.reviewDraft[ds.rv] = el.value; return; }
   if (ds.pub) { const q = S.packs[ds.pub]; if (!q || el.type === 'checkbox') return; q.publish = q.publish || {metrics:{}}; q.publish.metrics = q.publish.metrics || {};
@@ -1535,6 +2218,11 @@ document.addEventListener('change', e => {
   if (ds.change === 'selectWs') { selectWs(el.value); return; }
   if (ds.change === 'cfPick') { ACT.cfPickSlug(el.value); return; }
   if (ds.change === 'studioBrief') { S.briefId = el.value; S.packTab = 'text'; render(); return; }
+  if (ds.slidebg) { const p = S.packs[S.briefId]; const s = packSlides(p)[+ds.slidebg]; if (s) { s.bg = el.value === 'brand' ? 'brand' : el.value; touchPack(p); render(); } return; }
+  if (ds.adbg) { const p = S.packs[S.briefId]; const a = adSpec(p); p.overlay = p.overlay || {title: a.title, sub: a.sub}; const as = el.value.startsWith('asset:') ? findAsset(el.value) : null;
+    p.bg = as ? as.asset_id : null; p.overlay_bg_manual = true; if (!as) { const fi = finalOf(p, 'image'); if (fi) { fi.ad = Object.assign({}, fi.ad || {}, {bg: el.value}); } } touchPack(p); render(); return; }
+  if (ds.coverbg) { const p = S.packs[S.briefId]; const c = coverSpec(p); p.cover = p.cover || {title: c.title}; p.cover.bg = el.value; touchPack(p); render(); return; }
+  if (ds.import) { const f = el.files[0]; el.value = ''; if (!f) return; f.text().then(t => { try { const d = JSON.parse(t); if (d.kind !== 'cofounder-marketing-studio-backup' || !d.workspace) throw 0; S.importData = d; render(); } catch (e) { toast('이 스튜디오의 백업 파일이 아닙니다', 'err'); } }); return; }
   if (ds.change === 'bgAsset' || ds.change === 'imgBg') { const p = S.packs[S.briefId]; p.bg = el.value || null; touchPack(p); render(); return; }
   if (ds.asset && ds.afield === 'type') { const a = S.assets.find(x => x.id === ds.asset); if (a) { a.type = el.value; saveDoc(P.asset(S.wsId, a.id), stripId(a)); render(); } return; }
   if (ds.cfsel) { S.cf.sel[ds.cfsel] = el.checked; const n = Object.values(S.cf.sel).filter(Boolean).length; if (n > 10) { el.checked = false; S.cf.sel[ds.cfsel] = false; toast('한 번에 10개까지 고를 수 있습니다', 'err'); } render(); return; }
