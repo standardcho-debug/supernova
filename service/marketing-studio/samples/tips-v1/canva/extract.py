@@ -73,11 +73,24 @@ JS = r"""
     const x0=Math.min(...rects.map(q=>q.left)), y0=Math.min(...rects.map(q=>q.top)),
           x1=Math.max(...rects.map(q=>q.right)), y1=Math.max(...rects.map(q=>q.bottom));
     for (const ln of lines) { if(ln.length){ ln[0].t=ln[0].t.replace(/^ /,''); ln[ln.length-1].t=ln[ln.length-1].t.replace(/ $/,''); } }
-    out.layers.push({kind:'text', x:x0-F.left, y:y0-F.top, w:x1-x0, h:y1-y0, lines: lines.filter(l=>l.length),
+    out.layers.push({kind:'text', x:x0-F.left, y:y0-F.top, w:x1-x0, h:y1-y0, h1: rects[0].height, lines: lines.filter(l=>l.length),
       lh: s.lineHeight==='normal'? null : parseFloat(s.lineHeight), size: parseFloat(s.fontSize),
       align: s.textAlign, name:(e.className||e.tagName).toString()});
   }
   return out;
+}
+"""
+
+NOTO = os.path.join(HERE, '.fontsource', 'package')  # npm pack @fontsource/noto-sans-kr 후 압축 해제
+
+# Canva에는 Pretendard가 없어 Noto Sans KR(400/700만 지정 가능)로 대체된다.
+# 측정도 같은 폰트로 해야 배지·형광펜·칩 위치가 Canva 렌더와 맞는다.
+NOTO_PREP = r"""
+(base) => {
+  for (const w of [400, 700]) { const l=document.createElement('link'); l.rel='stylesheet'; l.href=base+'/'+w+'.css'; document.head.appendChild(l); }
+  const st=document.createElement('style'); st.textContent="body{line-height:1.2} *{font-family:'Noto Sans KR' !important}"; document.head.appendChild(st);
+  for (const e of document.querySelectorAll('#s1 *,#s2 *,#s3 *,#s4 *,#s5 *,#ad *')) {
+    const w=parseInt(getComputedStyle(e).fontWeight); e.style.fontWeight = w>=600 ? '700' : '400'; }
 }
 """
 
@@ -98,6 +111,8 @@ async def main():
         await pg.goto('file://' + os.path.join(ROOT, 'tips.html'))
         await pg.evaluate('document.fonts.ready'); await pg.wait_for_timeout(400)
         await pg.evaluate(PREP)
+        await pg.evaluate(NOTO_PREP, 'file://' + NOTO)
+        await pg.wait_for_timeout(300); await pg.evaluate('document.fonts.ready'); await pg.wait_for_timeout(300)
         res = {}
         for sid in ['s1','s2','s3','s4','s5','ad']:
             res[sid] = await pg.evaluate(JS, sid)

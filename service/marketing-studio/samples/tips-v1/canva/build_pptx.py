@@ -70,12 +70,15 @@ def container(L, shapes):
 
 def add_text(sl, L, shapes):
     c = container(L, shapes)
-    if c: x, y, w, h = c['x'], c['y'], c['w'], c['h']
-    elif L['x'] + L['w'] >= 990:  # 우측 정렬 요소(페이지 번호·다음 장 안내)
-        w = L['w'] * 1.3 + 10; x, y, h = L['x'] + L['w'] - w, L['y'], L['h']
-    else:  # 대체 폰트 자폭 차이로 줄이 꺾이지 않게 여유폭
-        x, y, h = L['x'], L['y'], L['h']; w = min(L['w'] * 1.25 + 10, 1080 - x)
+    lh = L.get('lh') or L['size'] * 1.2
+    ytop = L['y'] - (lh - L['h1']) / 2  # 콘텐츠 영역 → CSS 줄 박스 top (Canva 텍스트 박스 top 과 같은 기준)
+    hbox = L['h'] + (lh - L['h1'])
     right = not c and L['x'] + L['w'] >= 990
+    if c: x, y, w, h = c['x'], c['y'], c['w'], c['h']
+    elif right:  # 우측 정렬 요소(페이지 번호·다음 장 안내)
+        w = L['w'] * 1.3 + 10; x, y, h = L['x'] + L['w'] - w, ytop, hbox
+    else:  # 줄이 꺾이지 않게 여유폭
+        x, y, h = L['x'], ytop, hbox; w = min(L['w'] * 1.25 + 10, 1080 - x)
     tb = sl.shapes.add_textbox(px(x), px(y), px(w), px(h)); tb.name = 'T ' + L['name']
     tf = tb.text_frame; tf.word_wrap = False; tf.auto_size = MSO_AUTO_SIZE.NONE
     tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
@@ -83,7 +86,7 @@ def add_text(sl, L, shapes):
     for i, line in enumerate(L['lines']):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = PP_ALIGN.CENTER if c else PP_ALIGN.RIGHT if right else PP_ALIGN.LEFT
-        if L.get('lh') and len(L['lines']) > 1: p.line_spacing = Pt(L['lh'] * .75)
+        p.line_spacing = Pt(lh * .75)
         for r in line:
             run = p.add_run(); run.text = r['t']; f = run.font
             f.size = Pt(r['size'] * .75); f.bold = r['weight'] >= 600; f.color.rgb = rgb(r['color']); f.name = FONT
