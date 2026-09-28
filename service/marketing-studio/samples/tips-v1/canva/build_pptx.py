@@ -13,7 +13,7 @@ from pptx.oxml.ns import qn
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PX = 9525  # 1px = 9525 EMU (96dpi)
-FONT = 'Pretendard'
+FONT = 'Noto Sans KR'  # Canva에 Pretendard 없음(2026-09-28 인식 테스트). 한글 글리프 계열이 같은 Noto Sans KR로 대체
 D = json.load(open(os.path.join(HERE, 'layers.json')))
 
 
@@ -71,14 +71,18 @@ def container(L, shapes):
 def add_text(sl, L, shapes):
     c = container(L, shapes)
     if c: x, y, w, h = c['x'], c['y'], c['w'], c['h']
-    else: x, y, w, h = L['x'], L['y'], L['w'] * 1.06 + 4, L['h']
+    elif L['x'] + L['w'] >= 990:  # 우측 정렬 요소(페이지 번호·다음 장 안내)
+        w = L['w'] * 1.3 + 10; x, y, h = L['x'] + L['w'] - w, L['y'], L['h']
+    else:  # 대체 폰트 자폭 차이로 줄이 꺾이지 않게 여유폭
+        x, y, h = L['x'], L['y'], L['h']; w = min(L['w'] * 1.25 + 10, 1080 - x)
+    right = not c and L['x'] + L['w'] >= 990
     tb = sl.shapes.add_textbox(px(x), px(y), px(w), px(h)); tb.name = 'T ' + L['name']
     tf = tb.text_frame; tf.word_wrap = False; tf.auto_size = MSO_AUTO_SIZE.NONE
     tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
     tf.vertical_anchor = MSO_ANCHOR.MIDDLE if c else MSO_ANCHOR.TOP
     for i, line in enumerate(L['lines']):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-        p.alignment = PP_ALIGN.CENTER if c else PP_ALIGN.LEFT
+        p.alignment = PP_ALIGN.CENTER if c else PP_ALIGN.RIGHT if right else PP_ALIGN.LEFT
         if L.get('lh') and len(L['lines']) > 1: p.line_spacing = Pt(L['lh'] * .75)
         for r in line:
             run = p.add_run(); run.text = r['t']; f = run.font
