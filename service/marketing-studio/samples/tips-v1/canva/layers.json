@@ -1,0 +1,2566 @@
+{
+ "s1": {
+  "bg": "#16243D",
+  "layers": [
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 96,
+    "w": 367.46875,
+    "h": 53,
+    "radius": 26.5,
+    "ellipse": false,
+    "fill": "#193D4F",
+    "name": "chip"
+   },
+   {
+    "kind": "text",
+    "x": 110,
+    "y": 108,
+    "w": 323.46875,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "비개발 대표를 위한 TIPS 준비 노트",
+       "size": 24,
+       "weight": 600,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "chip"
+   },
+   {
+    "kind": "text",
+    "x": 943.015625,
+    "y": 108,
+    "w": 48.984375,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "1 / 5",
+       "size": 24,
+       "weight": 500,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "pg"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 211,
+    "w": 517.0625,
+    "h": 379.53125,
+    "lines": [
+     [
+      {
+       "t": "TIPS 준비,",
+       "size": 108,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -4.86
+      }
+     ],
+     [
+      {
+       "t": "어디서부터",
+       "size": 108,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -4.86
+      }
+     ],
+     [
+      {
+       "t": "해야 할까요?",
+       "size": 108,
+       "weight": 800,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -4.86
+      }
+     ]
+    ],
+    "lh": 125.28,
+    "size": 108,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 633.796875,
+    "w": 484.59375,
+    "h": 91,
+    "lines": [
+     [
+      {
+       "t": "사업계획서를 쓰기 전에",
+       "size": 34,
+       "weight": 500,
+       "color": "#BEC2C9",
+       "strike": false,
+       "ls": -0.68
+      }
+     ],
+     [
+      {
+       "t": "먼저 세워야 할 두 개의 축이 있습니다.",
+       "size": 34,
+       "weight": 500,
+       "color": "#BEC2C9",
+       "strike": false,
+       "ls": -0.68
+      }
+     ]
+    ],
+    "lh": 51,
+    "size": 34,
+    "align": "start",
+    "name": "sub"
+   },
+   {
+    "kind": "shape",
+    "x": 380,
+    "y": 750,
+    "w": 430,
+    "h": 430,
+    "radius": 50,
+    "ellipse": true,
+    "fill": "#FFFFFF",
+    "name": "c a"
+   },
+   {
+    "kind": "text",
+    "x": 458,
+    "y": 945,
+    "w": 93.28125,
+    "h": 40,
+    "lines": [
+     [
+      {
+       "t": "사업 축",
+       "size": 34,
+       "weight": 700,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -0.68
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 34,
+    "align": "start",
+    "name": "c a"
+   },
+   {
+    "kind": "shape",
+    "x": 660,
+    "y": 750,
+    "w": 430,
+    "h": 430,
+    "radius": 50,
+    "ellipse": true,
+    "fill": "#2DD4BF",
+    "name": "c b"
+   },
+   {
+    "kind": "text",
+    "x": 878.71875,
+    "y": 945,
+    "w": 93.28125,
+    "h": 40,
+    "lines": [
+     [
+      {
+       "t": "기술 축",
+       "size": 34,
+       "weight": 700,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -0.68
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 34,
+    "align": "start",
+    "name": "c b"
+   },
+   {
+    "kind": "shape",
+    "x": 673.703125,
+    "y": 940.5,
+    "w": 122.578125,
+    "h": 49,
+    "radius": 10,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "SPAN"
+   },
+   {
+    "kind": "text",
+    "x": 687.703125,
+    "y": 950.5,
+    "w": 94.578125,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "R&D 과제",
+       "size": 24,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "SPAN"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_symbol.png",
+    "x": 88,
+    "y": 1238,
+    "w": 56.75,
+    "h": 40,
+    "name": "img"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_word.png",
+    "x": 158.75,
+    "y": 1243,
+    "w": 181.421875,
+    "h": 30,
+    "name": "img"
+   },
+   {
+    "kind": "text",
+    "x": 860.53125,
+    "y": 1243.5,
+    "w": 131.46875,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "넘겨보세요 →",
+       "size": 24,
+       "weight": 600,
+       "color": "#B9BDC5",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "next"
+   }
+  ]
+ },
+ "s2": {
+  "bg": "#F3F6F9",
+  "layers": [
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 96,
+    "w": 119.75,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "01 · 큰 그림",
+       "size": 26,
+       "weight": 700,
+       "color": "#0F9E8C",
+       "strike": false,
+       "ls": -0.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "eyebrow"
+   },
+   {
+    "kind": "text",
+    "x": 943.015625,
+    "y": 97,
+    "w": 48.984375,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "2 / 5",
+       "size": 24,
+       "weight": 500,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "pg"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 154,
+    "w": 663.375,
+    "h": 266.3125,
+    "lines": [
+     [
+      {
+       "t": "R&D 과제는",
+       "size": 76,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.42
+      }
+     ],
+     [
+      {
+       "t": "두 축이 만나는 자리에서",
+       "size": 76,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.42
+      }
+     ],
+     [
+      {
+       "t": "나옵니다",
+       "size": 76,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.42
+      }
+     ]
+    ],
+    "lh": 88.16,
+    "size": 76,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 483.46875,
+    "w": 904,
+    "h": 210.140625,
+    "radius": 24,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "card cn"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 519.46875,
+    "w": 67.765625,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "사업 축",
+       "size": 24,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "k"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 556.46875,
+    "w": 366.65625,
+    "h": 50,
+    "lines": [
+     [
+      {
+       "t": "어디까지 확장 가능한가",
+       "size": 42,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 42,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 621.46875,
+    "w": 490.75,
+    "h": 33,
+    "lines": [
+     [
+      {
+       "t": "“이 기술에 왜 이만큼 투자해야 하나”에 대한 답",
+       "size": 27,
+       "weight": 500,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": 39.15,
+    "size": 27,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "text",
+    "x": 525.484375,
+    "y": 702.609375,
+    "w": 29.015625,
+    "h": 36,
+    "lines": [
+     [
+      {
+       "t": "▼",
+       "size": 30,
+       "weight": 400,
+       "color": "#9AAABD",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 30,
+    "align": "start",
+    "name": "arrow"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 747.609375,
+    "w": 904,
+    "h": 209.140625,
+    "radius": 24,
+    "ellipse": false,
+    "fill": "#2DD4BF",
+    "name": "card ct"
+   },
+   {
+    "kind": "text",
+    "x": 302.953125,
+    "y": 799.609375,
+    "w": 474.09375,
+    "h": 62,
+    "lines": [
+     [
+      {
+       "t": "우리 회사 코어 기술 엔진",
+       "size": 52,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -1.56
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 52,
+    "align": "center",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 369.078125,
+    "y": 876.609375,
+    "w": 341.828125,
+    "h": 33,
+    "lines": [
+     [
+      {
+       "t": "두 축이 만나는 자리 = R&D 과제",
+       "size": 27,
+       "weight": 700,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": 39.15,
+    "size": 27,
+    "align": "center",
+    "name": "d"
+   },
+   {
+    "kind": "text",
+    "x": 525.484375,
+    "y": 965.75,
+    "w": 29.015625,
+    "h": 36,
+    "lines": [
+     [
+      {
+       "t": "▲",
+       "size": 30,
+       "weight": 400,
+       "color": "#9AAABD",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 30,
+    "align": "start",
+    "name": "arrow"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1010.75,
+    "w": 904,
+    "h": 210.140625,
+    "radius": 24,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "card cn"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 1046.75,
+    "w": 67.765625,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "기술 축",
+       "size": 24,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "k"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 1083.75,
+    "w": 339.75,
+    "h": 50,
+    "lines": [
+     [
+      {
+       "t": "이 기술이 왜 필요한가",
+       "size": 42,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 42,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 132,
+    "y": 1148.75,
+    "w": 566.4375,
+    "h": 33,
+    "lines": [
+     [
+      {
+       "t": "신사업 나열이 아니라, 같은 기술을 넓혀 적용하는 구조",
+       "size": 27,
+       "weight": 500,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": 39.15,
+    "size": 27,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1236,
+    "w": 64.890625,
+    "h": 42,
+    "radius": 12,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "lightpill"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_symbol.png",
+    "x": 102,
+    "y": 1244,
+    "w": 36.890625,
+    "h": 26,
+    "name": "img"
+   },
+   {
+    "kind": "text",
+    "x": 828,
+    "y": 1244,
+    "w": 164,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "사업 축 ↔ 기술 축",
+       "size": 22,
+       "weight": 500,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "start",
+    "name": "pg"
+   }
+  ]
+ },
+ "s3": {
+  "bg": "#FFFFFF",
+  "layers": [
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 96,
+    "w": 123.421875,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "02 · 기술 축",
+       "size": 26,
+       "weight": 700,
+       "color": "#0F9E8C",
+       "strike": false,
+       "ls": -0.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "eyebrow"
+   },
+   {
+    "kind": "text",
+    "x": 943.015625,
+    "y": 97,
+    "w": 48.984375,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "3 / 5",
+       "size": 24,
+       "weight": 500,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "pg"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 153,
+    "w": 706.546875,
+    "h": 173.828125,
+    "lines": [
+     [
+      {
+       "t": "‘개인화’라고만 쓰면",
+       "size": 74,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.33
+      }
+     ],
+     [
+      {
+       "t": "누구나 하는 기술이 됩니다",
+       "size": 74,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.33
+      }
+     ]
+    ],
+    "lh": 85.84,
+    "size": 74,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 382.65625,
+    "w": 904,
+    "h": 150,
+    "radius": 22,
+    "ellipse": false,
+    "fill": "#F3F6F9",
+    "name": "row"
+   },
+   {
+    "kind": "text",
+    "x": 128,
+    "y": 433.65625,
+    "w": 33.375,
+    "h": 48,
+    "lines": [
+     [
+      {
+       "t": "왜",
+       "size": 40,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -1.2
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 40,
+    "align": "start",
+    "name": "q"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 416.65625,
+    "w": 90.109375,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "개인화",
+       "size": 36,
+       "weight": 700,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 467.65625,
+    "w": 436.21875,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "여기서 멈추면 모두가 같은 목표를 말합니다",
+       "size": 26,
+       "weight": 500,
+       "color": "#6B7A90",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 550.65625,
+    "w": 904,
+    "h": 150,
+    "radius": 22,
+    "ellipse": false,
+    "fill": "#F3F6F9",
+    "name": "row"
+   },
+   {
+    "kind": "text",
+    "x": 128,
+    "y": 601.65625,
+    "w": 66.75,
+    "h": 48,
+    "lines": [
+     [
+      {
+       "t": "무엇",
+       "size": 40,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -1.2
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 40,
+    "align": "start",
+    "name": "q"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 584.65625,
+    "w": 277.53125,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "무엇을 개인화하는가",
+       "size": 36,
+       "weight": 700,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 635.65625,
+    "w": 311.484375,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "업종마다, 사업마다 달라집니다",
+       "size": 26,
+       "weight": 500,
+       "color": "#6B7A90",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 718.65625,
+    "w": 904,
+    "h": 150,
+    "radius": 22,
+    "ellipse": false,
+    "fill": "#2DD4BF",
+    "name": "row hl"
+   },
+   {
+    "kind": "text",
+    "x": 128,
+    "y": 769.65625,
+    "w": 100.125,
+    "h": 48,
+    "lines": [
+     [
+      {
+       "t": "어떻게",
+       "size": 40,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -1.2
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 40,
+    "align": "start",
+    "name": "q"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 752.65625,
+    "w": 254.703125,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "우리만의 측정 지표",
+       "size": 36,
+       "weight": 700,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "shape",
+    "x": 544.703125,
+    "y": 755.65625,
+    "w": 97.953125,
+    "h": 34,
+    "radius": 8,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "star"
+   },
+   {
+    "kind": "text",
+    "x": 554.703125,
+    "y": 759.65625,
+    "w": 77.953125,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "★ 과제명",
+       "size": 22,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "start",
+    "name": "star"
+   },
+   {
+    "kind": "text",
+    "x": 278,
+    "y": 803.65625,
+    "w": 524,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "고객·회사·팀에 따라 달라지는, 차별점이 생기는 영역",
+       "size": 26,
+       "weight": 500,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 902.65625,
+    "w": 904,
+    "h": 197,
+    "radius": 22,
+    "ellipse": false,
+    "line": "#B8C4D2",
+    "lineW": 2,
+    "dash": true,
+    "name": "ex"
+   },
+   {
+    "kind": "text",
+    "x": 130,
+    "y": 934.65625,
+    "w": 287.265625,
+    "h": 28,
+    "lines": [
+     [
+      {
+       "t": "예시 — 과제 이름이 바뀌는 순간",
+       "size": 23,
+       "weight": 700,
+       "color": "#0F9E8C",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 23,
+    "align": "start",
+    "name": "l"
+   },
+   {
+    "kind": "text",
+    "x": 130,
+    "y": 978.65625,
+    "w": 544.875,
+    "h": 83.5,
+    "lines": [
+     [
+      {
+       "t": "축구 데이터 분석",
+       "size": 31,
+       "weight": 600,
+       "color": "#9AA7B8",
+       "strike": true,
+       "ls": -0.62
+      },
+      {
+       "t": " → ",
+       "size": 31,
+       "weight": 600,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.62
+      },
+      {
+       "t": "센티미터급 위치 측위 측정",
+       "size": 31,
+       "weight": 900,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.62
+      }
+     ],
+     [
+      {
+       "t": "3번째 질문까지 내려가야 과제명이 됩니다.",
+       "size": 31,
+       "weight": 600,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.62
+      }
+     ]
+    ],
+    "lh": 46.5,
+    "size": 31,
+    "align": "start",
+    "name": "v"
+   },
+   {
+    "kind": "shape",
+    "x": 368.03125,
+    "y": 1000.85625,
+    "w": 306.84375,
+    "h": 14.8,
+    "radius": 0,
+    "ellipse": false,
+    "fill": "#9BEBDF",
+    "name": "B"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1236,
+    "w": 64.890625,
+    "h": 42,
+    "radius": 12,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "lightpill"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_symbol.png",
+    "x": 102,
+    "y": 1244,
+    "w": 36.890625,
+    "h": 26,
+    "name": "img"
+   },
+   {
+    "kind": "text",
+    "x": 816.125,
+    "y": 1244,
+    "w": 175.875,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "왜 → 무엇 → 어떻게",
+       "size": 22,
+       "weight": 500,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "start",
+    "name": "pg"
+   }
+  ]
+ },
+ "s4": {
+  "bg": "#16243D",
+  "layers": [
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 96,
+    "w": 124.15625,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "03 · 사업 축",
+       "size": 26,
+       "weight": 700,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -0.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "eyebrow"
+   },
+   {
+    "kind": "text",
+    "x": 943.015625,
+    "y": 97,
+    "w": 48.984375,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "4 / 5",
+       "size": 24,
+       "weight": 500,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "pg"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 154,
+    "w": 685.125,
+    "h": 178.15625,
+    "lines": [
+     [
+      {
+       "t": "확장 시장은",
+       "size": 76,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -3.42
+      }
+     ],
+     [
+      {
+       "t": "‘지금 지점’",
+       "size": 76,
+       "weight": 800,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -3.42
+      },
+      {
+       "t": "부터 찍습니다",
+       "size": 76,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -3.42
+      }
+     ]
+    ],
+    "lh": 88.16,
+    "size": 76,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "text",
+    "x": 127.125,
+    "y": 422.3125,
+    "w": 100.875,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "시니어·재활",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "right",
+    "name": "yl"
+   },
+   {
+    "kind": "shape",
+    "x": 250,
+    "y": 387.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "shape",
+    "x": 501.328125,
+    "y": 387.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "shape",
+    "x": 752.65625,
+    "y": 387.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "text",
+    "x": 146.140625,
+    "y": 530.3125,
+    "w": 81.859375,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "복싱·줌바",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "right",
+    "name": "yl"
+   },
+   {
+    "kind": "shape",
+    "x": 250,
+    "y": 495.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "shape",
+    "x": 501.328125,
+    "y": 495.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "shape",
+    "x": 752.65625,
+    "y": 495.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#26334B",
+    "name": "cell"
+   },
+   {
+    "kind": "text",
+    "x": 170.953125,
+    "y": 638.3125,
+    "w": 57.046875,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "태권도",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "right",
+    "name": "yl"
+   },
+   {
+    "kind": "shape",
+    "x": 250,
+    "y": 603.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#2DD4BF",
+    "name": "cell now"
+   },
+   {
+    "kind": "text",
+    "x": 343.734375,
+    "y": 633.3125,
+    "w": 51.859375,
+    "h": 36,
+    "lines": [
+     [
+      {
+       "t": "지금",
+       "size": 30,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 30,
+    "align": "start",
+    "name": "cell now"
+   },
+   {
+    "kind": "shape",
+    "x": 501.328125,
+    "y": 603.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#1B4757",
+    "name": "cell nx"
+   },
+   {
+    "kind": "text",
+    "x": 607.453125,
+    "y": 633.3125,
+    "w": 27.078125,
+    "h": 36,
+    "lines": [
+     [
+      {
+       "t": "①",
+       "size": 30,
+       "weight": 800,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 30,
+    "align": "start",
+    "name": "cell nx"
+   },
+   {
+    "kind": "shape",
+    "x": 752.65625,
+    "y": 603.3125,
+    "w": 239.328125,
+    "h": 96,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#1B4757",
+    "name": "cell nx"
+   },
+   {
+    "kind": "text",
+    "x": 858.78125,
+    "y": 633.3125,
+    "w": 27.078125,
+    "h": 36,
+    "lines": [
+     [
+      {
+       "t": "②",
+       "size": 30,
+       "weight": 800,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 30,
+    "align": "start",
+    "name": "cell nx"
+   },
+   {
+    "kind": "text",
+    "x": 328.9375,
+    "y": 711.3125,
+    "w": 81.4375,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "신규 창업",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "center",
+    "name": "xl"
+   },
+   {
+    "kind": "text",
+    "x": 580.265625,
+    "y": 711.3125,
+    "w": 81.4375,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "공간 전환",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "center",
+    "name": "xl"
+   },
+   {
+    "kind": "text",
+    "x": 843.796875,
+    "y": 711.3125,
+    "w": 57.046875,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "샵인샵",
+       "size": 22,
+       "weight": 500,
+       "color": "#A2A7B1",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "center",
+    "name": "xl"
+   },
+   {
+    "kind": "text",
+    "x": 677.1875,
+    "y": 751.3125,
+    "w": 314.8125,
+    "h": 24,
+    "lines": [
+     [
+      {
+       "t": "예시 · x축 도입 공간 / y축 종목·프로그램",
+       "size": 20,
+       "weight": 400,
+       "color": "#7F8794",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 20,
+    "align": "right",
+    "name": "mxcap"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 819.3125,
+    "w": 52,
+    "h": 52,
+    "radius": 26,
+    "ellipse": true,
+    "fill": "#FFFFFF",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 107.765625,
+    "y": 829.8125,
+    "w": 12.453125,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "1",
+       "size": 26,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 819.3125,
+    "w": 396.015625,
+    "h": 40,
+    "lines": [
+     [
+      {
+       "t": "지금 있는 지점을 하나로 찍는다",
+       "size": 34,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.02
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 34,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 865.3125,
+    "w": 311.09375,
+    "h": 30,
+    "lines": [
+     [
+      {
+       "t": "“우리는 A시장의 B단계에 있다”",
+       "size": 25,
+       "weight": 500,
+       "color": "#B0B5BD",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 25,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 921.3125,
+    "w": 52,
+    "h": 52,
+    "radius": 26,
+    "ellipse": true,
+    "fill": "#FFFFFF",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 105.953125,
+    "y": 931.8125,
+    "w": 16.078125,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "2",
+       "size": 26,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 921.3125,
+    "w": 424.375,
+    "h": 40,
+    "lines": [
+     [
+      {
+       "t": "다음 지점으로 가는 이유를 붙인다",
+       "size": 34,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.02
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 34,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 967.3125,
+    "w": 304.296875,
+    "h": 30,
+    "lines": [
+     [
+      {
+       "t": "핵심은 ",
+       "size": 25,
+       "weight": 500,
+       "color": "#B0B5BD",
+       "strike": false,
+       "ls": 0
+      },
+      {
+       "t": "같은 기술의 고도화 적용",
+       "size": 25,
+       "weight": 700,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 25,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1023.3125,
+    "w": 52,
+    "h": 52,
+    "radius": 26,
+    "ellipse": true,
+    "fill": "#FFFFFF",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 105.59375,
+    "y": 1033.8125,
+    "w": 16.8125,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "3",
+       "size": 26,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "n"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 1023.3125,
+    "w": 360.828125,
+    "h": 40,
+    "lines": [
+     [
+      {
+       "t": "칸마다 시점과 숫자를 붙인다",
+       "size": 34,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.02
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 34,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "text",
+    "x": 164,
+    "y": 1069.3125,
+    "w": 406.59375,
+    "h": 30,
+    "lines": [
+     [
+      {
+       "t": "그대로 2년짜리 스케일업 스토리가 됩니다",
+       "size": 25,
+       "weight": 500,
+       "color": "#B0B5BD",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 25,
+    "align": "start",
+    "name": "d"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_symbol.png",
+    "x": 88,
+    "y": 1244,
+    "w": 48.234375,
+    "h": 34,
+    "name": "img"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_word.png",
+    "x": 150.234375,
+    "y": 1248.5,
+    "w": 151.1875,
+    "h": 25,
+    "name": "img"
+   },
+   {
+    "kind": "text",
+    "x": 875.578125,
+    "y": 1246.5,
+    "w": 116.421875,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "마지막 장 →",
+       "size": 24,
+       "weight": 600,
+       "color": "#B9BDC5",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "next"
+   }
+  ]
+ },
+ "s5": {
+  "bg": "#FAF8F3",
+  "layers": [
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 96,
+    "w": 118.921875,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "04 · 시작점",
+       "size": 26,
+       "weight": 700,
+       "color": "#0F9E8C",
+       "strike": false,
+       "ls": -0.26
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "eyebrow"
+   },
+   {
+    "kind": "text",
+    "x": 943.015625,
+    "y": 97,
+    "w": 48.984375,
+    "h": 29,
+    "lines": [
+     [
+      {
+       "t": "5 / 5",
+       "size": 24,
+       "weight": 500,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 24,
+    "align": "start",
+    "name": "pg"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 153,
+    "w": 818.921875,
+    "h": 165.1875,
+    "lines": [
+     [
+      {
+       "t": "순서는 알겠는데,",
+       "size": 70,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.15
+      }
+     ],
+     [
+      {
+       "t": "우리 회사는 지금 어디쯤일까요?",
+       "size": 70,
+       "weight": 800,
+       "color": "#0F1A2E",
+       "strike": false,
+       "ls": -3.15
+      }
+     ]
+    ],
+    "lh": 81.2,
+    "size": 70,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 365.375,
+    "w": 904,
+    "h": 539.046875,
+    "radius": 24,
+    "ellipse": false,
+    "fill": "#FFFFFF",
+    "line": "#E4DFD4",
+    "lineW": 1,
+    "dash": false,
+    "name": "shot"
+   },
+   {
+    "kind": "shape",
+    "x": 111,
+    "y": 388.375,
+    "w": 12,
+    "h": 12,
+    "radius": 6,
+    "ellipse": true,
+    "fill": "#E4DFD4",
+    "name": "I"
+   },
+   {
+    "kind": "shape",
+    "x": 131,
+    "y": 388.375,
+    "w": 12,
+    "h": 12,
+    "radius": 6,
+    "ellipse": true,
+    "fill": "#E4DFD4",
+    "name": "I"
+   },
+   {
+    "kind": "shape",
+    "x": 151,
+    "y": 388.375,
+    "w": 12,
+    "h": 12,
+    "radius": 6,
+    "ellipse": true,
+    "fill": "#E4DFD4",
+    "name": "I"
+   },
+   {
+    "kind": "image",
+    "src": "src/map_crop.png",
+    "x": 111,
+    "y": 416.375,
+    "w": 858,
+    "h": 465.046875,
+    "name": "img"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 918.421875,
+    "w": 356.328125,
+    "h": 25,
+    "lines": [
+     [
+      {
+       "t": "코파운더 결정지도 — 실제 화면 (자사 사례)",
+       "size": 21,
+       "weight": 500,
+       "color": "#8C8577",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 21,
+    "align": "start",
+    "name": "cap"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 981.421875,
+    "w": 622.1875,
+    "h": 79.9375,
+    "lines": [
+     [
+      {
+       "t": "이익을 이루는 숫자를 결정 단위로 쪼개고,",
+       "size": 29,
+       "weight": 500,
+       "color": "#2B3446",
+       "strike": false,
+       "ls": -0.58
+      }
+     ],
+     [
+      {
+       "t": "지금 재고 있는 곳과 비어 있는 곳을 지도로 보여드립니다.",
+       "size": 29,
+       "weight": 500,
+       "color": "#2B3446",
+       "strike": false,
+       "ls": -0.58
+      }
+     ]
+    ],
+    "lh": 44.95,
+    "size": 29,
+    "align": "start",
+    "name": "body5"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1107.296875,
+    "w": 904,
+    "h": 124,
+    "radius": 22,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "cta"
+   },
+   {
+    "kind": "text",
+    "x": 128,
+    "y": 1147.796875,
+    "w": 438.40625,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "우리 회사 AX 수준 진단받아보기",
+       "size": 36,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "t"
+   },
+   {
+    "kind": "shape",
+    "x": 888,
+    "y": 1137.296875,
+    "w": 64,
+    "h": 64,
+    "radius": 32,
+    "ellipse": true,
+    "fill": "#2DD4BF",
+    "name": "go"
+   },
+   {
+    "kind": "text",
+    "x": 905.203125,
+    "y": 1150.296875,
+    "w": 29.59375,
+    "h": 38,
+    "lines": [
+     [
+      {
+       "t": "→",
+       "size": 32,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 32,
+    "align": "start",
+    "name": "go"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 1249.296875,
+    "w": 602.046875,
+    "h": 23,
+    "lines": [
+     [
+      {
+       "t": "프로필 링크 또는 DM으로 문의 · TIPS 선정은 운영사·전담기관 심사로 결정됩니다",
+       "size": 19,
+       "weight": 400,
+       "color": "#9B9486",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 19,
+    "align": "start",
+    "name": "fine"
+   }
+  ]
+ },
+ "ad": {
+  "bg": "#16243D",
+  "layers": [
+   {
+    "kind": "image",
+    "src": "src/logo_symbol.png",
+    "x": 88,
+    "y": 101,
+    "w": 56.75,
+    "h": 40,
+    "name": "img"
+   },
+   {
+    "kind": "image",
+    "src": "src/logo_word.png",
+    "x": 158.75,
+    "y": 106,
+    "w": 181.421875,
+    "h": 30,
+    "name": "img"
+   },
+   {
+    "kind": "shape",
+    "x": 787.84375,
+    "y": 96,
+    "w": 204.15625,
+    "h": 50,
+    "radius": 25,
+    "ellipse": false,
+    "fill": "#193D4F",
+    "name": "chip"
+   },
+   {
+    "kind": "text",
+    "x": 809.84375,
+    "y": 108,
+    "w": 160.15625,
+    "h": 26,
+    "lines": [
+     [
+      {
+       "t": "개발자 없는 창업팀",
+       "size": 22,
+       "weight": 600,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -0.24
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 22,
+    "align": "start",
+    "name": "chip"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 214,
+    "w": 646.34375,
+    "h": 336.71875,
+    "lines": [
+     [
+      {
+       "t": "TIPS 준비,",
+       "size": 96,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -4.32
+      }
+     ],
+     [
+      {
+       "t": "사업계획서보다",
+       "size": 96,
+       "weight": 800,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": -4.32
+      }
+     ],
+     [
+      {
+       "t": "순서가 먼저입니다",
+       "size": 96,
+       "weight": 800,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": -4.32
+      }
+     ]
+    ],
+    "lh": 111.36,
+    "size": 96,
+    "align": "start",
+    "name": "H1"
+   },
+   {
+    "kind": "text",
+    "x": 88,
+    "y": 589.078125,
+    "w": 455.546875,
+    "h": 88.5,
+    "lines": [
+     [
+      {
+       "t": "사업 축과 기술 축이 만나는 자리,",
+       "size": 33,
+       "weight": 500,
+       "color": "#C5C8CF",
+       "strike": false,
+       "ls": -0.66
+      }
+     ],
+     [
+      {
+       "t": "우리 회사 지금 위치부터 진단합니다.",
+       "size": 33,
+       "weight": 500,
+       "color": "#C5C8CF",
+       "strike": false,
+       "ls": -0.66
+      }
+     ]
+    ],
+    "lh": 49.5,
+    "size": 33,
+    "align": "start",
+    "name": "sub"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 727.078125,
+    "w": 198.4375,
+    "h": 61,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#29364D",
+    "line": "#374358",
+    "lineW": 1,
+    "dash": false,
+    "name": "noBefore"
+   },
+   {
+    "kind": "text",
+    "x": 111,
+    "y": 742.078125,
+    "w": 152.4375,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "✓ ",
+       "size": 26,
+       "weight": 700,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      },
+      {
+       "t": "사업 축 정의",
+       "size": 26,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "noBefore"
+   },
+   {
+    "kind": "shape",
+    "x": 300.4375,
+    "y": 727.078125,
+    "w": 243.5,
+    "h": 61,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#29364D",
+    "line": "#374358",
+    "lineW": 1,
+    "dash": false,
+    "name": "noBefore"
+   },
+   {
+    "kind": "text",
+    "x": 323.4375,
+    "y": 742.078125,
+    "w": 197.5,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "✓ ",
+       "size": 26,
+       "weight": 700,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      },
+      {
+       "t": "기술 축 3단 질문",
+       "size": 26,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "noBefore"
+   },
+   {
+    "kind": "shape",
+    "x": 557.9375,
+    "y": 727.078125,
+    "w": 220.90625,
+    "h": 61,
+    "radius": 14,
+    "ellipse": false,
+    "fill": "#29364D",
+    "line": "#374358",
+    "lineW": 1,
+    "dash": false,
+    "name": "noBefore"
+   },
+   {
+    "kind": "text",
+    "x": 580.9375,
+    "y": 742.078125,
+    "w": 174.90625,
+    "h": 31,
+    "lines": [
+     [
+      {
+       "t": "✓ ",
+       "size": 26,
+       "weight": 700,
+       "color": "#2DD4BF",
+       "strike": false,
+       "ls": 0
+      },
+      {
+       "t": "현재 위치 진단",
+       "size": 26,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 26,
+    "align": "start",
+    "name": "noBefore"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 830,
+    "w": 904,
+    "h": 330,
+    "radius": 24,
+    "ellipse": false,
+    "fill": "#FAF8F3",
+    "name": "adshot"
+   },
+   {
+    "kind": "shape",
+    "x": 110,
+    "y": 848,
+    "w": 136.9375,
+    "h": 36,
+    "radius": 8,
+    "ellipse": false,
+    "fill": "#16243D",
+    "name": "tag"
+   },
+   {
+    "kind": "text",
+    "x": 122,
+    "y": 854,
+    "w": 112.9375,
+    "h": 24,
+    "lines": [
+     [
+      {
+       "t": "실제 진단 화면",
+       "size": 20,
+       "weight": 700,
+       "color": "#FFFFFF",
+       "strike": false,
+       "ls": 0
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 20,
+    "align": "start",
+    "name": "tag"
+   },
+   {
+    "kind": "image",
+    "src": "src/map_crop.png",
+    "x": 88,
+    "y": 824,
+    "w": 904,
+    "h": 489.96875,
+    "name": "img"
+   },
+   {
+    "kind": "shape",
+    "x": 88,
+    "y": 1182,
+    "w": 904,
+    "h": 96,
+    "radius": 20,
+    "ellipse": false,
+    "fill": "#2DD4BF",
+    "name": "adcta"
+   },
+   {
+    "kind": "text",
+    "x": 128,
+    "y": 1208.5,
+    "w": 304.328125,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "AX 수준 진단받아보기",
+       "size": 36,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "SPAN"
+   },
+   {
+    "kind": "text",
+    "x": 919.78125,
+    "y": 1208.5,
+    "w": 32.21875,
+    "h": 43,
+    "lines": [
+     [
+      {
+       "t": "→",
+       "size": 36,
+       "weight": 800,
+       "color": "#16243D",
+       "strike": false,
+       "ls": -1.08
+      }
+     ]
+    ],
+    "lh": null,
+    "size": 36,
+    "align": "start",
+    "name": "SPAN"
+   }
+  ],
+  "adshot": {
+   "x": 88,
+   "y": 830,
+   "w": 904,
+   "h": 330,
+   "ix": 0,
+   "iy": -6,
+   "iw": 904,
+   "ih": 489.96875
+  }
+ }
+}
