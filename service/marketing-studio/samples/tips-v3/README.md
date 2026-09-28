@@ -17,3 +17,9 @@ v2(Canva AI 생성) 피드백 반영: 고객이 이해·저장·클릭할 이유
 - `tips.html` / `render.py` → `out/TIPS_v3_*.png` (캐러셀 7장 + 광고 1장, 1080×1350)
 - `reel.html` / `reel_render.py` → 프레임 렌더 후 ffmpeg로 `out/TIPS_릴스_21초_v3.mp4` (1080×1920, 24fps, 무음)
 - `canva/extract.py` → `canva/build_pptx.py` → PPTX → Canva 가져오기(편집 가능한 마스터)
+
+## Canva 마스터 (2026-09-28)
+- 캐러셀 7p: https://www.canva.com/d/uAxMi0N9XwZKD4H · 광고: https://www.canva.com/d/XPSaMeRmoom9nCo
+- 가져오기 직후 Canva 저장 썸네일은 폰트 로드 전 상태로 캐시돼 한글이 가늘게 보일 수 있음(실제 에디터·재렌더는 굵게 정상). 편집 한 번이면 갱신됨.
+- 콜아웃(원+라벨 알약)은 가져오기 후 숫자·라벨 컨테이너 위치를 원/알약에 맞게 조정 필요 — 다음 버전에서 build_pptx.py 컨테이너 판정 개선 대상.
+- Canva AI 생성(Free)은 월 20회 공용 한도 — 소진 시 이 가져오기 경로로 제작.
