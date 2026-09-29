@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>co·founder AX 컴퍼니빌더</title>
+<meta name="description" content="사람이 쥐고 있던 결정을 찾아 AI와 코드로 옮기고, 옮긴 뒤에도 책임지고 운영하는 AX 컴퍼니빌더, 코파운더.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
+<style>
+/* Layout concept: 페이지 자체가 하나의 시스템 지도 — 가로 레인(사람 · AI 에이전트 · 코드·크론)과
+   세로 업무 단계 격자를 배경 문법으로 쓰고, 결정 노드가 레인을 옮겨가는 장면을 중심에 둔다. */
+:root {
+  --bg: #0a0d14;
+  --panel: #10151f;
+  --panel-2: #151b28;
+  --line: rgba(233, 237, 245, 0.10);
+  --line-strong: rgba(233, 237, 245, 0.20);
+  --fg: #e9edf5;
+  --muted: #98a2b6;
+  --brand: #4f8cff;
+  --brand-strong: #79a8ff;
+  --brand-soft: rgba(79, 140, 255, 0.14);
+  --on-brand: #ffffff;
+  --human: #f2a54a;
+  --human-soft: rgba(242, 165, 74, 0.14);
+  --agent: #4f8cff;
+  --agent-soft: rgba(79, 140, 255, 0.16);
+  --machine: #33c595;
+  --machine-soft: rgba(51, 197, 149, 0.15);
+  --ghost: rgba(233, 237, 245, 0.05);
+
+  --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+
+  --wrap: 1160px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --radius: 14px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f7fb; --panel: #ffffff; --panel-2: #eef2f8;
+    --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.20);
+    --fg: #0e1422; --muted: #566074;
+    --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10); --on-brand: #ffffff;
+    --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.12);
+    --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
+    --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
+    --ghost: rgba(14, 20, 34, 0.04);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f5f7fb; --panel: #ffffff; --panel-2: #eef2f8;
+  --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.20);
+  --fg: #0e1422; --muted: #566074;
+  --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10); --on-brand: #ffffff;
+  --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.12);
+  --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
+  --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
+  --ghost: rgba(14, 20, 34, 0.04);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+.mono { font-family: var(--f-mono); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- 공통 타이포 ---------- */
+.eyebrow {
+  font-family: var(--f-mono); font-size: 12.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand);
+}
+.h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.25; font-weight: 700; margin-top: 14px; }
+.lead { color: var(--muted); font-size: clamp(16px, 1.5vw, 18px); max-width: 62ch; margin-top: 16px; }
+.section { padding-block: clamp(72px, 9vw, 120px); border-top: 1px solid var(--line); }
+.section.alt { background: var(--panel); }
+.sec-head { display: grid; gap: 0; max-width: 780px; }
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 22px;
+  border-radius: 12px; font-weight: 600; font-size: 15.5px; text-decoration: none;
+  border: 1px solid transparent; cursor: pointer; font-family: var(--f-body);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.btn-primary { background: var(--brand); color: var(--on-brand); }
+.btn-primary:hover { background: var(--brand-strong); }
+.btn-ghost { border-color: var(--line-strong); color: var(--fg); background: transparent; }
+.btn-ghost:hover { border-color: var(--brand); background: var(--brand-soft); }
+.btn .arr { transition: transform .2s; }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-mark { width: 26px; height: 26px; flex: none; }
+.brand-word { font-family: var(--f-mark); font-weight: 900; font-size: 19px; letter-spacing: -0.01em; }
+.brand-tag { font-family: var(--f-mono); font-size: 11px; color: var(--muted); border: 1px solid var(--line-strong); border-radius: 6px; padding: 1px 6px; }
+.nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--muted); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--fg); }
+.nav-links .sub { color: var(--muted); border-left: 1px solid var(--line-strong); padding-left: 22px; }
+.nav-cta { display: flex; align-items: center; gap: 8px; }
+.nav-cta .btn { min-height: 40px; padding: 0 16px; font-size: 14px; }
+.menu-btn { display: none; background: none; border: 1px solid var(--line-strong); color: var(--fg); border-radius: 10px; width: 40px; height: 40px; cursor: pointer; }
+.mobile-menu { border-top: 1px solid var(--line); padding-block: 12px 18px; display: grid; gap: 4px; }
+.mobile-menu a { padding: 10px 2px; text-decoration: none; font-weight: 500; border-bottom: 1px solid var(--line); }
+@media (max-width: 920px) {
+  .nav-links { display: none; }
+  .menu-btn { display: inline-grid; place-items: center; }
+  .nav-cta .btn-ghost { display: none; }
+}
+
+/* ---------- HERO ---------- */
+.hero { position: relative; overflow: hidden; padding-block: clamp(56px, 8vw, 104px) clamp(56px, 7vw, 88px); }
+.hero-grid-bg {
+  position: absolute; inset: 0; pointer-events: none; opacity: .9;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 70% 60% at 70% 30%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 70% 30%, #000 20%, transparent 75%);
+}
+.hero-in { position: relative; display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero-in > * { min-width: 0; }
+.hero h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.14; font-weight: 700; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--brand); }
+.hero .lead { font-size: clamp(16.5px, 1.6vw, 19px); }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero-note { margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+.hero-note a { color: var(--brand); text-underline-offset: 3px; }
+@media (max-width: 960px) { .hero-in { grid-template-columns: 1fr; } }
+
+/* 히어로 미니 지도 */
+.minimap {
+  background: var(--panel); border: 1px solid var(--line-strong); border-radius: 18px; padding: 16px;
+  box-shadow: 0 30px 80px -40px rgba(0,0,0,.55);
+}
+.minimap-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.minimap-title { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.minimap-state { font-family: var(--f-mono); font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
+
+/* ---------- 레인 지도 (공용) ---------- */
+.lanes { position: relative; --label: 92px; --lane-h: 128px; }
+.lanes.mini { --label: 64px; --lane-h: 76px; }
+.lane {
+  height: var(--lane-h); display: flex; align-items: center;
+  border-top: 1px dashed var(--line-strong);
+}
+.lane:first-of-type { border-top: 0; }
+.lane-label {
+  width: var(--label); flex: none; font-family: var(--f-mono); font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; padding-right: 8px; line-height: 1.3;
+}
+.lanes.mini .lane-label { font-size: 10.5px; }
+.lane-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.lane[data-lane="0"] .lane-label { color: var(--human); } .lane[data-lane="0"] .lane-dot { background: var(--human); }
+.lane[data-lane="1"] .lane-label { color: var(--agent); } .lane[data-lane="1"] .lane-dot { background: var(--agent); }
+.lane[data-lane="2"] .lane-label { color: var(--machine); } .lane[data-lane="2"] .lane-dot { background: var(--machine); }
+.phase-row { display: grid; margin-left: var(--label); grid-template-columns: repeat(var(--cols), 1fr); border-bottom: 1px solid var(--line); }
+.phase-row span { font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); padding: 0 6px 8px; border-left: 1px solid var(--line); }
+.lanes.mini .phase-row span { font-size: 10px; padding: 0 4px 6px; }
+.phase-cols { position: absolute; left: var(--label); right: 0; bottom: 0; display: grid; grid-template-columns: repeat(var(--cols), 1fr); pointer-events: none; }
+.phase-cols i { border-left: 1px solid var(--line); }
+.node {
+  position: absolute; display: flex; align-items: center; gap: 6px;
+  min-height: 32px; padding: 5px 9px; border-radius: 9px;
+  font-size: 12.5px; font-weight: 600; line-height: 1.25;
+  border: 1px solid var(--line-strong); background: var(--panel-2); color: var(--fg);
+  transition: top .9s cubic-bezier(.6,.05,.25,1), background .5s, border-color .5s, box-shadow .3s, opacity .3s;
+}
+.lanes.mini .node { font-size: 11px; min-height: 28px; padding: 4px 7px; }
+.node[data-lane="0"] { background: var(--human-soft); border-color: color-mix(in srgb, var(--human) 45%, transparent); }
+.node[data-lane="1"] { background: var(--agent-soft); border-color: color-mix(in srgb, var(--agent) 55%, transparent); }
+.node[data-lane="2"] { background: var(--machine-soft); border-color: color-mix(in srgb, var(--machine) 55%, transparent); }
+.node .ntag { font-family: var(--f-mono); font-size: 10px; font-weight: 500; color: var(--muted); margin-left: auto; white-space: nowrap; }
+.node.moved::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 12px; border: 1px solid var(--brand);
+  opacity: 0; animation: ping 1.6s ease-out 1 .9s;
+}
+.lanes.dim .node { opacity: .28; }
+.lanes.dim .node.hl { opacity: 1; box-shadow: 0 0 0 2px var(--brand); }
+@keyframes ping { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.12); } }
+@media (prefers-reduced-motion: reduce) {
+  .node, .btn .arr { transition: none; }
+  .node.moved::after { animation: none; }
+  html { scroll-behavior: auto; }
+}
+.map-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.map-scroll > .lanes { min-width: 860px; }
+#main-map .node span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- 대상 ---------- */
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+.who > * { min-width: 0; }
+.who-card { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 28px; background: var(--bg); display: grid; gap: 14px; align-content: start; }
+.who-card .tag { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.who-card h3 { font-size: 22px; }
+.who-card .quote { font-size: 17px; font-weight: 600; border-left: 2px solid var(--human); padding-left: 14px; }
+.who-card ul { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; }
+.who-card .stat { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 760px) { .who { grid-template-columns: 1fr; } }
+
+/* ---------- 현실 ---------- */
+.reality { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 44px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
+.reality > div { padding: 28px; border-left: 1px solid var(--line); min-width: 0; }
+.reality > div:first-child { border-left: 0; }
+.big { font-family: var(--f-mono); font-size: clamp(44px, 6vw, 68px); font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
+.reality p { color: var(--muted); margin-top: 12px; font-size: 15px; }
+.src { margin-top: 14px; font-size: 12.5px; color: var(--muted); font-family: var(--f-mono); }
+.drucker { margin-top: 40px; display: grid; gap: 10px; max-width: 760px; }
+.drucker q { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; line-height: 1.5; quotes: "“" "”"; }
+.drucker span { color: var(--muted); font-size: 14px; }
+@media (max-width: 760px) { .reality { grid-template-columns: 1fr; } .reality > div { border-left: 0; border-top: 1px solid var(--line); } .reality > div:first-child { border-top: 0; } }
+
+/* ---------- AX 정의 ---------- */
+.define { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+.define > * { min-width: 0; }
+.flowcard { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 26px; background: var(--panel); display: grid; gap: 18px; align-content: start; }
+.flowcard.ax { border-color: color-mix(in srgb, var(--brand) 60%, transparent); }
+.flowcard h3 { font-size: 20px; }
+.flowcard .sub { color: var(--muted); font-size: 14.5px; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.chain span { font-size: 13.5px; font-weight: 600; padding: 7px 11px; border-radius: 9px; border: 1px solid var(--line-strong); }
+.chain b { color: var(--muted); font-weight: 400; font-family: var(--f-mono); }
+.chain .h { background: var(--human-soft); border-color: color-mix(in srgb, var(--human) 45%, transparent); }
+.chain .a { background: var(--agent-soft); border-color: color-mix(in srgb, var(--agent) 55%, transparent); }
+.chain .m { background: var(--machine-soft); border-color: color-mix(in srgb, var(--machine) 55%, transparent); }
+.chain .tool { border-style: dashed; color: var(--muted); }
+.levels { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
+.levels > div { padding: 22px 24px; border-left: 1px solid var(--line); min-width: 0; display: grid; gap: 6px; }
+.levels > div:first-child { border-left: 0; }
+.levels .lv { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.levels h4 { margin: 0; font-size: 18px; }
+.levels p { color: var(--muted); font-size: 14.5px; }
+.bar { height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; margin-top: 8px; }
+.bar i { display: block; height: 100%; background: var(--brand); }
+@media (max-width: 760px) {
+  .define { grid-template-columns: 1fr; }
+  .levels { grid-template-columns: 1fr; }
+  .levels > div { border-left: 0; border-top: 1px solid var(--line); }
+  .levels > div:first-child { border-top: 0; }
+}
+
+/* ---------- 진단: 이익식 ---------- */
+.diag-intro { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: end; }
+.diag-intro > * { min-width: 0; }
+.formula-card { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 22px 24px; background: var(--bg); }
+.formula-card .f-lbl { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.formula-card .f { font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; margin-top: 8px; line-height: 1.5; }
+.formula-card .f span { color: var(--brand); }
+@media (max-width: 860px) { .diag-intro { grid-template-columns: 1fr; } }
+
+.step-head { display: flex; align-items: baseline; gap: 14px; margin-top: 64px; margin-bottom: 20px; flex-wrap: wrap; }
+.step-no { font-family: var(--f-mono); font-size: 13px; color: var(--on-brand); background: var(--brand); border-radius: 7px; padding: 2px 9px; }
+.step-head h3 { font-size: clamp(20px, 2.2vw, 24px); }
+.step-head p { color: var(--muted); font-size: 15px; flex-basis: 100%; }
+.example-tag { font-family: var(--f-mono); font-size: 11.5px; color: var(--human); border: 1px solid color-mix(in srgb, var(--human) 50%, transparent); border-radius: 6px; padding: 1px 7px; }
+
+.equation { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); padding: 26px; }
+.eq-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: clamp(17px, 2vw, 21px); font-weight: 700; }
+.eq-line .op { color: var(--muted); font-family: var(--f-mono); font-weight: 400; }
+.lever {
+  font: inherit; font-size: clamp(15px, 1.8vw, 18px); font-weight: 700; cursor: pointer;
+  padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line-strong); background: var(--panel); color: var(--fg);
+  transition: border-color .2s, background .2s;
+}
+.lever small { display: block; font-family: var(--f-mono); font-size: 10.5px; font-weight: 500; color: var(--muted); }
+.lever.rev small { color: var(--machine); }
+.lever.cost small { color: var(--human); }
+.lever:hover { border-color: var(--brand); }
+.lever[aria-pressed="true"] { border-color: var(--brand); background: var(--brand-soft); }
+.lever-nodes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 22px; padding-top: 22px; border-top: 1px dashed var(--line-strong); }
+.lever-nodes > div { min-width: 0; }
+.lever-nodes h5 { margin: 0 0 8px; font-family: var(--f-mono); font-size: 12px; font-weight: 600; color: var(--muted); }
+.lever-nodes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.lever-nodes li { font-size: 14px; padding: 6px 10px; border-radius: 8px; background: var(--ghost); border: 1px solid var(--line); }
+.eq-hint { margin-top: 16px; font-size: 13.5px; color: var(--muted); }
+@media (max-width: 760px) { .lever-nodes { grid-template-columns: 1fr 1fr; } }
+
+/* 결정지도 */
+.mapbox { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); padding: 20px 20px 24px; }
+.map-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 11px; padding: 3px; gap: 3px; }
+.seg button { font: inherit; font-size: 14px; font-weight: 600; border: 0; background: transparent; color: var(--muted); padding: 8px 14px; border-radius: 8px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--brand); color: var(--on-brand); }
+.map-counts { display: flex; flex-wrap: wrap; gap: 14px; font-family: var(--f-mono); font-size: 12.5px; }
+.map-counts span { display: inline-flex; align-items: center; gap: 6px; }
+.map-counts b { font-size: 15px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line-strong); }
+.sw.h { background: var(--human-soft); border-color: var(--human); }
+.sw.a { background: var(--agent-soft); border-color: var(--agent); }
+.sw.m { background: var(--machine-soft); border-color: var(--machine); }
+.map-caption { margin-top: 14px; font-size: 14.5px; color: var(--muted); max-width: 70ch; }
+
+/* 노드 명세 + 증거 */
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.spec-grid > * { min-width: 0; }
+.spec { border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); overflow: hidden; }
+.spec-top { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; align-items: center; flex-wrap: wrap; }
+.spec-top h4 { margin: 0; font-size: 18px; }
+.spec-top code { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.spec dl { margin: 0; display: grid; grid-template-columns: 120px 1fr; }
+.spec dt, .spec dd { margin: 0; padding: 10px 22px; border-bottom: 1px solid var(--line); font-size: 14px; min-width: 0; }
+.spec dt { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-right: 0; }
+.spec dd .pill { display: inline-block; font-family: var(--f-mono); font-size: 11.5px; padding: 1px 8px; border-radius: 999px; }
+.pill.ok { background: var(--machine-soft); color: var(--machine); }
+.pill.h { background: var(--human-soft); color: var(--human); }
+.pill.m { background: var(--machine-soft); color: var(--machine); }
+.spec dl > *:nth-last-child(-n+2) { border-bottom: 0; }
+.evidence { display: grid; gap: 14px; align-content: start; }
+.ev { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 20px 22px; background: var(--bg); display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; }
+.ev .k { grid-row: span 2; font-family: var(--f-mono); font-size: 13px; color: var(--brand); padding-top: 2px; }
+.ev h4 { margin: 0; font-size: 16.5px; }
+.ev p { color: var(--muted); font-size: 14.5px; }
+.ev-note { border-radius: var(--radius); padding: 18px 22px; background: var(--brand-soft); font-size: 15px; }
+.ev-note b { color: var(--brand); }
+@media (max-width: 860px) { .spec-grid { grid-template-columns: 1fr; } .spec dl { grid-template-columns: 100px 1fr; } }
+
+.equals { margin-top: 56px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 16px; text-align: center; padding: 28px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); }
+.equals .part { font-size: clamp(16px, 2vw, 20px); font-weight: 700; }
+.equals .part small { display: block; font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); font-weight: 400; }
+.equals .op { font-family: var(--f-mono); font-size: 22px; color: var(--muted); }
+.equals .res { color: var(--brand); }
+
+/* ---------- TIPS ---------- */
+.tips { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+.tips > * { min-width: 0; }
+.tips-flow { display: grid; gap: 0; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; background: var(--bg); }
+.tf { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 22px 24px; border-top: 1px solid var(--line); }
+.tf:first-child { border-top: 0; }
+.tf > * { min-width: 0; }
+.tf .when { font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 3px; }
+.tf h4 { margin: 0; font-size: 17.5px; }
+.tf p { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+.tf.hl { background: var(--brand-soft); }
+.tf.hl .when { color: var(--brand); }
+.tips-points { margin-top: 26px; display: grid; gap: 10px; padding: 0; list-style: none; }
+.tips-points li { display: flex; gap: 10px; font-size: 15px; }
+.tips-points li::before { content: "→"; color: var(--brand); font-family: var(--f-mono); }
+@media (max-width: 860px) { .tips { grid-template-columns: 1fr; } .tf { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ---------- 서비스 흐름 ---------- */
+.svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 44px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
+.svc > div { padding: 28px; border-left: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--bg); }
+.svc > div:first-child { border-left: 0; }
+.svc .sno { font-family: var(--f-mono); font-size: 12.5px; color: var(--brand); }
+.svc h3 { font-size: 22px; }
+.svc .what { color: var(--muted); font-size: 15px; }
+.svc ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14.5px; }
+.svc .out { font-family: var(--f-mono); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 12px; color: var(--muted); }
+.svc .out b { color: var(--fg); font-family: var(--f-body); font-size: 14px; }
+@media (max-width: 860px) { .svc { grid-template-columns: 1fr; } .svc > div { border-left: 0; border-top: 1px solid var(--line); } .svc > div:first-child { border-top: 0; } }
+
+.pilot { margin-top: 56px; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: start; }
+.pilot > * { min-width: 0; }
+.pilot h3 { font-size: clamp(22px, 2.4vw, 28px); }
+.criteria { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+.criteria li { display: grid; grid-template-columns: 56px 1fr; gap: 12px; font-size: 15px; }
+.criteria b { font-family: var(--f-mono); font-size: 13px; color: var(--brand); padding-top: 2px; }
+.weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
+.weeks > div { padding: 20px 18px; border-left: 1px solid var(--line); min-width: 0; background: var(--bg); }
+.weeks > div:first-child { border-left: 0; }
+.weeks .w { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.weeks h4 { margin: 6px 0 10px; font-size: 16px; }
+.weeks ul { margin: 0; padding-left: 16px; font-size: 13.5px; color: var(--muted); display: grid; gap: 4px; }
+.done-line { margin-top: 14px; font-size: 14.5px; padding: 14px 18px; border-radius: 12px; background: var(--brand-soft); }
+.done-line b { color: var(--brand); }
+@media (max-width: 860px) { .pilot { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .weeks { grid-template-columns: 1fr 1fr; } .weeks > div:nth-child(3) { border-left: 0; } .weeks > div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+.loop { margin-top: 56px; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 26px; background: var(--bg); }
+.loop-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+.loop-steps > div { min-width: 0; border-radius: 12px; background: var(--ghost); border: 1px solid var(--line); padding: 16px; }
+.loop-steps .n { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.loop-steps h4 { margin: 4px 0 8px; font-size: 16px; }
+.loop-steps ul { margin: 0; padding-left: 16px; font-size: 13.5px; color: var(--muted); display: grid; gap: 3px; }
+.loop-foot { margin-top: 16px; font-size: 14.5px; color: var(--muted); }
+@media (max-width: 860px) { .loop-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .loop-steps { grid-template-columns: 1fr; } }
+
+/* ---------- 사례 ---------- */
+.case { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; margin-top: 44px; align-items: start; }
+.case > * { min-width: 0; }
+.case-num { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 28px; background: var(--bg); display: grid; gap: 20px; }
+.case-row { display: flex; align-items: end; gap: 14px; flex-wrap: wrap; }
+.case-row .lbl { font-family: var(--f-mono); font-size: 12px; color: var(--muted); display: block; }
+.case-row .v { font-size: clamp(30px, 4vw, 42px); font-weight: 700; font-family: var(--f-mono); letter-spacing: -0.03em; }
+.case-row .arrow { font-family: var(--f-mono); color: var(--muted); font-size: 22px; padding-bottom: 6px; }
+.case-row .v.after { color: var(--brand); }
+.case-x { display: flex; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; flex-wrap: wrap; }
+.case-x > div { flex: 1 1 140px; }
+.case-x b { font-family: var(--f-mono); font-size: 28px; display: block; }
+.case-x span { color: var(--muted); font-size: 13.5px; }
+.case-quote { font-size: 17px; font-weight: 600; }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 12px; font-weight: 500; color: var(--muted); background: var(--ghost); }
+tr:last-child td { border-bottom: 0; }
+td .st { font-family: var(--f-mono); font-size: 12px; color: var(--brand); display: block; }
+@media (max-width: 860px) { .case { grid-template-columns: 1fr; } }
+
+/* ---------- 비교 ---------- */
+.cmp table { min-width: 720px; }
+.cmp td:last-child, .cmp th:last-child { background: var(--brand-soft); }
+.cmp th:last-child { color: var(--brand); font-weight: 600; }
+.cmp td:first-child { font-weight: 600; white-space: nowrap; }
+
+/* ---------- 가격 ---------- */
+.price { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+.price > * { min-width: 0; }
+.plan { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 28px; display: grid; gap: 14px; align-content: start; background: var(--bg); }
+.plan.feature { border-color: var(--brand); }
+.plan .ptag { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.plan h3 { font-size: 21px; }
+.plan .how { color: var(--muted); font-size: 14.5px; }
+.plan .amt { font-family: var(--f-mono); font-size: 14px; border: 1px dashed var(--line-strong); border-radius: 10px; padding: 12px 14px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.plan .amt span { color: var(--muted); }
+.plan ul { margin: 0; padding-left: 18px; font-size: 14.5px; display: grid; gap: 5px; }
+.price-note { margin-top: 20px; font-size: 14px; color: var(--muted); }
+@media (max-width: 860px) { .price { grid-template-columns: 1fr; } }
+
+/* ---------- 팀 ---------- */
+.team { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+.team > * { min-width: 0; }
+.person { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 28px; display: grid; gap: 10px; align-content: start; background: var(--bg); }
+.person .role { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.person h3 { font-size: 24px; }
+.person .one { font-weight: 600; }
+.person ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14.5px; display: grid; gap: 4px; }
+.person .keys { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.person .keys span { font-family: var(--f-mono); font-size: 11.5px; padding: 3px 9px; border-radius: 999px; background: var(--ghost); border: 1px solid var(--line); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 20px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
+.stats > div { padding: 22px 24px; border-left: 1px solid var(--line); min-width: 0; background: var(--bg); }
+.stats > div:first-child { border-left: 0; }
+.stats b { font-family: var(--f-mono); font-size: clamp(28px, 3.4vw, 38px); display: block; letter-spacing: -0.03em; }
+.stats span { color: var(--muted); font-size: 14px; }
+@media (max-width: 860px) {
+  .team { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats > div:nth-child(3) { border-left: 0; }
+  .stats > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+/* ---------- 사업계획서 서브 ---------- */
+.subband { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: 28px; }
+.subband > div { min-width: 0; flex: 1 1 420px; }
+.subband .free { font-family: var(--f-mono); font-size: 12px; color: var(--machine); border: 1px solid color-mix(in srgb, var(--machine) 50%, transparent); border-radius: 6px; padding: 1px 7px; }
+.subband h3 { font-size: clamp(20px, 2.2vw, 24px); margin-top: 10px; }
+.subband p { color: var(--muted); margin-top: 8px; font-size: 15px; max-width: 64ch; }
+
+/* ---------- FAQ ---------- */
+.faq { margin-top: 36px; border-top: 1px solid var(--line-strong); }
+.faq details { border-bottom: 1px solid var(--line-strong); }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 4px; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-mono); color: var(--brand); font-size: 20px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq .ans { padding: 0 4px 22px; color: var(--muted); max-width: 72ch; font-size: 15.5px; }
+
+/* ---------- 신청 폼 ---------- */
+.apply { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+.apply > * { min-width: 0; }
+.apply h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.25; margin-top: 14px; }
+.apply .steps { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.apply .steps li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 15px; counter-increment: s; }
+.apply .steps li::before { content: counter(s); font-family: var(--f-mono); font-size: 12.5px; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand); }
+.contact-line { margin-top: 26px; font-size: 14px; color: var(--muted); }
+.contact-line b { color: var(--fg); font-family: var(--f-mono); user-select: all; }
+form { border: 1px solid var(--line-strong); border-radius: 18px; padding: 26px; background: var(--panel); display: grid; gap: 16px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.frow > * { min-width: 0; }
+.field { display: grid; gap: 6px; }
+label, .flabel { font-size: 13.5px; font-weight: 600; }
+input, select, textarea {
+  font: inherit; font-size: 15px; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line-strong); border-radius: 10px; padding: 11px 13px; width: 100%;
+}
+textarea { min-height: 96px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--brand); outline-offset: 0; border-color: transparent; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips label { font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+.chips input { width: auto; accent-color: var(--brand); }
+.form-msg { font-size: 14px; padding: 12px 14px; border-radius: 10px; background: var(--machine-soft); color: var(--fg); }
+.form-fine { font-size: 12.5px; color: var(--muted); }
+@media (max-width: 860px) { .apply { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .frow { grid-template-columns: 1fr; } }
+
+/* ---------- FOOTER ---------- */
+footer { border-top: 1px solid var(--line); background: var(--panel); padding-block: 48px 36px; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+.foot > div { min-width: 0; }
+.foot .tagline { color: var(--muted); font-size: 14px; margin-top: 10px; max-width: 34ch; }
+.foot .legal { display: grid; gap: 4px; font-size: 12.5px; color: var(--muted); }
+.foot .legal strong { color: var(--fg); font-size: 14px; font-weight: 600; }
+.foot-bottom { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12.5px; color: var(--muted); }
+.foot-bottom nav { display: flex; gap: 14px; flex-wrap: wrap; }
+.foot-bottom a { text-decoration: none; }
+.foot-bottom a:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="co·founder 홈">
+      <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="7" fill="none" stroke="var(--brand)" stroke-width="1.6"/>
+        <circle cx="9" cy="9" r="3" fill="var(--human)"/>
+        <circle cx="17" cy="17" r="3" fill="var(--brand)"/>
+        <path d="M11 11 L15 15" stroke="var(--fg)" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-word">co·founder</span>
+      <span class="brand-tag">AX</span>
+    </a>
+    <nav class="nav-links" aria-label="주요">
+      <a href="#ax">AX란</a>
+      <a href="#diagnosis">AX 사업화 진단</a>
+      <a href="#tips">팁스 사업화</a>
+      <a href="#service">서비스</a>
+      <a href="#case">사례</a>
+      <a href="#pricing">가격</a>
+      <a class="sub" href="#bizplan">사업계획서</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://spnv.jengablock.com/login">로그인</a>
+      <a class="btn btn-primary" href="#apply">AX 진단 신청</a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="wrap">
+    <nav class="mobile-menu" id="mobile-menu" aria-label="모바일 메뉴" hidden>
+      <a href="#ax">AX란</a>
+      <a href="#diagnosis">AX 사업화 진단</a>
+      <a href="#tips">팁스 사업화</a>
+      <a href="#service">서비스</a>
+      <a href="#case">사례</a>
+      <a href="#pricing">가격</a>
+      <a href="#bizplan">사업계획서 (무료)</a>
+      <a href="https://spnv.jengablock.com/login">로그인</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-label="소개">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">AX Company Builder</p>
+      <h1>AI를 쓰는 회사에서,<br><em>AI가 일하는 회사</em>로.</h1>
+      <p class="lead">코파운더는 사람이 쥐고 있던 결정을 찾아 AI와 코드로 옮기고, 옮긴 뒤에도 책임지고 운영하는 AX 컴퍼니빌더입니다. 진단부터 구축과 운영까지 한 팀이 맡습니다.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#apply">AX 사업화 진단 신청 <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#diagnosis">AX 시스템 지도 보기</a>
+      </div>
+      <p class="hero-note">초기창업기업(업력 3년 이하) · AX 전환이 필요한 기존 사업자를 위한 서비스입니다.<br>아직 아이디어 단계라면 <a href="#bizplan">무료 사업계획서</a>부터 시작하세요.</p>
+    </div>
+
+    <div class="minimap" aria-label="결정 노드가 사람 레인에서 AI 레인으로 이동하는 예시 지도">
+      <div class="minimap-top">
+        <span class="minimap-title">AX SYSTEM MAP · 00푸드 (예시)</span>
+        <span class="minimap-state" id="hero-state">전환 전</span>
+      </div>
+      <div class="lanes mini" id="hero-map" style="--cols:3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 대상 ============ -->
+<section class="section alt" aria-labelledby="who-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">For whom</p>
+      <h2 class="h2" id="who-title">만들 사람보다, 결정할 사람이 부족한 회사</h2>
+      <p class="lead">시점은 달라도 병목은 같습니다. 대표가 모든 판단을 쥐고 있어서, 사업이 커지는 만큼 사람이 늘어야 하는 구조입니다.</p>
+    </div>
+    <div class="who">
+      <article class="who-card">
+        <span class="tag">TARGET 01 · 초기창업기업</span>
+        <h3>업력 3년 이하, 성장해야 하는 회사</h3>
+        <p class="quote">"서비스는 돌아가는데, 고칠 사람도 판단할 사람도 없습니다."</p>
+        <ul>
+          <li>개발자를 뽑지 못했거나, 뽑아도 유지가 안 됩니다</li>
+          <li>팁스 등 기술 사업화를 준비하지만 AI 기술개발 과제가 막연합니다</li>
+          <li>매출이 늘수록 대표의 수작업도 같이 늘어납니다</li>
+        </ul>
+        <p class="stat">3년 이내 스타트업 폐업률 70% · 개발·운영 3년 비용 약 5,100만원</p>
+      </article>
+      <article class="who-card">
+        <span class="tag">TARGET 02 · 기존 사업자</span>
+        <h3>AX 사업 전환이 절실한 회사</h3>
+        <p class="quote">"성장은 꺾였는데, 어디서부터 바꿔야 할지 모르겠습니다."</p>
+        <ul>
+          <li>오프라인·엑셀·수작업 기반 운영에서 벗어나야 합니다</li>
+          <li>AI 도구는 써봤지만 일하는 방식은 그대로입니다</li>
+          <li>내부에 전환 방향을 판단할 사람이 없습니다</li>
+        </ul>
+        <p class="stat">두 번째 수익원을 찾는 대표의 수요는 경기와 무관하게 계속 발생합니다</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 현실 ============ -->
+<section class="section" aria-labelledby="reality-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Reality</p>
+      <h2 class="h2" id="reality-title">AX가 중요하다는 데는 모두 동의합니다.<br>그런데 결과는 다릅니다.</h2>
+    </div>
+    <div class="reality">
+      <div><span class="big num">95%</span><p>GenAI에 투자하고도 측정 가능한 수익을 얻지 못한 조직</p></div>
+      <div><span class="big num">5%</span><p>실제 가치를 만든 AI 파일럿</p></div>
+      <div><span class="big num">90%</span><p>회사 시스템 대신 직원 개인 도구로 AI를 쓰는 기업</p></div>
+    </div>
+    <p class="src">출처: MIT NANDA, The GenAI Divide: State of AI in Business, 2025</p>
+    <div class="drucker">
+      <q>측정할 수 없으면 통제할 수 없고, 통제할 수 없으면 개선할 수 없다.</q>
+      <span>피터 드러커 · 대부분의 AX가 실패하는 이유는 성공과 실패를 측정할 단위가 없기 때문입니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AX 정의 ============ -->
+<section class="section alt" id="ax" aria-labelledby="ax-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What is AX</p>
+      <h2 class="h2" id="ax-title">AX는 AI 도구의 개수가 아니라,<br>누가 결정하는가의 변화입니다</h2>
+      <p class="lead">같은 AI를 써도 업무 구조가 그대로라면 도입에 머뭅니다. AX는 사람이 쥐고 있던 결정권과 실행 방식을 AI 중심으로 다시 설계하는 일입니다.</p>
+    </div>
+    <div class="define">
+      <div class="flowcard">
+        <p class="eyebrow" style="color:var(--muted)">AI 도입</p>
+        <h3>기존 업무에 AI 도구를 추가</h3>
+        <div class="chain">
+          <span class="h">접수</span><b>→</b><span class="h">검토</span><b>→</b><span class="h">승인</span><b>→</b><span class="h">실행</span>
+          <span class="tool">+ AI 도구</span>
+        </div>
+        <p class="sub">업무 흐름과 승인 구조는 그대로입니다. 판단은 여전히 사람의 주의력에 묶여 있습니다.</p>
+      </div>
+      <div class="flowcard ax">
+        <p class="eyebrow">AX</p>
+        <h3>결정과 실행을 AI 중심으로 재구성</h3>
+        <div class="chain">
+          <span class="m">입력</span><b>→</b><span class="a">AI 판단</span><b>→</b><span class="h">사람은 예외만</span><b>→</b><span class="m">실행</span><b>→</b><span class="a">기록·기준 개선</span>
+        </div>
+        <p class="sub">AI가 선택된 결정과 실행을 맡고, 사람은 예외와 책임을 관리합니다. 결과는 다시 기준에 반영됩니다.</p>
+      </div>
+    </div>
+    <div class="levels" aria-label="AI 권한 3단계">
+      <div><span class="lv">LEVEL 1</span><h4>사용 · Use</h4><p>AI가 만든 시스템을 사람이 씁니다. 엑셀과 수작업이 사라지고 데이터가 쌓이기 시작합니다.</p><div class="bar"><i style="width:33%"></i></div></div>
+      <div><span class="lv">LEVEL 2</span><h4>변경 · Modify</h4><p>반복 업무의 흐름을 AI와 코드가 이어받습니다. 사람 손이 닿던 인계가 자동으로 바뀝니다.</p><div class="bar"><i style="width:66%"></i></div></div>
+      <div><span class="lv">LEVEL 3</span><h4>결정 · Decide</h4><p>운영 정책과 데이터로 AI가 판단합니다. AI가 만든 시스템을 AI가 운영합니다.</p><div class="bar"><i style="width:100%"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AX 사업화 진단 ============ -->
+<section class="section" id="diagnosis" aria-labelledby="diag-title">
+  <div class="wrap">
+    <div class="diag-intro">
+      <div class="sec-head">
+        <p class="eyebrow">AX 사업화 진단 · AX System Map</p>
+        <h2 class="h2" id="diag-title">AX는 지도를 그리는 데서 시작합니다</h2>
+        <p class="lead">회사의 이익을 움직이는 결정을 하나의 측정 단위(결정 노드)로 쪼개고, 누가 그 결정을 쥐고 있는지 지도로 그립니다. 어느 칸을 AI로 넘길지가 곧 개발 범위가 됩니다.</p>
+      </div>
+      <div class="formula-card">
+        <span class="f-lbl">AX SYSTEM MAP =</span>
+        <p class="f">이익식<span> (결정 노드)</span><br>+ 결정지도<span> (결정권 레인)</span></p>
+      </div>
+    </div>
+
+    <!-- STEP 1 이익식 -->
+    <div class="step-head">
+      <span class="step-no">STEP 1</span>
+      <h3>이익식 정의: 무엇을 바꾸는 결정인가</h3>
+      <span class="example-tag">예시 · 00푸드 반찬 구독 커머스</span>
+      <p>이익을 구성하는 항을 먼저 정하고, 각 결정 노드를 그 항에 연결합니다. 항을 누르면 아래 결정지도에서 해당 노드가 강조됩니다.</p>
+    </div>
+    <div class="equation">
+      <div class="eq-line" role="group" aria-label="이익식">
+        <span>이익</span><span class="op">=</span><span class="op">(</span>
+        <button class="lever rev" type="button" data-lever="주문 수" aria-pressed="false"><small>수익 항</small>주문 수</button>
+        <span class="op">×</span>
+        <button class="lever rev" type="button" data-lever="주문당 수익" aria-pressed="false"><small>수익 항</small>주문당 수익</button>
+        <span class="op">)</span><span class="op">−</span><span class="op">(</span>
+        <button class="lever cost" type="button" data-lever="운영 시간" aria-pressed="false"><small>비용 항</small>운영 시간</button>
+        <span class="op">+</span>
+        <button class="lever cost" type="button" data-lever="원가·배송비" aria-pressed="false"><small>비용 항</small>원가·배송비</button>
+        <span class="op">)</span>
+      </div>
+      <div class="lever-nodes" id="lever-nodes"></div>
+      <p class="eq-hint">모든 결정 노드는 이익식의 한 항에 연결됩니다. 그래서 AX의 성과를 AI 사용량이 아니라 이익 항목의 변화로 잴 수 있습니다.</p>
+    </div>
+
+    <!-- STEP 2 결정지도 -->
+    <div class="step-head">
+      <span class="step-no">STEP 2</span>
+      <h3>결정지도: 그 결정을 누가 쥐고 있는가</h3>
+      <span class="example-tag">예시 · 같은 회사의 전환 전과 후</span>
+      <p>업무 순서는 같습니다. 달라지는 것은 각 결정이 놓인 레인, 즉 결정권의 주인입니다.</p>
+    </div>
+    <div class="mapbox">
+      <div class="map-toolbar">
+        <div class="seg" role="group" aria-label="지도 상태">
+          <button type="button" id="btn-before" aria-pressed="true">AX 전환 전</button>
+          <button type="button" id="btn-after" aria-pressed="false">AX 전환 후</button>
+        </div>
+        <div class="map-counts num" id="map-counts" aria-live="polite"></div>
+      </div>
+      <div class="map-scroll">
+        <div class="lanes" id="main-map" style="--cols:4"></div>
+      </div>
+      <div class="legend">
+        <span><i class="sw h"></i>사람이 판단 · 사람 손으로 인계</span>
+        <span><i class="sw a"></i>AI 에이전트가 판단 · 예외만 사람에게</span>
+        <span><i class="sw m"></i>코드·크론이 보장 · 자동 인계</span>
+      </div>
+      <p class="map-caption" id="map-caption"></p>
+    </div>
+
+    <!-- STEP 3 노드 명세 + 증거 -->
+    <div class="step-head">
+      <span class="step-no">STEP 3</span>
+      <h3>결정 노드 명세와 증거 검증</h3>
+      <p>노드 하나에 입력, 판단 근거, 결정권, 실행, 결과 관측과 변경 이력을 모두 기록합니다. 그리고 인터뷰가 아니라 증거로 채웁니다.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec">
+        <div class="spec-top"><h4>구독 갱신 대상 판정</h4><code>key · renewal_target</code></div>
+        <dl>
+          <dt>phase</dt><dd>주문·결제</dd>
+          <dt>lever</dt><dd>주문 수</dd>
+          <dt>lane</dt><dd><span class="pill h">사람</span> → <span class="pill m">코드·크론</span></dd>
+          <dt>guarantee</dt><dd>관행 → cron</dd>
+          <dt>basis</dt><dd>구독 상태 · 결제 이력 · 갱신 주기</dd>
+          <dt>obs</dt><dd>갱신 성공·실패 로그, 재시도 결과</dd>
+          <dt>verdict</dt><dd><span class="pill ok">확인</span> 코드 증거로 검증</dd>
+          <dt>counter</dt><dd>월 처리 건수 실측</dd>
+          <dt>history</dt><dd>결정권 이동 주체·시각·사유 기록</dd>
+        </dl>
+      </div>
+      <div class="evidence">
+        <div class="ev"><span class="k">01</span><h4>코드·데이터 분석으로 1차 지도</h4><p>저장소와 데이터 흐름에서 실제로 돌아가는 결정을 먼저 찾습니다.</p></div>
+        <div class="ev"><span class="k">02</span><h4>코드 밖 업무는 인터뷰로 취합</h4><p>대표와 담당자 머릿속에 있는 판단 기준을 노드로 옮깁니다.</p></div>
+        <div class="ev"><span class="k">03</span><h4>담당자가 코파운더 MCP로 직접 입력</h4><p>쓰던 AI(ChatGPT·Claude)에 연결해 자기 프로세스를 입력하고 승인합니다.</p></div>
+        <p class="ev-note"><b>왜 증거인가.</b> "그건 자동입니다"라고 알려진 업무도 코드를 열어 보면 스위치가 꺼져 있고 승인은 사람에게 있는 경우가 있습니다. 물어서 그린 지도는 믿고 있는 절차를 그립니다. 코파운더의 지도는 실제로 돌아가는 절차를 그립니다.</p>
+      </div>
+    </div>
+
+    <div class="equals" aria-label="AX 시스템 지도 구성">
+      <span class="part">이익식<small>무엇을 바꾸는 결정인가</small></span>
+      <span class="op">+</span>
+      <span class="part">결정지도<small>누가 그 결정을 쥐고 있는가</small></span>
+      <span class="op">=</span>
+      <span class="part res">AX 시스템 지도<small>어느 칸을 넘길지 = 개발 범위</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIPS ============ -->
+<section class="section alt" id="tips" aria-labelledby="tips-title">
+  <div class="wrap tips">
+    <div>
+      <p class="eyebrow">AX 사업화 진단 × TIPS</p>
+      <h2 class="h2" id="tips-title">팁스를 준비한다면,<br>AX 지도부터 그리세요</h2>
+      <p class="lead">팁스는 초기창업기업이 가장 원하는 기술 사업화 트랙입니다. 운영사와 심사가 보는 것은 기술개발 과제이고, 초기창업기업의 AI 기술개발 과제는 지금 돌아가는 사업의 결정 지도에서 나옵니다.</p>
+      <ul class="tips-points">
+        <li>지금의 운영(AX)과 앞으로 만들 기술(R&amp;D)을 한 지도 위에서 연결합니다</li>
+        <li>도메인 자산을 AI 기술개발 과제로 번역합니다</li>
+        <li>팁스 적합성을 정직하게 진단하고, 자금 트랙과 개발 범위까지 제안합니다</li>
+      </ul>
+    </div>
+    <div class="tips-flow">
+      <div class="tf"><span class="when">NOW · 운영</span><div><h4>AX 시스템 지도</h4><p>이익식과 결정지도로 지금 사람에게 묶인 결정을 찾습니다.</p></div></div>
+      <div class="tf"><span class="when">NEXT · 기술</span><div><h4>AI 기술개발 과제 도출</h4><p>AI로 넘길 결정 중 기술적 난도와 확장성이 있는 칸을 R&amp;D 과제로 정의합니다.</p></div></div>
+      <div class="tf hl"><span class="when">TIPS · 사업화</span><div><h4>팁스 사업화 전략</h4><p>적합성 진단, 운영사 전략, 자금 트랙과 개발 스코프를 한 번에 설계합니다.</p></div></div>
+      <div class="tf"><span class="when">BUILD · 구현</span><div><h4>AX 전환 구축과 운영</h4><p>과제로 정의한 결정을 실제 AI 레인에 배치하고, 코파운더가 운영을 이어갑니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 서비스 ============ -->
+<section class="section" id="service" aria-labelledby="svc-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Service</p>
+      <h2 class="h2" id="svc-title">진단하고, 옮기고, 책임지고 운영합니다</h2>
+      <p class="lead">만들어 넘기고 끝나는 관계가 아닙니다. 구축 이후의 수정, 개선, 장애 대응까지 코파운더가 계속 맡습니다.</p>
+    </div>
+    <div class="svc">
+      <div>
+        <span class="sno">01 · 진단</span>
+        <h3>AX 사업화 진단</h3>
+        <p class="what">결정 지도를 그리고 증거로 검증합니다.</p>
+        <ul><li>AX 시스템 지도 설계 (이익식 + 결정지도)</li><li>첫 파일럿 결정 노드 선정</li><li>팁스 사업화 적합성 진단</li></ul>
+        <p class="out">산출물<br><b>회사 고유의 AX 시스템 지도</b></p>
+      </div>
+      <div>
+        <span class="sno">02 · 전환</span>
+        <h3>AX 전환 구축</h3>
+        <p class="what">고른 결정 노드를 AI 레인으로 옮깁니다.</p>
+        <ul><li>백오피스·어드민 등 필요한 시스템 구축</li><li>판단 로직과 AI 실행 모듈 구현</li><li>기록과 예외 이관 구조 구현</li></ul>
+        <p class="out">산출물<br><b>AI 레인에서 작동하는 결정 노드</b></p>
+      </div>
+      <div>
+        <span class="sno">03 · 운영</span>
+        <h3>AX 운영</h3>
+        <p class="what">넘긴 것을 지키고, 다음 칸으로 넓힙니다.</p>
+        <ul><li>상시 운영 에이전트 24시간 관제</li><li>장애 대응·업데이트·고객 응대</li><li>운영 이력으로 지도 갱신, 다음 노드 확장</li></ul>
+        <p class="out">산출물<br><b>자라는 AX 운영 자산</b></p>
+      </div>
+    </div>
+
+    <div class="pilot">
+      <div>
+        <p class="eyebrow">First pilot · 4 weeks</p>
+        <h3 style="margin-top:12px">4주 안에 결정 노드 하나를 AI 레인에 배치합니다</h3>
+        <p class="lead" style="font-size:15.5px">첫 파일럿은 가장 중요한 결정이 아니라, 안전하게 전환 과정을 확인할 수 있는 결정부터 고릅니다.</p>
+        <ul class="criteria">
+          <li><b>반복</b><span>같은 판단이 일정한 주기로 반복됩니다</span></li>
+          <li><b>근거</b><span>입력과 판단 기준을 확인할 수 있습니다</span></li>
+          <li><b>복구</b><span>오류나 예외를 사람이 즉시 처리할 수 있습니다</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="weeks">
+          <div><span class="w">WEEK 1</span><h4>시스템 지도</h4><ul><li>업무 구간 확정</li><li>코드·문서·인터뷰 확인</li><li>결정 노드와 흐름 작성</li></ul></div>
+          <div><span class="w">WEEK 2</span><h4>노드 선정·명세</h4><ul><li>안전한 대상 결정 선택</li><li>입력·기준·예외 합의</li><li>AI 레인 설계</li></ul></div>
+          <div><span class="w">WEEK 3</span><h4>구현</h4><ul><li>데이터 연결</li><li>판단 로직 구현</li><li>기록·예외 이관 구현</li></ul></div>
+          <div><span class="w">WEEK 4</span><h4>작동 확인</h4><ul><li>AI 판단 실행</li><li>근거·결과 기록 확인</li><li>운영 지침 인계</li></ul></div>
+        </div>
+        <p class="done-line"><b>완료 기준</b> · AI가 판단하고, 근거와 결과를 기록하고, 판단할 수 없는 경우 담당자에게 즉시 넘기고, 같은 판단 과정을 다시 재현할 수 있는 상태</p>
+      </div>
+    </div>
+
+    <div class="loop">
+      <p class="eyebrow">How we work</p>
+      <h3 style="margin-top:10px;font-size:clamp(19px,2vw,22px)">대화로 요청하고, 운영 이력이 다시 지도가 됩니다</h3>
+      <div class="loop-steps">
+        <div><span class="n">1 · 대화</span><h4>쓰던 AI에서 요청</h4><ul><li>코파운더 MCP 연결</li><li>ChatGPT · Claude 등</li><li>115개 대화 도구</li></ul></div>
+        <div><span class="n">2 · 문서</span><h4>과제 단위로 정리</h4><ul><li>요청을 기능 레벨로 정의</li><li>진행 상태 실시간 확인</li></ul></div>
+        <div><span class="n">3 · 개발</span><h4>견적 승인 후 착수</h4><ul><li>기능별 견적 산출</li><li>크레딧 결제 · AI 개발 · 배포</li></ul></div>
+        <div><span class="n">4 · 운영</span><h4>이력이 지도에 반영</h4><ul><li>변경 히스토리 누적</li><li>AX 시스템 지도 업데이트</li></ul></div>
+      </div>
+      <p class="loop-foot">쌓인 이력은 다음 파일럿의 출발점입니다. 다음 노드는 처음부터 다시 시작하지 않고, 축적된 지도 위에서 이어갑니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 사례 ============ -->
+<section class="section alt" id="case" aria-labelledby="case-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Case · 회사명 비공개</p>
+      <h2 class="h2" id="case-title">월 200만원 동네 반찬 가게가<br>월 1억 플랫폼이 되는 동안</h2>
+      <p class="lead">위 결정지도의 전환 전과 후는 같은 회사, 00푸드의 실제 운영 상태를 익명화한 것입니다.</p>
+    </div>
+    <div class="case">
+      <div class="case-num">
+        <div class="case-row">
+          <div><span class="lbl">AX 전환 전 월 매출</span><span class="v num">200만</span></div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div><span class="lbl">AX 전환 후 월 매출</span><span class="v after num">1억</span></div>
+        </div>
+        <div class="case-x">
+          <div><b class="num">50×</b><span>월 매출 규모</span></div>
+          <div><b>동일</b><span>내부 관리 스태프 수</span></div>
+        </div>
+        <p class="case-quote">AX의 성과는 사람을 줄이는 것이 아니라, 같은 조직이 더 큰 사업을 운영하는 능력으로 나타납니다.</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>단계</th><th>무엇을 만들었나</th><th>AI 권한</th><th>무엇이 달라졌나</th></tr></thead>
+          <tbody>
+            <tr><td><span class="st">01</span>어드민 구축</td><td>주문·재고·배차를 시스템으로 이관</td><td>사용</td><td>엑셀 수작업 제거, 데이터 축적 시작</td></tr>
+            <tr><td><span class="st">02</span>운영 자동화</td><td>주문에서 배송까지 흐름 전체 연결</td><td>사용 → 변경</td><td>사람 손이 닿던 반복 업무 축소</td></tr>
+            <tr><td><span class="st">03</span>AI 문의 분석</td><td>1:1 문의 패턴 분석, FAQ 자동 생성</td><td>변경</td><td>반복 문의가 자동으로 정리됨</td></tr>
+            <tr><td><span class="st">04</span>AI 자율 응대</td><td>운영정책 + 주문데이터 + 로직 조합 응대</td><td>결정</td><td>AI가 만든 시스템을 AI가 운영</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 비교 ============ -->
+<section class="section" aria-labelledby="cmp-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Why co·founder</p>
+      <h2 class="h2" id="cmp-title">교육과 컨설팅에서 멈추지 않습니다</h2>
+      <p class="lead">대부분의 AX는 교육이나 컨설팅으로 시작해 보고서로 끝납니다. 코파운더는 측정 가능한 지도에서 시작해 운영 책임까지 집니다.</p>
+    </div>
+    <div class="tbl-wrap cmp" style="margin-top:36px">
+      <table>
+        <thead><tr><th></th><th>AI 교육형</th><th>AX 컨설팅형</th><th>SI 외주 · AI 앱빌더</th><th>co·founder</th></tr></thead>
+        <tbody>
+          <tr><td>시작점</td><td>임직원 AI 활용 교육</td><td>현황 인터뷰, 전략 보고서</td><td>만들 기능 목록</td><td>이익식과 결정지도</td></tr>
+          <tr><td>측정 단위</td><td>수강·활용률</td><td>과제 수</td><td>개발 완료 여부</td><td>AI 레인으로 옮긴 결정 노드</td></tr>
+          <tr><td>근거</td><td>설문</td><td>인터뷰</td><td>요구사항 문서</td><td>코드·데이터 증거 대조</td></tr>
+          <tr><td>구현</td><td>없음</td><td>별도 발주</td><td>있음</td><td>있음 (AI 개발 · 배포)</td></tr>
+          <tr><td>운영 책임</td><td>없음</td><td>없음</td><td>유지보수 계약 별도</td><td>상시 에이전트 관제까지</td></tr>
+          <tr><td>대표의 역할</td><td>도구 활용</td><td>실행 주체</td><td>PM 겸 검수자</td><td>중요한 순간 확인·승인</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 가격 ============ -->
+<section class="section alt" id="pricing" aria-labelledby="price-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h2" id="price-title">만든 것이 아니라,<br>돌아가는 만큼 냅니다</h2>
+      <p class="lead">진단, 구축, 운영의 과금 방식이 다릅니다. 상시 운영 에이전트는 구축비 없이 실행 시간만큼만 비용이 발생합니다.</p>
+    </div>
+    <div class="price">
+      <article class="plan">
+        <span class="ptag">01 · 진단</span>
+        <h3>AX 사업화 진단</h3>
+        <p class="how">AX 시스템 지도 설계와 팁스 적합성 진단</p>
+        <!-- TODO(Stan): 진단 금액 입력 -->
+        <div class="amt"><span>진단 비용</span><strong>[금액 입력]</strong></div>
+        <ul><li>이익식 · 결정지도 설계</li><li>첫 파일럿 노드 선정</li><li>팁스 사업화 방향 제안</li></ul>
+      </article>
+      <article class="plan">
+        <span class="ptag">02 · 구축</span>
+        <h3>AX 전환 구축</h3>
+        <p class="how">고객사가 쓰는 시스템(백오피스·어드민)은 크레딧으로 구축</p>
+        <!-- TODO(Stan): 크레딧 단가 입력 -->
+        <div class="amt"><span>크레딧</span><strong>[금액 입력]</strong></div>
+        <ul><li>기능 단위 견적, 승인한 것부터 개발</li><li>크레딧 충전 · 사용한 만큼 차감</li><li>4주 파일럿 포함 구성 가능</li></ul>
+      </article>
+      <article class="plan feature">
+        <span class="ptag">03 · 운영</span>
+        <h3>AX 운영 에이전트</h3>
+        <p class="how">상시 돌아가는 에이전트는 구축비 없이 실행 시간당 과금</p>
+        <!-- TODO(Stan): 시간당 운영 단가 입력 -->
+        <div class="amt"><span>실행 1시간</span><strong>[금액 입력]</strong></div>
+        <ul><li>관제 · 장애 대응 · 업데이트를 코파운더가 책임</li><li>AI 토큰 비용은 고객사 계정에서 사용한 만큼</li><li>자동화한 업무별 투자 대비 BEP 확인</li></ul>
+      </article>
+    </div>
+    <p class="price-note">액셀러레이터·VC 포트폴리오사와 정부·지자체 창업 프로그램은 제휴 조건이 별도로 적용됩니다.</p>
+  </div>
+</section>
+
+<!-- ============ 팀 ============ -->
+<section class="section" aria-labelledby="team-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Team</p>
+      <h2 class="h2" id="team-title">개발 전문가와 사업 전문가가 함께합니다</h2>
+    </div>
+    <div class="team">
+      <article class="person">
+        <span class="role">공동창업자 · 개발 총괄</span>
+        <h3>강주원</h3>
+        <p class="one">대기업 그룹 AX 리딩 경험을 보유한 AI 엔지니어</p>
+        <ul><li>Zero에서 MAU 100만 · 거래액 100억 규모 서비스로 스케일</li><li>SI 7년차, AI 함대 구조를 직접 설계·운영</li></ul>
+        <div class="keys"><span>MAU 100만</span><span>SI 7년차</span><span>AI 함대 설계</span></div>
+      </article>
+      <article class="person">
+        <span class="role">공동창업자 · 사업 총괄</span>
+        <h3>조기준</h3>
+        <p class="one">식품 데이터 플랫폼 엄선 창업, 100만 엄마회원 · 7년 경영</p>
+        <ul><li>30억+ 투자 유치 및 자금 조달</li><li>이마트 식품 바이어 10년</li></ul>
+        <div class="keys"><span>창업 경험</span><span>사업화</span><span>GTM</span></div>
+      </article>
+    </div>
+    <div class="stats">
+      <div><b class="num">7년+</b><span>소프트웨어 개발·운영</span></div>
+      <div><b class="num">7</b><span>운영 중인 고객사</span></div>
+      <div><b class="num">38건</b><span>고객사 진행 프로젝트</span></div>
+      <div><b class="num">2026.07</b><span>co·founder 플랫폼 오픈</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 사업계획서 서브 ============ -->
+<section class="section alt" id="bizplan" aria-labelledby="bp-title" style="padding-block:clamp(48px,6vw,72px)">
+  <div class="wrap">
+    <div class="subband">
+      <div>
+        <span class="free">FREE</span>
+        <h3 id="bp-title">아직 아이디어 단계라면, 대화로 사업계획서부터</h3>
+        <p>대화로 근거 있는 사업계획서를 무료로 받아보세요. 계정을 만들고 나눈 대화는 사업 맥락 히스토리로 쌓여, 이후 AX 사업화 진단의 출발점이 됩니다.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://spnv.jengablock.com/cofounder">무료 사업계획서 시작 <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" aria-labelledby="faq-title">
+  <div class="wrap" style="max-width:900px">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="h2" id="faq-title">자주 묻는 질문</h2>
+    <div class="faq">
+      <details><summary>AX와 AI 도입은 무엇이 다른가요?</summary><p class="ans">AI 도입은 기존 업무에 도구를 더하는 것이고, AX는 결정권이 사람에서 AI와 코드로 옮겨가는 운영 구조의 변화입니다. 코파운더는 그 변화를 결정 노드 단위로 기록하고 측정합니다.</p></details>
+      <details><summary>진단을 받으려면 무엇이 필요한가요?</summary><p class="ans">운영 중인 시스템의 코드 저장소나 데이터에 접근할 수 있으면 1차 지도를 코드와 데이터 흐름에서 도출합니다. 코드 밖의 업무는 인터뷰로 취합하고, 담당자가 코파운더 MCP로 자기 프로세스를 직접 입력할 수도 있습니다.</p></details>
+      <details><summary>개발팀이 없어도 진행할 수 있나요?</summary><p class="ans">네. 구축과 운영은 코파운더의 AI 개발 체계가 맡습니다. 대표님과 담당자는 판단 기준과 예외 조건을 승인하고, 전환 상태를 확인하는 역할을 합니다.</p></details>
+      <details><summary>첫 파일럿은 어느 정도 범위인가요?</summary><p class="ans">결정 노드 하나 또는 연결된 짧은 구간으로 제한해 4주 안에 완성합니다. 반복이 많고 근거를 확인할 수 있으며 되돌리기 쉬운 결정부터 시작합니다.</p></details>
+      <details><summary>팁스를 준비 중인데 어떻게 도움이 되나요?</summary><p class="ans">AX 시스템 지도에서 AI로 넘길 결정 중 기술적 난도와 확장성이 있는 칸을 AI 기술개발 과제로 정의합니다. 그 위에서 팁스 적합성 진단, 운영사 전략, 자금 트랙과 개발 범위를 함께 설계합니다.</p></details>
+      <details><summary>운영 비용은 어떻게 계산되나요?</summary><p class="ans">고객사가 쓰는 시스템은 크레딧으로 구축하고, 상시 운영 에이전트는 구축비 없이 실행 시간당 비용을 받습니다. AI 토큰 비용은 고객사 계정에서 사용한 만큼 발생합니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 신청 ============ -->
+<section class="section alt" id="apply" aria-labelledby="apply-title">
+  <div class="wrap apply">
+    <div>
+      <p class="eyebrow">Start</p>
+      <h2 id="apply-title">지금, 우리 회사의<br>AX 시스템 지도를 그려보세요</h2>
+      <ol class="steps">
+        <li>신청서를 보내주시면 담당 PM이 연락드립니다</li>
+        <li>1차 상담에서 이익식과 핵심 결정을 함께 정리합니다</li>
+        <li>AX 시스템 지도와 첫 파일럿 제안을 드립니다</li>
+      </ol>
+      <p class="contact-line">문의 메일 <b>hello@supernova.kr</b></p>
+    </div>
+    <form id="apply-form" novalidate>
+      <div class="frow">
+        <div class="field"><label for="f-company">회사명</label><input id="f-company" name="company" autocomplete="organization" required placeholder="예: 00푸드"></div>
+        <div class="field"><label for="f-name">담당자</label><input id="f-name" name="name" autocomplete="name" required placeholder="이름 · 직함"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="f-email">이메일</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@company.com"></div>
+        <div class="field"><label for="f-phone">연락처</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
+      </div>
+      <div class="field">
+        <span class="flabel" id="f-type-lbl">회사 구분</span>
+        <div class="chips" role="radiogroup" aria-labelledby="f-type-lbl">
+          <label><input type="radio" id="f-type-early" name="type" value="초기창업기업" checked> 초기창업기업 (3년 이하)</label>
+          <label><input type="radio" id="f-type-exist" name="type" value="기존사업자"> 기존 사업자</label>
+        </div>
+      </div>
+      <div class="field">
+        <span class="flabel" id="f-int-lbl">관심 분야</span>
+        <div class="chips" role="group" aria-labelledby="f-int-lbl">
+          <label><input type="checkbox" id="f-int-map" name="interest" value="AX 시스템 지도" checked> AX 시스템 지도</label>
+          <label><input type="checkbox" id="f-int-tips" name="interest" value="팁스 사업화"> 팁스 사업화</label>
+          <label><input type="checkbox" id="f-int-build" name="interest" value="시스템 구축"> 시스템 구축</label>
+          <label><input type="checkbox" id="f-int-ops" name="interest" value="운영 에이전트"> 운영 에이전트</label>
+        </div>
+      </div>
+      <div class="field"><label for="f-pain">지금 가장 사람 손이 많이 가는 업무는 무엇인가요?</label><textarea id="f-pain" name="pain" placeholder="예: 매일 아침 주문을 엑셀로 옮겨 배송 순서를 정합니다"></textarea></div>
+      <button class="btn btn-primary" type="submit">AX 사업화 진단 신청 <span class="arr" aria-hidden="true">→</span></button>
+      <p class="form-msg" id="form-msg" role="status" hidden></p>
+      <p class="form-fine">제출하신 정보는 상담 목적으로만 사용합니다.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" aria-label="co·founder 홈">
+          <span class="brand-word">co·founder</span><span class="brand-tag">AX</span>
+        </a>
+        <p class="tagline">사업과 조직의 AX를 구축하는 AI 컴퍼니빌더</p>
+      </div>
+      <div class="legal">
+        <strong>주식회사 젠가블록 (JengaBlock Corp.) · 대표자 강주원</strong>
+        <span>사업자등록번호 153-81-01734 · 통신판매업신고번호 2020-부산수영-0484</span>
+        <span>부산광역시 수영구 수영로 759, 지하1층 이룸비즈니스센터 504호</span>
+        <span>유선전화 010-8767-8644 · 문의 hello@supernova.kr</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> 주식회사 젠가블록. All rights reserved.</span>
+      <nav aria-label="약관">
+        <a href="https://spnv.jengablock.com/privacy">개인정보처리방침</a>
+        <a href="https://spnv.jengablock.com/cookies">쿠키방침</a>
+        <a href="https://spnv.jengablock.com/refund">환불규정</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var LANES = ["사람", "AI 에이전트", "코드·크론"];
+
+  // 00푸드 예시 결정 노드 — before/after 는 레인 인덱스(0 사람, 1 AI, 2 코드·크론)
+  var NODES = [
+    { id: "acq",      t: "신규 유입 채널",   p: 0, lever: "주문 수",     b: 0, a: 0 },
+    { id: "remind",   t: "재구매 알림 시점", p: 0, lever: "주문 수",     b: 0, a: 1 },
+    { id: "renew",    t: "구독 갱신 대상 판정", p: 1, lever: "주문 수",  b: 0, a: 2 },
+    { id: "retry",    t: "결제 실패 재시도", p: 1, lever: "주문 수",     b: 0, a: 2 },
+    { id: "discount", t: "할인 범위",        p: 1, lever: "주문당 수익", b: 0, a: 0 },
+    { id: "stock",    t: "재고 발주량",      p: 2, lever: "원가·배송비", b: 0, a: 1 },
+    { id: "route",    t: "배차 경로",        p: 2, lever: "원가·배송비", b: 0, a: 2 },
+    { id: "menu",     t: "주간 메뉴 구성",   p: 2, lever: "주문당 수익", b: 0, a: 0 },
+    { id: "cs",       t: "1:1 문의 응대",    p: 3, lever: "운영 시간",   b: 0, a: 1 },
+    { id: "stop",     t: "구독 자동 중단",   p: 3, lever: "운영 시간",   b: 0, a: 2 }
+  ];
+  var LEVER_TAG = { "주문 수": "L1", "주문당 수익": "L2", "운영 시간": "C1", "원가·배송비": "C2" };
+
+  var HERO_NODES = [
+    { id: "h1", t: "재구매 알림", p: 0, b: 0, a: 1 },
+    { id: "h2", t: "구독 갱신 판정", p: 1, b: 0, a: 2 },
+    { id: "h3", t: "1:1 문의 응대", p: 2, b: 0, a: 1 }
+  ];
+
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function buildMap(root, phases, nodes, mini) {
+    root.innerHTML = "";
+    var row = document.createElement("div");
+    row.className = "phase-row";
+    phases.forEach(function (ph) { var s = document.createElement("span"); s.textContent = ph; row.appendChild(s); });
+    root.appendChild(row);
+    var body = document.createElement("div");
+    body.style.position = "relative";
+    LANES.forEach(function (name, i) {
+      var lane = document.createElement("div");
+      lane.className = "lane"; lane.setAttribute("data-lane", i);
+      var lbl = document.createElement("div");
+      lbl.className = "lane-label";
+      lbl.innerHTML = '<i class="lane-dot"></i><span></span>';
+      lbl.lastChild.textContent = name;
+      lane.appendChild(lbl);
+      body.appendChild(lane);
+    });
+    var cols = document.createElement("div");
+    cols.className = "phase-cols"; cols.style.top = "0";
+    phases.forEach(function () { cols.appendChild(document.createElement("i")); });
+    body.appendChild(cols);
+    var els = {};
+    nodes.forEach(function (n) {
+      var el = document.createElement("div");
+      el.className = "node";
+      el.setAttribute("data-id", n.id);
+      if (n.lever) el.setAttribute("data-lever", n.lever);
+      var label = document.createElement("span");
+      label.textContent = n.t;
+      el.appendChild(label);
+      if (!mini && n.lever) {
+        var tag = document.createElement("span");
+        tag.className = "ntag"; tag.textContent = LEVER_TAG[n.lever];
+        el.appendChild(tag);
+      }
+      var colW = "((100% - var(--label)) / " + phases.length + ")";
+      el.style.left = "calc(var(--label) + " + colW + " * " + n.p + " + 6px)";
+      el.style.width = "calc(" + colW + " - 12px)";
+      body.appendChild(el);
+      els[n.id] = el;
+    });
+    root.appendChild(body);
+    return { body: body, els: els };
+  }
+
+  function place(map, nodes, key, mini) {
+    var laneH = mini ? 76 : 128;
+    var nodeH = mini ? 30 : 34;
+    var gap = mini ? 4 : 6;
+    var groups = {};
+    nodes.forEach(function (n) {
+      var lane = n[key];
+      var g = n.p + ":" + lane;
+      (groups[g] = groups[g] || []).push(n);
+    });
+    Object.keys(groups).forEach(function (g) {
+      var list = groups[g];
+      var lane = list[0][key];
+      var total = list.length * nodeH + (list.length - 1) * gap;
+      var start = lane * laneH + (laneH - total) / 2;
+      list.forEach(function (n, i) {
+        var el = map.els[n.id];
+        el.style.top = (start + i * (nodeH + gap)) + "px";
+        el.setAttribute("data-lane", lane);
+        el.classList.toggle("moved", key === "a" && n.a !== n.b);
+      });
+    });
+  }
+
+  // ---- 히어로 미니 지도: 전환 전 → 전환 후 한 번 재생
+  var heroRoot = document.getElementById("hero-map");
+  var heroState = document.getElementById("hero-state");
+  var hero = buildMap(heroRoot, ["유입", "주문·결제", "사후관리"], HERO_NODES, true);
+  if (reduced) {
+    place(hero, HERO_NODES, "a", true);
+    heroState.textContent = "전환 후";
+  } else {
+    place(hero, HERO_NODES, "b", true);
+    setTimeout(function () { place(hero, HERO_NODES, "a", true); heroState.textContent = "전환 후"; }, 1100);
+  }
+
+  // ---- 메인 결정지도
+  var mainRoot = document.getElementById("main-map");
+  var main = buildMap(mainRoot, ["유입", "주문·결제", "생산·배송", "사후관리"], NODES, false);
+  var counts = document.getElementById("map-counts");
+  var caption = document.getElementById("map-caption");
+  var btnB = document.getElementById("btn-before");
+  var btnA = document.getElementById("btn-after");
+
+  function setState(key) {
+    place(main, NODES, key, false);
+    btnB.setAttribute("aria-pressed", key === "b");
+    btnA.setAttribute("aria-pressed", key === "a");
+    var c = [0, 0, 0];
+    NODES.forEach(function (n) { c[n[key]]++; });
+    counts.innerHTML =
+      '<span style="color:var(--human)">사람 <b>' + c[0] + '</b></span>' +
+      '<span style="color:var(--agent)">AI <b>' + c[1] + '</b></span>' +
+      '<span style="color:var(--machine)">코드·크론 <b>' + c[2] + '</b></span>';
+    caption.textContent = key === "b"
+      ? "전환 전: 10개 결정 모두 사람이 판단하고, 다음 단계도 사람이 손으로 연결합니다. 주문이 늘면 사람이 늘어야 합니다."
+      : "전환 후: 반복되고 근거가 분명한 7개 결정이 AI와 코드로 옮겨갔습니다. 사람은 유입 채널, 할인, 메뉴처럼 사업의 방향을 정하는 결정과 예외에 집중합니다.";
+  }
+  btnB.addEventListener("click", function () { setState("b"); });
+  btnA.addEventListener("click", function () { setState("a"); });
+  setState("b");
+
+  // ---- 이익식 레버 ↔ 노드 강조
+  var leverNodes = document.getElementById("lever-nodes");
+  ["주문 수", "주문당 수익", "운영 시간", "원가·배송비"].forEach(function (lv) {
+    var box = document.createElement("div");
+    var h = document.createElement("h5");
+    h.textContent = LEVER_TAG[lv] + " · " + lv;
+    var ul = document.createElement("ul");
+    NODES.filter(function (n) { return n.lever === lv; }).forEach(function (n) {
+      var li = document.createElement("li"); li.textContent = n.t; ul.appendChild(li);
+    });
+    box.appendChild(h); box.appendChild(ul); leverNodes.appendChild(box);
+  });
+  var levers = document.querySelectorAll(".lever");
+  levers.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var on = btn.getAttribute("aria-pressed") !== "true";
+      levers.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+      Object.keys(main.els).forEach(function (id) { main.els[id].classList.remove("hl"); });
+      mainRoot.classList.toggle("dim", on);
+      if (on) {
+        btn.setAttribute("aria-pressed", "true");
+        var lv = btn.getAttribute("data-lever");
+        NODES.forEach(function (n) { if (n.lever === lv) main.els[n.id].classList.add("hl"); });
+        if (!reduced) document.getElementById("main-map").scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  });
+
+  // ---- 모바일 메뉴
+  var menuBtn = document.getElementById("menu-btn");
+  var menu = document.getElementById("mobile-menu");
+  menuBtn.addEventListener("click", function () {
+    var open = menu.hidden;
+    menu.hidden = !open;
+    menuBtn.setAttribute("aria-expanded", open);
+  });
+  menu.addEventListener("click", function (e) { if (e.target.tagName === "A") { menu.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  // ---- 신청 폼 (백엔드 연동 전: 화면 안에서만 처리)
+  var form = document.getElementById("apply-form");
+  var msg = document.getElementById("form-msg");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var required = ["f-company", "f-name", "f-email"];
+    for (var i = 0; i < required.length; i++) {
+      var el = document.getElementById(required[i]);
+      if (!el.value.trim() || !el.checkValidity()) {
+        msg.hidden = false;
+        msg.textContent = "회사명, 담당자, 올바른 이메일을 입력해 주세요.";
+        el.focus();
+        return;
+      }
+    }
+    msg.hidden = false;
+    msg.textContent = "신청 내용이 준비되었습니다. 신청 접수 연동 후 담당 PM이 연락드립니다.";
+  });
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
