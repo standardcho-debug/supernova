@@ -27,3 +27,6 @@
   1. 히어로 바로 아래 실적 띠(7년+ · 7개사 · 38건 · 50×)
   2. 서비스 섹션을 아코디언 + 그림 패널로 (진단=깊이 1 지도, 전환=레인 이동 애니메이션, 운영=깊이 2 지도)
   3. "통제권은 항상 대표님께" 순환 다이어그램 섹션
+
+## 한국어 문구 기준
+- 페이지 문구는 [fluent-korean](https://github.com/snflkd/fluent-korean)(MIT) 지침으로 교정했습니다. 지침 원문은 `.claude/output-styles/fluent-korean.md`에 있으며, Claude Code에서 `/config`의 output style로 선택하면 이후 작업에도 같은 기준이 적용됩니다.
