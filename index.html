@@ -8,6 +8,7 @@
 <meta property="og:title" content="co·founder AX 컴퍼니빌더">
 <meta property="og:description" content="사람이 쥐고 있던 결정을 AI로 옮기고, 옮긴 뒤에도 책임지고 운영합니다.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2220%22%20fill%3D%22%2316243d%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2250%22%20r%3D%2225%22%20fill%3D%22%23fff%22/%3E%3Ccircle%20cx%3D%2261.4%22%20cy%3D%2250%22%20r%3D%2225%22%20fill%3D%22%232dd4bf%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
@@ -33,6 +34,7 @@
   --machine: #33c595;
   --machine-soft: rgba(51, 197, 149, 0.15);
   --ghost: rgba(233, 237, 245, 0.05);
+  --mk-bg: #16243d; --mk-line: #2a3a5a; --mk-a: #ffffff; --mk-b: #2dd4bf;
 
   --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
@@ -54,6 +56,7 @@
     --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
     --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
     --ghost: rgba(14, 20, 34, 0.04);
+    --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
     color-scheme: light;
   }
 }
@@ -66,6 +69,7 @@
   --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
   --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
   --ghost: rgba(14, 20, 34, 0.04);
+  --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
   color-scheme: light;
 }
 
@@ -126,7 +130,10 @@ p { margin: 0; }
 }
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand-mark { width: 26px; height: 26px; flex: none; }
+.brand-mark { width: 28px; height: 28px; flex: none; }
+.brand-mark .mk-bg { fill: var(--mk-bg); stroke: var(--mk-line); stroke-width: 3; }
+.brand-mark .mk-a { fill: var(--mk-a); }
+.brand-mark .mk-b { fill: var(--mk-b); }
 .brand-word { font-family: var(--f-mark); font-weight: 900; font-size: 19px; letter-spacing: -0.01em; }
 .brand-tag { font-family: var(--f-mono); font-size: 11px; color: var(--muted); border: 1px solid var(--line-strong); border-radius: 6px; padding: 1px 6px; }
 .nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--muted); }
@@ -617,7 +624,9 @@ p { margin: 0; }
 .loop-fig .ring2 { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 5; }
 .loop-fig .arc { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; }
 .loop-fig .hub { fill: var(--brand); }
-.loop-fig .hubtxt { fill: var(--on-brand); font: 700 15px var(--f-mark); }
+.loop-fig .loop-mark rect { fill: var(--mk-bg); stroke: var(--mk-line); stroke-width: 2; }
+.loop-fig .loop-mark .a { fill: var(--mk-a); }
+.loop-fig .loop-mark .b { fill: var(--mk-b); }
 .loop-fig .pill rect { stroke-width: 1.5; }
 .loop-fig .pill text { font: 600 13.5px var(--f-body); fill: var(--fg); }
 .loop-fig .p-ai rect { fill: var(--agent-soft); stroke: var(--agent); }
@@ -794,12 +803,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="co·founder 홈">
-      <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true">
-        <rect x="1" y="1" width="24" height="24" rx="7" fill="none" stroke="var(--brand)" stroke-width="1.6"/>
-        <circle cx="9" cy="9" r="3" fill="var(--human)"/>
-        <circle cx="17" cy="17" r="3" fill="var(--brand)"/>
-        <path d="M11 11 L15 15" stroke="var(--fg)" stroke-width="1.4" stroke-linecap="round"/>
-      </svg>
+      <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><rect class="mk-bg" x="2" y="2" width="96" height="96" rx="20"></rect><circle class="mk-a" cx="41" cy="50" r="25"></circle><circle class="mk-b" cx="61.4" cy="50" r="25"></circle></svg>
       <span class="brand-word">co·founder</span>
       <span class="brand-tag">AX</span>
     </a>
@@ -1174,8 +1178,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
           <path class="arc" d="M 76 150 A 140 140 0 0 1 170 56" marker-end="url(#ah)"></path>
           <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="hub"></path></marker></defs>
           <g class="spin"><circle class="dot" cx="210" cy="50" r="5"></circle></g>
-          <circle class="hub" cx="210" cy="190" r="46"></circle>
-          <text class="hubtxt" x="210" y="195" text-anchor="middle">co·founder</text>
+          <g class="loop-mark" aria-hidden="true"><rect x="164" y="144" width="92" height="92" rx="20"></rect><circle class="a" cx="201.7" cy="190" r="23"></circle><circle class="b" cx="220.5" cy="190" r="23"></circle></g>
           <g class="pill p-ai"><rect x="160" y="34" width="100" height="32" rx="16"></rect><text x="210" y="55" text-anchor="middle">AI 판단</text></g>
           <g class="pill p-m"><rect x="310" y="174" width="80" height="32" rx="16"></rect><text x="350" y="195" text-anchor="middle">실행</text></g>
           <g class="pill p-ai"><rect x="155" y="314" width="110" height="32" rx="16"></rect><text x="210" y="335" text-anchor="middle">기록·개선</text></g>
@@ -1373,6 +1376,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     <div class="foot">
       <div>
         <a class="brand" href="#top" aria-label="co·founder 홈">
+          <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><rect class="mk-bg" x="2" y="2" width="96" height="96" rx="20"></rect><circle class="mk-a" cx="41" cy="50" r="25"></circle><circle class="mk-b" cx="61.4" cy="50" r="25"></circle></svg>
           <span class="brand-word">co·founder</span><span class="brand-tag">AX</span>
         </a>
         <p class="tagline">사업과 조직의 AX를 구축하는 AI 컴퍼니빌더</p>
