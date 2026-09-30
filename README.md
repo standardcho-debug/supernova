@@ -21,3 +21,9 @@
 - `index.html`은 Taste Skill 적용본을 기준으로 합친 현재 버전입니다(권한 3단계 막대 복원).
 - `index_tasteskill.html`: 기존 `index.html`을 [Taste Skill](https://github.com/Leonxlnx/taste-skill)(MIT)의 `redesign-existing-projects` 점검 기준으로 손본 비교용 버전입니다. 브랜드 규칙(워드마크·로고·색·Google Fonts)은 그대로 유지했습니다.
 - 스킬 원본은 `.claude/skills/`에 있어, 이 레포를 여는 Claude Code 세션이 자동으로 인식합니다.
+
+## 비교 시안: DeepSales UX 패턴 적용본
+- `index_deepsales.html`: 현재 `index.html`에 deepsales.com의 UX 패턴 3가지를 적용한 비교용 버전입니다.
+  1. 히어로 바로 아래 실적 띠(7년+ · 7개사 · 38건 · 50×)
+  2. 서비스 섹션을 아코디언 + 그림 패널로 (진단=깊이 1 지도, 전환=레인 이동 애니메이션, 운영=깊이 2 지도)
+  3. "통제권은 항상 대표님께" 순환 다이어그램 섹션
