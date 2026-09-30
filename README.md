@@ -16,3 +16,7 @@
 
 ## 채워야 할 것
 - 신청 폼 전송: 현재는 화면 안에서만 처리합니다. `/launch#consult` 등 실제 접수 API에 연결이 필요합니다.
+
+## 비교 시안: Taste Skill 적용본
+- `index_tasteskill.html`: `index.html`을 [Taste Skill](https://github.com/Leonxlnx/taste-skill)(MIT)의 `redesign-existing-projects` 점검 기준으로 손본 비교용 버전입니다. 브랜드 규칙(워드마크·로고·색·Google Fonts)은 그대로 유지했습니다.
+- 스킬 원본은 `.claude/skills/`에 있어, 이 레포를 여는 Claude Code 세션이 자동으로 인식합니다.
