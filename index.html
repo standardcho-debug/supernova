@@ -373,6 +373,16 @@ p { margin: 0; }
 .tips-points li::before { content: "→"; color: var(--brand); font-family: var(--f-mono); }
 @media (max-width: 860px) { .tips { grid-template-columns: 1fr; } .tf { grid-template-columns: 1fr; gap: 4px; } }
 
+/* 실제 시스템 지도 예시 */
+.realmap { margin-top: 48px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--bg); padding: 20px; display: grid; gap: 14px; }
+.realmap-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.realmap-top h3 { font-size: clamp(18px, 2vw, 21px); }
+.realmap-tag { font-family: var(--f-mono); font-size: 11.5px; color: var(--machine); border: 1px solid color-mix(in srgb, var(--machine) 50%, transparent); border-radius: 6px; padding: 1px 7px; }
+.realmap-frame { overflow-x: auto; border-radius: 10px; background: #faf9f5; border: 1px solid var(--line); }
+.realmap-frame img { display: block; width: 100%; height: auto; max-width: none; }
+.realmap-frame.wide img { min-width: 1400px; }
+.realmap-cap { font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.realmap-cap b { color: var(--fg); font-family: var(--f-mono); }
 /* ---------- TIPS 사업화 전략 (강의 요약 블록) ---------- */
 .ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
 .ts-grid > * { min-width: 0; }
@@ -818,6 +828,20 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       </div>
     </div>
 
+    <!-- 실제 예시: 코파운더 자사 시스템 지도 -->
+    <div class="realmap" aria-label="코파운더 자사 AX 시스템 지도 실제 예시">
+      <div class="realmap-top">
+        <h3>실제 AX 시스템 지도 · co·founder 자사</h3>
+        <div class="seg" role="group" aria-label="지도 깊이">
+          <button type="button" id="rm-d1" aria-pressed="true">깊이 1 · 이익식</button>
+          <button type="button" id="rm-d2" aria-pressed="false">깊이 2 · 결정지도</button>
+        </div>
+      </div>
+      <div class="realmap-frame" id="rm-f1"><img src="assets/systemmap-depth1.webp" alt="co·founder 깊이 1 지도: 이익 = (클라 수 × 클라당 소진) − (사람 시간 + 기계 비용), 각 항 아래 결정 칸 목록" loading="lazy"></div>
+      <div class="realmap-frame wide" id="rm-f2" hidden><img src="assets/systemmap-depth2.webp" alt="co·founder 깊이 2 결정지도: 업무 단계별로 결정 칸을 이해관계자·고객·운영·AI·코드크론 레인에 배치" loading="lazy"></div>
+      <p class="realmap-cap"><span>이익 = (클라 수 × 클라당 소진) − (사람 시간 + 기계 비용)</span><span>결정 칸 <b>114</b></span><span>검은 칸 = 코드·크론이 보장</span><span class="realmap-tag">실제 운영 데이터</span></p>
+    </div>
+
     <!-- STEP 1 이익식 -->
     <div class="step-head">
       <span class="step-no">STEP 1</span>
@@ -973,28 +997,10 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         <p class="ts-src">출처: 중소벤처기업부(2024), 창업기업실태조사</p>
       </article>
 
-      <!-- 3. 진단 -->
-      <article class="ts-card wide">
-        <span class="ts-k">03 · TIPS 사업화 진단</span>
-        <h3>기술성 40 : 사업성 40 : 수행역량 20. 기술과 사업화 전략이 맞물려야 합니다</h3>
-        <div class="ts-gate" aria-label="진입 게이트">
-          <span>진입 게이트</span><span>업력 7년 이내 (신산업 10년)</span><span>2인 이상 창업팀</span><span>창업팀 지분 60%↑ · 운영사 30%↓</span><span>직전연도 매출 20억 미만</span>
-        </div>
-        <div class="ts-score">
-          <div><h4>기술성 <b>40</b></h4><ul><li>개발 필요성 15 · 시장 문제를 푸는 기술</li><li>개발 적정성 15 · 기술 지표 × 제3자 검증</li><li>개발 실현성 10 · 자사 도메인 데이터 역량</li></ul></div>
-          <div><h4>사업성 <b>40</b></h4><ul><li>사업화 전략 15 · 기술을 사업화에 적용</li><li>글로벌 성장 가능성 15</li><li>기대 효과 10</li></ul></div>
-          <div><h4>수행역량 <b>20</b></h4><ul><li>창업기업 전문성 10</li><li>운영사 지원계획 10</li></ul></div>
-        </div>
-        <div class="ts-tiers">
-          <div class="go"><b>80점 이상 · GO</b><span>운영사 선정률 80%↑ 리스트로 좁혀 컨택, 분기 접수 일정 역산해 계획서 착수</span></div>
-          <div class="wait"><b>50~70점 · WAIT</b><span>비어 있는 항목부터 채우기. 기술 축이면 지표·AI 시스템 고도화, 관계 축이면 시드·프로그램 진입</span></div>
-          <div class="re"><b>50점 미만 · REROUTE</b><span>TIPS 맞춤 사업계획과 R&amp;D 과제 도출, 데이터·실증·매출을 잇는 시스템 구축부터</span></div>
-        </div>
-      </article>
 
       <!-- 4. 전략 -->
       <article class="ts-card wide">
-        <span class="ts-k">04 · TIPS 투자 사업화 전략</span>
+        <span class="ts-k">03 · TIPS 투자 사업화 전략</span>
         <h3>사업 축과 기술 축이 만나는 자리가 R&amp;D 과제입니다</h3>
         <div class="ts-axes">
           <div class="ts-axis biz"><h4>사업 축 · 스케일업</h4><p>어디까지 확장할 수 있는가. 신사업 나열이 아니라 같은 기술을 적용해 넓힐 수 있는 시장을 x/y 매트릭스로 정의합니다.</p></div>
@@ -1022,29 +1028,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         <div class="ts-redef"><span class="ts-k">과제 재정의 예</span><span class="from">축구 데이터 분석</span><span aria-hidden="true">→</span><span class="to">센티미터급 위치 측위 기술</span><span class="ts-src">과제명에 "개인화·AI 추천·빅데이터"만 있다면 다시 정의합니다</span></div>
       </article>
 
-      <!-- 5. 3요소 -->
-      <article class="ts-card wide">
-        <span class="ts-k">05 · R&amp;D 필수 3요소</span>
-        <h3>기술성 40점이 실제로 묻는 것은 이 세 가지입니다</h3>
-        <div class="ts-three">
-          <div class="ax"><span class="n">① 가장 먼저</span><h4>도메인 데이터 시스템 구축</h4><p>그 데이터가 어디서, 어떻게 계속 들어오는가.</p><p class="if">없다면 → 고객접점(어드민·앱) 데이터 구축이 1순위. 코파운더의 AX 전환 구축이 여기서 시작합니다.</p></div>
-          <div><span class="n">②</span><h4>측정 가능한 기술 지표</h4><p>정확도·단축률·오차범위를 숫자로 쓸 수 있는가. "좋아진다"가 아니라 "현재 몇에서 앞으로 몇으로"가 과제입니다.</p><p class="if">없다면 → 지표 정의와 베이스라인 설계</p></div>
-          <div><span class="n">③</span><h4>제3자 검증과 네트워크</h4><p>특허·인증·논문·기관 협력·MOU 중 무엇이 있는가.</p><p class="if">없다면 → 산학협력, 협회·기관 실증 준비</p></div>
-        </div>
-      </article>
 
-      <!-- 6. 타임라인 -->
-      <article class="ts-card wide">
-        <span class="ts-k">06 · 준비 타임라인 (지원일로부터 역산)</span>
-        <h3>TIPS는 창업 초기부터 계획합니다</h3>
-        <div class="ts-time">
-          <div><span class="d">D-24개월</span><h4>사업 × 기술 정의</h4><ul><li>측정 지표 정의·베이스라인 측정</li><li>데이터 경로(앱·어드민) 설계</li><li>특허 출원·기관 협력 착수</li></ul></div>
-          <div><span class="d">D-18개월</span><h4>운영사 관계 시작</h4><ul><li>분야·소재지로 후보 10곳 이내</li><li>최근 2년 추천 실적·선정률 확인</li></ul></div>
-          <div><span class="d">D-12개월</span><h4>투자 협상</h4><ul><li>운영사 IR → 투자심의 → 선투자 확약</li><li>TIPS 과제 협의</li></ul></div>
-          <div><span class="d">D-3개월</span><h4>계획서 작성</h4><ul><li>과제명을 우리 기업에 맞게 재정의</li><li>IRIS 등록·정량 목표 확정</li><li>발표는 운영사와 공동 준비</li></ul></div>
-        </div>
-        <p class="ts-src">운영사 1곳의 TIPS 추천 티켓은 1년에 5~10장입니다. 운영사는 수개월 이상 지켜보며 성장을 확인한 포트폴리오 기업을 추천합니다. (운영사 분석 출처: 국회예산정책처 TIPS 평가, 2024.6)</p>
-      </article>
     </div>
   </div>
 </section>
@@ -1511,6 +1495,16 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     });
   });
 
+
+  // ---- 실제 시스템 지도 깊이 탭
+  var rm1 = document.getElementById("rm-d1"), rm2 = document.getElementById("rm-d2");
+  function rm(d) {
+    document.getElementById("rm-f1").hidden = d !== 1;
+    document.getElementById("rm-f2").hidden = d !== 2;
+    rm1.setAttribute("aria-pressed", d === 1); rm2.setAttribute("aria-pressed", d === 2);
+  }
+  rm1.addEventListener("click", function () { rm(1); });
+  rm2.addEventListener("click", function () { rm(2); });
   // ---- 모바일 메뉴
   var menuBtn = document.getElementById("menu-btn");
   var menu = document.getElementById("mobile-menu");
