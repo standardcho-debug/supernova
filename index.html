@@ -572,6 +572,62 @@ p { margin: 0; }
 .faq2 h3 { font-size: 17px; }
 .faq2 p { color: var(--muted); font-size: 15px; }
 @media (max-width: 760px) { .faq2 { grid-template-columns: 1fr; } }
+
+/* ---------- DeepSales 패턴 적용분 ---------- */
+/* 1. 히어로 아래 신뢰 띠 */
+.proof { padding-block: 0 clamp(56px, 7vw, 88px); }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.proof-grid > div { min-width: 0; padding: 22px 24px 26px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); display: grid; gap: 6px; align-content: start; }
+.proof-grid b { font-family: var(--f-mono); font-size: clamp(30px, 3.4vw, 42px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; }
+.proof-grid span { color: var(--muted); font-size: 14px; }
+.proof-grid > div:last-child b { color: var(--brand); }
+@media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+/* 2. 아코디언 + 그림 패널 */
+.acc { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 4vw, 56px); margin-top: 40px; align-items: start; }
+.acc > * { min-width: 0; }
+.acc-list { border-top: 1px solid var(--line-strong); }
+.acc-item { border-bottom: 1px solid var(--line-strong); }
+.acc-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: none; border: 0; color: var(--fg); font: inherit; font-size: clamp(19px, 2vw, 22px); font-weight: 600; text-align: left; padding: 22px 2px; cursor: pointer; }
+.acc-btn .ic { font-family: var(--f-mono); font-size: 22px; color: var(--muted); transition: transform .25s; }
+.acc-btn[aria-expanded="true"] .ic { transform: rotate(45deg); color: var(--brand); }
+.acc-body { padding: 0 2px 24px; display: grid; gap: 10px; color: var(--muted); font-size: 15.5px; }
+.acc-body ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.acc-body .out { color: var(--fg); font-weight: 600; font-size: 15px; }
+.acc-body .out small { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; }
+.acc-panel { position: sticky; top: 96px; border-radius: 24px; padding: clamp(16px, 2.4vw, 28px); background: radial-gradient(120% 90% at 80% 0%, var(--brand-soft), transparent 60%), var(--panel); border: 1px solid var(--line-strong); min-height: 360px; display: grid; align-content: center; gap: 12px; }
+.acc-view { display: grid; gap: 12px; animation: accfade .45s ease both; }
+.acc-view .frame { border-radius: 14px; overflow: hidden; background: #faf9f5; border: 1px solid var(--line); }
+.acc-view .frame img { display: block; width: 100%; height: auto; }
+.acc-view .frame.scroll { overflow-x: auto; } .acc-view .frame.scroll img { min-width: 900px; }
+.acc-view .cap { font-size: 13.5px; color: var(--muted); }
+.acc-view .mapcard { border-radius: 14px; padding: 14px; background: var(--bg); border: 1px solid var(--line-strong); }
+@keyframes accfade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .acc-view { animation: none; } .acc-btn .ic { transition: none; } }
+@media (max-width: 860px) { .acc { grid-template-columns: 1fr; } .acc-panel { position: static; min-height: 0; } }
+/* 3. 통제권 순환도 */
+.ctrl { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px); margin-top: 40px; align-items: center; border-radius: 24px; padding: clamp(20px, 3.4vw, 44px); background: var(--panel); border: 1px solid var(--line-strong); }
+.ctrl > * { min-width: 0; }
+.ctrl-lead { font-size: clamp(19px, 2.1vw, 24px); font-weight: 600; line-height: 1.45; }
+.ctrl-list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 18px; }
+.ctrl-list b { display: block; font-size: 16.5px; }
+.ctrl-list span { color: var(--muted); font-size: 14.5px; }
+.loop-fig { border-radius: 18px; background: var(--bg); border: 1px solid var(--line); padding: 12px; }
+.loop-fig svg { display: block; width: 100%; height: auto; }
+.loop-fig .ring { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+.loop-fig .ring2 { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 5; }
+.loop-fig .arc { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; }
+.loop-fig .hub { fill: var(--brand); }
+.loop-fig .hubtxt { fill: var(--on-brand); font: 700 15px var(--f-mark); }
+.loop-fig .pill rect { stroke-width: 1.5; }
+.loop-fig .pill text { font: 600 13.5px var(--f-body); fill: var(--fg); }
+.loop-fig .p-ai rect { fill: var(--agent-soft); stroke: var(--agent); }
+.loop-fig .p-m rect { fill: var(--machine-soft); stroke: var(--machine); }
+.loop-fig .p-h rect { fill: var(--human-soft); stroke: var(--human); }
+.loop-fig .dot { fill: var(--brand); }
+.loop-fig .spin { transform-origin: 210px 190px; animation: spin 9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .loop-fig .spin { animation: none; } }
+@media (max-width: 860px) { .ctrl { grid-template-columns: 1fr; } }
 /* ---------- 서비스 흐름 ---------- */
 .svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 44px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
 .svc > div { padding: 28px; border-left: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--bg); }
@@ -804,6 +860,16 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   </div>
 </section>
 
+<!-- ============ 신뢰 띠 ============ -->
+<section class="proof" aria-label="실적">
+  <div class="wrap proof-grid">
+    <div><b class="num">7년+</b><span>소프트웨어 개발·운영</span></div>
+    <div><b class="num">7</b><span>운영 중인 고객사</span></div>
+    <div><b class="num">38건</b><span>고객사 진행 프로젝트</span></div>
+    <div><b class="num">50×</b><span>00푸드 월 매출 성장, 관리 인원은 그대로</span></div>
+  </div>
+</section>
+
 <!-- ============ 대상 ============ -->
 <section class="section alt" aria-labelledby="who-title">
   <div class="wrap">
@@ -1033,10 +1099,35 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     <div class="sec-head">
       <h2 class="h2" id="svc-title">진단하고, 옮기고, 책임지고 운영합니다</h2>
     </div>
-    <div class="svc-rows">
-      <div><h3>진단</h3><ul><li>AX 시스템 지도 설계</li><li>TIPS 사업화 진단</li></ul><p class="out"><small>산출물</small>회사 고유의 AX 시스템 지도</p></div>
-      <div><h3>전환</h3><ul><li>백오피스·어드민·앱 구축</li><li>판단 로직과 AI 실행 모듈 구현</li></ul><p class="out"><small>산출물</small>AI 레인에서 작동하는 결정</p></div>
-      <div><h3>운영</h3><ul><li>에이전트 24시간 관제와 장애 대응</li><li>운영 이력으로 다음 칸 확장</li></ul><p class="out"><small>산출물</small>매일 자동화·고도화되는 AX 운영 자산</p></div>
+    <div class="acc">
+      <div class="acc-list">
+        <div class="acc-item">
+          <button class="acc-btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1" data-view="1">진단 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p1"><ul><li>AX 시스템 지도 설계</li><li>TIPS 사업화 진단</li></ul><p class="out"><small>산출물</small>회사 고유의 AX 시스템 지도</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2" data-view="2">전환 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p2" hidden><ul><li>백오피스·어드민·앱 구축</li><li>판단 로직과 AI 실행 모듈 구현</li></ul><p class="out"><small>산출물</small>AI 레인에서 작동하는 결정</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3" data-view="3">운영 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p3" hidden><ul><li>에이전트 24시간 관제와 장애 대응</li><li>운영 이력으로 다음 칸 확장</li></ul><p class="out"><small>산출물</small>매일 자동화·고도화되는 AX 운영 자산</p></div>
+        </div>
+      </div>
+      <div class="acc-panel" aria-live="polite">
+        <div class="acc-view" id="acc-v1">
+          <div class="frame"><img src="assets/systemmap-depth1.webp" alt="co·founder 자사 AX 시스템 지도 깊이 1: 이익식과 항별 결정 칸" loading="lazy"></div>
+          <p class="cap">진단 결과물: 이익식 아래에 결정 칸을 모두 펼친 지도 (co·founder 자사 실제 지도)</p>
+        </div>
+        <div class="acc-view" id="acc-v2" hidden>
+          <div class="mapcard"><div class="minimap-top"><span class="minimap-title">00푸드 (예시)</span><span class="minimap-state" id="svc-state">전환 전</span></div><div class="lanes mini" id="svc-map" style="--cols:3"></div></div>
+          <p class="cap">전환: 고른 결정을 사람 레인에서 AI·코드 레인으로 옮깁니다</p>
+        </div>
+        <div class="acc-view" id="acc-v3" hidden>
+          <div class="frame scroll"><img src="assets/systemmap-depth2.webp" alt="co·founder 자사 결정지도 깊이 2: 업무 단계별 결정 칸과 레인" loading="lazy"></div>
+          <p class="cap">운영: 운영 이력이 쌓이며 지도가 자랍니다. 검은 칸이 코드·크론이 보장하는 결정입니다</p>
+        </div>
+      </div>
     </div>
 
     <div class="pilot">
@@ -1053,6 +1144,44 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         </div>
         <p class="done-line"><b>완료 기준</b> · AI가 판단하고, 기록하고, 예외만 사람에게 넘기는 상태</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 통제권 ============ -->
+<section class="section" aria-labelledby="ctrl-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2" id="ctrl-title">AI가 일하고,<br>통제권은 항상 대표님께</h2>
+    </div>
+    <div class="ctrl">
+      <div>
+        <p class="ctrl-lead">AI가 판단할 수 없는 순간은 즉시 사람에게 넘어갑니다.</p>
+        <ul class="ctrl-list">
+          <li><b>예외는 즉시 담당자에게</b><span>판단 기준을 벗어나면 AI가 멈추고 사람에게 넘깁니다</span></li>
+          <li><b>모든 판단을 기록</b><span>입력, 근거, 결과가 남아 같은 판단을 다시 재현할 수 있습니다</span></li>
+          <li><b>되돌리기 쉬운 결정부터</b><span>반복되고 근거가 있고 복구가 쉬운 결정을 먼저 옮깁니다</span></li>
+        </ul>
+      </div>
+      <figure class="loop-fig" style="margin:0" aria-label="AI 판단, 실행, 기록·개선, 예외 확인이 순환하는 구조">
+        <svg viewBox="0 0 420 380" role="img">
+          <title>AX 운영 순환: AI 판단 → 실행 → 기록·개선 → 예외만 사람 확인 → 다시 AI 판단</title>
+          <circle class="ring" cx="210" cy="190" r="140"></circle>
+          <circle class="ring2" cx="210" cy="190" r="100"></circle>
+          <path class="arc" d="M 250 56 A 140 140 0 0 1 344 150" marker-end="url(#ah)"></path>
+          <path class="arc" d="M 344 230 A 140 140 0 0 1 250 324" marker-end="url(#ah)"></path>
+          <path class="arc" d="M 170 324 A 140 140 0 0 1 76 230" marker-end="url(#ah)"></path>
+          <path class="arc" d="M 76 150 A 140 140 0 0 1 170 56" marker-end="url(#ah)"></path>
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="hub"></path></marker></defs>
+          <g class="spin"><circle class="dot" cx="210" cy="50" r="5"></circle></g>
+          <circle class="hub" cx="210" cy="190" r="46"></circle>
+          <text class="hubtxt" x="210" y="195" text-anchor="middle">co·founder</text>
+          <g class="pill p-ai"><rect x="160" y="34" width="100" height="32" rx="16"></rect><text x="210" y="55" text-anchor="middle">AI 판단</text></g>
+          <g class="pill p-m"><rect x="310" y="174" width="80" height="32" rx="16"></rect><text x="350" y="195" text-anchor="middle">실행</text></g>
+          <g class="pill p-ai"><rect x="155" y="314" width="110" height="32" rx="16"></rect><text x="210" y="335" text-anchor="middle">기록·개선</text></g>
+          <g class="pill p-h"><rect x="18" y="174" width="116" height="32" rx="16"></rect><text x="76" y="195" text-anchor="middle">예외만 사람</text></g>
+        </svg>
+      </figure>
     </div>
   </div>
 </section>
@@ -1160,11 +1289,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         <ul><li>30억+ 투자 유치 및 자금 조달</li><li>이마트 식품 바이어 10년</li></ul>
         <div class="keys"><span>창업 경험</span><span>사업화</span><span>GTM</span></div>
       </article>
-    </div>
-    <div class="stats">
-      <div><b class="num">7년+</b><span>소프트웨어 개발·운영</span></div>
-      <div><b class="num">7</b><span>운영 중인 고객사</span></div>
-      <div><b class="num">38건</b><span>고객사 진행 프로젝트</span></div>
     </div>
   </div>
 </section>
@@ -1380,6 +1504,32 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     place(hero, HERO_NODES, "b", true);
     setTimeout(function () { place(hero, HERO_NODES, "a", true); heroState.textContent = "전환 후"; }, 1100);
   }
+
+
+  // ---- 서비스 아코디언: 항목을 열면 오른쪽 그림이 바뀜
+  var svcRoot = document.getElementById("svc-map");
+  var svcState = document.getElementById("svc-state");
+  var svcMap = buildMap(svcRoot, ["유입", "주문·결제", "사후관리"], HERO_NODES, true);
+  place(svcMap, HERO_NODES, "b", true);
+  var svcTimer = null;
+  function playSvc() {
+    clearTimeout(svcTimer);
+    place(svcMap, HERO_NODES, "b", true); svcState.textContent = "전환 전";
+    svcTimer = setTimeout(function () { place(svcMap, HERO_NODES, "a", true); svcState.textContent = "전환 후"; }, reduced ? 0 : 700);
+  }
+  var accBtns = document.querySelectorAll(".acc-btn");
+  accBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var v = btn.getAttribute("data-view");
+      accBtns.forEach(function (b) {
+        var on = b === btn;
+        b.setAttribute("aria-expanded", on);
+        document.getElementById(b.getAttribute("aria-controls")).hidden = !on;
+        document.getElementById("acc-v" + b.getAttribute("data-view")).hidden = !on;
+      });
+      if (v === "2") playSvc();
+    });
+  });
 
   // ---- 메인 결정지도
   var mainRoot = document.getElementById("main-map");
