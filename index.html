@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>co·founder AX 컴퍼니빌더</title>
 <meta name="description" content="사람이 쥐고 있던 결정을 찾아 AI와 코드로 옮기고, 옮긴 뒤에도 책임지고 운영하는 AX 컴퍼니빌더, 코파운더.">
+<meta property="og:title" content="co·founder AX 컴퍼니빌더">
+<meta property="og:description" content="사람이 쥐고 있던 결정을 AI로 옮기고, 옮긴 뒤에도 책임지고 운영합니다.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
@@ -518,6 +521,57 @@ p { margin: 0; }
   .tf4, .case-steps { grid-template-columns: 1fr 1fr; }
   .tf4 > div::after, .case-steps li::after { display: none; }
 }
+
+/* ---------- Taste Skill 적용분 ---------- */
+.skip { position: absolute; left: 16px; top: -48px; z-index: 60; background: var(--brand); color: var(--on-brand); padding: 10px 14px; border-radius: 10px; font-weight: 600; text-decoration: none; transition: top .2s; }
+.skip:focus { top: 12px; }
+.btn { transition: background .2s, border-color .2s, transform .15s; }
+.btn:active, .seg button:active, .lever:active { transform: scale(0.98); }
+.seg button, .lever { transition: background .2s, border-color .2s, color .2s, transform .15s; }
+.hero-glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 55% at 78% 35%, var(--brand-soft), transparent 70%); }
+.minimap { box-shadow: 0 30px 80px -40px rgba(8, 22, 56, .55); }
+.node { top: 0; transition: transform .9s cubic-bezier(.6,.05,.25,1), background .5s, border-color .5s, box-shadow .3s, opacity .3s; }
+@media (prefers-reduced-motion: reduce) { .node { transition: none; } .btn:active, .seg button:active, .lever:active { transform: none; } }
+.cardlabel { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.flowcard.ax .cardlabel { color: var(--brand); }
+/* 대상: 카드 대신 인용 두 개 */
+.who2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+.who2 > div { min-width: 0; border-top: 2px solid var(--line-strong); padding-top: 22px; display: grid; gap: 14px; align-content: start; }
+.who2 > div:first-child { border-top-color: var(--brand); }
+.who2 .who-name { font-size: 14px; font-weight: 600; color: var(--muted); }
+.who2 blockquote { margin: 0; font-size: clamp(20px, 2.3vw, 26px); font-weight: 600; line-height: 1.45; text-wrap: balance; }
+@media (max-width: 760px) { .who2 { grid-template-columns: 1fr; gap: 28px; } }
+/* 권한 3단계: 막대 대신 흐름 */
+.levels3 { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+.levels3 > div { flex: 1 1 200px; min-width: 0; padding: 18px 20px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line-strong); display: grid; gap: 4px; }
+.levels3 > div:last-child { border-color: var(--brand); background: var(--brand-soft); }
+.levels3 h4 { margin: 0; font-size: 18px; }
+.levels3 p { color: var(--muted); font-size: 14px; }
+.levels3 .arr3 { flex: 0 0 auto; align-self: center; color: var(--muted); font-family: var(--f-mono); }
+@media (max-width: 760px) { .levels3 .arr3 { display: none; } }
+/* 생존율: 막대 대신 큰 숫자 비교 */
+.ts-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ts-vs > div { min-width: 0; display: grid; gap: 2px; }
+.ts-vs b { font-family: var(--f-mono); font-size: clamp(36px, 4.4vw, 52px); letter-spacing: -0.03em; line-height: 1.05; }
+.ts-vs .good b { color: var(--machine); }
+.ts-vs .bad b { color: var(--muted); }
+.ts-vs span { font-size: 13.5px; color: var(--muted); }
+/* 서비스: 3단 카드 대신 행 */
+.svc-rows { margin-top: 40px; border-top: 1px solid var(--line-strong); }
+.svc-rows > div { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.svc-rows > div > * { min-width: 0; }
+.svc-rows h3 { font-size: 22px; }
+.svc-rows ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--muted); }
+.svc-rows .out { font-size: 15px; font-weight: 600; }
+.svc-rows .out small { display: block; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.svc-rows > div:last-child .out { color: var(--brand); }
+@media (max-width: 760px) { .svc-rows > div { grid-template-columns: 1fr; gap: 10px; } }
+/* FAQ: 아코디언 대신 펼친 2열 */
+.faq2 { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+.faq2 > div { min-width: 0; border-top: 1px solid var(--line-strong); padding-top: 18px; display: grid; gap: 8px; align-content: start; }
+.faq2 h3 { font-size: 17px; }
+.faq2 p { color: var(--muted); font-size: 15px; }
+@media (max-width: 760px) { .faq2 { grid-template-columns: 1fr; } }
 /* ---------- 서비스 흐름 ---------- */
 .svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 44px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; }
 .svc > div { padding: 28px; border-left: 1px solid var(--line); display: grid; gap: 12px; align-content: start; min-width: 0; background: var(--bg); }
@@ -679,6 +733,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 </head>
 <body>
 
+<a class="skip" href="#top">본문으로 건너뛰기</a>
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap nav-in">
@@ -727,17 +782,16 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 
 <!-- ============ HERO ============ -->
 <section class="hero" aria-label="소개">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <div>
       <p class="eyebrow">AX Company Builder</p>
       <h1>AI를 쓰는 회사에서,<br><em>AI가 일하는 회사</em>로.</h1>
       <p class="lead">사람이 쥐고 있던 결정을 AI로 옮기고, 옮긴 뒤에도 책임지고 운영합니다.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#apply">AX 사업화 진단 신청 <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="#apply">AX 진단 신청 <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn btn-ghost" href="#diagnosis">AX 시스템 지도 보기</a>
       </div>
-      <p class="hero-note"><a href="#bizplan">아이디어 단계라면, 무료 사업계획서부터 →</a></p>
     </div>
 
     <div class="minimap" aria-label="결정 노드가 사람 레인에서 AI 레인으로 이동하는 예시 지도">
@@ -754,20 +808,19 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" aria-labelledby="who-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">For whom</p>
       <h2 class="h2" id="who-title">만들 사람보다,<br>결정할 사람이 부족한 회사</h2>
     </div>
-    <div class="who">
-      <article class="who-card">
-        <span class="tag">TARGET 01 · 초기창업기업 (업력 3년 이하)</span>
-        <p class="quote">"서비스는 돌아가는데, 고칠 사람도 판단할 사람도 없습니다."</p>
+    <div class="who2">
+      <div>
+        <span class="who-name">초기창업기업 (업력 3년 이하)</span>
+        <blockquote>"서비스는 돌아가는데, 고칠 사람도 판단할 사람도 없습니다."</blockquote>
         <div class="who-chips"><span>개발자 부재</span><span>TIPS 준비</span><span>대표 수작업 증가</span></div>
-      </article>
-      <article class="who-card">
-        <span class="tag">TARGET 02 · 기존 사업자 (AX 전환)</span>
-        <p class="quote">"성장은 꺾였는데, 어디서부터 바꿔야 할지 모르겠습니다."</p>
+      </div>
+      <div>
+        <span class="who-name">기존 사업자 (AX 전환)</span>
+        <blockquote>"성장은 꺾였는데, 어디서부터 바꿔야 할지 모르겠습니다."</blockquote>
         <div class="who-chips"><span>엑셀·수작업 운영</span><span>AI 써봤지만 그대로</span><span>판단할 사람 부재</span></div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
@@ -776,7 +829,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section" aria-labelledby="reality-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Reality</p>
       <h2 class="h2" id="reality-title">AX가 중요하다는 데는 모두 동의합니다.<br>그런데 결과는 다릅니다.</h2>
     </div>
     <div class="reality">
@@ -796,12 +848,11 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="ax" aria-labelledby="ax-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">What is AX</p>
       <h2 class="h2" id="ax-title">AX는 AI 도구의 개수가 아니라,<br>누가 결정하는가의 변화입니다</h2>
     </div>
     <div class="define">
       <div class="flowcard">
-        <p class="eyebrow" style="color:var(--muted)">AI 도입</p>
+        <p class="cardlabel">AI 도입</p>
         <h3>업무는 그대로, 도구만 추가</h3>
         <div class="chain">
           <span class="h">접수</span><b>→</b><span class="h">검토</span><b>→</b><span class="h">승인</span><b>→</b><span class="h">실행</span>
@@ -809,17 +860,19 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         </div>
       </div>
       <div class="flowcard ax">
-        <p class="eyebrow">AX</p>
+        <p class="cardlabel">AX</p>
         <h3>AI가 판단하고, 사람은 예외만</h3>
         <div class="chain">
           <span class="m">입력</span><b>→</b><span class="a">AI 판단</span><b>→</b><span class="h">예외만 사람</span><b>→</b><span class="m">실행</span><b>→</b><span class="a">기록·개선</span>
         </div>
       </div>
     </div>
-    <div class="levels" aria-label="AI 권한 3단계">
-      <div><span class="lv">LEVEL 1</span><h4>사용 · Use</h4><p>AI가 만든 시스템을 사람이 씁니다</p><div class="bar"><i style="width:33%"></i></div></div>
-      <div><span class="lv">LEVEL 2</span><h4>변경 · Modify</h4><p>반복 흐름을 AI·코드가 잇습니다</p><div class="bar"><i style="width:66%"></i></div></div>
-      <div><span class="lv">LEVEL 3</span><h4>결정 · Decide</h4><p>AI가 판단하고 운영합니다</p><div class="bar"><i style="width:100%"></i></div></div>
+    <div class="levels3" aria-label="AI 권한 3단계">
+      <div><h4>사용</h4><p>AI가 만든 시스템을 사람이 씁니다</p><div class="bar"><i style="width:33%"></i></div></div>
+      <span class="arr3" aria-hidden="true">→</span>
+      <div><h4>변경</h4><p>반복 흐름을 AI와 코드가 잇습니다</p><div class="bar"><i style="width:66%"></i></div></div>
+      <span class="arr3" aria-hidden="true">→</span>
+      <div><h4>결정</h4><p>AI가 판단하고 운영합니다</p><div class="bar"><i style="width:100%"></i></div></div>
     </div>
   </div>
 </section>
@@ -829,7 +882,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <div class="diag-intro">
       <div class="sec-head">
-        <p class="eyebrow">AX 사업화 진단 · AX System Map</p>
+        <p class="eyebrow">AX 사업화 진단</p>
         <h2 class="h2" id="diag-title">AX는 지도를 그리는 데서 시작합니다</h2>
         <p class="lead">이익을 움직이는 결정을 칸으로 쪼개고, 누가 쥐고 있는지 그립니다. 넘길 칸이 곧 개발 범위입니다.</p>
       </div>
@@ -905,7 +958,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="tips" aria-labelledby="tips-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">AX 사업화 진단 × TIPS</p>
       <h2 class="h2" id="tips-title">TIPS를 준비한다면,<br>AX 지도부터 그리세요</h2>
       <p class="lead">TIPS가 보는 건 기술개발 과제입니다. 그 과제는 지금 돌아가는 사업의 결정 지도에서 나옵니다.</p>
     </div>
@@ -918,7 +970,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 
     <div class="ts-grid" id="tips-strategy">
       <article class="ts-card">
-        <span class="ts-k">01 · 무엇인가</span>
         <h3>운영사 2억 투자 + 정부 R&amp;D 8억<br>= 일반트랙 2년 총 10억</h3>
         <div class="ts-fund" aria-label="일반트랙 자금 구조">
           <div class="inv">2억<small>운영사 투자</small></div>
@@ -935,13 +986,12 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       </article>
 
       <article class="ts-card">
-        <span class="ts-k">02 · 왜 해야 하나</span>
         <h3>TIPS 기업은 7년 뒤에도<br>10곳 중 9곳이 살아 있습니다</h3>
-        <div class="ts-bars">
-          <div class="ts-bar"><span>TIPS 기업 5년</span><div class="track"><div class="fill" style="width:94.6%"></div></div><span class="v">94.6%</span></div>
-          <div class="ts-bar"><span>TIPS 기업 7년</span><div class="track"><div class="fill" style="width:88.5%"></div></div><span class="v">88.5%</span></div>
-          <div class="ts-bar"><span>전체 창업기업 5년</span><div class="track"><div class="fill low" style="width:33.8%"></div></div><span class="v">33.8%</span></div>
+        <div class="ts-vs">
+          <div class="good"><b class="num">94.6%</b><span>TIPS 기업 5년 생존율</span></div>
+          <div class="bad"><b class="num">33.8%</b><span>전체 창업기업 5년 생존율</span></div>
         </div>
+        <p class="ts-src">7년 뒤에도 88.5%가 살아 있습니다.</p>
         <div class="ts-gate" aria-label="TIPS 선정기업 성장 지표">
           <span>매출 4년간 3.9배</span><span>후속투자 2.6배</span><span>2026 예산 1.1조원</span>
         </div>
@@ -949,7 +999,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       </article>
 
       <article class="ts-card wide">
-        <span class="ts-k">03 · TIPS 투자 사업화 전략</span>
         <h3>사업 축과 기술 축이 만나는 자리가 R&amp;D 과제입니다</h3>
         <div class="ts-axes">
           <div class="ts-axis biz"><h4>사업 축 · 스케일업</h4><p>같은 기술로 넓힐 시장</p></div>
@@ -982,42 +1031,25 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section" id="service" aria-labelledby="svc-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Service</p>
       <h2 class="h2" id="svc-title">진단하고, 옮기고, 책임지고 운영합니다</h2>
     </div>
-    <div class="svc">
-      <div>
-        <span class="sno">01 · 진단</span>
-        <h3>AX 사업화 진단</h3>
-        <ul><li>AX 시스템 지도 설계</li><li>TIPS 사업화 진단</li></ul>
-        <p class="out">산출물<br><b>회사 고유의 AX 시스템 지도</b></p>
-      </div>
-      <div>
-        <span class="sno">02 · 전환</span>
-        <h3>AX 전환 구축</h3>
-        <ul><li>백오피스·어드민·앱 구축</li><li>판단 로직·AI 실행 모듈 구현</li></ul>
-        <p class="out">산출물<br><b>AI 레인에서 작동하는 결정 노드</b></p>
-      </div>
-      <div>
-        <span class="sno">03 · 운영</span>
-        <h3>AX 운영</h3>
-        <ul><li>에이전트 24시간 관제·장애 대응</li><li>운영 이력으로 다음 칸 확장</li></ul>
-        <p class="out">산출물<br><b>매일 자동화·고도화되는 AX 운영 자산</b></p>
-      </div>
+    <div class="svc-rows">
+      <div><h3>진단</h3><ul><li>AX 시스템 지도 설계</li><li>TIPS 사업화 진단</li></ul><p class="out"><small>산출물</small>회사 고유의 AX 시스템 지도</p></div>
+      <div><h3>전환</h3><ul><li>백오피스·어드민·앱 구축</li><li>판단 로직과 AI 실행 모듈 구현</li></ul><p class="out"><small>산출물</small>AI 레인에서 작동하는 결정</p></div>
+      <div><h3>운영</h3><ul><li>에이전트 24시간 관제와 장애 대응</li><li>운영 이력으로 다음 칸 확장</li></ul><p class="out"><small>산출물</small>매일 자동화·고도화되는 AX 운영 자산</p></div>
     </div>
 
     <div class="pilot">
       <div>
-        <p class="eyebrow">First pilot · 4 weeks</p>
-        <h3 style="margin-top:12px">4주 안에 결정 하나를<br>AI 레인에 배치합니다</h3>
+        <h3>4주 안에 결정 하나를<br>AI 레인에 배치합니다</h3>
         <div class="who-chips" style="margin-top:16px"><span>반복되는 결정</span><span>근거가 있는 결정</span><span>되돌리기 쉬운 결정</span></div>
       </div>
       <div>
         <div class="weeks">
-          <div><span class="w">WEEK 1</span><h4>시스템 지도</h4></div>
-          <div><span class="w">WEEK 2</span><h4>노드 선정·명세</h4></div>
-          <div><span class="w">WEEK 3</span><h4>구현</h4></div>
-          <div><span class="w">WEEK 4</span><h4>작동 확인</h4></div>
+          <div><span class="w">1주차</span><h4>시스템 지도</h4></div>
+          <div><span class="w">2주차</span><h4>노드 선정·명세</h4></div>
+          <div><span class="w">3주차</span><h4>구현</h4></div>
+          <div><span class="w">4주차</span><h4>작동 확인</h4></div>
         </div>
         <p class="done-line"><b>완료 기준</b> · AI가 판단하고, 기록하고, 예외만 사람에게 넘기는 상태</p>
       </div>
@@ -1029,7 +1061,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="case" aria-labelledby="case-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Case · 회사명 비공개</p>
+      <p class="eyebrow">실제 사례 (회사명 비공개)</p>
       <h2 class="h2" id="case-title">월 200만원 반찬 가게가<br>월 1억 플랫폼이 되는 동안</h2>
     </div>
     <div class="case">
@@ -1058,7 +1090,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section" aria-labelledby="cmp-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Why co·founder</p>
       <h2 class="h2" id="cmp-title">교육과 컨설팅에서 멈추지 않습니다</h2>
     </div>
     <div class="tbl-wrap cmp" style="margin-top:36px">
@@ -1079,7 +1110,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="pricing" aria-labelledby="price-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Pricing</p>
       <h2 class="h2" id="price-title">만든 것이 아니라,<br>돌아가는 만큼 냅니다</h2>
       <p class="lead">진단, 구축, 운영의 과금 방식이 다릅니다. 상시 운영 에이전트는 구축비 없이 월 구독료로 운영하며, 에이전트 실행 시간은 구독에 포함됩니다.</p>
     </div>
@@ -1113,7 +1143,6 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section" aria-labelledby="team-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Team</p>
       <h2 class="h2" id="team-title">개발 전문가와 사업 전문가가 함께합니다</h2>
     </div>
     <div class="team">
@@ -1156,14 +1185,13 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 
 <!-- ============ FAQ ============ -->
 <section class="section" aria-labelledby="faq-title">
-  <div class="wrap" style="max-width:900px">
-    <p class="eyebrow">FAQ</p>
+  <div class="wrap">
     <h2 class="h2" id="faq-title">자주 묻는 질문</h2>
-    <div class="faq">
-      <details><summary>AX와 AI 도입은 무엇이 다른가요?</summary><p class="ans">AI 도입은 도구를 더하는 것이고, AX는 결정권이 사람에서 AI와 코드로 옮겨가는 변화입니다. 코파운더는 이를 결정 단위로 기록하고 측정합니다.</p></details>
-      <details><summary>진단을 받으려면 무엇이 필요한가요?</summary><p class="ans">코드나 데이터 접근이 있으면 1차 지도를 바로 도출합니다. 코드 밖 업무는 인터뷰로, 담당자는 코파운더 MCP로 직접 입력할 수 있습니다.</p></details>
-      <details><summary>첫 파일럿은 어느 정도 범위인가요?</summary><p class="ans">결정 하나 또는 연결된 짧은 구간을 4주 안에 완성합니다.</p></details>
-      <details><summary>운영 비용은 어떻게 계산되나요?</summary><p class="ans">시스템은 크레딧으로 구축하고, 상시 운영 에이전트는 구축비 없이 월 구독료(실행 시간 포함)로 운영합니다. AI 토큰 비용은 고객사 계정에서 사용한 만큼 발생합니다.</p></details>
+    <div class="faq2">
+      <div><h3>AX와 AI 도입은 무엇이 다른가요?</h3><p>AI 도입은 도구를 더하는 것이고, AX는 결정권이 사람에서 AI와 코드로 옮겨가는 변화입니다. 코파운더는 이를 결정 단위로 기록하고 측정합니다.</p></div>
+      <div><h3>진단을 받으려면 무엇이 필요한가요?</h3><p>코드나 데이터 접근이 있으면 1차 지도를 바로 도출합니다. 코드 밖 업무는 인터뷰로, 담당자는 코파운더 MCP로 직접 입력할 수 있습니다.</p></div>
+      <div><h3>첫 파일럿은 어느 정도 범위인가요?</h3><p>결정 하나 또는 연결된 짧은 구간을 4주 안에 완성합니다.</p></div>
+      <div><h3>운영 비용은 어떻게 계산되나요?</h3><p>시스템은 크레딧으로 구축하고, 상시 운영 에이전트는 구축비 없이 월 구독료(실행 시간 포함)로 운영합니다. AI 토큰 비용은 고객사 계정에서 사용한 만큼 발생합니다.</p></div>
     </div>
   </div>
 </section>
@@ -1172,7 +1200,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="apply" aria-labelledby="apply-title">
   <div class="wrap apply">
     <div>
-      <p class="eyebrow">Start</p>
+      <p class="eyebrow">AX 진단 신청</p>
       <h2 id="apply-title">지금, 우리 회사의<br>AX 시스템 지도를 그려보세요</h2>
       <ol class="steps">
         <li>신청서를 보내주시면 담당 PM이 연락드립니다</li>
@@ -1207,7 +1235,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         </div>
       </div>
       <div class="field"><label for="f-pain">지금 가장 사람 손이 많이 가는 업무는 무엇인가요?</label><textarea id="f-pain" name="pain" placeholder="예: 매일 아침 주문을 엑셀로 옮겨 배송 순서를 정합니다"></textarea></div>
-      <button class="btn btn-primary" type="submit">AX 사업화 진단 신청 <span class="arr" aria-hidden="true">→</span></button>
+      <button class="btn btn-primary" type="submit">AX 진단 신청 <span class="arr" aria-hidden="true">→</span></button>
       <p class="form-msg" id="form-msg" role="status" hidden></p>
       <p class="form-fine">제출하신 정보는 상담 목적으로만 사용합니다.</p>
     </form>
@@ -1248,7 +1276,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 (function () {
   var LANES = ["사람", "AI 에이전트", "코드·크론"];
 
-  // 00푸드 예시 결정 노드 — before/after 는 레인 인덱스(0 사람, 1 AI, 2 코드·크론)
+  // 00푸드 예시 결정 노드: before/after 는 레인 인덱스(0 사람, 1 AI, 2 코드·크론)
   var NODES = [
     { id: "acq",      t: "신규 유입 채널",   p: 0, lever: "주문 수",     b: 0, a: 0 },
     { id: "remind",   t: "재구매 알림 시점", p: 0, lever: "주문 수",     b: 0, a: 1 },
@@ -1334,7 +1362,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       var start = lane * laneH + (laneH - total) / 2;
       list.forEach(function (n, i) {
         var el = map.els[n.id];
-        el.style.top = (start + i * (nodeH + gap)) + "px";
+        el.style.transform = "translateY(" + (start + i * (nodeH + gap)) + "px)";
         el.setAttribute("data-lane", lane);
         el.classList.toggle("moved", key === "a" && n.a !== n.b);
       });
