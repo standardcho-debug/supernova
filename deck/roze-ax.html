@@ -567,8 +567,8 @@ table.radar { width: 100%; border-collapse: collapse; font-size: 19px; font-vari
       </div>
     </div>
     <figure class="shot" style="margin:0">
-      <img src="assets/systemmap-depth1.webp" alt="co·founder 자사의 실제 AX 시스템 지도 (깊이 1, 이익식)">
-      <figcaption>co·founder 자사의 실제 AX 시스템 지도 · 깊이 1 이익식</figcaption>
+      <img id="map-shot" src="assets/systemmap-depth1.webp" alt="co·founder 자사의 실제 AX 시스템 지도 (깊이 1, 이익식)">
+      <figcaption id="map-cap">co·founder 자사의 실제 AX 시스템 지도 · 깊이 1 이익식</figcaption>
     </figure>
   </div>
 </section>
@@ -933,6 +933,13 @@ table.radar { width: 100%; border-collapse: collapse; font-size: 19px; font-vari
     s.querySelectorAll('[data-step]').forEach(e => e.classList.toggle('in', +e.dataset.step <= step));
     countUp(s);
     if (s.querySelector('#levels')) s.querySelectorAll('.lv').forEach(l => l.classList.toggle('done', step >= 2));
+    const shot = s.querySelector('#map-shot');
+    if (shot) {
+      const d2 = step >= 2;
+      shot.src = d2 ? 'assets/systemmap-depth2.webp' : 'assets/systemmap-depth1.webp';
+      shot.alt = d2 ? 'co·founder 자사의 실제 AX 시스템 지도 (깊이 2, 결정지도)' : 'co·founder 자사의 실제 AX 시스템 지도 (깊이 1, 이익식)';
+      s.querySelector('#map-cap').textContent = d2 ? 'co·founder 자사의 실제 AX 시스템 지도 · 깊이 2 결정지도' : 'co·founder 자사의 실제 AX 시스템 지도 · 깊이 1 이익식';
+    }
     if (s.id === 's-map') setMode(['before', 'now', 'next'][step]);
     if (s.id === 's-after') s.querySelectorAll('.bar-col .b').forEach(b => { b.style.height = b.dataset.h + 'px'; });
     else document.querySelectorAll('#s-after .bar-col .b').forEach(b => { b.style.height = '0px'; });
