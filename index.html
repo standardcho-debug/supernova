@@ -16,6 +16,37 @@
 /* Layout concept: 페이지 자체가 하나의 시스템 지도 — 가로 레인(사람 · AI 에이전트 · 코드·크론)과
    세로 업무 단계 격자를 배경 문법으로 쓰고, 결정 노드가 레인을 옮겨가는 장면을 중심에 둔다. */
 :root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --panel-2: #eef2f8;
+  --line: rgba(14, 20, 34, 0.10);
+  --line-strong: rgba(14, 20, 34, 0.20);
+  --fg: #0e1422;
+  --muted: #566074;
+  --brand: #1f6feb;
+  --brand-strong: #1856d6;
+  --brand-soft: rgba(31, 111, 235, 0.10);
+  --on-brand: #ffffff;
+  --human: #b8620a;
+  --human-soft: rgba(214, 125, 20, 0.12);
+  --agent: #1f6feb;
+  --agent-soft: rgba(31, 111, 235, 0.11);
+  --machine: #0f8a60;
+  --machine-soft: rgba(15, 138, 96, 0.11);
+  --ghost: rgba(14, 20, 34, 0.04);
+  --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
+
+  --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+
+  --wrap: 1160px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --radius: 14px;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
   --bg: #0a0d14;
   --panel: #10151f;
   --panel-2: #151b28;
@@ -34,43 +65,11 @@
   --machine: #33c595;
   --machine-soft: rgba(51, 197, 149, 0.15);
   --ghost: rgba(233, 237, 245, 0.05);
-  --mk-bg: #16243d; --mk-line: #2a3a5a; --mk-a: #ffffff; --mk-b: #2dd4bf;
-
-  --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
-
-  --wrap: 1160px;
-  --gutter: clamp(16px, 4vw, 32px);
-  --radius: 14px;
+  --mk-bg: #16243d;
+  --mk-line: #2a3a5a;
+  --mk-a: #ffffff;
+  --mk-b: #2dd4bf;
   color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f5f7fb; --panel: #ffffff; --panel-2: #eef2f8;
-    --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.20);
-    --fg: #0e1422; --muted: #566074;
-    --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10); --on-brand: #ffffff;
-    --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.12);
-    --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
-    --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
-    --ghost: rgba(14, 20, 34, 0.04);
-    --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
-    color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --bg: #f5f7fb; --panel: #ffffff; --panel-2: #eef2f8;
-  --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.20);
-  --fg: #0e1422; --muted: #566074;
-  --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10); --on-brand: #ffffff;
-  --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.12);
-  --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.11);
-  --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.11);
-  --ghost: rgba(14, 20, 34, 0.04);
-  --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
-  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
