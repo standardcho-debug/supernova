@@ -11,6 +11,20 @@
 /* Layout concept: 16:9 무대(1600×900)를 화면에 맞춰 축소·확대한다. 홈페이지와 같은 레인 문법
    (사람 · AI 에이전트 · 코드·크론)을 슬라이드 배경과 도담 결정지도 애니메이션에 그대로 쓴다. */
 :root {
+  --bg: #e9edf4; --stage: #f7f9fc; --panel: #ffffff; --panel-2: #eef2f8;
+  --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.22);
+  --fg: #0e1422; --muted: #566074;
+  --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10);
+  --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.13);
+  --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.12);
+  --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.12);
+  --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
+  --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
   --bg: #0a0d14;
   --stage: #0d1119;
   --panel: #131927;
@@ -29,34 +43,7 @@
   --machine: #33c595;
   --machine-soft: rgba(51, 197, 149, 0.16);
   --mk-bg: #16243d; --mk-line: #2a3a5a; --mk-a: #ffffff; --mk-b: #2dd4bf;
-  --f-display: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
   color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #e9edf4; --stage: #f7f9fc; --panel: #ffffff; --panel-2: #eef2f8;
-    --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.22);
-    --fg: #0e1422; --muted: #566074;
-    --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10);
-    --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.13);
-    --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.12);
-    --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.12);
-    --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
-    color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --bg: #e9edf4; --stage: #f7f9fc; --panel: #ffffff; --panel-2: #eef2f8;
-  --line: rgba(14, 20, 34, 0.10); --line-strong: rgba(14, 20, 34, 0.22);
-  --fg: #0e1422; --muted: #566074;
-  --brand: #1f6feb; --brand-strong: #1856d6; --brand-soft: rgba(31, 111, 235, 0.10);
-  --human: #b8620a; --human-soft: rgba(214, 125, 20, 0.13);
-  --agent: #1f6feb; --agent-soft: rgba(31, 111, 235, 0.12);
-  --machine: #0f8a60; --machine-soft: rgba(15, 138, 96, 0.12);
-  --mk-bg: #ffffff; --mk-line: #e4e8ed; --mk-a: #16243d; --mk-b: #2dd4bf;
-  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -987,7 +974,7 @@ table.radar { width: 100%; border-collapse: collapse; font-size: 19px; font-vari
   }
   function theme() {
     const r = document.documentElement;
-    const dark = r.dataset.theme ? r.dataset.theme === 'dark' : !matchMedia('(prefers-color-scheme: light)').matches;
+    const dark = r.dataset.theme === 'dark';
     r.dataset.theme = dark ? 'light' : 'dark';
   }
 
