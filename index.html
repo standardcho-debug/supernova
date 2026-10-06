@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>co·founder AX 컴퍼니빌더</title>
-<meta name="description" content="사람이 쥐고 있던 결정을 찾아 AI와 코드로 옮기고, 옮긴 뒤에도 책임지고 운영하는 AX 컴퍼니빌더, 코파운더.">
+<meta name="description" content="대표와 실무자 머릿속 판단을 AX 시스템 지도로 꺼내고, AI가 일하는 운영 시스템으로 옮기는 AX 컴퍼니빌더, 코파운더.">
 <meta property="og:title" content="co·founder AX 컴퍼니빌더">
-<meta property="og:description" content="그동안 사람이 내리던 결정을 AI가 내리도록 바꾸고, 그 이후의 운영까지 책임집니다.">
+<meta property="og:description" content="대표의 판단을, 회사의 시스템으로. AI를 쓰는 회사에서, AI가 일하는 회사로.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2220%22%20fill%3D%22%2316243d%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2250%22%20r%3D%2225%22%20fill%3D%22%23fff%22/%3E%3Ccircle%20cx%3D%2261.4%22%20cy%3D%2250%22%20r%3D%2225%22%20fill%3D%22%232dd4bf%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -793,6 +793,42 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 .foot-bottom nav { display: flex; gap: 14px; flex-wrap: wrap; }
 .foot-bottom a { text-decoration: none; }
 .foot-bottom a:hover { color: var(--fg); }
+
+/* ---------- 2026-10 개편: 대표 판단 → 시스템 ---------- */
+.hero .hero-sub { margin-top: 14px; font-size: clamp(17px, 1.9vw, 21px); font-weight: 600; color: var(--muted); }
+.who3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+.who3 > div { min-width: 0; border-top: 2px solid var(--line-strong); padding-top: 20px; display: grid; gap: 12px; align-content: start; }
+.who3 > div:first-child { border-top-color: var(--brand); }
+.who3 .who-name { font-size: 14px; font-weight: 600; color: var(--muted); }
+.who3 blockquote { margin: 0; font-size: clamp(17px, 1.8vw, 20px); font-weight: 600; line-height: 1.5; }
+.reality.slim { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+.shift-note { margin-top: 18px; color: var(--muted); font-size: 15px; max-width: 70ch; }
+.layers4 { margin-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.layers4 > div { min-width: 0; border: 1px solid var(--line-strong); border-radius: 12px; padding: 16px 18px; background: var(--bg); display: grid; gap: 4px; align-content: start; }
+.layers4 .k { font-family: var(--f-mono); font-size: 12px; color: var(--brand); }
+.layers4 b { font-size: 17px; }
+.layers4 p { color: var(--muted); font-size: 14px; }
+.layers4 .hl { border-color: var(--brand); background: var(--brand-soft); }
+.acc-btn .sn { font-family: var(--f-mono); font-size: 12px; color: var(--brand); margin-right: 10px; }
+.plan .disc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.plan .disc > div { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; }
+.plan .disc span { color: var(--muted); }
+.plan .disc b { font-family: var(--f-mono); color: var(--brand); }
+.plan .disc .best { border-color: var(--brand); background: var(--brand-soft); }
+.acq { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: start; }
+.acq > * { min-width: 0; }
+.acq-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.acq-list li { border: 1px solid var(--line-strong); border-radius: 12px; padding: 16px 18px; background: var(--bg); display: grid; gap: 4px; }
+.acq-list b { font-size: 16px; }
+.acq-list span { color: var(--muted); font-size: 14.5px; }
+.acq-cta { margin-top: 28px; }
+@media (max-width: 860px) {
+  .who3, .acq { grid-template-columns: 1fr; gap: 24px; }
+  .layers4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .reality.slim, .layers4, .plan .disc { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -808,16 +844,15 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     </a>
     <nav class="nav-links" aria-label="주요">
       <a href="#ax">AX란</a>
-      <a href="#diagnosis">AX 사업화 진단</a>
+      <a href="#diagnosis">AX 시스템 지도</a>
       <a href="#case">사례</a>
-      <a href="#tips">TIPS 팁스 사업화</a>
       <a href="#service">서비스</a>
       <a href="#pricing">가격</a>
-      <a class="sub" href="#bizplan">사업계획서</a>
+      <a class="sub" href="#acquire">인수·투자사</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="https://spnv.jengablock.com/login">로그인</a>
-      <a class="btn btn-primary" href="#apply">AX 진단 신청</a>
+      <a class="btn btn-primary" href="#apply">AX 시스템 지도 신청</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="메뉴 열기">
         <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </button>
@@ -826,12 +861,11 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <nav class="mobile-menu" id="mobile-menu" aria-label="모바일 메뉴" hidden>
       <a href="#ax">AX란</a>
-      <a href="#diagnosis">AX 사업화 진단</a>
+      <a href="#diagnosis">AX 시스템 지도</a>
       <a href="#case">사례</a>
-      <a href="#tips">TIPS 팁스 사업화</a>
       <a href="#service">서비스</a>
       <a href="#pricing">가격</a>
-      <a href="#bizplan">사업계획서 (무료)</a>
+      <a href="#acquire">인수·투자사를 위한 AX</a>
       <a href="https://spnv.jengablock.com/login">로그인</a>
     </nav>
   </div>
@@ -845,10 +879,11 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap hero-in">
     <div>
       <p class="eyebrow">AX Company Builder</p>
-      <h1>AI를 쓰는 회사에서,<br><em>AI가 일하는 회사</em>로.</h1>
-      <p class="lead">그동안 사람이 내리던 결정을 AI가 내리도록 바꾸고, 그 이후의 운영까지 책임집니다.</p>
+      <h1>대표의 판단을,<br><em>회사의 시스템</em>으로.</h1>
+      <p class="hero-sub">AI를 쓰는 회사에서, AI가 일하는 회사로.</p>
+      <p class="lead">대표와 실무자 머릿속에 있던 판단을 AX 시스템 지도로 꺼내고, AI가 일하는 운영 시스템으로 옮깁니다. 옮긴 뒤의 운영까지 책임집니다.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#apply">AX 진단 신청 <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="#apply">AX 시스템 지도 신청 <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn btn-ghost" href="#diagnosis">AX 시스템 지도 보기</a>
       </div>
     </div>
@@ -869,7 +904,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     <div><b class="num">7년+</b><span>소프트웨어 개발·운영</span></div>
     <div><b class="num">7</b><span>운영 중인 고객사</span></div>
     <div><b class="num">38건</b><span>고객사 진행 프로젝트</span></div>
-    <div><b class="num">50×</b><span>00푸드의 월 매출 성장 (관리 인원은 동일)</span></div>
+    <div><b class="num">50×</b><span>00푸드 월 매출 200만 → 1억 원 (관리 인원 동일)</span></div>
   </div>
 </section>
 
@@ -877,39 +912,29 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" aria-labelledby="who-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2" id="who-title">AX 전환이 절실한 회사입니다.</h2>
+      <p class="eyebrow">이런 회사입니다</p>
+      <h2 class="h2" id="who-title">회사는 커졌는데,<br>판단은 아직 대표 한 사람에게 몰려 있습니다</h2>
+      <p class="lead">개발팀이 있어도 마찬가지입니다. 개발팀은 제품을 만들고, 회사가 돌아가는 방식은 여전히 사람의 기억과 손에 남아 있습니다.</p>
     </div>
-    <div class="who2">
+    <div class="who3">
       <div>
-        <span class="who-name">초기창업기업 (업력 3년 이하)</span>
-        <blockquote>"서비스는 돌아가는데, 고칠 사람도 들어올 사람도 없습니다."</blockquote>
-        <div class="who-chips"><span>개발자 부재</span><span>TIPS 준비</span><span>늘어나는 대표의 수작업</span></div>
+        <span class="who-name">대표가 병목인 회사</span>
+        <blockquote>"문의가 들어오면 결국 제가 전화해야 합니다. 그래서 답이 늦고, 놓치는 고객이 생깁니다."</blockquote>
       </div>
       <div>
-        <span class="who-name">기존 사업자 (AX 전환)</span>
-        <blockquote>"다들 AI도 사용하고, 심지어 개발팀도 있는데 성장이 정체했어요."</blockquote>
-        <div class="who-chips"><span>엑셀·수작업 운영</span><span>AI를 써도 그대로인 업무 방식</span><span>기존 업무 방식 그대로</span></div>
+        <span class="who-name">반복 업무에 묶인 영업·운영팀</span>
+        <blockquote>"자료 찾고, 정리하고, 다시 연락하는 데 하루가 다 갑니다. 정작 고객을 만날 시간이 없습니다."</blockquote>
+      </div>
+      <div>
+        <span class="who-name">사람을 늘려도 처리량이 그대로인 회사</span>
+        <blockquote>"AI도 쓰고 개발팀도 있는데, 일하는 방식이 그대로라 성장이 멈췄습니다."</blockquote>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ 현실 ============ -->
-<section class="section" aria-labelledby="reality-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="h2" id="reality-title">AX가 중요하다는 데는 모두 동의합니다.<br>그러나 실제 성과를 낸 기업은 많지 않습니다.</h2>
-    </div>
-    <div class="reality">
+    <div class="reality slim">
       <div><span class="big num">95%</span><p>생성형 AI에 투자하고도 측정 가능한 수익을 얻지 못한 조직</p></div>
-      <div><span class="big num">5%</span><p>실제 가치를 만든 AI 파일럿</p></div>
       <div><span class="big num">90%</span><p>AI를 회사 시스템이 아닌 개인 도구로만 쓰는 기업</p></div>
     </div>
     <p class="src">출처: MIT NANDA, The GenAI Divide: State of AI in Business, 2025</p>
-    <div class="drucker">
-      <q>측정할 수 없으면 개선할 수 없다.</q>
-      <span>피터 드러커</span>
-    </div>
   </div>
 </section>
 
@@ -936,13 +961,14 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         </div>
       </div>
     </div>
-    <div class="levels3" aria-label="AI 권한 3단계">
-      <div><h4>사용</h4><p>AI가 만든 시스템을 사람이 씁니다</p><div class="bar"><i style="width:33%"></i></div></div>
+    <div class="levels3" aria-label="AX 전환 3단계">
+      <div><h4>사람이 일합니다</h4><p>판단과 실행을 사람이 맡고, AI는 정보와 초안을 줍니다</p><div class="bar"><i style="width:33%"></i></div></div>
       <span class="arr3" aria-hidden="true">→</span>
-      <div><h4>변경</h4><p>반복되는 업무 흐름을 AI와 코드가 이어받습니다</p><div class="bar"><i style="width:66%"></i></div></div>
+      <div><h4>사람과 AI가 함께</h4><p>AI가 제안하고 실행하며, 사람은 승인하고 예외를 처리합니다</p><div class="bar"><i style="width:66%"></i></div></div>
       <span class="arr3" aria-hidden="true">→</span>
-      <div><h4>결정</h4><p>AI가 판단하고 운영합니다</p><div class="bar"><i style="width:100%"></i></div></div>
+      <div><h4>AI가 운영합니다</h4><p>AI가 판단하고 실행하며, 사람은 방향과 기준을 정합니다</p><div class="bar"><i style="width:100%"></i></div></div>
     </div>
+    <p class="shift-note">업무마다, 결정마다 지금 있는 단계가 다릅니다. 조건이 갖춰진 결정부터 한 단계씩 넘기고, 문제가 생기면 언제든 사람 쪽으로 되돌립니다.</p>
   </div>
 </section>
 
@@ -951,13 +977,13 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <div class="diag-intro">
       <div class="sec-head">
-        <p class="eyebrow">AX 사업화 진단</p>
+        <p class="eyebrow">AX 시스템 지도</p>
         <h2 class="h2" id="diag-title">AX는 회사의 시스템 지도를 그리는 일에서 시작합니다</h2>
-        <p class="lead">이익에 영향을 주는 결정을 하나씩 나누고, 각 결정을 누가 내리는지 지도로 그립니다. AI에게 넘길 결정이 곧 AX 개발 범위가 됩니다.</p>
+        <p class="lead">무엇이 돈을 버는지, 누가 어떤 일을 하는지, 그 일 안에서 누가 무엇을 정하는지를 한 장의 지도로 그립니다. AI에게 넘길 결정이 곧 AX 개발 범위가 되고, 넘긴 뒤에는 실제로 넘어갔는지를 운영 기록으로 확인합니다.</p>
       </div>
       <div class="formula-card">
         <span class="f-lbl">AX SYSTEM MAP =</span>
-        <p class="f">이익식<span> (결정 노드)</span><br>+ 결정지도<span> (결정권 레인)</span></p>
+        <p class="f">이익식<span> · 무엇이 돈을 버나</span><br>+ 업무지도<span> · 누가 무엇을 하나</span><br>+ 결정지도<span> · 누가 정하나</span><br>+ 운영<span> · 실제로 넘어갔나</span></p>
       </div>
     </div>
 
@@ -965,14 +991,22 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
     <div class="realmap" aria-label="코파운더 자사 AX 시스템 지도 실제 예시">
       <div class="realmap-top">
         <h3>co·founder 자사의 실제 AX 시스템 지도</h3>
-        <div class="seg" role="group" aria-label="지도 깊이">
-          <button type="button" id="rm-d1" aria-pressed="true">깊이 1 · 이익식</button>
-          <button type="button" id="rm-d2" aria-pressed="false">깊이 2 · 결정지도</button>
+        <div class="seg" role="group" aria-label="지도 층">
+          <button type="button" class="rm-tab" data-rm="1" aria-pressed="true">이익식</button>
+          <button type="button" class="rm-tab" data-rm="2" aria-pressed="false">업무지도</button>
+          <button type="button" class="rm-tab" data-rm="3" aria-pressed="false">결정지도</button>
         </div>
       </div>
-      <div class="realmap-frame" id="rm-f1"><img src="assets/systemmap-depth1.webp" alt="co·founder 깊이 1 지도: 이익 = (클라 수 × 클라당 소진) − (사람 시간 + 기계 비용), 각 항 아래 결정 칸 목록" loading="lazy"></div>
-      <div class="realmap-frame wide" id="rm-f2" hidden><img src="assets/systemmap-depth2.webp" alt="co·founder 깊이 2 결정지도: 업무 단계별로 결정 칸을 이해관계자·고객·운영·AI·코드크론 레인에 배치" loading="lazy"></div>
-      <p class="realmap-cap"><span>결정 칸 <b>114</b></span><span>검은 칸: 코드·크론이 처리를 보장하는 결정</span><span class="realmap-tag">실제 운영 데이터</span></p>
+      <div class="realmap-frame" id="rm-f1"><img src="assets/systemmap-profit.webp" width="2000" height="1415" alt="co·founder 이익식: 이익 = (클라 수 × 클라당 소진) − (사람 시간 + 기계 비용). 항마다 그 숫자를 움직이는 결정 목록" loading="lazy"></div>
+      <div class="realmap-frame wide" id="rm-f2" hidden><img src="assets/systemmap-work.webp" width="2000" height="1410" alt="co·founder 업무지도: 단계(열) × 누가 정하는가(행)에 업무 52개를 배치하고, 업무마다 결정 수와 자동화 수를 표시" loading="lazy"></div>
+      <div class="realmap-frame wide" id="rm-f3" hidden><img src="assets/systemmap-decision.webp" width="2000" height="1258" alt="co·founder 결정지도: 업무를 펼친 결정 145개를 단계와 레인에 배치" loading="lazy"></div>
+      <p class="realmap-cap" id="rm-cap"><span>이익을 이루는 항마다, 그 숫자를 움직이는 결정을 모두 펼칩니다</span><span class="realmap-tag">실제 운영 데이터</span></p>
+    </div>
+    <div class="layers4" aria-label="AX 시스템 지도의 네 층">
+      <div><span class="k">01</span><b>이익식</b><p>이익을 이루는 항으로 나누고, 항마다 숫자를 움직이는 결정을 찾습니다</p></div>
+      <div><span class="k">02</span><b>업무지도</b><p>일이 흐르는 순서대로 업무를 놓고, 각 업무를 누가 쥐고 있는지 표시합니다</p></div>
+      <div><span class="k">03</span><b>결정지도</b><p>업무 안의 결정을 사람 · AI · 코드 중 누가 내리는지 칸 단위로 그립니다</p></div>
+      <div class="hl"><span class="k">04</span><b>운영</b><p>넘긴 결정이 실제로 실행되고 기록되는지, 30일 단위로 확인합니다</p></div>
     </div>
 
     <!-- 예시: 이익식 → 결정지도 -->
@@ -1027,7 +1061,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="case" aria-labelledby="case-title">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">실제 사례</p>
+      <p class="eyebrow">실제 사례 · 00푸드 (5년째 함께)</p>
       <h2 class="h2" id="case-title">월 매출 200만 원 반찬 가게가<br>월 1억 원 플랫폼으로 성장한 과정</h2>
     </div>
     <div class="case">
@@ -1043,85 +1077,11 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         </div>
       </div>
       <ol class="case-steps" aria-label="AX 전환 4단계">
-        <li><span class="st">사용</span><b>어드민 구축</b><em>엑셀 수작업 제거</em></li>
-        <li><span class="st">변경</span><b>운영 자동화</b><em>주문부터 배송까지 연결</em></li>
-        <li><span class="st">변경</span><b>AI 문의 분석</b><em>FAQ 자동 생성</em></li>
-        <li class="last"><span class="st">결정</span><b>AI 자율 응대</b><em>AI가 만든 시스템을 AI가 운영</em></li>
+        <li><span class="st">사람</span><b>어드민 구축</b><em>엑셀 수작업 제거</em></li>
+        <li><span class="st">사람 + AI</span><b>운영 자동화</b><em>주문부터 배송까지 코드로 연결</em></li>
+        <li><span class="st">사람 + AI</span><b>AI 문의 분석</b><em>FAQ 자동 생성</em></li>
+        <li class="last"><span class="st">다음 단계</span><b>AI 문의 응대</b><em>AI가 답변 초안, 사람은 승인만</em></li>
       </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TIPS ============ -->
-<section class="section" id="tips" aria-labelledby="tips-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">TIPS 팁스 사업화</p>
-      <h2 class="h2" id="tips-title">TIPS를 준비한다면,<br>AX 시스템 지도부터 그리세요</h2>
-      <p class="lead">TIPS 심사에서 핵심으로 평가하는 것은 기술개발 과제입니다. 그 과제는 지금 운영 중인 사업의 결정 지도에서 도출할 수 있습니다.</p>
-    </div>
-    <div class="tf4" aria-label="AX에서 TIPS까지">
-      <div><span>NOW · 운영</span><b>AX 시스템 지도</b></div>
-      <div><span>NEXT · 기술</span><b>AI 기술개발 과제</b></div>
-      <div class="hl"><span>TIPS · 사업화</span><b>TIPS 팁스 사업화 전략</b></div>
-      <div><span>BUILD · 구현</span><b>AX 전환 구축·운영</b></div>
-    </div>
-
-    <div class="ts-grid" id="tips-strategy">
-      <article class="ts-card">
-        <h3>운영사 투자 2억에 정부 R&amp;D 8억을 더해,<br>일반트랙 2년간 총 10억</h3>
-        <div class="ts-fund" aria-label="일반트랙 자금 구조">
-          <div class="inv">2억<small>운영사 투자</small></div>
-          <div class="rnd">8억<small>정부 R&amp;D 지원금 · 2년</small></div>
-        </div>
-        <div class="ts-stairs" aria-label="TIPS 계단식 성장 단계">
-          <div class="s1"><b>5천만</b><span>시드팁스</span></div>
-          <div class="s2"><b>1억</b><span>프리팁스</span></div>
-          <div class="s3"><b>10억</b><span>일반트랙<br>2년</span></div>
-          <div class="s4"><b>30억</b><span>포스트·<br>딥테크</span></div>
-          <div class="s5"><b>30~95억</b><span>스케일업·<br>글로벌</span></div>
-        </div>
-        <div class="ts-total"><span>8년간 받을 수 있는 지원금·자본금 (대출 아님)</span><b>총 70억+ (최대 135억)</b></div>
-      </article>
-
-      <article class="ts-card">
-        <h3>TIPS 선정 기업은 7년 뒤에도<br>10곳 중 9곳이 생존합니다</h3>
-        <div class="ts-vs">
-          <div class="good"><b class="num">94.6%</b><span>TIPS 기업 5년 생존율</span></div>
-          <div class="bad"><b class="num">33.8%</b><span>전체 창업기업 5년 생존율</span></div>
-        </div>
-        <p class="ts-src">7년 차 생존율도 88.5%에 이릅니다.</p>
-        <div class="ts-gate" aria-label="TIPS 선정기업 성장 지표">
-          <span>매출 4년간 3.9배</span><span>후속투자 2.6배</span><span>2026 예산 1.1조원</span>
-        </div>
-        <p class="ts-src">출처: 중소벤처기업부(2024), 창업기업실태조사</p>
-      </article>
-
-      <article class="ts-card wide">
-        <h3>사업 축과 기술 축이 교차하는 지점에서 R&amp;D 과제가 정해집니다</h3>
-        <div class="ts-axes">
-          <div class="ts-axis biz"><h4>사업 축 · 스케일업</h4><p>같은 기술을 적용해 넓힐 수 있는 시장</p></div>
-          <span class="ts-op" aria-hidden="true">×</span>
-          <div class="ts-axis tech"><h4>기술 축 · 개인화</h4><p>무엇을 어떤 지표로 개인화하는가</p></div>
-          <span class="ts-op" aria-hidden="true">=</span>
-          <div class="ts-axis rnd"><h4>R&amp;D 과제</h4><p>10억 원을 투입할 근거가 되는 핵심 기술</p></div>
-        </div>
-        <div class="ts-grid" style="margin-top:4px">
-          <div class="ts-matrix" aria-label="스케일업 x/y 매트릭스 예시">
-            <span class="ylab">y · 종목·프로그램</span>
-            <div class="c"></div><div class="c next">② 다음</div><div class="c"></div><div class="c"></div>
-            <div class="c now">지금</div><div class="c next">① 다음</div><div class="c"></div><div class="c"></div>
-            <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"></div>
-            <span class="xlab">x · 도입 공간·시장 →</span>
-          </div>
-          <ol class="ts-rules">
-            <li><b>1</b><span>현재 위치를 한 지점으로 정합니다</span></li>
-            <li><b>2</b><span>다음 칸으로 가는 근거는 같은 기술의 고도화입니다</span></li>
-            <li><b>3</b><span>칸마다 시점과 목표 수치를 적으면 2년 스케일업 계획이 됩니다</span></li>
-          </ol>
-        </div>
-        <div class="ts-redef"><span class="ts-k">과제 재정의 예</span><span class="from">축구 데이터 분석</span><span aria-hidden="true">→</span><span class="to">센티미터급 위치 측위 기술</span></div>
-      </article>
     </div>
   </div>
 </section>
@@ -1131,52 +1091,60 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">서비스</p>
-      <h2 class="h2" id="svc-title">진단하고, AI로 전환하고, 책임지고 운영합니다</h2>
+      <h2 class="h2" id="svc-title">지도를 그리고, 시스템을 만들고,<br>AI에게 넘기고, 계속 고칩니다</h2>
     </div>
     <div class="acc">
       <div class="acc-list">
         <div class="acc-item">
-          <button class="acc-btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1" data-view="1">진단 <span class="ic" aria-hidden="true">+</span></button>
-          <div class="acc-body" id="acc-p1"><ul><li>AX 시스템 지도 설계</li><li>TIPS 사업화 진단</li></ul><p class="out"><small>산출물</small>회사 고유의 AX 시스템 지도</p></div>
+          <button class="acc-btn" type="button" id="acc-b1" aria-expanded="true" aria-controls="acc-p1" data-view="1"><span class="sn">01</span>지도 그리기 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p1"><ul><li>이익식 · 업무지도 · 결정지도 설계</li><li>대표·실무자 인터뷰와 코드·데이터 분석</li><li>첫 전환 후보 결정 선정</li></ul><p class="out"><small>산출물</small>우리 회사의 AX 시스템 지도 (4주 이내)</p></div>
         </div>
         <div class="acc-item">
-          <button class="acc-btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2" data-view="2">전환 <span class="ic" aria-hidden="true">+</span></button>
-          <div class="acc-body" id="acc-p2" hidden><ul><li>백오피스·어드민·앱 구축</li><li>판단 로직과 AI 실행 모듈 구현</li></ul><p class="out"><small>산출물</small>AI가 직접 처리하는 결정</p></div>
+          <button class="acc-btn" type="button" id="acc-b2" aria-expanded="false" aria-controls="acc-p2" data-view="2"><span class="sn">02</span>운영 시스템 만들기 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p2" hidden><ul><li>어드민·백오피스·영업 시스템 구축</li><li>흩어진 엑셀·메신저 업무를 한 시스템으로</li></ul><p class="out"><small>산출물</small>판단과 실행이 기록되는 운영 시스템</p></div>
         </div>
         <div class="acc-item">
-          <button class="acc-btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3" data-view="3">운영 <span class="ic" aria-hidden="true">+</span></button>
-          <div class="acc-body" id="acc-p3" hidden><ul><li>에이전트 24시간 관제와 장애 대응</li><li>운영 이력을 근거로 다음 결정까지 확장</li></ul><p class="out"><small>산출물</small>매일 자동화·고도화되는 AX 운영 자산</p></div>
+          <button class="acc-btn" type="button" id="acc-b3" aria-expanded="false" aria-controls="acc-p3" data-view="3"><span class="sn">03</span>AI에게 넘기기 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p3" hidden><ul><li>조건이 갖춰진 결정부터 한 단계씩 전환</li><li>판단 기준(준칙)과 AI 실행 모듈 구현</li></ul><p class="out"><small>산출물</small>AI가 처리하고, 사람은 예외만 보는 결정</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" type="button" id="acc-b4" aria-expanded="false" aria-controls="acc-p4" data-view="4"><span class="sn">04</span>계속 고치기 <span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body" id="acc-p4" hidden><ul><li>에이전트 관제와 장애 대응</li><li>실패·사람 개입이 잦은 곳을 찾아 기준과 흐름 개선</li></ul><p class="out"><small>산출물</small>운영할수록 나아지는 AX 운영 자산</p></div>
         </div>
       </div>
       <div class="acc-panel" aria-live="polite">
         <div class="acc-view" id="acc-v1">
-          <div class="frame"><img src="assets/systemmap-depth1.webp" alt="co·founder 자사 AX 시스템 지도 깊이 1: 이익식과 항별 결정 칸" loading="lazy"></div>
-          <p class="cap">진단 결과물: 이익식의 항마다 관련 결정을 모두 펼쳐 놓은 지도입니다 (co·founder 자사의 실제 지도).</p>
+          <div class="frame"><img src="assets/systemmap-profit.webp" width="2000" height="1415" alt="co·founder 자사 이익식: 이익을 이루는 항과 항별 결정 목록" loading="lazy"></div>
+          <p class="cap">지도 그리기: 이익식의 항마다 관련 결정을 모두 펼친 지도입니다 (co·founder 자사의 실제 지도).</p>
         </div>
         <div class="acc-view" id="acc-v2" hidden>
-          <div class="mapcard"><div class="minimap-top"><span class="minimap-title">00푸드 (예시)</span><span class="minimap-state" id="svc-state">전환 전</span></div><div class="lanes mini" id="svc-map" style="--cols:3"></div></div>
-          <p class="cap">전환: 선정한 결정을 사람이 처리하던 영역에서 AI와 코드가 처리하는 영역으로 옮깁니다.</p>
+          <div class="frame scroll"><img src="assets/systemmap-work.webp" width="2000" height="1410" alt="co·founder 자사 업무지도: 단계와 레인에 놓인 업무" loading="lazy"></div>
+          <p class="cap">운영 시스템 만들기: 업무가 흐르는 순서와 각 업무를 누가 쥐는지가 시스템의 설계도가 됩니다.</p>
         </div>
         <div class="acc-view" id="acc-v3" hidden>
-          <div class="frame scroll"><img src="assets/systemmap-depth2.webp" alt="co·founder 자사 결정지도 깊이 2: 업무 단계별 결정 칸과 레인" loading="lazy"></div>
-          <p class="cap">운영: 운영 이력이 쌓일수록 지도도 확장됩니다. 검은 칸은 코드·크론이 처리를 보장하는 결정입니다.</p>
+          <div class="mapcard"><div class="minimap-top"><span class="minimap-title">00푸드 (예시)</span><span class="minimap-state" id="svc-state">전환 전</span></div><div class="lanes mini" id="svc-map" style="--cols:3"></div></div>
+          <p class="cap">AI에게 넘기기: 선정한 결정을 사람 레인에서 AI와 코드 레인으로 옮깁니다.</p>
+        </div>
+        <div class="acc-view" id="acc-v4" hidden>
+          <div class="frame scroll"><img src="assets/systemmap-decision.webp" width="2000" height="1258" alt="co·founder 자사 결정지도: 단계별 결정 칸과 레인" loading="lazy"></div>
+          <p class="cap">계속 고치기: 운영 기록이 쌓일수록 다음에 넘길 결정과 고칠 기준이 지도 위에 드러납니다.</p>
         </div>
       </div>
     </div>
 
     <div class="pilot">
       <div>
-        <h3>4주 안에 결정 하나를<br>AI가 처리하도록 전환합니다</h3>
+        <h3>4주 안에 우리 회사의<br>AX 시스템 지도를 완성합니다</h3>
         <div class="who-chips" style="margin-top:16px"><span>반복되는 결정</span><span>근거가 있는 결정</span><span>되돌리기 쉬운 결정</span></div>
       </div>
       <div>
         <div class="weeks">
-          <div><span class="w">1주차</span><h4>시스템 지도</h4></div>
-          <div><span class="w">2주차</span><h4>노드 선정·명세</h4></div>
-          <div><span class="w">3주차</span><h4>구현</h4></div>
-          <div><span class="w">4주차</span><h4>작동 확인</h4></div>
+          <div><span class="w">1주차</span><h4>이익식</h4></div>
+          <div><span class="w">2주차</span><h4>업무지도</h4></div>
+          <div><span class="w">3주차</span><h4>결정지도</h4></div>
+          <div><span class="w">4주차</span><h4>전환 후보 선정</h4></div>
         </div>
-        <p class="done-line"><b>완료 기준</b> · AI가 판단과 기록을 수행하고, 예외 상황만 사람에게 넘기는 상태</p>
+        <p class="done-line"><b>완료 기준</b> · 결정마다 지금 누가 쥐고 있는지, 무엇이 갖춰지면 AI에게 넘길 수 있는지가 지도에 적힌 상태</p>
       </div>
     </div>
   </div>
@@ -1195,6 +1163,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
           <li><b>예외는 즉시 담당자에게</b><span>판단 기준을 벗어나면 AI가 멈추고 사람에게 넘깁니다</span></li>
           <li><b>모든 판단을 기록</b><span>입력과 근거, 결과가 모두 남기 때문에 같은 판단을 다시 재현할 수 있습니다</span></li>
           <li><b>되돌리기 쉬운 결정부터</b><span>반복되고 근거가 분명하며 복구하기 쉬운 결정부터 전환합니다</span></li>
+          <li><b>언제든 사람 쪽으로 되돌림</b><span>오류나 사람 개입이 늘면 그 결정을 한 단계 뒤로 돌립니다</span></li>
         </ul>
       </div>
       <figure class="loop-fig" style="margin:0" aria-label="AI 판단, 실행, 기록·개선, 예외 확인이 순환하는 구조">
@@ -1230,7 +1199,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       <table>
         <thead><tr><th></th><th>AI 교육형</th><th>AX 컨설팅형</th><th>SI 외주 · AI 앱빌더</th><th>co·founder</th></tr></thead>
         <tbody>
-          <tr><td>시작점</td><td>임직원 교육</td><td>인터뷰·보고서</td><td>기능 목록</td><td>이익식과 결정지도</td></tr>
+          <tr><td>시작점</td><td>임직원 교육</td><td>인터뷰·보고서</td><td>기능 목록</td><td>AX 시스템 지도</td></tr>
           <tr><td>측정 단위</td><td>수강·활용률</td><td>과제 수</td><td>개발 완료 여부</td><td>AI로 전환한 결정의 수</td></tr>
           <tr><td>운영 책임</td><td>없음</td><td>없음</td><td>별도 계약</td><td>에이전트 관제까지 책임</td></tr>
           <tr><td>대표의 역할</td><td>도구 활용</td><td>실행 주체</td><td>PM 겸 검수자</td><td>확인·승인</td></tr>
@@ -1245,25 +1214,30 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">가격</p>
-      <h2 class="h2" id="price-title">진단, 구축, 운영<br>단계마다 필요한 만큼만 냅니다</h2>
-      <p class="lead">진단과 구축·운영의 과금 방식이 다릅니다. 진단은 한 번, 구축·운영은 실제 에이전트가 일하는 시간당 책정됩니다.</p>
+      <h2 class="h2" id="price-title">지도는 한 번, 개발·운영은 매월<br>일한 만큼만 차감합니다</h2>
     </div>
     <div class="price">
       <article class="plan">
-        <span class="ptag">01 · 진단</span>
-        <h3>AX 사업화 진단</h3>
-        <p class="how">AX 시스템 지도 설계 (TIPS 사업화 진단 포함)</p>
-        <div class="amt"><span>진단 설계비용</span><strong>30만원</strong></div>
-        <ul><li>이익식 · 결정지도 설계</li><li>첫 파일럿 노드 선정</li><li>TIPS 사업화 진단</li></ul>
+        <span class="ptag">01 · 지도</span>
+        <h3>AX 시스템 지도 구축</h3>
+        <p class="how">이익식부터 결정지도까지, 우리 회사의 AX 시스템 지도를 4주 안에 완성합니다</p>
+        <div class="amt"><span>구축비 (1회)</span><strong>300만원</strong></div>
+        <ul><li>이익식 · 업무지도 · 결정지도 설계</li><li>대표·실무자 인터뷰, 코드·데이터 분석</li><li>AI로 넘길 첫 결정과 필요한 조건 정리</li><li>구축 기간 4주 이내</li></ul>
       </article>
-      <article class="plan">
-        <span class="ptag">02 · 구축·운영</span>
-        <h3>AX 에이전트 구축·운영</h3>
-        <p class="how">사람을 한 명 더 뽑는 대신, 에이전트가 실제로 일한 시간만 냅니다</p>
-        <div class="amt"><span>에이전트 1시간</span><strong>15,000원</strong></div>
-        <ul><li>대기 시간은 청구하지 않고, 일한 시간만 계산</li><li>주휴수당·4대보험·퇴직금 없음, 야간·주말도 같은 요금</li><li>작업 전 예상 시간을 견적으로 드리고, 승인한 것부터 진행</li><li>매월 일한 시간과 작업 기록을 그대로 공개</li><li>에이전트 관제와 장애 대응, 업데이트까지 코파운더가 책임</li></ul>
+      <article class="plan feature">
+        <span class="ptag">02 · 개발·운영</span>
+        <h3>AI 개발·운영</h3>
+        <p class="how">월 운영비 안에서, 개발 에이전트가 실제로 일한 시간만큼 차감합니다</p>
+        <div class="amt"><span>월 운영비</span><strong>100만원~</strong></div>
+        <div class="disc" aria-label="약정 할인">
+          <div><span>3개월</span><b>5%</b></div>
+          <div><span>6개월</span><b>10%</b></div>
+          <div class="best"><span>12개월</span><b>20%</b></div>
+        </div>
+        <ul><li>개발 에이전트 1시간 = 최저시급(2026년 10,320원) 기준으로 차감</li><li>대기 시간은 차감하지 않고, 일한 시간만 계산</li><li>작업 전 예상 시간을 알려드리고, 승인한 것부터 진행</li><li>매월 일한 시간과 작업 기록을 그대로 공개</li><li>에이전트 관제와 장애 대응, 업데이트까지 코파운더가 책임</li></ul>
       </article>
     </div>
+    <p class="src">부가세 별도 · AI 토큰 비용은 고객사 계정에서 사용한 만큼 별도로 발생합니다.</p>
   </div>
 </section>
 
@@ -1292,17 +1266,22 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   </div>
 </section>
 
-<!-- ============ 사업계획서 서브 ============ -->
-<section class="section alt" id="bizplan" aria-labelledby="bp-title" style="padding-block:clamp(48px,6vw,72px)">
+<!-- ============ 인수·투자사 ============ -->
+<section class="section alt" id="acquire" aria-labelledby="acq-title">
   <div class="wrap">
-    <div class="subband">
+    <div class="acq">
       <div>
-        <span class="free">FREE</span>
-        <h3 id="bp-title">아직 아이디어 단계라면, 대화로 사업계획서부터 만들어 보세요</h3>
-        <p>대화로 근거 있는 사업계획서를 무료로 받아보세요. 계정을 만들고 나눈 대화는 사업 맥락 기록으로 쌓여, 이후 AX 사업화 진단의 출발점이 됩니다.</p>
+        <p class="eyebrow">인수·투자사를 위한 AX</p>
+        <h2 class="h2" id="acq-title">회사를 인수하셨나요?<br>창업주의 판단이 떠나기 전에 지도로 남기세요</h2>
+        <p class="lead">대표 중심으로 운영되던 회사는 대표가 떠나는 순간 견적·단가·거래처·예외 처리의 기준도 함께 사라집니다. AX 시스템 지도는 그 판단을 결정 단위로 꺼내 기록하고, 사람이 바뀌어도 돌아가는 운영 시스템으로 옮깁니다.</p>
       </div>
-      <a class="btn btn-ghost" href="https://spnv.jengablock.com/cofounder">무료 사업계획서 시작 <span class="arr" aria-hidden="true">→</span></a>
+      <ul class="acq-list">
+        <li><b>인수 직후 · 인수인계</b><span>창업주가 쥔 결정을 지도로 꺼내 누가 이어받을지 정합니다</span></li>
+        <li><b>가치 제고</b><span>이익식의 항마다 사람 손이 가는 결정을 찾아 AI와 코드로 옮깁니다</span></li>
+        <li><b>포트폴리오 관리</b><span>여러 회사의 AX 진척을 같은 기준으로 비교합니다</span></li>
+      </ul>
     </div>
+    <div class="acq-cta"><a class="btn btn-ghost" href="#apply" data-type="인수·투자사">인수·투자사 상담 신청 <span class="arr" aria-hidden="true">→</span></a></div>
   </div>
 </section>
 
@@ -1311,10 +1290,10 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   <div class="wrap">
     <h2 class="h2" id="faq-title">자주 묻는 질문</h2>
     <div class="faq2">
-      <div><h3>AX와 AI 도입은 무엇이 다른가요?</h3><p>AI 도입은 도구를 더하는 것이고, AX는 결정권이 사람에서 AI와 코드로 옮겨가는 변화입니다. 코파운더는 이 변화를 결정 단위로 기록하고 측정합니다.</p></div>
-      <div><h3>진단을 받으려면 무엇이 필요한가요?</h3><p>코드와 데이터에 접근할 수 있으면 1차 지도를 바로 도출합니다. 코드로 확인할 수 없는 업무는 인터뷰로 파악하고, 담당자가 코파운더 MCP를 통해 직접 입력할 수도 있습니다.</p></div>
-      <div><h3>첫 파일럿은 어느 정도 범위인가요?</h3><p>결정 하나, 또는 서로 연결된 짧은 업무 구간 하나를 4주 안에 전환합니다.</p></div>
-      <div><h3>운영 비용은 어떻게 계산되나요?</h3><p>에이전트가 실제로 일한 시간만큼 시간당 15,000원으로 계산합니다. 예를 들어 한 달에 40시간 일했다면 60만 원입니다. AI 토큰 비용은 고객사 계정에서 사용한 만큼 별도로 발생합니다.</p></div>
+      <div><h3>AX와 AI 도입은 무엇이 다른가요?</h3><p>AI 도입은 도구를 더하는 것이고, AX는 판단과 실행의 책임이 사람에서 AI와 코드로 옮겨가는 변화입니다. 코파운더는 이 변화를 결정 단위로 기록하고 측정합니다.</p></div>
+      <div><h3>개발팀이 있는데도 필요한가요?</h3><p>네. 개발팀은 제품을 만들고, 저희는 회사가 일하는 방식(영업·운영·고객 응대의 판단)을 시스템으로 옮깁니다. 실제로 개발팀이 있는 회사들도 이 영역 때문에 저희와 함께합니다.</p></div>
+      <div><h3>지도를 그리려면 무엇이 필요한가요?</h3><p>대표·실무자 인터뷰가 출발점입니다. 코드와 데이터에 접근할 수 있으면 실제로 작동하는 절차까지 확인하고, 담당자가 코파운더 MCP로 직접 입력할 수도 있습니다.</p></div>
+      <div><h3>운영비는 어떻게 차감되나요?</h3><p>월 운영비(100만 원부터) 안에서 개발 에이전트가 실제로 일한 시간을 최저시급 기준으로 차감합니다. 3·6·12개월 약정 시 각각 5%·10%·20% 할인됩니다. AI 토큰 비용은 고객사 계정에서 사용한 만큼 별도로 발생합니다.</p></div>
     </div>
   </div>
 </section>
@@ -1323,12 +1302,12 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
 <section class="section alt" id="apply" aria-labelledby="apply-title">
   <div class="wrap apply">
     <div>
-      <p class="eyebrow">AX 진단 신청</p>
+      <p class="eyebrow">AX 시스템 지도 신청</p>
       <h2 id="apply-title">지금, 우리 회사의<br>AX 시스템 지도를 그려보세요</h2>
       <ol class="steps">
         <li>신청서를 보내주시면 담당 PM이 연락드립니다</li>
         <li>1차 상담에서 이익식과 핵심 결정을 함께 정리합니다</li>
-        <li>AX 시스템 지도와 첫 파일럿 제안을 드립니다</li>
+        <li>AX 시스템 지도 구축 범위와 일정을 제안드립니다</li>
       </ol>
     </div>
     <form id="apply-form" novalidate>
@@ -1343,21 +1322,21 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
       <div class="field">
         <span class="flabel" id="f-type-lbl">회사 구분</span>
         <div class="chips" role="radiogroup" aria-labelledby="f-type-lbl">
-          <label><input type="radio" id="f-type-early" name="type" value="초기창업기업" checked> 초기창업기업 (3년 이하)</label>
-          <label><input type="radio" id="f-type-exist" name="type" value="기존사업자"> 기존 사업자</label>
+          <label><input type="radio" id="f-type-exist" name="type" value="운영 중인 회사" checked> 운영 중인 회사</label>
+          <label><input type="radio" id="f-type-acq" name="type" value="인수·투자사"> 인수·투자사</label>
+          <label><input type="radio" id="f-type-early" name="type" value="초기창업기업"> 초기창업기업</label>
         </div>
       </div>
       <div class="field">
         <span class="flabel" id="f-int-lbl">관심 분야</span>
         <div class="chips" role="group" aria-labelledby="f-int-lbl">
           <label><input type="checkbox" id="f-int-map" name="interest" value="AX 시스템 지도" checked> AX 시스템 지도</label>
-          <label><input type="checkbox" id="f-int-tips" name="interest" value="팁스 사업화"> 팁스 사업화</label>
           <label><input type="checkbox" id="f-int-build" name="interest" value="시스템 구축"> 시스템 구축</label>
           <label><input type="checkbox" id="f-int-ops" name="interest" value="운영 에이전트"> 운영 에이전트</label>
         </div>
       </div>
       <div class="field"><label for="f-pain">지금, 사람 손이 가장 많이 가는 업무는 무엇인가요?</label><textarea id="f-pain" name="pain" placeholder="예: 매일 아침 주문을 엑셀로 옮겨 배송 순서를 정합니다"></textarea></div>
-      <button class="btn btn-primary" type="submit">AX 진단 신청 <span class="arr" aria-hidden="true">→</span></button>
+      <button class="btn btn-primary" type="submit">AX 시스템 지도 신청 <span class="arr" aria-hidden="true">→</span></button>
       <p class="form-msg" id="form-msg" role="status" hidden></p>
       <p class="form-fine">제출하신 정보는 상담 목적으로만 사용합니다.</p>
     </form>
@@ -1390,6 +1369,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         <a href="https://spnv.jengablock.com/privacy">개인정보처리방침</a>
         <a href="https://spnv.jengablock.com/cookies">쿠키방침</a>
         <a href="https://spnv.jengablock.com/refund">환불규정</a>
+        <a href="https://spnv.jengablock.com/cofounder">창업자·TIPS (무료 사업계획서)</a>
       </nav>
     </div>
   </div>
@@ -1526,7 +1506,7 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
         document.getElementById(b.getAttribute("aria-controls")).hidden = !on;
         document.getElementById("acc-v" + b.getAttribute("data-view")).hidden = !on;
       });
-      if (v === "2") playSvc();
+      if (v === "3") playSvc();
     });
   });
 
@@ -1574,15 +1554,27 @@ footer { border-top: 1px solid var(--line); background: var(--panel); padding-bl
   });
 
 
-  // ---- 실제 시스템 지도 깊이 탭
-  var rm1 = document.getElementById("rm-d1"), rm2 = document.getElementById("rm-d2");
-  function rm(d) {
-    document.getElementById("rm-f1").hidden = d !== 1;
-    document.getElementById("rm-f2").hidden = d !== 2;
-    rm1.setAttribute("aria-pressed", d === 1); rm2.setAttribute("aria-pressed", d === 2);
-  }
-  rm1.addEventListener("click", function () { rm(1); });
-  rm2.addEventListener("click", function () { rm(2); });
+  // ---- 실제 시스템 지도 층 탭
+  var RM_CAP = {
+    1: "이익을 이루는 항마다, 그 숫자를 움직이는 결정을 모두 펼칩니다",
+    2: "업무 52개 · 결정 145개. 행은 누가 정하는가, 열은 일의 단계입니다",
+    3: "업무를 펼친 결정 단위 지도. 검은 칸은 코드·크론이 처리를 보장하는 결정입니다"
+  };
+  var rmTabs = document.querySelectorAll(".rm-tab");
+  var rmCap = document.getElementById("rm-cap").firstChild;
+  rmTabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      var d = +t.getAttribute("data-rm");
+      rmTabs.forEach(function (b) { b.setAttribute("aria-pressed", b === t); });
+      [1, 2, 3].forEach(function (k) { document.getElementById("rm-f" + k).hidden = k !== d; });
+      rmCap.textContent = RM_CAP[d];
+    });
+  });
+  document.querySelectorAll("[data-type]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var r = document.getElementById("f-type-acq"); if (r) r.checked = true;
+    });
+  });
   // ---- 모바일 메뉴
   var menuBtn = document.getElementById("menu-btn");
   var menu = document.getElementById("mobile-menu");
