@@ -362,6 +362,81 @@ form .btn { align-self: flex-start; }
 @media (max-width: 900px) { .apply { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .frow { grid-template-columns: 1fr; } }
 
+/* 모바일 최적화 */
+.ops-m { display: none; }
+.m-cta { display: none; }
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .section, .statement { padding-block: 56px; }
+  .br-d { display: none; }
+  .sec-head { margin-bottom: 28px; }
+  .lead, .hero-sub, .statement p { font-size: 17px; }
+  .hero { padding-block: 28px 44px; }
+  .hero h1 { font-size: 31px; }
+  .hero-ctas .btn { flex: 1 1 0; justify-content: center; }
+  .proof-item .num { font-size: 28px; }
+  .proof-item p { font-size: 14px; }
+  /* AX MAP 탭: 가로 세그먼트 */
+  .tabs { flex-direction: row; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1 0 auto; grid-template-columns: auto auto; align-items: baseline; padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; gap: 6px; }
+  .tab .idx { grid-row: auto; padding-top: 0; font-size: 13px; }
+  .tab b { font-size: 15px; }
+  .tab span:last-child { display: none; }
+  .tab[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: none; }
+  .map-rule { margin-top: 20px; font-size: 15px; }
+  /* 운영 요약 */
+  .measure-strip-wrap { display: none; }
+  .ops-m { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+  .ops-m div { padding: 14px 12px; border-left: 1px solid var(--line); }
+  .ops-m div:nth-child(3n+1) { border-left: 0; }
+  .ops-m div:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .ops-m dt { font-size: 12px; color: var(--subtle); }
+  .ops-m dd { margin: 2px 0 0; font-size: 17px; font-weight: 700; }
+  .measure-grid { margin-top: 16px; gap: 24px; }
+  .metric-list { gap: 18px; }
+  .metric-list li { padding-bottom: 16px; }
+  /* 타임라인, 순환도 */
+  .tl b { font-size: 18px; }
+  .loop-fig svg { max-width: 300px; }
+  .ctrl-list { gap: 20px; }
+  /* 사례 */
+  .case { padding: 22px 20px; gap: 16px; }
+  .case h3 { font-size: 21px; }
+  .case-nums { gap: 14px; padding-block: 16px; }
+  .case-nums .num { font-size: 38px; }
+  /* 흐름 */
+  .flow-box { padding: 18px 20px; }
+  .flow-box b { font-size: 18px; }
+  .flow-arr { height: 24px; }
+  /* 혜택 표: 행마다 카드로 쌓기 */
+  .table-wrap { border: 0; background: transparent; overflow: visible; }
+  table.benefit { min-width: 0; }
+  .benefit thead { display: none; }
+  .benefit tbody, .benefit tr, .benefit th, .benefit td { display: block; width: auto; }
+  .benefit tbody { display: flex; flex-direction: column; gap: 10px; }
+  .benefit tr { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 14px 16px; }
+  .benefit tbody tr + tr > * { border-top: 0; }
+  .benefit th, .benefit td { padding: 0; }
+  .benefit tbody th { width: auto; font-size: 15px; color: var(--accent); margin-bottom: 8px; }
+  .benefit td { display: grid; grid-template-columns: 64px 1fr; gap: 8px; font-size: 15px; }
+  .benefit td + td { margin-top: 6px; }
+  .benefit td::before { content: attr(data-k); color: var(--subtle); font-size: 13px; padding-top: 2px; }
+  .inv-cta { flex-direction: column; align-items: flex-start; }
+  /* 가격, 팀, FAQ, 폼 */
+  .plan { padding: 22px 20px; }
+  .plan h3 { font-size: 21px; }
+  .person h3 { font-size: 22px; }
+  .faq summary { font-size: 16px; padding-block: 18px; }
+  form { padding: 20px 16px; }
+  form .btn { width: 100%; justify-content: center; }
+  .chips label { height: 38px; font-size: 14px; }
+  footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+  /* 하단 고정 신청 버튼 */
+  .m-cta:not([hidden]) { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
+  .m-cta .btn { width: 100%; justify-content: center; }
+}
+
 /* 푸터 */
 footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size: 14px; color: var(--muted); }
 .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; }
@@ -440,7 +515,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       <div class="proof-item"><span class="num">50<small>×</small></span><p>00푸드 월 매출 성장, 관리 인원은 그대로</p></div>
       <div class="proof-item"><span class="num">2,172<small>건</small></span><p>최근 7일 동안 처리한 업무</p></div>
       <div class="proof-item"><span class="num">1,141<small>건</small></span><p>그중 사람 손 없이 자동으로 처리한 업무</p></div>
-      <div class="proof-item"><span class="num">47<small>/146</small></span><p>AI와 코드가 맡은 결정 수</p></div>
+      <div class="proof-item"><span class="num">47<small>/146</small></span><p>AI와 코드가 맡은 결정 (전체 146개 중)</p></div>
     </div>
     <p class="proof-note">처리 건수와 결정 수는 co·founder 자사 운영 기준입니다 (2026.10.08).</p>
   </div>
@@ -450,7 +525,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 <section class="section" aria-labelledby="problem-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2" id="problem-title">회사는 커졌는데,<br>판단은 아직 대표 한 사람에게 몰려 있습니다</h2>
+      <h2 class="h2" id="problem-title">회사는 커졌는데, <br class="br-d">판단은 아직 대표 한 사람에게 몰려 있습니다</h2>
     </div>
     <div class="problem">
       <div class="quote-panel">
@@ -470,7 +545,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 <section class="statement" aria-labelledby="gap-title">
   <div class="wrap">
     <h2 id="gap-title">계획은 있지만,<br>실행과 측정이 비어 있습니다.</h2>
-    <p>AI 도구를 몇 개 더 쓰는 것으로는 이 빈자리가 채워지지 않습니다. <b>co·founder는 회사가 일하는 흐름을 한눈에 보이게 그리고, 지금의 병목과 우선순위를 숫자로 찾아냅니다.</b></p>
+    <p>AI 도구를 몇 개 더 쓴다고 해서 이 빈자리가 채워지지는 않습니다. <b>co·founder는 회사가 일하는 흐름을 한눈에 보이게 그리고, 지금의 병목과 우선순위를 숫자로 찾아냅니다.</b></p>
   </div>
 </section>
 
@@ -522,8 +597,16 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 <section class="section alt" id="measure" aria-labelledby="measure-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2" id="measure-title">지도를 그린 다음 날부터,<br>운영 과정이 자동으로 측정됩니다</h2>
+      <h2 class="h2" id="measure-title">지도에 연결된 업무부터, <br class="br-d">처리 결과가 자동으로 측정됩니다</h2>
     </div>
+    <dl class="ops-m" aria-label="최근 7일 운영 요약">
+      <div><dt>7일 처리</dt><dd class="num">2,172건</dd></div>
+      <div><dt>자동 처리</dt><dd class="num">1,141건</dd></div>
+      <div><dt>지금 대기</dt><dd class="num">81건</dd></div>
+      <div><dt>병목</dt><dd>설계·구현</dd></div>
+      <div><dt>건당 시간</dt><dd class="num">6분</dd></div>
+      <div><dt>건당 비용</dt><dd class="num">$0.08</dd></div>
+    </dl>
     <div class="measure-strip-wrap">
       <div class="measure-strip">
         <img src="assets/ops-summary.webp" width="1810" height="140" loading="lazy" alt="회사 전체 운영 요약. 지금 대기 81건, 멈춤 17건, 병목은 설계·구현. 최근 7일 처리 2,172건 중 자동 1,141건, 직접 864건, 비용 180달러, 건당 비용 0.08달러, 건당 처리 시간 6분.">
@@ -537,7 +620,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
         <li><b>시간과 비용</b><span>전체 건당 <span class="num">6</span>분, <span class="num">0.08</span>달러가 들고, 설계·구현은 건당 <span class="num">14</span>분, <span class="num">30.18</span>달러가 듭니다.</span></li>
       </ul>
     </div>
-    <p class="measure-note">co·founder 자사 운영 화면, 2026.10.08 기준. 기록은 시스템이 연결된 업무부터 쌓입니다.</p>
+    <p class="measure-note">co·founder 자사 운영 화면, 2026.10.08 기준입니다.</p>
   </div>
 </section>
 
@@ -545,13 +628,13 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 <section class="section" aria-labelledby="flow-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2" id="flow-title">4주 안에 지도를 완성하고,<br>그다음 달부터 AI가 일을 맡습니다</h2>
+      <h2 class="h2" id="flow-title">4주 안에 지도를 완성하고, <br class="br-d">그다음 달부터 AI가 일을 맡습니다</h2>
     </div>
     <ol class="timeline">
-      <li class="tl"><span class="when">1주차</span><b>이익식</b><span>시스템 데이터와 짧은 인터뷰로 이익 구조를 정리합니다.</span></li>
+      <li class="tl"><span class="when">1주차</span><b>이익식</b><span>시스템 데이터와 짧은 인터뷰로 회사의 이익 구조를 정리합니다.</span></li>
       <li class="tl"><span class="when">2주차</span><b>업무지도</b><span>누가 어떤 업무를 맡는지 흐름을 구조화합니다.</span></li>
       <li class="tl"><span class="when">3주차</span><b>결정지도</b><span>사람에게 몰린 결정과 AI에게 넘길 결정을 표시합니다.</span></li>
-      <li class="tl"><span class="when">4주차</span><b>리뷰</b><span>AX 수준, 우선순위, 지금의 병목을 함께 확인합니다.</span></li>
+      <li class="tl"><span class="when">4주차</span><b>리뷰</b><span>지금의 AX 수준과 병목, 다음 우선순위를 함께 확인합니다.</span></li>
       <li class="tl after"><span class="when">5주차부터 매월</span><b>AI 개발·운영</b><span>우선순위가 높은 결정부터 AI와 코드로 옮기고, 자동화율과 업무별 생산성 지표가 얼마나 달라졌는지 매달 측정합니다.</span></li>
     </ol>
   </div>
@@ -561,7 +644,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 <section class="section alt" aria-labelledby="ctrl-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="h2" id="ctrl-title">AI가 일해도,<br>통제권은 항상 사람에게 있습니다</h2>
+      <h2 class="h2" id="ctrl-title">AI가 일해도, <br class="br-d">통제권은 항상 사람에게 있습니다</h2>
     </div>
     <div class="ctrl">
       <ul class="ctrl-list">
@@ -601,7 +684,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     <div class="cases">
       <article class="case">
         <div class="case-who"><span class="chip">5년째 함께</span><span>00푸드, 반찬 정기배송</span></div>
-        <h3>월 매출 200만 원이던 반찬 가게가<br>월 1억 원 규모의 플랫폼으로 성장했습니다</h3>
+        <h3>월 매출 200만 원이던 반찬 가게가 <br class="br-d">월 1억 원 규모의 플랫폼으로 성장했습니다</h3>
         <div class="case-nums">
           <div><span class="num">50×</span><p>월 매출 200만 원에서 1억 원으로</p></div>
           <div><span class="num plain">54.5%</span><p>업무 55개 중 30개를 AI와 코드가 담당</p></div>
@@ -616,7 +699,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       </article>
       <article class="case">
         <div class="case-who"><span class="chip quiet">2026.08 시작</span><span>B사, 외식 매장 식자재 발주 플랫폼</span></div>
-        <h3>개발 담당자가 떠난 뒤에도<br>운영이 멈추지 않았습니다</h3>
+        <h3>개발 담당자가 떠난 뒤에도 <br class="br-d">운영이 멈추지 않았습니다</h3>
         <ul class="case-steps">
           <li><span>기존 개발 담당자가 퇴사한 뒤 <b>코드와 운영을 그대로 이어받았습니다</b>.</span></li>
           <li><span>발주 품목 <b class="num">18,643</b>건이 쌓인 시스템을 멈추지 않고 고쳐 나갔습니다.</span></li>
@@ -634,7 +717,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">AC·VC 파트너십</p>
-      <h2 class="h2" id="inv-title">투자사는 기업을 추천하고,<br>기업은 직접 사용합니다</h2>
+      <h2 class="h2" id="inv-title">투자사는 기업을 추천하고, <br class="br-d">기업은 직접 사용합니다</h2>
     </div>
     <div class="flow">
       <div class="flow-box"><span class="who">AC·VC</span><b>포트폴리오 추천</b><span>비용을 부담하지 않고 포트폴리오 기업을 추천합니다.</span></div>
@@ -647,10 +730,10 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       <table class="benefit">
         <thead><tr><th scope="col">얻는 것</th><th scope="col">투자사</th><th scope="col">스타트업</th></tr></thead>
         <tbody>
-          <tr><th scope="row">기능</th><td>포트폴리오 운영 가시성, 사후관리 시간 절감</td><td>대표 병목 해소, IR 지표 확보</td></tr>
-          <tr><th scope="row">경제</th><td>후속투자와 회수를 판단할 근거 확보</td><td>AX 시스템 구축과 AI 개발·운영</td></tr>
-          <tr><th scope="row">정서</th><td><q>성장 관리를 제대로 하고 있다</q></td><td><q>운영을 투명하고, 생산적으로 할 수 있다</q></td></tr>
-          <tr><th scope="row">지표</th><td>포트폴리오별 AX 진행도</td><td>업무별 AX 생산성 지표</td></tr>
+          <tr><th scope="row">기능</th><td data-k="투자사">포트폴리오 운영 가시성, 사후관리 시간 절감</td><td data-k="스타트업">대표 병목 해소, IR 지표 확보</td></tr>
+          <tr><th scope="row">경제</th><td data-k="투자사">후속투자와 회수를 판단할 근거 확보</td><td data-k="스타트업">AX 시스템 구축과 AI 개발·운영</td></tr>
+          <tr><th scope="row">정서</th><td data-k="투자사"><q>성장 관리를 제대로 하고 있다</q></td><td data-k="스타트업"><q>운영을 투명하고, 생산적으로 할 수 있다</q></td></tr>
+          <tr><th scope="row">지표</th><td data-k="투자사">포트폴리오별 AX 진행도</td><td data-k="스타트업">업무별 AX 생산성 지표</td></tr>
         </tbody>
       </table>
     </div>
@@ -671,7 +754,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       <article class="plan main">
         <span class="tier">BASIC</span>
         <h3>AX 운영 시스템</h3>
-        <p class="price">월 10만 원<small>부터</small></p>
+        <p class="price">월 10만 원</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>AX MAP(이익식, 업무지도, 결정지도) 설계와 운영</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>업무별 처리 건수, 시간, 비용 측정</span></li>
@@ -761,7 +844,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
   <div class="wrap apply">
     <div>
       <p class="eyebrow">AX MAP 신청</p>
-      <h2 id="apply-title">우리 회사의 AX MAP을<br>4주 안에 그려 보세요</h2>
+      <h2 id="apply-title">우리 회사의 AX MAP을 <br class="br-d">4주 안에 그려 보세요</h2>
       <ol class="steps">
         <li>신청서를 보내 주시면 담당자가 연락드립니다.</li>
         <li>첫 상담에서 이익식과 핵심 결정을 함께 정리합니다.</li>
@@ -802,6 +885,10 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
 </section>
 
 </main>
+
+<div class="m-cta" id="m-cta" hidden>
+  <a class="btn btn-primary" href="#apply">AX MAP 신청 <span class="arr" aria-hidden="true">→</span></a>
+</div>
 
 <footer>
   <div class="wrap">
@@ -902,6 +989,14 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     msg.hidden = false;
     msg.textContent = "입력하신 신청 내용을 확인했습니다. 신청 접수 기능이 연결되면 담당자가 연락드리겠습니다.";
   });
+
+  var mcta = document.getElementById("m-cta");
+  if ("IntersectionObserver" in window) {
+    var heroIn = true, applyIn = false;
+    var sync = function () { mcta.hidden = heroIn || applyIn; };
+    new IntersectionObserver(function (es) { heroIn = es[0].isIntersecting; sync(); }).observe(document.querySelector(".hero"));
+    new IntersectionObserver(function (es) { applyIn = es[0].isIntersecting; sync(); }).observe(document.getElementById("apply"));
+  }
 
   document.getElementById("yr").textContent = new Date().getFullYear();
 })();
