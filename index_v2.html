@@ -113,6 +113,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 640px) { .brand-tag { display: none; } }
 .nav-links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; font-weight: 500; }
 .nav-links a { text-decoration: none; color: var(--muted); }
+.nav-sep { width: 1px; height: 14px; background: var(--line-strong); align-self: center; }
 .nav-links a:hover { color: var(--fg); }
 .nav .btn { height: 40px; padding: 0 16px; font-size: 15px; }
 .theme-btn { width: 40px; height: 40px; border-radius: var(--r-ctl); border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; display: grid; place-items: center; }
@@ -468,6 +469,8 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       <a href="#measure">운영 측정</a>
       <a href="#case">사례</a>
       <a href="#pricing">가격</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a href="https://spnv.jengablock.com/cofounder">사업계획서</a>
     </nav>
     <button class="theme-btn" id="theme-btn" type="button" aria-label="화면 테마 바꾸기">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg>
@@ -482,6 +485,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     <a href="#measure">운영 측정</a>
     <a href="#case">사례</a>
     <a href="#pricing">가격</a>
+    <a href="https://spnv.jengablock.com/cofounder">사업계획서</a>
     <a href="#apply">AX MAP 신청</a>
   </nav>
 </header>
