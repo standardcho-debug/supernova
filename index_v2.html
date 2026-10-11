@@ -109,6 +109,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .brand-mark { width: 30px; height: 30px; }
 .mk-bg { fill: var(--mk-bg); } .mk-a { fill: var(--mk-a); } .mk-b { fill: var(--mk-b); }
 .brand-word { font-family: var(--f-mark); font-weight: 900; font-size: 21px; letter-spacing: -0.01em; }
+.brand-tag { font-size: 14px; font-weight: 500; color: var(--subtle); padding-left: 12px; margin-left: 2px; border-left: 1px solid var(--line-strong); line-height: 1.2; white-space: nowrap; }
+@media (max-width: 640px) { .brand-tag { display: none; } }
 .nav-links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; font-weight: 500; }
 .nav-links a { text-decoration: none; color: var(--muted); }
 .nav-links a:hover { color: var(--fg); }
@@ -458,6 +460,7 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     <a class="brand" href="#top" aria-label="co·founder 홈">
       <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><rect class="mk-bg" x="2" y="2" width="96" height="96" rx="20"></rect><circle class="mk-a" cx="41" cy="50" r="25"></circle><circle class="mk-b" cx="61.4" cy="50" r="25"></circle></svg>
       <span class="brand-word">co·founder</span>
+      <span class="brand-tag">AX 컴퍼니빌더</span>
     </a>
     <nav class="nav-links" aria-label="주요">
       <a href="#map">AX MAP</a>
