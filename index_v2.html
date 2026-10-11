@@ -865,7 +865,6 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
         <div class="chips" role="group" aria-labelledby="f-int-lbl">
           <label><input type="checkbox" id="f-int-map" name="interest" value="AX MAP" checked> AX MAP</label>
           <label><input type="checkbox" id="f-int-ai" name="interest" value="AI 개발·운영"> AI 개발·운영</label>
-          <label><input type="checkbox" id="f-int-pilot" name="interest" value="포트폴리오 파일럿"> 포트폴리오 파일럿</label>
         </div>
       </div>
       <div class="field"><label for="f-pain">지금 사람 손이 가장 많이 가는 업무는 무엇인가요?</label><textarea id="f-pain" name="pain" placeholder="예: 매일 아침 주문을 엑셀로 옮겨 배송 순서를 정합니다"></textarea></div>
@@ -957,8 +956,6 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     a.addEventListener("click", function () {
       var r = document.querySelector('input[name="type"][value="' + a.getAttribute("data-type") + '"]');
       if (r) r.checked = true;
-      var p = document.getElementById("f-int-pilot");
-      if (p) p.checked = true;
     });
   });
 
