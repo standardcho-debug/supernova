@@ -237,7 +237,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* 통제권 순환 */
 .ctrl { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.ctrl-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+.ctrl-list { display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 34em; }
 .ctrl-list li { display: flex; flex-direction: column; gap: 6px; }
 .ctrl-list b { font-size: 18px; }
 .ctrl-list span { color: var(--muted); font-size: 15px; }
@@ -652,7 +652,6 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
         <li><b>예외는 즉시 담당자에게</b><span>판단 기준을 벗어나면 AI가 멈추고 사람에게 넘깁니다.</span></li>
         <li><b>모든 판단을 기록합니다</b><span>입력과 근거, 결과가 남기 때문에 같은 판단을 다시 재현할 수 있습니다.</span></li>
         <li><b>되돌리기 쉬운 결정부터</b><span>반복되고 근거가 분명하며 복구하기 쉬운 결정부터 전환합니다.</span></li>
-        <li><b>언제든 사람 쪽으로 되돌립니다</b><span>오류나 사람 개입이 늘면 그 결정을 한 단계 뒤로 돌립니다.</span></li>
       </ul>
       <figure class="loop-fig" aria-label="AI 판단, 실행, 기록·개선, 사람의 예외 확인이 순환하는 구조">
         <svg viewBox="0 0 420 380" role="img">
