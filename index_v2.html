@@ -329,6 +329,14 @@ table.benefit { width: 100%; min-width: 640px; border-collapse: collapse; font-s
 .person li::before { content: ""; position: absolute; left: 0; top: .8em; width: 6px; height: 1px; background: var(--muted); }
 @media (max-width: 800px) { .team { grid-template-columns: 1fr; } }
 
+/* 사업계획서 배너 */
+.bp-band { padding-block: 0 clamp(56px, 7vw, 88px); }
+.bp { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding: clamp(24px, 3.5vw, 36px) clamp(20px, 3.5vw, 40px); border-radius: var(--r-card); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
+.bp-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 1 1 420px; }
+.bp h2 { font-size: clamp(21px, 2.2vw, 26px); line-height: 1.4; }
+.bp p { color: var(--muted); }
+@media (max-width: 640px) { .bp .btn { width: 100%; justify-content: center; } }
+
 /* FAQ */
 .faq { max-width: 860px; }
 .faq details { border-bottom: 1px solid var(--line); }
@@ -780,6 +788,19 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
       </article>
     </div>
     <p class="price-note">VAT 별도입니다. AI 모델 사용료는 고객사 계정에서 사용한 만큼 별도로 발생합니다. 가격은 2026년 10월 기준입니다.</p>
+  </div>
+</section>
+
+<!-- 사업계획서 배너 -->
+<section class="bp-band" aria-labelledby="bp-title">
+  <div class="wrap">
+    <div class="bp">
+      <div class="bp-copy">
+        <h2 id="bp-title">10분 대화로 사업계획서를 무료로 생성하세요.</h2>
+        <p>계정을 만들고 나눈 대화는 사업 맥락 기록으로 쌓여, AX MAP의 출발점이 됩니다.</p>
+      </div>
+      <a class="btn btn-primary" href="https://spnv.jengablock.com/cofounder">사업계획서 생성하기 <span class="arr" aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
