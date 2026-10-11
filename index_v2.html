@@ -205,10 +205,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 900px) { .mapview { grid-template-columns: 1fr; } }
 
 /* 운영 측정 */
-.measure-strip { background: #FFFFFF; border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; box-shadow: var(--shadow); }
-.measure-strip-wrap { overflow-x: auto; }
-.measure-strip img { min-width: 760px; width: 100%; }
-.measure-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(28px, 4vw, 56px); margin-top: 28px; align-items: center; }
+.measure-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 4vw, 56px); margin-top: 28px; align-items: center; }
 .metric-list { display: flex; flex-direction: column; gap: 26px; }
 .metric-list li { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: baseline; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .metric-list li:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -366,7 +363,12 @@ form .btn { align-self: flex-start; }
 @media (max-width: 560px) { .frow { grid-template-columns: 1fr; } }
 
 /* 모바일 최적화 */
-.ops-m { display: none; }
+.ops-m { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 960px; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; box-shadow: var(--shadow); }
+.ops-m div { padding: 18px 20px; border-left: 1px solid var(--line); }
+.ops-m div:nth-child(4n+1) { border-left: 0; }
+.ops-m div:nth-child(n+5) { border-top: 1px solid var(--line); }
+.ops-m dt { font-size: 13px; color: var(--subtle); }
+.ops-m dd { margin: 4px 0 0; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
 .m-cta { display: none; }
 @media (max-width: 640px) {
   body { font-size: 16px; }
@@ -389,13 +391,11 @@ form .btn { align-self: flex-start; }
   .tab[aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); box-shadow: none; }
   .map-rule { margin-top: 20px; font-size: 15px; }
   /* 운영 요약 */
-  .measure-strip-wrap { display: none; }
-  .ops-m { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
-  .ops-m div { padding: 14px 12px; border-left: 1px solid var(--line); }
-  .ops-m div:nth-child(3n+1) { border-left: 0; }
-  .ops-m div:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .ops-m dt { font-size: 12px; color: var(--subtle); }
-  .ops-m dd { margin: 2px 0 0; font-size: 17px; font-weight: 700; }
+  .ops-m { grid-template-columns: repeat(2, minmax(0, 1fr)); box-shadow: none; }
+  .ops-m div { padding: 14px 14px; border-left: 1px solid var(--line); border-top: 0; }
+  .ops-m div:nth-child(odd) { border-left: 0; }
+  .ops-m div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .ops-m dd { font-size: 18px; }
   .measure-grid { margin-top: 16px; gap: 24px; }
   .metric-list { gap: 18px; }
   .metric-list li { padding-bottom: 16px; }
@@ -603,19 +603,16 @@ footer { border-top: 1px solid var(--line); padding-block: 48px 40px; font-size:
     <div class="sec-head">
       <h2 class="h2" id="measure-title">지도에 연결된 업무부터, <br class="br-d">처리 결과가 자동으로 측정됩니다</h2>
     </div>
-    <dl class="ops-m" aria-label="최근 7일 운영 요약">
-      <div><dt>7일 처리</dt><dd class="num">2,172건</dd></div>
-      <div><dt>자동 처리</dt><dd class="num">1,141건</dd></div>
+    <dl class="ops-m" aria-label="운영 요약">
       <div><dt>지금 대기</dt><dd class="num">81건</dd></div>
-      <div><dt>병목</dt><dd>설계·구현</dd></div>
-      <div><dt>건당 시간</dt><dd class="num">6분</dd></div>
+      <div><dt>지금 멈춤</dt><dd class="num">17건</dd></div>
+      <div><dt>지금 병목</dt><dd>설계·구현</dd></div>
+      <div><dt>건당 처리 시간</dt><dd class="num">6분</dd></div>
+      <div><dt>최근 7일 처리</dt><dd class="num">2,172건</dd></div>
+      <div><dt>자동 처리</dt><dd class="num">1,141건</dd></div>
+      <div><dt>직접 처리</dt><dd class="num">864건</dd></div>
       <div><dt>건당 비용</dt><dd class="num">$0.08</dd></div>
     </dl>
-    <div class="measure-strip-wrap">
-      <div class="measure-strip">
-        <img src="assets/ops-summary.webp" width="1810" height="140" loading="lazy" alt="회사 전체 운영 요약. 지금 대기 81건, 멈춤 17건, 병목은 설계·구현. 최근 7일 처리 2,172건 중 자동 1,141건, 직접 864건, 비용 180달러, 건당 비용 0.08달러, 건당 처리 시간 6분.">
-      </div>
-    </div>
     <div class="measure-grid">
       <div class="shot"><img src="assets/ops-card.webp" width="1490" height="990" loading="lazy" alt="업무 카드 확대. 설계·구현 업무에 병목 표시가 있고, 대기 25건, 멈춤 7건, 7일 처리 43건, 건당 평균 14분, 건당 평균 비용 30.18달러입니다."></div>
       <ul class="metric-list">
