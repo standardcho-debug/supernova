@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>co·founder 로그인</title>
+<meta name="description" content="10분 대화로 사업계획서를 무료로 만들고, 그 대화가 우리 회사 AX MAP의 출발점이 되는 co·founder 로그인 화면.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@900&display=swap">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --panel: #EAF1FD;
+  --surface: #FFFFFF;
+  --fg: #14213D;
+  --muted: #4A5568;
+  --subtle: #66708A;
+  --line: #DCE2EB;
+  --field: #EEF3FC;
+  --accent: #1856D6;
+  --accent-strong: #1347B3;
+  --on-accent: #FFFFFF;
+  --mk-bg: #FFFFFF; --mk-a: #16243D; --mk-b: #2DD4BF;
+  --shadow: 0 24px 60px rgba(20, 33, 61, .08);
+  --f-sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mark: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1320; --panel: #16243D; --surface: #152035;
+    --fg: #E9EEF6; --muted: #AAB5C8; --subtle: #8C97AD; --line: #26344D; --field: #1B2A45;
+    --accent: #7AA6FF; --accent-strong: #9BBCFF; --on-accent: #0D1320;
+    --mk-bg: #E9EEF6; --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1320; --panel: #16243D; --surface: #152035;
+  --fg: #E9EEF6; --muted: #AAB5C8; --subtle: #8C97AD; --line: #26344D; --field: #1B2A45;
+  --accent: #7AA6FF; --accent-strong: #9BBCFF; --on-accent: #0D1320;
+  --mk-bg: #E9EEF6; --shadow: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { min-height: 100vh; background: var(--bg); color: var(--fg); font-family: var(--f-sans); font-size: 16px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; display: flex; align-items: flex-start; justify-content: center; padding: 80px 16px 48px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.card { width: 100%; max-width: 1080px; display: grid; grid-template-columns: 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+
+/* 좌측 소개 */
+.intro { background: var(--panel); padding: 56px 52px; display: flex; flex-direction: column; gap: 28px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); }
+.brand-mark { width: 30px; height: 30px; }
+.brand-mark .mk-bg { fill: var(--mk-bg); }
+.brand-mark .mk-a { fill: var(--mk-a); }
+.brand-mark .mk-b { fill: var(--mk-b); }
+.brand-word { font-family: var(--f-mark); font-weight: 900; font-size: 22px; letter-spacing: -0.01em; }
+.intro h1 { margin: 8px 0 0; font-size: 30px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; }
+.intro .sub { margin: 0; color: var(--accent); font-size: 16px; line-height: 1.7; }
+.checks { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
+.checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; font-weight: 500; }
+.checks svg { flex: none; width: 18px; height: 18px; margin-top: 4px; color: var(--accent); }
+
+/* 우측 로그인 */
+.login { padding: 56px 52px; display: flex; flex-direction: column; }
+.login h2 { margin: 0; font-size: 24px; font-weight: 700; }
+.login .hint { margin: 6px 0 28px; color: var(--muted); font-size: 15px; }
+form { display: grid; gap: 20px; }
+label { display: grid; gap: 8px; font-size: 15px; font-weight: 600; }
+input { width: 100%; height: 50px; padding: 0 16px; font: inherit; font-size: 16px; font-weight: 400; color: var(--fg); background: var(--field); border: 1px solid var(--line); border-radius: 10px; }
+input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+.btn { height: 50px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font: inherit; font-size: 16px; font-weight: 600; cursor: pointer; transition: background .15s ease; margin-top: 4px; }
+.btn:hover { background: var(--accent-strong); }
+.join { margin: 24px 0 0; color: var(--muted); font-size: 15px; }
+.join a { color: var(--accent); font-weight: 600; text-underline-offset: 3px; }
+.nw { white-space: nowrap; }
+.msg:empty { display: none; }
+.msg { margin: -8px 0 0; font-size: 14px; color: var(--subtle); }
+
+@media (max-width: 820px) {
+  body { padding: 24px 16px 40px; }
+  .card { grid-template-columns: 1fr; }
+  .intro, .login { padding: 36px 24px; }
+  .intro { gap: 20px; }
+  .intro h1 { font-size: 26px; }
+  .checks { margin-top: 4px; }
+}
+</style>
+</head>
+<body>
+<main class="card">
+  <section class="intro" aria-labelledby="intro-title">
+    <a class="brand" href="https://spnv.jengablock.com" aria-label="co·founder 홈">
+      <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><rect class="mk-bg" x="2" y="2" width="96" height="96" rx="20"></rect><circle class="mk-a" cx="41" cy="50" r="25"></circle><circle class="mk-b" cx="61.4" cy="50" r="25"></circle></svg>
+      <span class="brand-word">co·founder</span>
+    </a>
+    <h1 id="intro-title">사업계획서에서 <span class="nw">AX MAP까지,</span><br>코파운더와 함께.</h1>
+    <p class="sub">10분 대화로 사업계획서를 무료로 만드세요. 나눈 대화는 사업 맥락 기록으로 쌓여 우리 회사 AX MAP의 출발점이 됩니다.</p>
+    <ul class="checks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>10분 대화로 PSST 사업계획서 무료 생성</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>대화가 쌓여 우리 회사 AX MAP으로</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>업무별 처리 건수·시간·비용을 매일 측정</li>
+    </ul>
+  </section>
+
+  <section class="login" aria-labelledby="login-title">
+    <h2 id="login-title">로그인</h2>
+    <p class="hint">이메일과 비밀번호로 로그인하세요.</p>
+    <form id="login-form" novalidate>
+      <label>이메일
+        <input type="email" name="email" autocomplete="email" placeholder="name@company.com" required>
+      </label>
+      <label>비밀번호
+        <input type="password" name="password" autocomplete="current-password" placeholder="비밀번호" required>
+      </label>
+      <button class="btn" type="submit">로그인</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+    <p class="join">계정이 없으세요? <a href="#">회원가입</a></p>
+  </section>
+</main>
+<script>
+  // 화면 시안용: 실제 로그인 연동은 서비스 코드에서 처리합니다.
+  document.getElementById("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target, msg = document.getElementById("msg");
+    if (!f.email.value || !f.password.value) { msg.textContent = "이메일과 비밀번호를 입력해 주세요."; return; }
+    msg.textContent = "시안 화면이라 실제 로그인은 되지 않습니다.";
+  });
+</script>
+</body>
+</html>
